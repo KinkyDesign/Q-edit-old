@@ -1,7 +1,6 @@
 /*
  * ApplicationMainView.java
  */
-
 package org.kinkydesign.qedit;
 
 import org.jdesktop.application.Action;
@@ -14,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
@@ -30,6 +30,7 @@ public class ApplicationMainView extends FrameView {
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -40,6 +41,7 @@ public class ApplicationMainView extends FrameView {
             busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -52,6 +54,7 @@ public class ApplicationMainView extends FrameView {
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -68,11 +71,11 @@ public class ApplicationMainView extends FrameView {
                     progressBar.setVisible(false);
                     progressBar.setValue(0);
                 } else if ("message".equals(propertyName)) {
-                    String text = (String)(evt.getNewValue());
+                    String text = (String) (evt.getNewValue());
                     statusMessageLabel.setText((text == null) ? "" : text);
                     messageTimer.restart();
                 } else if ("progress".equals(propertyName)) {
-                    int value = (Integer)(evt.getNewValue());
+                    int value = (Integer) (evt.getNewValue());
                     progressBar.setVisible(true);
                     progressBar.setIndeterminate(false);
                     progressBar.setValue(value);
@@ -101,8 +104,10 @@ public class ApplicationMainView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        qEditLayeredPane = new javax.swing.JLayeredPane();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        openFileMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -111,18 +116,21 @@ public class ApplicationMainView extends FrameView {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
+        openFileChooser = new javax.swing.JFileChooser();
 
         mainPanel.setName("mainPanel"); // NOI18N
+
+        qEditLayeredPane.setName("qEditLayeredPane"); // NOI18N
 
         org.jdesktop.layout.GroupLayout mainPanelLayout = new org.jdesktop.layout.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, qEditLayeredPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 248, Short.MAX_VALUE)
+            .add(qEditLayeredPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -132,7 +140,19 @@ public class ApplicationMainView extends FrameView {
         fileMenu.setName("fileMenu"); // NOI18N
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(org.kinkydesign.qedit.QEditApplication.class).getContext().getActionMap(ApplicationMainView.class, this);
+        openFileMenuItem.setAction(actionMap.get("openFileLocal")); // NOI18N
+        openFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        openFileMenuItem.setIcon(resourceMap.getIcon("openFileMenuItem.icon")); // NOI18N
+        openFileMenuItem.setText(resourceMap.getString("openFileMenuItem.text")); // NOI18N
+        openFileMenuItem.setToolTipText(resourceMap.getString("openFileMenuItem.toolTipText")); // NOI18N
+        openFileMenuItem.setAlignmentX(0.6F);
+        openFileMenuItem.setName("openFileMenuItem"); // NOI18N
+        openFileMenuItem.setPreferredSize(new java.awt.Dimension(263, 23));
+        fileMenu.add(openFileMenuItem);
+        openFileMenuItem.getAccessibleContext().setAccessibleDescription(resourceMap.getString("openFileMenuItem.AccessibleContext.accessibleDescription")); // NOI18N
+
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+        exitMenuItem.setAlignmentX(0.6F);
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
 
@@ -184,25 +204,37 @@ public class ApplicationMainView extends FrameView {
                 .add(3, 3, 3))
         );
 
+        openFileChooser.setName("openFileChooser"); // NOI18N
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Action
+    public void openFileLocal() {
+        if (openFileChooser == null) {
+            openFileChooser = new JFileChooser();
+            openFileChooser.setAcceptAllFileFilterUsed(true);
+            openFileChooser.setDialogTitle("Open from local file");
+        }
+        openFileChooser.showOpenDialog(mainPanel);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JFileChooser openFileChooser;
+    private javax.swing.JMenuItem openFileMenuItem;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JLayeredPane qEditLayeredPane;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     // End of variables declaration//GEN-END:variables
-
     private final Timer messageTimer;
     private final Timer busyIconTimer;
     private final Icon idleIcon;
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
-
     private JDialog aboutBox;
 }
