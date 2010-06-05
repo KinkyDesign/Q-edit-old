@@ -24,75 +24,78 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="1"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="credentialsPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="remoteLocationsPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="buttonsPanel" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="infoIcon" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="enterUriHint" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="1"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="remoteLocationsPanel" min="-2" pref="175" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="credentialsPanel" min="-2" pref="155" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="enterUriHint" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="infoIcon" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="buttonsPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="remoteLocationsPanel">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Remote Locations">
+              <Property name="titleX" resourceKey="remoteLocationsPanel.border.title"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+        <Property name="name" type="java.lang.String" value="remoteLocationsPanel" noResource="true"/>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="cancellationButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="loadFromRemoteButton" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="3" pref="3" max="3" attributes="0"/>
-                                  <Component id="requireCredentials" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="datasetUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="datasetUriExplanation" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="datasetUriValue" alignment="0" pref="374" max="32767" attributes="1"/>
-                              <Component id="modelUriValue" alignment="0" pref="374" max="32767" attributes="2"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="userNameVariable" min="-2" pref="131" max="-2" attributes="1"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="userPasswordValue" min="-2" pref="162" max="-2" attributes="1"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="passwordQuality" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="modelUriExplanation" alignment="0" pref="374" max="32767" attributes="1"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="provideCredentialsHint" max="32767" attributes="0"/>
-                                  <EmptySpace min="217" pref="217" max="217" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
+                      <Component id="modelUriLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="datasetUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="datasetUriExplanation" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="datasetUriValue" alignment="0" pref="626" max="32767" attributes="1"/>
+                      <Component id="modelUriValue" alignment="0" pref="626" max="32767" attributes="2"/>
+                      <Component id="modelUriExplanation" alignment="0" pref="626" max="32767" attributes="1"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="datasetUriValue" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="datasetUriLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -101,33 +104,12 @@
                   <Component id="datasetUriExplanation" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="modelUriLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="modelUriValue" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="modelUriExplanation" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="userNameVariable" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="userPasswordValue" alignment="3" max="32767" attributes="0"/>
-                              <Component id="passwordQuality" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="provideCredentialsHint" pref="17" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="loadFromRemoteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cancellationButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="requireCredentials" max="32767" attributes="0"/>
-                          <EmptySpace min="75" pref="75" max="75" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,23 +119,26 @@
           <Properties>
             <Property name="font" type="java.awt.Font" resourceKey="datasetUriLabel.font"/>
             <Property name="text" type="java.lang.String" resourceKey="datasetUriLabel.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="datasetUriLabel.toolTipText"/>
             <Property name="name" type="java.lang.String" value="datasetUriLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="datasetUriValue">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="datasetUriValue.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="datasetUriValue.toolTipText"/>
             <Property name="name" type="java.lang.String" value="datasetUriValue" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="datasetUriValueActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="modelUriLabel">
           <Properties>
-            <Property name="font" type="java.awt.Font" resourceKey="jLabel3.font"/>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+            <Property name="font" type="java.awt.Font" resourceKey="modelUriLabel.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="modelUriLabel.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="modelUriLabel.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="modelUriLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="datasetUriExplanation">
@@ -171,59 +156,208 @@
         <Component class="javax.swing.JTextField" name="modelUriValue">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="modelUriValue.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="modelUriValue.toolTipText"/>
             <Property name="name" type="java.lang.String" value="modelUriValue" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="loadFromRemoteButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="loadFromRemoteButton.text"/>
-            <Property name="name" type="java.lang.String" value="loadFromRemoteButton" noResource="true"/>
-          </Properties>
-        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="credentialsPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Credentials">
+              <Property name="titleX" resourceKey="credentialsPanel.border.title"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+        <Property name="name" type="java.lang.String" value="credentialsPanel" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="900" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="provideCredentialsHint" alignment="0" min="-2" pref="172" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="userNameVariable" min="-2" pref="131" max="-2" attributes="1"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="userPasswordValue" min="-2" pref="162" max="-2" attributes="1"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="passwordQuality" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="requireCredentials" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="416" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="126" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="requireCredentials" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="userNameVariable" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="userPasswordValue" alignment="3" max="32767" attributes="0"/>
+                          <Component id="passwordQuality" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="provideCredentialsHint" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
         <Component class="java.awt.Checkbox" name="requireCredentials">
           <Properties>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
             <Property name="label" type="java.lang.String" resourceKey="requireCredentials.label"/>
             <Property name="name" type="java.lang.String" value="requireCredentials" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="requireCredentialsItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="userPasswordValue">
           <Properties>
             <Property name="foreground" type="java.awt.Color" resourceKey="userPasswordValue.foreground"/>
             <Property name="text" type="java.lang.String" resourceKey="userPasswordValue.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="userPasswordValue.toolTipText"/>
             <Property name="name" type="java.lang.String" value="userPasswordValue" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="userPasswordValueCaretUpdate"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="//// Initially disabled text field:&#xa;userPasswordValue.setEnabled(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="userNameVariable">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="userNameVariable.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="userNameVariable.toolTipText"/>
             <Property name="name" type="java.lang.String" value="userNameVariable" noResource="true"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="userNameVariable.setEnabled(false);"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="cancellationButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="cancellationButton.text"/>
-            <Property name="name" type="java.lang.String" value="cancellationButton" noResource="true"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="provideCredentialsHint">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="provideCredentialsHint.text"/>
             <Property name="name" type="java.lang.String" value="provideCredentialsHint" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="provideCredentialsHint.setEnabled(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="passwordQuality">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="passwordQuality.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="passwordQuality.toolTipText"/>
             <Property name="name" type="java.lang.String" value="passwordQuality" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JPanel" name="buttonsPanel">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="buttonsPanel" noResource="true"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="313" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="loadFromRemoteButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="clearFieldsButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cancellationButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="loadFromRemoteButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="clearFieldsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cancellationButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="cancellationButton">
+          <Properties>
+            <Property name="mnemonic" type="int" value="67"/>
+            <Property name="text" type="java.lang.String" resourceKey="cancellationButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="cancellationButton.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="cancellationButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancellationButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="clearFieldsButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="clearFieldsButton.text"/>
+            <Property name="name" type="java.lang.String" value="clearFieldsButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearFieldsButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="loadFromRemoteButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="loadFromRemoteButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="loadFromRemoteButton.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="loadFromRemoteButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadFromRemoteButtonActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="enterUriHint">
+      <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="enterUriHint.text"/>
+        <Property name="autoscrolls" type="boolean" value="true"/>
+        <Property name="name" type="java.lang.String" value="enterUriHint" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="infoIcon">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="infoIcon.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="infoIcon.text"/>
+        <Property name="name" type="java.lang.String" value="infoIcon" noResource="true"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
