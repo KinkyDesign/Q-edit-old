@@ -96,10 +96,20 @@ public class QEditView extends FrameView {
     }
 
     @Action
-    public void openFileAction(){
+    public void openFileAction() {
         localFileChooserWindow = new JFileChooser();
         localFileChooserWindow.setAcceptAllFileFilterUsed(true);
         localFileChooserWindow.showOpenDialog(mainPanel);
+    }
+
+    @Action
+    public void enterUri() {
+        if (enterUri == null) {
+            JFrame mainFrame = QEditApp.getApplication().getMainFrame();
+            enterUri = new EnterUriDialog(mainFrame);
+            enterUri.setLocationRelativeTo(mainFrame);
+        }
+        QEditApp.getApplication().show(enterUri);
     }
 
     /** This method is called from within the constructor to
@@ -112,12 +122,11 @@ public class QEditView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        metaInfoTab = new javax.swing.JEditorPane();
+        guiTabbedPane = new javax.swing.JTabbedPane();
+        predictionsScrollablePane = new javax.swing.JScrollPane();
+        predictionsData = new javax.swing.JTable();
+        modelInfoTabPane = new javax.swing.JPanel();
+        metaInfoTabbedPane = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         openFileMenuItem = new javax.swing.JMenuItem();
@@ -128,8 +137,10 @@ public class QEditView extends FrameView {
         secondFileMenuSeparatorItem = new javax.swing.JPopupMenu.Separator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         toolsMenu = new javax.swing.JMenu();
+        toolsOptionsMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
+        helpMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -142,11 +153,11 @@ public class QEditView extends FrameView {
         mainPanel.setBackground(resourceMap.getColor("mainPanel.background")); // NOI18N
         mainPanel.setName("mainPanel"); // NOI18N
 
-        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+        guiTabbedPane.setName("guiTabbedPane"); // NOI18N
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        predictionsScrollablePane.setName("predictionsScrollablePane"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        predictionsData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -157,42 +168,50 @@ public class QEditView extends FrameView {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
+        predictionsData.setName("predictionsData"); // NOI18N
+        predictionsScrollablePane.setViewportView(predictionsData);
 
-        jTabbedPane1.addTab(resourceMap.getString("jScrollPane1.TabConstraints.tabTitle"), jScrollPane1); // NOI18N
+        guiTabbedPane.addTab(resourceMap.getString("predictionsScrollablePane.TabConstraints.tabTitle"), predictionsScrollablePane); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
+        modelInfoTabPane.setName("modelInfoTabPane"); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout modelInfoTabPaneLayout = new javax.swing.GroupLayout(modelInfoTabPane);
+        modelInfoTabPane.setLayout(modelInfoTabPaneLayout);
+        modelInfoTabPaneLayout.setHorizontalGroup(
+            modelInfoTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 404, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        modelInfoTabPaneLayout.setVerticalGroup(
+            modelInfoTabPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 352, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        guiTabbedPane.addTab(resourceMap.getString("modelInfoTabPane.TabConstraints.tabTitle"), modelInfoTabPane); // NOI18N
 
-        jScrollPane2.setName("jScrollPane2"); // NOI18N
+        metaInfoTabbedPane.setName("metaInfoTabbedPane"); // NOI18N
 
-        metaInfoTab.setName("metaInfoTab"); // NOI18N
-        jScrollPane2.setViewportView(metaInfoTab);
+        javax.swing.GroupLayout metaInfoTabbedPaneLayout = new javax.swing.GroupLayout(metaInfoTabbedPane);
+        metaInfoTabbedPane.setLayout(metaInfoTabbedPaneLayout);
+        metaInfoTabbedPaneLayout.setHorizontalGroup(
+            metaInfoTabbedPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 404, Short.MAX_VALUE)
+        );
+        metaInfoTabbedPaneLayout.setVerticalGroup(
+            metaInfoTabbedPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 352, Short.MAX_VALUE)
+        );
 
-        jTabbedPane1.addTab(resourceMap.getString("jScrollPane2.TabConstraints.tabTitle"), jScrollPane2); // NOI18N
+        guiTabbedPane.addTab(resourceMap.getString("metaInfoTabbedPane.TabConstraints.tabTitle"), metaInfoTabbedPane); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addComponent(guiTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+            .addComponent(guiTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -218,6 +237,11 @@ public class QEditView extends FrameView {
         openUrlMenuItem.setText(resourceMap.getString("openUrlMenuItem.text")); // NOI18N
         openUrlMenuItem.setToolTipText(resourceMap.getString("openUrlMenuItem.toolTipText")); // NOI18N
         openUrlMenuItem.setName("openUrlMenuItem"); // NOI18N
+        openUrlMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openUrlMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(openUrlMenuItem);
 
         saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
@@ -253,6 +277,11 @@ public class QEditView extends FrameView {
 
         toolsMenu.setText(resourceMap.getString("toolsMenu.text")); // NOI18N
         toolsMenu.setName("toolsMenu"); // NOI18N
+
+        toolsOptionsMenuItem.setText(resourceMap.getString("toolsOptionsMenuItem.text")); // NOI18N
+        toolsOptionsMenuItem.setName("toolsOptionsMenuItem"); // NOI18N
+        toolsMenu.add(toolsOptionsMenuItem);
+
         menuBar.add(toolsMenu);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
@@ -261,6 +290,10 @@ public class QEditView extends FrameView {
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
+
+        helpMenuItem.setText(resourceMap.getString("helpMenuItem.text")); // NOI18N
+        helpMenuItem.setName("helpMenuItem"); // NOI18N
+        helpMenu.add(helpMenuItem);
 
         menuBar.add(helpMenu);
 
@@ -309,29 +342,33 @@ public class QEditView extends FrameView {
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void openFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileMenuItemActionPerformed
         openFileAction();
     }//GEN-LAST:event_openFileMenuItemActionPerformed
-    
+
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         saveFileChooserWindow = new JFileChooser();
         saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("rdf files", "rdf"));
         saveFileChooserWindow.showSaveDialog(mainPanel);
     }//GEN-LAST:event_saveMenuItemActionPerformed
+
+    private void openUrlMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openUrlMenuItemActionPerformed
+        enterUri();
+    }//GEN-LAST:event_openUrlMenuItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu.Separator firstFileMenuSeparatorItem;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTabbedPane guiTabbedPane;
+    private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JFileChooser localFileChooserWindow;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JEditorPane metaInfoTab;
+    private javax.swing.JPanel metaInfoTabbedPane;
+    private javax.swing.JPanel modelInfoTabPane;
     private javax.swing.JMenuItem openFileMenuItem;
     private javax.swing.JMenuItem openUrlMenuItem;
+    private javax.swing.JTable predictionsData;
+    private javax.swing.JScrollPane predictionsScrollablePane;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenuItem qprfOptionsMenuItem;
     private javax.swing.JFileChooser saveFileChooserWindow;
@@ -341,6 +378,7 @@ public class QEditView extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JMenu toolsMenu;
+    private javax.swing.JMenuItem toolsOptionsMenuItem;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;
@@ -348,4 +386,5 @@ public class QEditView extends FrameView {
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
+    private JDialog enterUri;
 }
