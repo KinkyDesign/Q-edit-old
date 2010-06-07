@@ -258,6 +258,7 @@
         <Component class="javax.swing.JLabel" name="provideCredentialsHint">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="provideCredentialsHint.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="provideCredentialsHint.toolTipText"/>
             <Property name="name" type="java.lang.String" value="provideCredentialsHint" noResource="true"/>
           </Properties>
           <AuxValues>
@@ -315,7 +316,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="cancellationButton">
           <Properties>
-            <Property name="mnemonic" type="int" value="67"/>
             <Property name="text" type="java.lang.String" resourceKey="cancellationButton.text"/>
             <Property name="toolTipText" type="java.lang.String" resourceKey="cancellationButton.toolTipText"/>
             <Property name="name" type="java.lang.String" value="cancellationButton" noResource="true"/>

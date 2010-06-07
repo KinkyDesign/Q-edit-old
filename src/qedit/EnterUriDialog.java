@@ -185,6 +185,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
         userNameVariable.setEnabled(false);
 
         provideCredentialsHint.setText(resourceMap.getString("provideCredentialsHint.text")); // NOI18N
+        provideCredentialsHint.setToolTipText(resourceMap.getString("provideCredentialsHint.toolTipText")); // NOI18N
         provideCredentialsHint.setName("provideCredentialsHint"); // NOI18N
         provideCredentialsHint.setEnabled(false);
 
@@ -230,7 +231,6 @@ public class EnterUriDialog extends javax.swing.JDialog {
 
         buttonsPanel.setName("buttonsPanel"); // NOI18N
 
-        cancellationButton.setMnemonic('C');
         cancellationButton.setText(resourceMap.getString("cancellationButton.text")); // NOI18N
         cancellationButton.setToolTipText(resourceMap.getString("cancellationButton.toolTipText")); // NOI18N
         cancellationButton.setName("cancellationButton"); // NOI18N
