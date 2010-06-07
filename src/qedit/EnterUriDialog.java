@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * EnterUriDialog.java
  *
  * Created on Jun 5, 2010, 5:55:23 AM
@@ -37,7 +32,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
 
     @Action
     public void enableDiableCredentials() {
-        boolean requireCredentialsCheckBoxState = requireCredentials.getState();
+        boolean requireCredentialsCheckBoxState = requireCredentials.isSelected();
         userNameVariable.setEnabled(requireCredentialsCheckBoxState);
         userPasswordValue.setEnabled(requireCredentialsCheckBoxState);
         provideCredentialsHint.setEnabled(requireCredentialsCheckBoxState);
@@ -71,11 +66,11 @@ public class EnterUriDialog extends javax.swing.JDialog {
         modelUriExplanation = new javax.swing.JLabel();
         modelUriValue = new javax.swing.JTextField();
         credentialsPanel = new javax.swing.JPanel();
-        requireCredentials = new java.awt.Checkbox();
         userPasswordValue = new javax.swing.JPasswordField();
         userNameVariable = new javax.swing.JTextField();
         provideCredentialsHint = new javax.swing.JLabel();
         passwordQuality = new javax.swing.JLabel();
+        requireCredentials = new javax.swing.JCheckBox();
         buttonsPanel = new javax.swing.JPanel();
         cancellationButton = new javax.swing.JButton();
         clearFieldsButton = new javax.swing.JButton();
@@ -135,7 +130,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
                     .addComponent(datasetUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                     .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                     .addComponent(modelUriExplanation, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
-                .addGap(90, 90, 90))
+                .addGap(114, 114, 114))
         );
         remoteLocationsPanelLayout.setVerticalGroup(
             remoteLocationsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,15 +152,6 @@ public class EnterUriDialog extends javax.swing.JDialog {
 
         credentialsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("credentialsPanel.border.title"))); // NOI18N
         credentialsPanel.setName("credentialsPanel"); // NOI18N
-
-        requireCredentials.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        requireCredentials.setLabel(resourceMap.getString("requireCredentials.label")); // NOI18N
-        requireCredentials.setName("requireCredentials"); // NOI18N
-        requireCredentials.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                requireCredentialsItemStateChanged(evt);
-            }
-        });
 
         userPasswordValue.setForeground(resourceMap.getColor("userPasswordValue.foreground")); // NOI18N
         userPasswordValue.setText(resourceMap.getString("userPasswordValue.text")); // NOI18N
@@ -193,40 +179,41 @@ public class EnterUriDialog extends javax.swing.JDialog {
         passwordQuality.setToolTipText(resourceMap.getString("passwordQuality.toolTipText")); // NOI18N
         passwordQuality.setName("passwordQuality"); // NOI18N
 
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getActionMap(EnterUriDialog.class, this);
+        requireCredentials.setAction(actionMap.get("enableDiableCredentials")); // NOI18N
+        requireCredentials.setText(resourceMap.getString("requireCredentials.text")); // NOI18N
+        requireCredentials.setToolTipText(resourceMap.getString("requireCredentials.toolTipText")); // NOI18N
+        requireCredentials.setName("requireCredentials"); // NOI18N
+
         javax.swing.GroupLayout credentialsPanelLayout = new javax.swing.GroupLayout(credentialsPanel);
         credentialsPanel.setLayout(credentialsPanelLayout);
         credentialsPanelLayout.setHorizontalGroup(
             credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(credentialsPanelLayout.createSequentialGroup()
-                    .addGap(97, 97, 97)
-                    .addGroup(credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(provideCredentialsHint, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(credentialsPanelLayout.createSequentialGroup()
-                            .addComponent(userNameVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(userPasswordValue, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(passwordQuality))
-                        .addComponent(requireCredentials, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(416, 416, 416)))
+            .addGroup(credentialsPanelLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addGroup(credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(requireCredentials)
+                    .addComponent(provideCredentialsHint, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(credentialsPanelLayout.createSequentialGroup()
+                        .addComponent(userNameVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(userPasswordValue, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(passwordQuality)))
+                .addGap(504, 504, 504))
         );
         credentialsPanelLayout.setVerticalGroup(
             credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
-            .addGroup(credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(credentialsPanelLayout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(requireCredentials, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(userNameVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(userPasswordValue)
-                        .addComponent(passwordQuality))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(provideCredentialsHint, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(41, 41, 41)))
+            .addGroup(credentialsPanelLayout.createSequentialGroup()
+                .addComponent(requireCredentials)
+                .addGap(18, 18, 18)
+                .addGroup(credentialsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userNameVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userPasswordValue)
+                    .addComponent(passwordQuality))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(provideCredentialsHint, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         buttonsPanel.setName("buttonsPanel"); // NOI18N
@@ -300,7 +287,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(credentialsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(credentialsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 936, Short.MAX_VALUE)
                     .addComponent(remoteLocationsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -315,7 +302,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
                 .addGap(45, 45, 45)
                 .addComponent(remoteLocationsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(credentialsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(credentialsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterUriHint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,27 +324,24 @@ public class EnterUriDialog extends javax.swing.JDialog {
 }//GEN-LAST:event_cancellationButtonActionPerformed
 
     private void userPasswordValueCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_userPasswordValueCaretUpdate
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(EnterUriDialog.class);
         int passLength = userPasswordValue.getPassword().length;
         if (passLength == 0) {
             passwordQuality.setText("");
         } else if (passLength >= 1 && passLength <= 4) {
             userPasswordValue.setForeground(Color.CYAN);
-            passwordQuality.setText("LOW");
+            passwordQuality.setText(resourceMap.getString("passwordLabel.low"));
         } else if (passLength >= 5 && passLength <= 8) {
             userPasswordValue.setForeground(Color.GREEN);
-            passwordQuality.setText("MEDIUM");
+            passwordQuality.setText(resourceMap.getString("passwordLabel.medium"));
         } else if (passLength >= 9 & passLength <= 12) {
             userPasswordValue.setForeground(Color.ORANGE);
-            passwordQuality.setText("GOOD");
+            passwordQuality.setText(resourceMap.getString("passwordLabel.good"));
         } else if (passLength >= 13) {
             userPasswordValue.setForeground(Color.RED);
-            passwordQuality.setText("EXCELENT");
+            passwordQuality.setText(resourceMap.getString("passwordLabel.great"));
         }
     }//GEN-LAST:event_userPasswordValueCaretUpdate
-
-    private void requireCredentialsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_requireCredentialsItemStateChanged
-        enableDiableCredentials();
-}//GEN-LAST:event_requireCredentialsItemStateChanged
 
     private void datasetUriValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datasetUriValueActionPerformed
         // TODO add your handling code here:
@@ -385,7 +369,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
     private javax.swing.JLabel passwordQuality;
     private javax.swing.JLabel provideCredentialsHint;
     private javax.swing.JPanel remoteLocationsPanel;
-    private java.awt.Checkbox requireCredentials;
+    private javax.swing.JCheckBox requireCredentials;
     private javax.swing.JTextField userNameVariable;
     private javax.swing.JPasswordField userPasswordValue;
     // End of variables declaration//GEN-END:variables

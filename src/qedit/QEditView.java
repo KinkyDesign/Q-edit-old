@@ -24,10 +24,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  * The application's main frame.
  */
-public class QEditView extends FrameView {
+public class QEditView extends FrameView {   
 
     public QEditView(SingleFrameApplication app) {
-        super(app);
+        super(app);        
 
         initComponents();
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -88,8 +88,9 @@ public class QEditView extends FrameView {
                     progressBar.setValue(value);
                 }
             }
-        });
-
+        });        
+        QEditApp.splash.setVisible(false);
+        QEditApp.splash.dispose();
     }
 
     @Action
