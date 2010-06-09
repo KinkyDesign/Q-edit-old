@@ -3,10 +3,7 @@
  */
 package qedit;
 
-import java.awt.Point;
-import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -93,6 +90,14 @@ public class QEditView extends FrameView {
         QEditApp.splash.dispose();
     }
 
+    public static int getNumOpenDocuments(){
+        return numOpenInternalFrames;
+    }
+
+    public static void increaseNumOpenDocuments(){
+        numOpenInternalFrames++;
+    }
+
     @Action
     public void showAboutBox() {
 
@@ -142,21 +147,16 @@ public class QEditView extends FrameView {
 
     @Action
     public void createNewReport() {
-        ReportInternalFrame nd = new ReportInternalFrame();
-        nd.setVisible(true);
-        desktopPane.add(nd);
-        nd.revalidate();
-        nd.repaint();
-        nd.setLocation(new Point(40 + 10 * numOpenInternalFrames, 40 + 10 * numOpenInternalFrames));
-        nd.setTitle("Document "+(numOpenInternalFrames+1));
-        nd.setName(nd.getTitle());
-        numOpenInternalFrames++;
-        try {
-            nd.setSelected(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        enterUriDialogBox();
+        
     }
+
+    public JDesktopPane getDesktopPane() {
+        return desktopPane;
+    }
+
+
+
 
     public javax.swing.JLabel getStatusLabel() {
         return statusMessageLabel;
@@ -182,7 +182,6 @@ public class QEditView extends FrameView {
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         newReport = new javax.swing.JMenuItem();
         openFileMenuItem = new javax.swing.JMenuItem();
-        openUrlMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         firstFileMenuSeparatorItem = new javax.swing.JPopupMenu.Separator();
         qprfOptionsMenuItem = new javax.swing.JMenuItem();
@@ -206,7 +205,6 @@ public class QEditView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
         basicToolbar = new javax.swing.JToolBar();
         newReportButton = new javax.swing.JButton();
-        downloadButton = new javax.swing.JButton();
         openLocalResourceButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -322,18 +320,6 @@ public class QEditView extends FrameView {
             }
         });
         fileMenu.add(openFileMenuItem);
-
-        openUrlMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        openUrlMenuItem.setIcon(resourceMap.getIcon("openUrlMenuItem.icon")); // NOI18N
-        openUrlMenuItem.setText(resourceMap.getString("openUrlMenuItem.text")); // NOI18N
-        openUrlMenuItem.setToolTipText(resourceMap.getString("openUrlMenuItem.toolTipText")); // NOI18N
-        openUrlMenuItem.setName("openUrlMenuItem"); // NOI18N
-        openUrlMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openUrlMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(openUrlMenuItem);
 
         saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveMenuItem.setIcon(resourceMap.getIcon("saveMenuItem.icon")); // NOI18N
@@ -484,16 +470,6 @@ public class QEditView extends FrameView {
         newReportButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         basicToolbar.add(newReportButton);
 
-        downloadButton.setAction(actionMap.get("enterUriDialogBox")); // NOI18N
-        downloadButton.setIcon(resourceMap.getIcon("downloadButton.icon")); // NOI18N
-        downloadButton.setText(resourceMap.getString("downloadButton.text")); // NOI18N
-        downloadButton.setToolTipText(resourceMap.getString("downloadButton.toolTipText")); // NOI18N
-        downloadButton.setFocusable(false);
-        downloadButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        downloadButton.setName("downloadButton"); // NOI18N
-        downloadButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        basicToolbar.add(downloadButton);
-
         openLocalResourceButton.setAction(actionMap.get("openFileAction")); // NOI18N
         openLocalResourceButton.setIcon(resourceMap.getIcon("openLocalResourceButton.icon")); // NOI18N
         openLocalResourceButton.setText(resourceMap.getString("openLocalResourceButton.text")); // NOI18N
@@ -565,17 +541,9 @@ public class QEditView extends FrameView {
         setToolBar(basicToolbar);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void openFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileMenuItemActionPerformed
-        openFileAction();
-    }//GEN-LAST:event_openFileMenuItemActionPerformed
-
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         saveDialogBox();
     }//GEN-LAST:event_saveMenuItemActionPerformed
-
-    private void openUrlMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openUrlMenuItemActionPerformed
-        enterUriDialogBox();
-    }//GEN-LAST:event_openUrlMenuItemActionPerformed
 
     private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
         // TODO add your handling code here:
@@ -587,11 +555,15 @@ public class QEditView extends FrameView {
     private void newReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReportActionPerformed
         createNewReport();
     }//GEN-LAST:event_newReportActionPerformed
+
+    private void openFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileMenuItemActionPerformed
+        openFileAction();
+}//GEN-LAST:event_openFileMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JToolBar basicToolbar;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JButton downloadButton;
     private javax.swing.JButton ejectButton;
     private javax.swing.JButton exportDocButton;
     private javax.swing.JButton exportPdfButton;
@@ -610,7 +582,6 @@ public class QEditView extends FrameView {
     private javax.swing.JButton newReportButton;
     private javax.swing.JMenuItem openFileMenuItem;
     private javax.swing.JButton openLocalResourceButton;
-    private javax.swing.JMenuItem openUrlMenuItem;
     private javax.swing.JMenuItem pdfReportMenuItem;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenuItem qprfOptionsMenuItem;

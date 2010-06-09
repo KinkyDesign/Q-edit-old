@@ -52,6 +52,7 @@ public class SplashScreen extends JWindow {
                     e.printStackTrace();
                     // can catch InvocationTargetException
                     // can catch InterruptedException
+                    
                 }
             }
         };

@@ -178,20 +178,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openFileMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="openUrlMenuItem">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+R"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="openUrlMenuItem.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="openUrlMenuItem.text"/>
-                <Property name="toolTipText" type="java.lang.String" resourceKey="openUrlMenuItem.toolTipText"/>
-                <Property name="name" type="java.lang.String" value="openUrlMenuItem" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openUrlMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="saveMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -429,20 +415,6 @@
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="newReportButton" noResource="true"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="downloadButton">
-          <Properties>
-            <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="qedit.QEditView" id="enterUriDialogBox" methodName="enterUriDialogBox"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="downloadButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="downloadButton.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="downloadButton.toolTipText"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="name" type="java.lang.String" value="downloadButton" noResource="true"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>

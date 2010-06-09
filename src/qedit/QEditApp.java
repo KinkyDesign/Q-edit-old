@@ -14,14 +14,22 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class QEditApp extends SingleFrameApplication {
-    public  static qedit.SplashScreen splash;            
+    public  static qedit.SplashScreen splash;
+
+    private static QEditView theView;
+
+    public static QEditView getView() {
+        return theView;
+    }
+    
 
     /**
      * At startup create and show the main frame of the application.
      */
     @Override
     protected void startup() {
-        show(new QEditView(this));
+        theView = new QEditView(this);
+        show(theView);
     }
 
     /**
