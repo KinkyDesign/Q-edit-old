@@ -50,6 +50,7 @@ public class SplashScreen extends JWindow {
                     SwingUtilities.invokeAndWait(closerRunner);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    throw new RuntimeException(e);
                     // can catch InvocationTargetException
                     // can catch InterruptedException
                     

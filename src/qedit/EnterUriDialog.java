@@ -209,9 +209,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
                 .addGap(63, 63, 63)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(provideLabel)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1)))
+                    .addComponent(jLabel1))
                 .addGap(78, 78, 78)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchMethodSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,6 +275,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
         jLabel3.setEnabled(false);
         jLabel3.setName("jLabel3"); // NOI18N
 
+        jTextField2.setForeground(resourceMap.getColor("jTextField2.foreground")); // NOI18N
         jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
         jTextField2.setEnabled(false);
         jTextField2.setName("jTextField2"); // NOI18N
@@ -305,7 +304,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(490, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,8 +520,10 @@ public class EnterUriDialog extends javax.swing.JDialog {
         provideLabel.setText(searchBy().get(selected));
         if (selected.equals("By URI")) {
             compoundResource.setText("http://");
+            compoundResource.setForeground(Color.blue);
         } else {
             compoundResource.setText(null);
+            compoundResource.setForeground(Color.black);
         }
     }//GEN-LAST:event_searchMethodSelectionActionPerformed
 

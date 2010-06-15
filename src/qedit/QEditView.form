@@ -81,7 +81,7 @@
                     <Component class="javax.swing.JTree" name="jTree1">
                       <Properties>
                         <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                          <TreeModel code="Recent Sessions&#xa; Dataset&#xa;  http://someserver.com/ds/1&#xa;  http://someserver.com/ds/2&#xa; Models&#xa;  http://someserver.com/model/a&#xa;  http://someserver.com/model/b"/>
+                          <TreeModel code="Recent Sessions&#xa; Session 1&#xa;  Report id : 1439254&#xa;  Model : http://someserver.com/model/12345&#xa;  Compound : http://someserver.com/compound/200&#xa; Session 2&#xa;  Report id : 1032492&#xa;  Model : http://someserver.com/model/12345&#xa;  Compound : http://someserver.com/compound/200"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="jTree1" noResource="true"/>
                       </Properties>
@@ -342,10 +342,12 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="statusPanelSeparator" alignment="0" pref="868" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="statusFace" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="568" max="32767" attributes="0"/>
+                  <EmptySpace pref="546" max="32767" attributes="0"/>
                   <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
@@ -357,13 +359,24 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="statusPanelSeparator" min="-2" pref="2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="statusMessageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="statusAnimationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="progressBar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="statusAnimationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="progressBar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="statusMessageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="statusFace" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -393,6 +406,13 @@
         <Component class="javax.swing.JProgressBar" name="progressBar">
           <Properties>
             <Property name="name" type="java.lang.String" value="progressBar" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="statusFace">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="statusFace.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="statusFace.text"/>
+            <Property name="name" type="java.lang.String" value="statusFace" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
