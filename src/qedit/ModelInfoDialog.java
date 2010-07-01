@@ -7,6 +7,11 @@
 
 package qedit;
 
+import java.awt.Frame;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 
 
 /**
@@ -18,6 +23,11 @@ public class ModelInfoDialog extends javax.swing.JDialog {
     /** Creates new form ModelInfoDialog */
     public ModelInfoDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public ModelInfoDialog(Frame owner) {
+        super(owner);
         initComponents();
     }
 
@@ -33,22 +43,22 @@ public class ModelInfoDialog extends javax.swing.JDialog {
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        modelUriLabel = new javax.swing.JLabel();
+        modelUriField = new javax.swing.JTextField();
+        trainingDatasetField = new javax.swing.JTextField();
+        trainingDatasetLabel = new javax.swing.JLabel();
+        predictionFeatureField = new javax.swing.JTextField();
+        predictionFeatureLabel = new javax.swing.JLabel();
+        dependentFeatureField = new javax.swing.JTextField();
+        dependentFeatureLabel = new javax.swing.JLabel();
+        trainingAlgorithmLabel = new javax.swing.JLabel();
+        independentFeaturesLabel = new javax.swing.JLabel();
+        trainingAlgorithmField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        independentFeaturesList = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        parametersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(ModelInfoDialog.class);
@@ -63,60 +73,60 @@ public class ModelInfoDialog extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel3.border.title"))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
 
-        jLabel1.setLabelFor(jTextField1);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        modelUriLabel.setLabelFor(modelUriField);
+        modelUriLabel.setText(resourceMap.getString("modelUriLabel.text")); // NOI18N
+        modelUriLabel.setName("modelUriLabel"); // NOI18N
 
-        jTextField1.setEditable(false);
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setFocusable(false);
-        jTextField1.setName("jTextField1"); // NOI18N
+        modelUriField.setEditable(false);
+        modelUriField.setText(resourceMap.getString("modelUriField.text")); // NOI18N
+        modelUriField.setFocusable(false);
+        modelUriField.setName("modelUriField"); // NOI18N
 
-        jTextField2.setEditable(false);
-        jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setFocusable(false);
-        jTextField2.setName("jTextField2"); // NOI18N
+        trainingDatasetField.setEditable(false);
+        trainingDatasetField.setText(resourceMap.getString("trainingDatasetField.text")); // NOI18N
+        trainingDatasetField.setFocusable(false);
+        trainingDatasetField.setName("trainingDatasetField"); // NOI18N
 
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
+        trainingDatasetLabel.setText(resourceMap.getString("trainingDatasetLabel.text")); // NOI18N
+        trainingDatasetLabel.setName("trainingDatasetLabel"); // NOI18N
 
-        jTextField3.setEditable(false);
-        jTextField3.setText(resourceMap.getString("jTextField3.text")); // NOI18N
-        jTextField3.setFocusable(false);
-        jTextField3.setName("jTextField3"); // NOI18N
+        predictionFeatureField.setEditable(false);
+        predictionFeatureField.setText(resourceMap.getString("predictionFeatureField.text")); // NOI18N
+        predictionFeatureField.setFocusable(false);
+        predictionFeatureField.setName("predictionFeatureField"); // NOI18N
 
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setName("jLabel4"); // NOI18N
+        predictionFeatureLabel.setText(resourceMap.getString("predictionFeatureLabel.text")); // NOI18N
+        predictionFeatureLabel.setName("predictionFeatureLabel"); // NOI18N
 
-        jTextField4.setEditable(false);
-        jTextField4.setText(resourceMap.getString("jTextField4.text")); // NOI18N
-        jTextField4.setFocusable(false);
-        jTextField4.setName("jTextField4"); // NOI18N
+        dependentFeatureField.setEditable(false);
+        dependentFeatureField.setText(resourceMap.getString("dependentFeatureField.text")); // NOI18N
+        dependentFeatureField.setFocusable(false);
+        dependentFeatureField.setName("dependentFeatureField"); // NOI18N
 
-        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
-        jLabel5.setName("jLabel5"); // NOI18N
+        dependentFeatureLabel.setText(resourceMap.getString("dependentFeatureLabel.text")); // NOI18N
+        dependentFeatureLabel.setName("dependentFeatureLabel"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
-        jLabel7.setName("jLabel7"); // NOI18N
+        trainingAlgorithmLabel.setText(resourceMap.getString("trainingAlgorithmLabel.text")); // NOI18N
+        trainingAlgorithmLabel.setName("trainingAlgorithmLabel"); // NOI18N
 
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
-        jLabel6.setName("jLabel6"); // NOI18N
+        independentFeaturesLabel.setText(resourceMap.getString("independentFeaturesLabel.text")); // NOI18N
+        independentFeaturesLabel.setName("independentFeaturesLabel"); // NOI18N
 
-        jTextField5.setEditable(false);
-        jTextField5.setText(resourceMap.getString("jTextField5.text")); // NOI18N
-        jTextField5.setFocusable(false);
-        jTextField5.setName("jTextField5"); // NOI18N
+        trainingAlgorithmField.setEditable(false);
+        trainingAlgorithmField.setText(resourceMap.getString("trainingAlgorithmField.text")); // NOI18N
+        trainingAlgorithmField.setFocusable(false);
+        trainingAlgorithmField.setName("trainingAlgorithmField"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        independentFeaturesList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jList1.setName("jList1"); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        independentFeaturesList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        independentFeaturesList.setName("independentFeaturesList"); // NOI18N
+        jScrollPane1.setViewportView(independentFeaturesList);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -125,24 +135,24 @@ public class ModelInfoDialog extends javax.swing.JDialog {
             .add(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                     .add(jPanel3Layout.createSequentialGroup()
                         .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel1)
-                            .add(jLabel3)
-                            .add(jLabel4)
-                            .add(jLabel5))
+                            .add(modelUriLabel)
+                            .add(trainingDatasetLabel)
+                            .add(predictionFeatureLabel)
+                            .add(dependentFeatureLabel))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                            .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)))
-                    .add(jLabel6)
+                            .add(predictionFeatureField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+                            .add(trainingDatasetField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, modelUriField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+                            .add(dependentFeatureField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)))
+                    .add(independentFeaturesLabel)
                     .add(jPanel3Layout.createSequentialGroup()
-                        .add(jLabel7)
+                        .add(trainingAlgorithmLabel)
                         .add(18, 18, 18)
-                        .add(jTextField5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)))
+                        .add(trainingAlgorithmField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -150,28 +160,28 @@ public class ModelInfoDialog extends javax.swing.JDialog {
             .add(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1))
+                    .add(modelUriField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(modelUriLabel))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(trainingDatasetLabel)
+                    .add(trainingDatasetField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel4)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(predictionFeatureLabel)
+                    .add(predictionFeatureField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel5)
-                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(dependentFeatureLabel)
+                    .add(dependentFeatureField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
-                .add(jLabel6)
+                .add(independentFeaturesLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(41, 41, 41)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(trainingAlgorithmLabel)
+                    .add(trainingAlgorithmField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -180,7 +190,7 @@ public class ModelInfoDialog extends javax.swing.JDialog {
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        parametersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -191,8 +201,8 @@ public class ModelInfoDialog extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane2.setViewportView(jTable1);
+        parametersTable.setName("parametersTable"); // NOI18N
+        jScrollPane2.setViewportView(parametersTable);
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -200,7 +210,7 @@ public class ModelInfoDialog extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -262,25 +272,54 @@ public class ModelInfoDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JList jList1;
+    private javax.swing.JTextField dependentFeatureField;
+    private javax.swing.JLabel dependentFeatureLabel;
+    private javax.swing.JLabel independentFeaturesLabel;
+    private javax.swing.JList independentFeaturesList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField modelUriField;
+    private javax.swing.JLabel modelUriLabel;
+    private javax.swing.JTable parametersTable;
+    private javax.swing.JTextField predictionFeatureField;
+    private javax.swing.JLabel predictionFeatureLabel;
+    private javax.swing.JTextField trainingAlgorithmField;
+    private javax.swing.JLabel trainingAlgorithmLabel;
+    private javax.swing.JTextField trainingDatasetField;
+    private javax.swing.JLabel trainingDatasetLabel;
     // End of variables declaration//GEN-END:variables
 
+    public JTextField getDependentFeatureField() {
+        return dependentFeatureField;
+    }
+
+    public JList getIndependentFeaturesList() {
+        return independentFeaturesList;
+    }
+
+    public JTextField getModelUriField() {
+        return modelUriField;
+    }
+
+    public JTable getParametersTable() {
+        return parametersTable;
+    }
+
+    public JTextField getPredictionFeatureField() {
+        return predictionFeatureField;
+    }
+
+    public JTextField getTrainingAlgorithmField() {
+        return trainingAlgorithmField;
+    }
+
+    public JTextField getTrainingDatasetField() {
+        return trainingDatasetField;
+    }
+
+    
 }

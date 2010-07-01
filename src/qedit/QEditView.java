@@ -3,7 +3,9 @@
  */
 package qedit;
 
-import javax.swing.JDesktopPane;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -13,10 +15,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.Icon;
+import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.jscroll.JScrollDesktopPane;
 
 /**
  * The application's main frame.
@@ -157,10 +162,11 @@ public class QEditView extends FrameView {
 
 
 
-
     public javax.swing.JLabel getStatusLabel() {
         return statusMessageLabel;
     }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -226,7 +232,6 @@ public class QEditView extends FrameView {
         mainSplitPane.setResizeWeight(0.1);
         mainSplitPane.setInheritsPopupMenu(true);
         mainSplitPane.setName("mainSplitPane"); // NOI18N
-        mainSplitPane.setOpaque(true);
 
         leftSplittedPanel.setName("leftSplittedPanel"); // NOI18N
 
@@ -257,29 +262,32 @@ public class QEditView extends FrameView {
         leftSplittedPanel.setLayout(leftSplittedPanelLayout);
         leftSplittedPanelLayout.setHorizontalGroup(
             leftSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
         leftSplittedPanelLayout.setVerticalGroup(
             leftSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
 
         mainSplitPane.setLeftComponent(leftSplittedPanel);
 
         rightSplittedPanel.setName("rightSplittedPanel"); // NOI18N
 
-        desktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         desktopPane.setName("desktopPane"); // NOI18N
 
         javax.swing.GroupLayout rightSplittedPanelLayout = new javax.swing.GroupLayout(rightSplittedPanel);
         rightSplittedPanel.setLayout(rightSplittedPanelLayout);
         rightSplittedPanelLayout.setHorizontalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+            .addGap(0, 747, Short.MAX_VALUE)
+            .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE))
         );
         rightSplittedPanelLayout.setVerticalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
+            .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
         );
 
         mainSplitPane.setRightComponent(rightSplittedPanel);
@@ -292,7 +300,7 @@ public class QEditView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -451,7 +459,7 @@ public class QEditView extends FrameView {
                 .addComponent(statusFace)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 546, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 529, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -463,7 +471,7 @@ public class QEditView extends FrameView {
                 .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(statusPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(statusAnimationLabel)
                             .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

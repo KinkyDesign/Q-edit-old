@@ -29,7 +29,7 @@
               <Component id="infoIcon" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="enterUriHint" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="275" max="32767" attributes="0"/>
+              <EmptySpace pref="361" max="32767" attributes="0"/>
           </Group>
           <Component id="jTabbedPane1" alignment="0" min="-2" pref="989" max="-2" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
@@ -64,7 +64,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="313" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="402" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -80,7 +80,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="81" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -207,7 +207,7 @@
                               <Component id="searchMethodSelection" min="-2" pref="184" max="-2" attributes="0"/>
                               <Component id="compoundResource" min="-2" pref="428" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="282" max="32767" attributes="0"/>
+                          <EmptySpace pref="253" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -224,7 +224,7 @@
                               <Component id="provideLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="compoundResource" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="185" max="32767" attributes="0"/>
+                          <EmptySpace pref="154" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -289,7 +289,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" pref="344" max="32767" attributes="0"/>
+                      <Component id="jPanel5" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -331,7 +331,7 @@
                                   <Component id="jTextField2" min="-2" pref="334" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="494" max="32767" attributes="0"/>
+                          <EmptySpace pref="461" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -476,7 +476,7 @@
                                   <Component id="passwordQuality" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="149" max="32767" attributes="0"/>
+                          <EmptySpace pref="108" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
