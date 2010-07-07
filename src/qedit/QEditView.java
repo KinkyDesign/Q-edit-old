@@ -175,6 +175,7 @@ public class QEditView extends FrameView {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
         }
+        QEditApp.getView().getStatusLabel().setText("a new Report has been created");
     }
 
     public JDesktopPane getDesktopPane() {

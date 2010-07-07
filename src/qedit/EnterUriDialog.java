@@ -512,6 +512,7 @@ public class EnterUriDialog extends javax.swing.JDialog {
         } finally {
             closeDialog();
         }
+        QEditApp.getView().getStatusLabel().setText("Report info retrieved from remote resource");
 
     }//GEN-LAST:event_loadFromRemoteButtonActionPerformed
 
