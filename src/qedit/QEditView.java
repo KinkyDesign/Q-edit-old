@@ -207,7 +207,8 @@ public class QEditView extends FrameView {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        newProjectSubMenu = new javax.swing.JMenu();
+        newEmptyReport = new javax.swing.JMenuItem();
         newReport = new javax.swing.JMenuItem();
         openFileMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -332,16 +333,20 @@ public class QEditView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/document-new.png"))); // NOI18N
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        newProjectSubMenu.setIcon(resourceMap.getIcon("newProjectSubMenu.icon")); // NOI18N
+        newProjectSubMenu.setText(resourceMap.getString("newProjectSubMenu.text")); // NOI18N
+        newProjectSubMenu.setName("newProjectSubMenu"); // NOI18N
+
+        newEmptyReport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newEmptyReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/archive-insert.png"))); // NOI18N
+        newEmptyReport.setText(resourceMap.getString("newEmptyReport.text")); // NOI18N
+        newEmptyReport.setName("newEmptyReport"); // NOI18N
+        newEmptyReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                newEmptyReportActionPerformed(evt);
             }
         });
-        fileMenu.add(jMenuItem1);
+        newProjectSubMenu.add(newEmptyReport);
 
         newReport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         newReport.setIcon(resourceMap.getIcon("newReport.icon")); // NOI18N
@@ -353,7 +358,9 @@ public class QEditView extends FrameView {
                 newReportActionPerformed(evt);
             }
         });
-        fileMenu.add(newReport);
+        newProjectSubMenu.add(newReport);
+
+        fileMenu.add(newProjectSubMenu);
 
         openFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         openFileMenuItem.setIcon(resourceMap.getIcon("openFileMenuItem.icon")); // NOI18N
@@ -633,9 +640,9 @@ public class QEditView extends FrameView {
         openFileAction();
 }//GEN-LAST:event_openFileMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void newEmptyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmptyReportActionPerformed
         createNewEmptyReport();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_newEmptyReportActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         createNewEmptyReport();
@@ -651,7 +658,6 @@ public class QEditView extends FrameView {
     private javax.swing.JPopupMenu.Separator firstFileMenuSeparatorItem;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
@@ -661,6 +667,8 @@ public class QEditView extends FrameView {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JSplitPane mainSplitPane;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem newEmptyReport;
+    private javax.swing.JMenu newProjectSubMenu;
     private javax.swing.JMenuItem newReport;
     private javax.swing.JButton newReportButton;
     private javax.swing.JMenuItem openFileMenuItem;
