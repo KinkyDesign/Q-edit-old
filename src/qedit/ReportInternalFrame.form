@@ -767,7 +767,7 @@
                                   <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane13" pref="124" max="32767" attributes="0"/>
+                              <Component id="jScrollPane13" pref="140" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1721,7 +1721,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBox4" min="-2" pref="156" max="-2" attributes="0"/>
+                                      <Component id="chooseDomainCombo" min="-2" pref="156" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
@@ -1744,7 +1744,7 @@
                                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="chooseDomainCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1787,12 +1787,12 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="jComboBox4">
+                    <Component class="javax.swing.JComboBox" name="chooseDomainCombo">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Metabolic Domain&quot;, &quot;Structural Domain&quot;, &quot;Item 3&quot;, &quot;Item 4&quot; })" type="code"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="jComboBox4" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="chooseDomainCombo" noResource="true"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel11">

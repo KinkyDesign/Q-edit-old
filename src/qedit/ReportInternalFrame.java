@@ -26,11 +26,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -52,7 +55,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         revalidate();
         repaint();
         
-    }   
+    }
+
+    private void initDomainMap(){
+        
+    }
 
     @Action
     public void addLineAuthors() {
@@ -230,7 +237,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         applicabilityDomainValue = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea9 = new javax.swing.JTextArea();
-        jComboBox4 = new javax.swing.JComboBox();
+        chooseDomainCombo = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         structuralAnaloguesPanel = new javax.swing.JPanel();
         structuralAnaloguesToolbar = new javax.swing.JToolBar();
@@ -835,7 +842,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(jLabel21)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -1449,8 +1456,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     jTextArea9.setName("jTextArea9"); // NOI18N
     jScrollPane6.setViewportView(jTextArea9);
 
-    jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Metabolic Domain", "Structural Domain", "Item 3", "Item 4" }));
-    jComboBox4.setName("jComboBox4"); // NOI18N
+    chooseDomainCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Metabolic Domain", "Structural Domain", "Item 3", "Item 4" }));
+    chooseDomainCombo.setName("chooseDomainCombo"); // NOI18N
 
     jLabel11.setText(resourceMap.getString("jLabel11.text")); // NOI18N
     jLabel11.setName("jLabel11"); // NOI18N
@@ -1469,7 +1476,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
                     .addComponent(jLabel11)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(chooseDomainCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(112, 112, 112)
             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(236, Short.MAX_VALUE))
@@ -1487,7 +1494,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addGap(18, 18, 18)
                     .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(chooseDomainCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addContainerGap())
     );
 
@@ -2854,6 +2861,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane basicTabbedPanel;
     private javax.swing.JLabel casRnLabel;
     private javax.swing.JLabel casRnValue;
+    private javax.swing.JComboBox chooseDomainCombo;
     private javax.swing.JButton clearAllAuthorsButton;
     private javax.swing.JButton clearAllDescriptorsButton;
     private javax.swing.JButton clearAllStructuralAnalogues;
@@ -2907,7 +2915,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3041,5 +3048,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private DescriptorValueWizard desriptorWizard;
     private StructuralAnalogueWizard_Step1 structuralAnalogueWizard;
     private DescriptorMetaDataDialog descriptorMetaDialog;
+    private Map<String,JTextArea> domainMap = new HashMap<String, JTextArea>();
+
 }
 
