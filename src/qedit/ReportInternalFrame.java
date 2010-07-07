@@ -914,6 +914,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     modelUriDetailsButton.setText(resourceMap.getString("modelUriDetailsButton.text")); // NOI18N
     modelUriDetailsButton.setToolTipText(resourceMap.getString("modelUriDetailsButton.toolTipText")); // NOI18N
     modelUriDetailsButton.setName("modelUriDetailsButton"); // NOI18N
+    modelUriDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modelUriDetailsButtonActionPerformed(evt);
+        }
+    });
 
     datasetDetailsButton.setIcon(resourceMap.getIcon("datasetDetailsButton.icon")); // NOI18N
     datasetDetailsButton.setText(resourceMap.getString("datasetDetailsButton.text")); // NOI18N
@@ -945,6 +950,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     algorithmDetailsButton.setText(resourceMap.getString("algorithmDetailsButton.text")); // NOI18N
     algorithmDetailsButton.setToolTipText(resourceMap.getString("algorithmDetailsButton.toolTipText")); // NOI18N
     algorithmDetailsButton.setName("algorithmDetailsButton"); // NOI18N
+    algorithmDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            algorithmDetailsButtonActionPerformed(evt);
+        }
+    });
 
     predictedFeatureHeadline.setFont(resourceMap.getFont("predictedFeatureHeadline.font")); // NOI18N
     predictedFeatureHeadline.setText(resourceMap.getString("predictedFeatureHeadline.text")); // NOI18N
@@ -978,6 +988,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     predFeatureDetailsButton.setText(resourceMap.getString("predFeatureDetailsButton.text")); // NOI18N
     predFeatureDetailsButton.setToolTipText(resourceMap.getString("predFeatureDetailsButton.toolTipText")); // NOI18N
     predFeatureDetailsButton.setName("predFeatureDetailsButton"); // NOI18N
+    predFeatureDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            predFeatureDetailsButtonActionPerformed(evt);
+        }
+    });
 
     modelToolbar.setFloatable(false);
     modelToolbar.setRollover(true);
@@ -2796,6 +2811,18 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private void clearStructAnalogueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStructAnalogueButtonActionPerformed
         structuralAnalogueImage.setIcon(new ImageIcon() );
     }//GEN-LAST:event_clearStructAnalogueButtonActionPerformed
+
+    private void modelUriDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelUriDetailsButtonActionPerformed
+        modelInfoToolButtonActionPerformed(evt);
+    }//GEN-LAST:event_modelUriDetailsButtonActionPerformed
+
+    private void algorithmDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algorithmDetailsButtonActionPerformed
+        algorithmInfoToolButtonActionPerformed(evt);
+    }//GEN-LAST:event_algorithmDetailsButtonActionPerformed
+
+    private void predFeatureDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_predFeatureDetailsButtonActionPerformed
+        predictedFeatureToolButtonActionPerformed(evt);
+    }//GEN-LAST:event_predFeatureDetailsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDescriptorValueButton;

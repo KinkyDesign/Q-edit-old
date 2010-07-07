@@ -1168,6 +1168,9 @@
                         <Property name="toolTipText" type="java.lang.String" resourceKey="modelUriDetailsButton.toolTipText"/>
                         <Property name="name" type="java.lang.String" value="modelUriDetailsButton" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modelUriDetailsButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="datasetDetailsButton">
                       <Properties>
@@ -1220,6 +1223,9 @@
                         <Property name="toolTipText" type="java.lang.String" resourceKey="algorithmDetailsButton.toolTipText"/>
                         <Property name="name" type="java.lang.String" value="algorithmDetailsButton" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="algorithmDetailsButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="predictedFeatureHeadline">
                       <Properties>
@@ -1277,6 +1283,9 @@
                         <Property name="toolTipText" type="java.lang.String" resourceKey="predFeatureDetailsButton.toolTipText"/>
                         <Property name="name" type="java.lang.String" value="predFeatureDetailsButton" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="predFeatureDetailsButtonActionPerformed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JToolBar" name="modelToolbar">
                       <Properties>
