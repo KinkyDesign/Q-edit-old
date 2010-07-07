@@ -6,6 +6,7 @@ package qedit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -13,6 +14,9 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDesktopPane;
@@ -155,6 +159,24 @@ public class QEditView extends FrameView {
         
     }
 
+    @Action
+    public void createNewEmptyReport(){
+        ReportInternalFrame nd = new ReportInternalFrame();
+        nd.setVisible(true);
+        QEditApp.getView().getDesktopPane().add(nd);
+        nd.revalidate();
+        nd.repaint();
+        nd.setLocation(new Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
+        nd.setTitle("Document " + (QEditView.getNumOpenDocuments() + 1));
+        nd.setName(nd.getTitle());
+        QEditView.increaseNumOpenDocuments();
+        try {
+            nd.setSelected(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public JDesktopPane getDesktopPane() {
         return desktopPane;
     }
@@ -185,6 +207,7 @@ public class QEditView extends FrameView {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         newReport = new javax.swing.JMenuItem();
         openFileMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
@@ -210,6 +233,7 @@ public class QEditView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
         statusFace = new javax.swing.JLabel();
         basicToolbar = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
         newReportButton = new javax.swing.JButton();
         openLocalResourceButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
@@ -308,7 +332,18 @@ public class QEditView extends FrameView {
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        newReport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/document-new.png"))); // NOI18N
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem1);
+
+        newReport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         newReport.setIcon(resourceMap.getIcon("newReport.icon")); // NOI18N
         newReport.setText(resourceMap.getString("newReport.text")); // NOI18N
         newReport.setToolTipText(resourceMap.getString("newReport.toolTipText")); // NOI18N
@@ -486,6 +521,19 @@ public class QEditView extends FrameView {
         basicToolbar.setRollover(true);
         basicToolbar.setName("basicToolbar"); // NOI18N
 
+        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        basicToolbar.add(jButton1);
+
         newReportButton.setAction(actionMap.get("createNewReport")); // NOI18N
         newReportButton.setIcon(resourceMap.getIcon("newReportButton.icon")); // NOI18N
         newReportButton.setText(resourceMap.getString("newReportButton.text")); // NOI18N
@@ -585,6 +633,14 @@ public class QEditView extends FrameView {
         openFileAction();
 }//GEN-LAST:event_openFileMenuItemActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        createNewEmptyReport();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        createNewEmptyReport();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JToolBar basicToolbar;
@@ -594,6 +650,8 @@ public class QEditView extends FrameView {
     private javax.swing.JButton exportPdfButton;
     private javax.swing.JPopupMenu.Separator firstFileMenuSeparatorItem;
     private javax.swing.JMenuItem helpItem;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
