@@ -12,6 +12,7 @@
 package qedit;
 
 import java.awt.Frame;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -68,6 +69,11 @@ public class AddSynonymDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(AddSynonymDialog.class);
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel2.border.title"))); // NOI18N
@@ -78,6 +84,11 @@ public class AddSynonymDialog extends javax.swing.JDialog {
 
         synonymNameField.setText(resourceMap.getString("synonymNameField.text")); // NOI18N
         synonymNameField.setName("synonymNameField"); // NOI18N
+        synonymNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                synonymNameFieldKeyPressed(evt);
+            }
+        });
 
         okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
         okButton.setText(resourceMap.getString("okButton.text")); // NOI18N
@@ -141,7 +152,7 @@ public class AddSynonymDialog extends javax.swing.JDialog {
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
+}//GEN-LAST:event_cancelButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         if(!synonymNameField.getText().isEmpty()){
@@ -149,7 +160,17 @@ public class AddSynonymDialog extends javax.swing.JDialog {
             ((DefaultListModel)model).addElement(synonymNameField.getText());
         }
         dispose();
-    }//GEN-LAST:event_okButtonActionPerformed
+}//GEN-LAST:event_okButtonActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+
+}//GEN-LAST:event_formKeyPressed
+
+    private void synonymNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_synonymNameFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            okButtonActionPerformed(null);
+        }
+    }//GEN-LAST:event_synonymNameFieldKeyPressed
 
     /**
     * @param args the command line arguments
