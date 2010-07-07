@@ -67,6 +67,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }
 
     @Action
+    public void enableDisableModelDate() {
+        boolean enablement = !modelCurrentDate.isSelected();
+        modelDayCombo.setEnabled(enablement);
+        modelMonthCombo.setEnabled(enablement);
+        modelYearCombo.setEnabled(enablement);
+    }
+
+    @Action
     public void copy() {
         int selectedRowIndex = authorsTable.getSelectedRow();
         int selectedColumnIndex = authorsTable.getSelectedColumn();
@@ -199,10 +207,18 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTextArea11 = new javax.swing.JTextArea();
-        jLabel18 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jTextArea13 = new javax.swing.JTextArea();
         jLabel22 = new javax.swing.JLabel();
+        modelDatePanel = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        modelYearCombo = new javax.swing.JComboBox();
+        jLabel15 = new javax.swing.JLabel();
+        modelMonthCombo = new javax.swing.JComboBox();
+        jLabel26 = new javax.swing.JLabel();
+        modelDayCombo = new javax.swing.JComboBox();
+        modelCurrentDate = new javax.swing.JCheckBox();
         applicabilityDomainPanel = new javax.swing.JPanel();
         appDomainInfoPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -231,6 +247,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         compoundsTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        structuralAnalogueImage = new javax.swing.JLabel();
+        loadStructAnalogueButton = new javax.swing.JButton();
+        clearStructAnalogueButton = new javax.swing.JButton();
         predictionPanel = new javax.swing.JPanel();
         predictionInfoPanel = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -1049,9 +1068,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     jTextArea11.setName("jTextArea11"); // NOI18N
     jScrollPane12.setViewportView(jTextArea11);
 
-    jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
-    jLabel18.setName("jLabel18"); // NOI18N
-
     jScrollPane14.setName("jScrollPane14"); // NOI18N
 
     jTextArea13.setColumns(20);
@@ -1062,6 +1078,100 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
     jLabel22.setName("jLabel22"); // NOI18N
 
+    modelDatePanel.setName("modelDatePanel"); // NOI18N
+
+    jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
+    jLabel18.setName("jLabel18"); // NOI18N
+
+    jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
+    jLabel12.setName("jLabel12"); // NOI18N
+
+    java.util.Calendar mcalendar = java.util.Calendar.getInstance();
+    int mcurrentYear = mcalendar.get(java.util.Calendar.YEAR);
+    int myearsLister = 30;
+    String[] myears = new String[myearsLister];
+    for (int i=0 ; i < myearsLister ; i++){
+        myears[i]=Integer.toString(mcurrentYear - i);
+    }
+    modelYearCombo.setModel(new javax.swing.DefaultComboBoxModel(myears));
+    modelYearCombo.setName("modelYearCombo"); // NOI18N
+
+    jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+    jLabel15.setName("jLabel15"); // NOI18N
+
+    String[] mmonths = {"January", "February",
+        "March", "April", "May", "June", "July",
+        "August", "September", "October", "November",
+        "December"};
+    modelMonthCombo.setModel(new javax.swing.DefaultComboBoxModel(mmonths));
+    modelMonthCombo.setName("modelMonthCombo"); // NOI18N
+    jComboBox2.setSelectedItem(mmonths[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);
+
+    jLabel26.setText(resourceMap.getString("jLabel26.text")); // NOI18N
+    jLabel26.setName("jLabel26"); // NOI18N
+
+    java.util.ArrayList<String> mlistOfDays = new java.util.ArrayList<String>();
+    for (int i=1;i<=31;i++){
+        mlistOfDays.add(Integer.toString(i));
+    }
+    Object[] mselectableDays = mlistOfDays.toArray();
+    modelDayCombo.setModel(new javax.swing.DefaultComboBoxModel(mselectableDays));
+    modelDayCombo.setName("modelDayCombo"); // NOI18N
+
+    javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getActionMap(ReportInternalFrame.class, this);
+    modelCurrentDate.setAction(actionMap.get("enableDisableDate")); // NOI18N
+    modelCurrentDate.setText(resourceMap.getString("modelCurrentDate.text")); // NOI18N
+    modelCurrentDate.setToolTipText(resourceMap.getString("modelCurrentDate.toolTipText")); // NOI18N
+    modelCurrentDate.setName("modelCurrentDate"); // NOI18N
+    modelCurrentDate.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modelCurrentDateActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout modelDatePanelLayout = new javax.swing.GroupLayout(modelDatePanel);
+    modelDatePanel.setLayout(modelDatePanelLayout);
+    modelDatePanelLayout.setHorizontalGroup(
+        modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelDatePanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel18)
+                .addGroup(modelDatePanelLayout.createSequentialGroup()
+                    .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel26)
+                        .addComponent(jLabel15)
+                        .addComponent(jLabel12))
+                    .addGap(18, 18, 18)
+                    .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(modelDayCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modelMonthCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(modelCurrentDate))
+            .addContainerGap(73, Short.MAX_VALUE))
+    );
+    modelDatePanelLayout.setVerticalGroup(
+        modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelDatePanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel18)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(modelCurrentDate)
+            .addGap(26, 26, 26)
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel12)
+                .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel15)
+                .addComponent(modelMonthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel26)
+                .addComponent(modelDayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(108, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout modelInfoPanelLayout = new javax.swing.GroupLayout(modelInfoPanel);
     modelInfoPanel.setLayout(modelInfoPanelLayout);
     modelInfoPanelLayout.setHorizontalGroup(
@@ -1070,84 +1180,87 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(modelInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(predictedFeatureHeadline)
-                .addComponent(jLabel7)
                 .addGroup(modelInfoPanelLayout.createSequentialGroup()
                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addGap(434, 434, 434))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
+                                    .addGap(86, 86, 86)
+                                    .addComponent(algorithmNameLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(predFeatureNameLabel)
+                                        .addComponent(algorithmUriLabel)
+                                        .addComponent(predFeatureResourceLabel)
+                                        .addComponent(jLabel22))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                        .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                        .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(trainingDatasetLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(modelUriLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                                        .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))))
                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addGap(434, 434, 434))
-                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addGap(86, 86, 86)
-                                            .addComponent(algorithmNameLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel8)
-                                                .addComponent(predFeatureNameLabel)
-                                                .addComponent(algorithmUriLabel)
-                                                .addComponent(predFeatureResourceLabel)
-                                                .addComponent(jLabel22))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(trainingDatasetLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(modelUriLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                                                .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                            .addComponent(copyModelUriButton)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyModelUriButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(modelUriDetailsButton))
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyDatasetButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(datasetDetailsButton))))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
+                                            .addComponent(modelUriDetailsButton))
+                                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                            .addComponent(copyDatasetButton)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(copyAlgorithmName)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyAlgorithmUriButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(algorithmDetailsButton))
-                                                .addComponent(copyPredFeatureNameButton)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyPredFeatureUriButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(predFeatureDetailsButton)))
-                                            .addGap(6, 6, 6)
-                                            .addComponent(jButton5)
-                                            .addGap(8, 8, 8)))))
-                            .addGap(12, 12, 12))
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addGap(545, 545, 545)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel18)
-                        .addComponent(jLabel17)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel16))))
+                                            .addComponent(datasetDetailsButton))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(copyAlgorithmName)
+                                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                            .addComponent(copyAlgorithmUriButton)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(algorithmDetailsButton))
+                                        .addComponent(copyPredFeatureNameButton)
+                                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                            .addComponent(copyPredFeatureUriButton)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(predFeatureDetailsButton)))
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jButton5)
+                                    .addGap(8, 8, 8)))))
+                    .addGap(12, 12, 12))
+                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel14)
+                    .addGap(545, 545, 545))
+                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                    .addComponent(predictedFeatureHeadline)
+                    .addGap(564, 564, 564))
+                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel7)
+                    .addGap(540, 540, 540)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel17)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(jLabel16))
+                .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     modelInfoPanelLayout.setVerticalGroup(
@@ -1194,7 +1307,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                     .addComponent(algorithmUriLabel)
                                     .addComponent(algorithmUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(algorithmDetailsButton)
-                        .addComponent(jButton5))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jButton5)
+                            .addGap(28, 28, 28)))
                     .addGap(18, 18, 18)
                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(modelInfoPanelLayout.createSequentialGroup()
@@ -1217,7 +1332,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel8)))
-                        .addComponent(copyPredFeatureUriButton)))
+                        .addComponent(copyPredFeatureUriButton))
+                    .addGap(12, 12, 12)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel22)
+                            .addGap(68, 68, 68))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                            .addContainerGap())))
                 .addGroup(modelInfoPanelLayout.createSequentialGroup()
                     .addComponent(jLabel16)
                     .addGap(18, 18, 18)
@@ -1225,14 +1348,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(jLabel18)))
-            .addGap(12, 12, 12)
-            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel22)
-                    .addGap(68, 68, 68))
-                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                    .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap())))
     );
 
@@ -1457,12 +1573,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 206, Short.MAX_VALUE)
+        .addGap(0, 208, Short.MAX_VALUE)
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                .addContainerGap()))
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
     );
 
     jScrollPane4.setName("jScrollPane4"); // NOI18N
@@ -1471,6 +1586,29 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     jTextArea1.setRows(5);
     jTextArea1.setName("jTextArea1"); // NOI18N
     jScrollPane4.setViewportView(jTextArea1);
+
+    structuralAnalogueImage.setText(resourceMap.getString("structuralAnalogueImage.text")); // NOI18N
+    structuralAnalogueImage.setName("structuralAnalogueImage"); // NOI18N
+
+    loadStructAnalogueButton.setIcon(resourceMap.getIcon("loadStructAnalogueButton.icon")); // NOI18N
+    loadStructAnalogueButton.setText(resourceMap.getString("loadStructAnalogueButton.text")); // NOI18N
+    loadStructAnalogueButton.setToolTipText(resourceMap.getString("loadStructAnalogueButton.toolTipText")); // NOI18N
+    loadStructAnalogueButton.setName("loadStructAnalogueButton"); // NOI18N
+    loadStructAnalogueButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            loadStructAnalogueButtonActionPerformed(evt);
+        }
+    });
+
+    clearStructAnalogueButton.setIcon(resourceMap.getIcon("clearStructAnalogueButton.icon")); // NOI18N
+    clearStructAnalogueButton.setText(resourceMap.getString("clearStructAnalogueButton.text")); // NOI18N
+    clearStructAnalogueButton.setToolTipText(resourceMap.getString("clearStructAnalogueButton.toolTipText")); // NOI18N
+    clearStructAnalogueButton.setName("clearStructAnalogueButton"); // NOI18N
+    clearStructAnalogueButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            clearStructAnalogueButtonActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout structuralAnaloguesPanelLayout = new javax.swing.GroupLayout(structuralAnaloguesPanel);
     structuralAnaloguesPanel.setLayout(structuralAnaloguesPanelLayout);
@@ -1482,8 +1620,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel9)
-            .addGap(47, 47, 47)
+            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel9)
+                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+                    .addComponent(loadStructAnalogueButton)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(clearStructAnalogueButton))
+                .addComponent(structuralAnalogueImage, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1499,13 +1643,20 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel9)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(loadStructAnalogueButton)
+                        .addComponent(clearStructAnalogueButton))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(structuralAnalogueImage, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
                     .addComponent(jLabel10)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
             .addContainerGap())
     );
 
@@ -1860,7 +2011,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     jComboBox3.setSelectedIndex(java.util.Calendar.getInstance().get(java.util.Calendar.DATE)-1);
     jComboBox3.setName("jComboBox3"); // NOI18N
 
-    javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getActionMap(ReportInternalFrame.class, this);
     jCheckBox1.setAction(actionMap.get("enableDisableDate")); // NOI18N
     jCheckBox1.setText(resourceMap.getString("jCheckBox1.text")); // NOI18N
     jCheckBox1.setToolTipText(resourceMap.getString("jCheckBox1.toolTipText")); // NOI18N
@@ -2621,6 +2771,32 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_loadStructureImgButtonActionPerformed
 
+    private void modelCurrentDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelCurrentDateActionPerformed
+        enableDisableModelDate();
+    }//GEN-LAST:event_modelCurrentDateActionPerformed
+
+    private void loadStructAnalogueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadStructAnalogueButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        fileChooser.showOpenDialog(QEditApp.getApplication().getMainFrame());
+        File selectedFile = fileChooser.getSelectedFile();
+        try {
+            ImageIcon ii = new ImageIcon(selectedFile.getCanonicalPath());
+            Image image = ii.getImage().getScaledInstance(-1, structuralAnalogueImage.getHeight(), Image.SCALE_SMOOTH);
+            if(image.getWidth(null)>structuralAnalogueImage.getWidth()){
+                image = image.getScaledInstance(structuralAnalogueImage.getWidth(), -1, 0);
+            }
+
+            structuralAnalogueImage.setIcon(new ImageIcon(image));
+        } catch (IOException ex) {
+            Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loadStructAnalogueButtonActionPerformed
+
+    private void clearStructAnalogueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStructAnalogueButtonActionPerformed
+        structuralAnalogueImage.setIcon(new ImageIcon() );
+    }//GEN-LAST:event_clearStructAnalogueButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDescriptorValueButton;
     private javax.swing.JLabel addDomainResultLabel;
@@ -2654,6 +2830,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton clearAllAuthorsButton;
     private javax.swing.JButton clearAllDescriptorsButton;
     private javax.swing.JButton clearAllStructuralAnalogues;
+    private javax.swing.JButton clearStructAnalogueButton;
     private javax.swing.JButton clearStructureImgButton;
     private javax.swing.JButton cmlCompoundButton;
     private javax.swing.JLabel compoundImageLabel;
@@ -2707,8 +2884,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -2720,6 +2899,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2771,15 +2951,21 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton loadStructAnalogueButton;
     private javax.swing.JButton loadStructureImgButton;
     private javax.swing.JPanel metaInfoPanel;
+    private javax.swing.JCheckBox modelCurrentDate;
+    private javax.swing.JPanel modelDatePanel;
+    private javax.swing.JComboBox modelDayCombo;
     private javax.swing.JPanel modelInfoPanel;
     private javax.swing.JButton modelInfoToolButton;
+    private javax.swing.JComboBox modelMonthCombo;
     private javax.swing.JPanel modelPanel;
     private javax.swing.JToolBar modelToolbar;
     private javax.swing.JButton modelUriDetailsButton;
     private javax.swing.JLabel modelUriLabel;
     private javax.swing.JTextField modelUriValue;
+    private javax.swing.JComboBox modelYearCombo;
     private javax.swing.JButton moveDownRowButton;
     private javax.swing.JButton moveUpRowButton;
     private javax.swing.JPanel otherInfoPanel;
@@ -2816,6 +3002,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton removeStructuralAnalogue;
     private javax.swing.JButton smilesButton;
     private javax.swing.JToolBar.Separator structAnalToolbarSeparator;
+    private javax.swing.JLabel structuralAnalogueImage;
     private javax.swing.JPanel structuralAnaloguesPanel;
     private javax.swing.JSeparator structuralAnaloguesSeparator;
     private javax.swing.JToolBar structuralAnaloguesToolbar;
