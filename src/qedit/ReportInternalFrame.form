@@ -149,7 +149,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -225,7 +225,7 @@
                               <Component id="jPanel2" max="32767" attributes="3"/>
                               <Component id="descriptorsPanel" alignment="0" max="32767" attributes="1"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -538,7 +538,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="descriptorsTableToolbar" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="descriptorsScrollable" pref="120" max="32767" attributes="0"/>
+                              <Component id="descriptorsScrollable" pref="136" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -772,17 +772,15 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="modelInfoPanel" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="modelInfoPanel" max="32767" attributes="0"/>
+                          <Component id="modelInfoPanel" pref="593" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -824,23 +822,26 @@
                                                               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                                               <Component id="algorithmNameLabel" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="algorithmNameValue" pref="350" max="32767" attributes="1"/>
+                                                              <Component id="algorithmNameValue" pref="357" max="32767" attributes="1"/>
                                                           </Group>
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Group type="103" groupAlignment="1" attributes="0">
+                                                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                                                   <Component id="predFeatureNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                                                   <Component id="algorithmUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                                                   <Component id="predFeatureResourceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                                                                   <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
                                                               </Group>
                                                               <EmptySpace max="-2" attributes="0"/>
                                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="jTextField1" pref="347" max="32767" attributes="1"/>
-                                                                  <Component id="predFeatureUriValue" pref="347" max="32767" attributes="1"/>
-                                                                  <Component id="predictedFeatureNameValue" pref="347" max="32767" attributes="1"/>
-                                                                  <Component id="algorithmUriValue" alignment="0" pref="347" max="32767" attributes="1"/>
-                                                                  <Component id="jScrollPane14" alignment="0" pref="347" max="32767" attributes="1"/>
+                                                                  <Component id="jScrollPane14" pref="354" max="32767" attributes="1"/>
+                                                                  <Group type="102" attributes="0">
+                                                                      <Component id="jTextField1" pref="347" max="32767" attributes="1"/>
+                                                                      <EmptySpace max="-2" attributes="0"/>
+                                                                  </Group>
+                                                                  <Component id="predFeatureUriValue" pref="354" max="32767" attributes="1"/>
+                                                                  <Component id="predictedFeatureNameValue" pref="354" max="32767" attributes="1"/>
+                                                                  <Component id="algorithmUriValue" alignment="0" pref="354" max="32767" attributes="1"/>
                                                               </Group>
                                                           </Group>
                                                           <Group type="102" alignment="0" attributes="0">
@@ -850,8 +851,8 @@
                                                               </Group>
                                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="modelUriValue" pref="359" max="32767" attributes="1"/>
-                                                                  <Component id="datasetValue" alignment="0" pref="359" max="32767" attributes="1"/>
+                                                                  <Component id="modelUriValue" pref="366" max="32767" attributes="1"/>
+                                                                  <Component id="datasetValue" alignment="0" pref="366" max="32767" attributes="1"/>
                                                               </Group>
                                                           </Group>
                                                       </Group>
@@ -995,14 +996,15 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="copyPredFeatureUriButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
@@ -1016,8 +1018,14 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane14" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jScrollPane14" pref="64" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -1405,7 +1413,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="structuralAnaloguesPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="addDomainsDiscussionPanel" min="-2" max="-2" attributes="0"/>
+                          <Component id="addDomainsDiscussionPanel" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1527,7 +1536,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane6" alignment="0" pref="97" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane6" alignment="0" pref="61" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="addDomainResultLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2871,7 +2880,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="118" max="32767" attributes="0"/>
+                                      <EmptySpace pref="133" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
