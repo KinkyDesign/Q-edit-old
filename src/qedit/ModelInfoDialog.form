@@ -25,12 +25,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="865" max="32767" attributes="0"/>
+          <Component id="jScrollPane3" alignment="0" pref="480" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="747" max="32767" attributes="1"/>
+          <Component id="jScrollPane3" alignment="0" pref="735" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -50,11 +50,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="closeButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -62,11 +62,12 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="173" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="closeButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -90,7 +91,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" pref="797" max="32767" attributes="1"/>
+                              <Component id="jScrollPane1" alignment="0" pref="376" max="32767" attributes="1"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="modelUriLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -100,20 +101,20 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="predictionFeatureField" alignment="0" pref="669" max="32767" attributes="1"/>
-                                      <Component id="trainingDatasetField" alignment="0" pref="669" max="32767" attributes="1"/>
-                                      <Component id="modelUriField" alignment="1" pref="669" max="32767" attributes="1"/>
-                                      <Component id="dependentFeatureField" alignment="0" pref="669" max="32767" attributes="1"/>
+                                      <Component id="modelUriField" alignment="0" pref="248" max="32767" attributes="1"/>
+                                      <Component id="trainingDatasetField" alignment="0" pref="248" max="32767" attributes="1"/>
+                                      <Component id="predictionFeatureField" alignment="0" pref="248" max="32767" attributes="1"/>
+                                      <Component id="dependentFeatureField" alignment="0" pref="248" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                               <Component id="independentFeaturesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="trainingAlgorithmLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="trainingAlgorithmField" pref="660" max="32767" attributes="0"/>
+                                  <Component id="trainingAlgorithmField" pref="239" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -277,16 +278,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" pref="797" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jScrollPane2" alignment="1" pref="416" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" min="-2" pref="266" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="190" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -318,6 +315,16 @@
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="closeButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="closeButton.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="closeButton.text"/>
+                <Property name="name" type="java.lang.String" value="closeButton" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeButtonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
