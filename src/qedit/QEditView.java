@@ -21,7 +21,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.jscroll.JScrollDesktopPane;
 
 /**
  * The application's main frame.
