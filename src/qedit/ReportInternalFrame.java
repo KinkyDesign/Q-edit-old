@@ -36,6 +36,10 @@ import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.jdesktop.application.Action;
+import org.jdesktop.application.ApplicationContext;
+import org.jdesktop.application.Task;
+import org.jdesktop.application.TaskMonitor;
+import org.jdesktop.application.TaskService;
 import qedit.hints.AdequacyHint;
 import qedit.hints.QPRFCommentsHint;
 import qedit.hints.RegulInterpretationHint;
@@ -2765,7 +2769,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         final File selectedFile = fileChooser.getSelectedFile();
         structureImage.setIcon(null);
         structureImage.setText("Loading...");
-        javax.swing.SwingWorker sw = new javax.swing.SwingWorker() {
+        Task compImageLoadingTask = new Task(QEditApp.getApplication()) {
 
             @Override
             protected Object doInBackground() throws Exception {
@@ -2800,7 +2804,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 return new Object();
             }
         };
-        sw.execute();
+        ApplicationContext appC = QEditApp.getInstance().getContext();
+        TaskMonitor taskMonitor = appC.getTaskMonitor();
+        TaskService taskService = appC.getTaskService();
+        taskService.execute(compImageLoadingTask);
+        taskMonitor.setForegroundTask(compImageLoadingTask);
     }//GEN-LAST:event_loadStructureImgButtonActionPerformed
 
     private void modelCurrentDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelCurrentDateActionPerformed

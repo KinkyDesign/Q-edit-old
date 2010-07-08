@@ -4,6 +4,7 @@
 package qedit;
 
 import java.awt.Point;
+import java.beans.PropertyChangeEvent;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -11,6 +12,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.jdesktop.application.ApplicationContext;
+import org.jdesktop.application.Task;
+import org.jdesktop.application.TaskService;
 import qedit.hints.TooManyOpenDocsWarning;
 
 /**
@@ -130,7 +135,6 @@ public class QEditView extends FrameView {
             enterUriBox = new EnterUriDialog(mainFrame);
             enterUriBox.setLocationRelativeTo(mainFrame);
         }
-
         statusMessageLabel.setText("Opening Remote Location");
         QEditApp.getApplication().show(enterUriBox);
     }
@@ -160,32 +164,41 @@ public class QEditView extends FrameView {
 
     @Action
     public void createNewEmptyReport() {
+        progressBar.repaint();
         if (doShowTooManyDocsWarning && desktopPane.getAllFrames().length > 2) {
             if (warningDialog == null) {
                 warningDialog = new TooManyOpenDocsWarning(QEditApp.getView().getFrame(), true);
                 warningDialog.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
             }
-            warningDialog.setVisible(true);            
+            warningDialog.setVisible(true);
             doShowTooManyDocsWarning = warningDialog.doShowAgain();
             if (warningDialog.getReturnStatus() == TooManyOpenDocsWarning.CANCEL_NEW_DOCUMENT) {
                 return;
             }
         }
 
-        javax.swing.SwingWorker sw = new javax.swing.SwingWorker() {
+        Task internalFrameCreationTask = new Task(QEditApp.getApplication()) {
 
             @Override
             protected Object doInBackground() throws Exception {
+                setProgress(15);
                 desktopPane.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+                setProgress(20);
                 QEditApp.getView().getStatusLabel().setText("Loading new Report... Please Wait!");
+                setProgress(30);
                 ReportInternalFrame nd = new ReportInternalFrame();
+                setProgress(40);
                 nd.setVisible(true);
                 QEditApp.getView().getDesktopPane().add(nd);
+                setProgress(50);
                 nd.revalidate();
                 nd.setLocation(new Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
+                setProgress(60);
                 nd.setTitle("Document " + (QEditView.getNumOpenDocuments() + 1));
                 nd.setName(nd.getTitle());
+                setProgress(70);
                 QEditView.increaseNumOpenDocuments();
+                setProgress(80);
                 try {
                     nd.setSelected(true);
                 } catch (PropertyVetoException ex) {
@@ -193,12 +206,17 @@ public class QEditView extends FrameView {
                 } finally {
                     desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
                 }
+                setProgress(90);
                 QEditApp.getView().getStatusLabel().setText("A new Report has been created");
-
+                setProgress(100);
                 return new Object();
             }
         };
-        sw.execute();
+        ApplicationContext appC = QEditApp.getInstance().getContext();
+        TaskMonitor taskMonitor = appC.getTaskMonitor();
+        TaskService taskService = appC.getTaskService();
+        taskService.execute(internalFrameCreationTask);
+        taskMonitor.setForegroundTask(internalFrameCreationTask);
 
     }
 
@@ -252,8 +270,8 @@ public class QEditView extends FrameView {
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
         statusFace = new javax.swing.JLabel();
+        progressBar = new javax.swing.JProgressBar();
         basicToolbar = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         newReportButton = new javax.swing.JButton();
@@ -265,6 +283,7 @@ public class QEditView extends FrameView {
         jSeparator1 = new javax.swing.JToolBar.Separator();
         aboutToolButton = new javax.swing.JButton();
         ejectButton = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(QEditView.class);
         mainPanel.setBackground(resourceMap.getColor("mainPanel.background")); // NOI18N
@@ -311,7 +330,7 @@ public class QEditView extends FrameView {
         );
         leftSplittedPanelLayout.setVerticalGroup(
             leftSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
         );
 
         mainSplitPane.setLeftComponent(leftSplittedPanel);
@@ -324,15 +343,15 @@ public class QEditView extends FrameView {
         rightSplittedPanel.setLayout(rightSplittedPanelLayout);
         rightSplittedPanelLayout.setHorizontalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 747, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE))
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
         );
         rightSplittedPanelLayout.setVerticalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
         );
 
         mainSplitPane.setRightComponent(rightSplittedPanel);
@@ -345,7 +364,7 @@ public class QEditView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -505,11 +524,11 @@ public class QEditView extends FrameView {
         statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         statusAnimationLabel.setName("statusAnimationLabel"); // NOI18N
 
-        progressBar.setName("progressBar"); // NOI18N
-
         statusFace.setIcon(resourceMap.getIcon("statusFace.icon")); // NOI18N
         statusFace.setText(resourceMap.getString("statusFace.text")); // NOI18N
         statusFace.setName("statusFace"); // NOI18N
+
+        progressBar.setName("progressBar"); // NOI18N
 
         javax.swing.GroupLayout statusPanelLayout = new javax.swing.GroupLayout(statusPanel);
         statusPanel.setLayout(statusPanelLayout);
@@ -521,29 +540,29 @@ public class QEditView extends FrameView {
                 .addComponent(statusFace)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 529, Short.MAX_VALUE)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusAnimationLabel)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
+                        .addComponent(statusAnimationLabel)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
+                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(statusPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(statusAnimationLabel)
-                            .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12))
-                    .addGroup(statusPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(statusMessageLabel)
                             .addComponent(statusFace))
-                        .addContainerGap())))
+                        .addGap(4, 4, 4)
+                        .addComponent(statusAnimationLabel))
+                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         basicToolbar.setRollover(true);
@@ -636,6 +655,8 @@ public class QEditView extends FrameView {
         ejectButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         basicToolbar.add(ejectButton);
 
+        jSpinner1.setName("jSpinner1"); // NOI18N
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -681,6 +702,7 @@ public class QEditView extends FrameView {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTree jTree1;
     private javax.swing.JPanel leftSplittedPanel;
     private javax.swing.JFileChooser localFileChooserWindow;
