@@ -3,9 +3,6 @@
  */
 package qedit;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Point;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
@@ -23,17 +20,19 @@ import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import qedit.hints.TooManyOpenDocsWarning;
 
 /**
  * The application's main frame.
  */
-public class QEditView extends FrameView {   
+public class QEditView extends FrameView {
+
+    private static boolean doShowTooManyDocsWarning = true;
 
     public QEditView(SingleFrameApplication app) {
-        super(app);        
-
+        super(app);
         initComponents();
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -93,16 +92,16 @@ public class QEditView extends FrameView {
                     progressBar.setValue(value);
                 }
             }
-        });        
+        });
         QEditApp.splash.setVisible(false);
         QEditApp.splash.dispose();
     }
 
-    public static int getNumOpenDocuments(){
+    public static int getNumOpenDocuments() {
         return numOpenInternalFrames;
     }
 
-    public static void increaseNumOpenDocuments(){
+    public static void increaseNumOpenDocuments() {
         numOpenInternalFrames++;
     }
 
@@ -156,39 +155,60 @@ public class QEditView extends FrameView {
     @Action
     public void createNewReport() {
         enterUriDialogBox();
-        
+
     }
 
     @Action
-    public void createNewEmptyReport(){
-        ReportInternalFrame nd = new ReportInternalFrame();
-        nd.setVisible(true);
-        QEditApp.getView().getDesktopPane().add(nd);
-        nd.revalidate();
-        nd.repaint();
-        nd.setLocation(new Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
-        nd.setTitle("Document " + (QEditView.getNumOpenDocuments() + 1));
-        nd.setName(nd.getTitle());
-        QEditView.increaseNumOpenDocuments();
-        try {
-            nd.setSelected(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
+    public void createNewEmptyReport() {
+        if (doShowTooManyDocsWarning && desktopPane.getAllFrames().length > 2) {
+            if (warningDialog == null) {
+                warningDialog = new TooManyOpenDocsWarning(QEditApp.getView().getFrame(), true);
+                warningDialog.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
+            }
+            warningDialog.setVisible(true);            
+            doShowTooManyDocsWarning = warningDialog.doShowAgain();
+            if (warningDialog.getReturnStatus() == TooManyOpenDocsWarning.CANCEL_NEW_DOCUMENT) {
+                return;
+            }
         }
-        QEditApp.getView().getStatusLabel().setText("a new Report has been created");
+
+        javax.swing.SwingWorker sw = new javax.swing.SwingWorker() {
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                desktopPane.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+                QEditApp.getView().getStatusLabel().setText("Loading new Report... Please Wait!");
+                ReportInternalFrame nd = new ReportInternalFrame();
+                nd.setVisible(true);
+                QEditApp.getView().getDesktopPane().add(nd);
+                nd.revalidate();
+                nd.setLocation(new Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
+                nd.setTitle("Document " + (QEditView.getNumOpenDocuments() + 1));
+                nd.setName(nd.getTitle());
+                QEditView.increaseNumOpenDocuments();
+                try {
+                    nd.setSelected(true);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
+                }
+                QEditApp.getView().getStatusLabel().setText("A new Report has been created");
+
+                return new Object();
+            }
+        };
+        sw.execute();
+
     }
 
     public JDesktopPane getDesktopPane() {
         return desktopPane;
     }
 
-
-
     public javax.swing.JLabel getStatusLabel() {
         return statusMessageLabel;
     }
-
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -648,7 +668,6 @@ public class QEditView extends FrameView {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         createNewEmptyReport();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JToolBar basicToolbar;
@@ -701,4 +720,5 @@ public class QEditView extends FrameView {
     private JDialog enterUriBox;
     private JDialog statisticsBox;
     private static int numOpenInternalFrames = 0;
+    private static TooManyOpenDocsWarning warningDialog;
 }

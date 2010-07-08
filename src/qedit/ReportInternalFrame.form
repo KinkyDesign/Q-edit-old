@@ -171,7 +171,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="basicTabbedPanel" alignment="1" pref="672" max="32767" attributes="0"/>
+              <Component id="basicTabbedPanel" alignment="1" pref="673" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -205,7 +205,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="descriptorsPanel" min="-2" max="-2" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stereoChemFeaturesDiscussionPanel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="35" max="32767" attributes="0"/>
@@ -220,7 +220,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="descriptorsPanel" max="32767" attributes="1"/>
-                              <Component id="jPanel2" alignment="0" max="32767" attributes="3"/>
+                              <Component id="stereoChemFeaturesDiscussionPanel" alignment="0" max="32767" attributes="3"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
@@ -265,9 +265,9 @@
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jButton4" max="32767" attributes="1"/>
-                                                  <Component id="jButton1" max="32767" attributes="1"/>
-                                                  <Component id="jButton3" alignment="0" max="32767" attributes="1"/>
+                                                  <Component id="clearAllCompoundSynonyms" max="32767" attributes="1"/>
+                                                  <Component id="addCompoundSynonym" max="32767" attributes="1"/>
+                                                  <Component id="removeCompoundSynonym" alignment="0" max="32767" attributes="1"/>
                                               </Group>
                                           </Group>
                                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
@@ -326,11 +326,11 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="addCompoundSynonym" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="removeCompoundSynonym" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="clearAllCompoundSynonyms" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="compoundNamesScrollable" min="0" pref="0" max="32767" attributes="1"/>
                                       </Group>
@@ -521,39 +521,41 @@
                         <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="addCompoundSynonym">
                       <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
-                        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="addCompoundSynonym.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="addCompoundSynonym.text"/>
+                        <Property name="name" type="java.lang.String" value="addCompoundSynonym" noResource="true"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCompoundSynonymActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton3">
+                    <Component class="javax.swing.JButton" name="removeCompoundSynonym">
                       <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton3.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
-                        <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="removeCompoundSynonym.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="removeCompoundSynonym.text"/>
+                        <Property name="name" type="java.lang.String" value="removeCompoundSynonym" noResource="true"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCompoundSynonymActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton4">
+                    <Component class="javax.swing.JButton" name="clearAllCompoundSynonyms">
                       <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton4.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jButton4.text"/>
-                        <Property name="name" type="java.lang.String" value="jButton4" noResource="true"/>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="clearAllCompoundSynonyms.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="clearAllCompoundSynonyms.text"/>
+                        <Property name="name" type="java.lang.String" value="clearAllCompoundSynonyms" noResource="true"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllCompoundSynonymsActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="structureImage">
                       <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" resourceKey="structureImage.text"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="name" type="java.lang.String" value="structureImage" noResource="true"/>
                       </Properties>
                       <AuxValues>
@@ -606,7 +608,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="descriptorsTableToolbar" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="descriptorsScrollable" pref="138" max="32767" attributes="0"/>
+                              <Component id="descriptorsScrollable" pref="139" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -740,16 +742,16 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel2">
+                <Container class="javax.swing.JPanel" name="stereoChemFeaturesDiscussionPanel">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Stereochemical Features of the Substabce">
-                          <Property name="titleX" resourceKey="jPanel2.border.title"/>
+                          <Property name="titleX" resourceKey="stereoChemFeaturesDiscussionPanel.border.title"/>
                         </TitledBorder>
                       </Border>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="stereoChemFeaturesDiscussionPanel" noResource="true"/>
                   </Properties>
 
                   <Layout>
@@ -758,11 +760,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane13" alignment="0" pref="394" max="32767" attributes="1"/>
+                                  <Component id="stereoChemScollPane" alignment="0" pref="394" max="32767" attributes="1"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel20" min="-2" pref="332" max="-2" attributes="1"/>
+                                      <Component id="stereoChemHintLabel" min="-2" pref="332" max="-2" attributes="1"/>
                                       <EmptySpace pref="46" max="32767" attributes="0"/>
-                                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                      <Component id="stereoChemHintLamp" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -774,26 +776,26 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stereoChemHintLamp" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stereoChemHintLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane13" pref="116" max="32767" attributes="0"/>
+                              <Component id="stereoChemScollPane" pref="117" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel20">
+                    <Component class="javax.swing.JLabel" name="stereoChemHintLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel20.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel20" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="stereoChemHintLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="stereoChemHintLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+                    <Container class="javax.swing.JScrollPane" name="stereoChemScollPane">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane13" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="stereoChemScollPane" noResource="true"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -801,23 +803,23 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea12">
+                        <Component class="javax.swing.JTextArea" name="stereoChemDiscussionTextArea">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="name" type="java.lang.String" value="jTextArea12" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="stereoChemDiscussionTextArea" noResource="true"/>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel21">
+                    <Component class="javax.swing.JLabel" name="stereoChemHintLamp">
                       <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="jLabel21.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel21.text"/>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="stereoChemHintLamp.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="stereoChemHintLamp.text"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                           <Color id="Hand Cursor"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="jLabel21" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="stereoChemHintLamp" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -877,7 +879,7 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                              <Component id="modelAndTrainingDSHeader" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="434" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -890,11 +892,11 @@
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="qmrfReportLabel" min="-2" max="-2" attributes="0"/>
                                                           <Component id="predFeatureNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                                           <Component id="algorithmUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                                           <Component id="predFeatureResourceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="qmrfReportDiscussionLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -903,8 +905,8 @@
                                                           <Component id="algorithmUriValue" alignment="0" pref="398" max="32767" attributes="1"/>
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                                  <Component id="jScrollPane14" alignment="0" pref="392" max="32767" attributes="1"/>
-                                                                  <Component id="jTextField1" alignment="1" pref="392" max="32767" attributes="1"/>
+                                                                  <Component id="qmrfReportDiscussionScrollable" alignment="0" pref="392" max="32767" attributes="1"/>
+                                                                  <Component id="qmrfReportTextField" alignment="1" pref="392" max="32767" attributes="1"/>
                                                               </Group>
                                                               <EmptySpace max="-2" attributes="0"/>
                                                           </Group>
@@ -962,7 +964,7 @@
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                      <Component id="trainingAlgorithmHeader" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="545" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -970,16 +972,16 @@
                                       <EmptySpace min="-2" pref="564" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Component id="qmrfReportHeader" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="540" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane12" alignment="0" pref="261" max="32767" attributes="1"/>
-                                      <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelVersionLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelVersionScrollPane" alignment="0" pref="261" max="32767" attributes="1"/>
+                                      <Component id="modelVersionHeader" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="modelDatePanel" alignment="1" max="32767" attributes="1"/>
                               </Group>
@@ -994,7 +996,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelAndTrainingDSHeader" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
@@ -1025,7 +1027,7 @@
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
                                                   <Group type="102" attributes="0">
-                                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="trainingAlgorithmHeader" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="3" attributes="0">
                                                           <Component id="algorithmNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1066,28 +1068,28 @@
                                                   <Component id="predFeatureUriValue" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                              <Component id="qmrfReportHeader" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="qmrfReportTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="qmrfReportLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="copyPredFeatureUriButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="qmrfReportDiscussionLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="qmrfReportDiscussionScrollable" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelVersionHeader" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelVersionLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane12" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <Component id="modelVersionScrollPane" min="-2" pref="135" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="modelDatePanel" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1143,18 +1145,18 @@
                         <Property name="name" type="java.lang.String" value="copyDatasetButton" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel13">
+                    <Component class="javax.swing.JLabel" name="modelAndTrainingDSHeader">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="jLabel13.font"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel13.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="modelAndTrainingDSHeader.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="modelAndTrainingDSHeader.text"/>
+                        <Property name="name" type="java.lang.String" value="modelAndTrainingDSHeader" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel14">
+                    <Component class="javax.swing.JLabel" name="trainingAlgorithmHeader">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="jLabel14.font"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel14.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="trainingAlgorithmHeader.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="trainingAlgorithmHeader.text"/>
+                        <Property name="name" type="java.lang.String" value="trainingAlgorithmHeader" noResource="true"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="algorithmNameLabel">
@@ -1353,41 +1355,41 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel7">
+                    <Component class="javax.swing.JLabel" name="qmrfReportHeader">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="jLabel7.font"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="qmrfReportHeader.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="qmrfReportHeader.text"/>
+                        <Property name="name" type="java.lang.String" value="qmrfReportHeader" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel8">
+                    <Component class="javax.swing.JLabel" name="qmrfReportLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="qmrfReportLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="qmrfReportLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField1">
+                    <Component class="javax.swing.JTextField" name="qmrfReportTextField">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jTextField1.text"/>
-                        <Property name="name" type="java.lang.String" value="jTextField1" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="qmrfReportTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="qmrfReportTextField" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel16">
+                    <Component class="javax.swing.JLabel" name="modelVersionHeader">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="jLabel16.font"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel16.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="modelVersionHeader.font"/>
+                        <Property name="text" type="java.lang.String" resourceKey="modelVersionHeader.text"/>
+                        <Property name="name" type="java.lang.String" value="modelVersionHeader" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel17">
+                    <Component class="javax.swing.JLabel" name="modelVersionLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel17.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel17" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="modelVersionLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="modelVersionLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane12">
+                    <Container class="javax.swing.JScrollPane" name="modelVersionScrollPane">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane12" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="modelVersionScrollPane" noResource="true"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1395,18 +1397,18 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea11">
+                        <Component class="javax.swing.JTextArea" name="modelVersionInfoTextArea">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="name" type="java.lang.String" value="jTextArea11" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="modelVersionInfoTextArea" noResource="true"/>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane14">
+                    <Container class="javax.swing.JScrollPane" name="qmrfReportDiscussionScrollable">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane14" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="qmrfReportDiscussionScrollable" noResource="true"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -1414,19 +1416,19 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea13">
+                        <Component class="javax.swing.JTextArea" name="qmrfReportDiscussionTextArea">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="name" type="java.lang.String" value="jTextArea13" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="qmrfReportDiscussionTextArea" noResource="true"/>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel22">
+                    <Component class="javax.swing.JLabel" name="qmrfReportDiscussionLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel22.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel22" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="qmrfReportDiscussionLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="qmrfReportDiscussionLabel" noResource="true"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="modelDatePanel">
@@ -1440,12 +1442,12 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelDateLabel" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel26" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="modelDayLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="modelMonthLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="modelYearLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1464,40 +1466,40 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modelDateLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="modelCurrentDate" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelYearLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="modelYearCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelMonthLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="modelMonthCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="modelDayLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="modelDayCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="140" max="32767" attributes="0"/>
+                                  <EmptySpace pref="141" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel18">
+                        <Component class="javax.swing.JLabel" name="modelDateLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" resourceKey="jLabel18.text"/>
-                            <Property name="name" type="java.lang.String" value="jLabel18" noResource="true"/>
+                            <Property name="text" type="java.lang.String" resourceKey="modelDateLabel.text"/>
+                            <Property name="name" type="java.lang.String" value="modelDateLabel" noResource="true"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel12">
+                        <Component class="javax.swing.JLabel" name="modelYearLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
-                            <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
+                            <Property name="text" type="java.lang.String" resourceKey="modelYearLabel.text"/>
+                            <Property name="name" type="java.lang.String" value="modelYearLabel" noResource="true"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="modelYearCombo">
@@ -1511,10 +1513,10 @@
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="java.util.Calendar mcalendar = java.util.Calendar.getInstance();&#xa;int mcurrentYear = mcalendar.get(java.util.Calendar.YEAR);&#xa;int myearsLister = 30;&#xa;String[] myears = new String[myearsLister];&#xa;for (int i=0 ; i &lt; myearsLister ; i++){&#xa;    myears[i]=Integer.toString(mcurrentYear - i);&#xa;}"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel15">
+                        <Component class="javax.swing.JLabel" name="modelMonthLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" resourceKey="jLabel15.text"/>
-                            <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
+                            <Property name="text" type="java.lang.String" resourceKey="modelMonthLabel.text"/>
+                            <Property name="name" type="java.lang.String" value="modelMonthLabel" noResource="true"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="modelMonthCombo">
@@ -1529,10 +1531,10 @@
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] mmonths = {&quot;January&quot;, &quot;February&quot;,&#xa;            &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;,&#xa;            &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;,&#xa;            &quot;December&quot;};"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel26">
+                        <Component class="javax.swing.JLabel" name="modelDayLabel">
                           <Properties>
-                            <Property name="text" type="java.lang.String" resourceKey="jLabel26.text"/>
-                            <Property name="name" type="java.lang.String" value="jLabel26" noResource="true"/>
+                            <Property name="text" type="java.lang.String" resourceKey="modelDayLabel.text"/>
+                            <Property name="name" type="java.lang.String" value="modelDayLabel" noResource="true"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="modelDayCombo">
@@ -1583,19 +1585,11 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="structuralAnaloguesPanel" max="32767" attributes="1"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="appDomainInfoPanel" max="32767" attributes="1"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="addDomainsDiscussionPanel" max="32767" attributes="1"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="structuralAnaloguesPanel" alignment="0" max="32767" attributes="1"/>
+                              <Component id="appDomainInfoPanel" alignment="0" max="32767" attributes="1"/>
+                              <Component id="addDomainsDiscussionPanel" alignment="0" max="32767" attributes="1"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1608,7 +1602,7 @@
                           <Component id="structuralAnaloguesPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="addDomainsDiscussionPanel" min="-2" pref="109" max="-2" attributes="0"/>
-                          <EmptySpace pref="60" max="32767" attributes="0"/>
+                          <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1632,8 +1626,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addDomLinkLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="appDomAlgorithmNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1649,12 +1643,12 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="appDomAlgorithmNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="appDomainAlgorithmNameValue" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addDomLinkLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="appDomainURIValue" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -1663,16 +1657,16 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel4">
+                    <Component class="javax.swing.JLabel" name="appDomAlgorithmNameLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="appDomAlgorithmNameLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="appDomAlgorithmNameLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel5">
+                    <Component class="javax.swing.JLabel" name="addDomLinkLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="addDomLinkLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="addDomLinkLabel" noResource="true"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="appDomainAlgorithmNameValue">
@@ -2184,7 +2178,7 @@
                               <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane16" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace pref="209" max="32767" attributes="0"/>
+                              <EmptySpace pref="210" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2304,7 +2298,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="641" max="32767" attributes="0"/>
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="642" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -2351,7 +2345,7 @@
                                   <Component id="authorsPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="datePanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="214" max="32767" attributes="0"/>
+                                  <EmptySpace pref="215" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3119,7 +3113,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="181" max="32767" attributes="0"/>
+                                      <EmptySpace pref="182" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
