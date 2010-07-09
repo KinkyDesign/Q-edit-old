@@ -10,6 +10,17 @@
  */
 package qedit;
 
+import java.awt.Image;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author chung
@@ -35,8 +46,6 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
         this.previousDialog = previousDialog;
     }
 
-    
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -55,9 +64,9 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        finishButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        previousButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -131,7 +140,7 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +156,14 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
+        finishButton.setIcon(resourceMap.getIcon("finishButton.icon")); // NOI18N
+        finishButton.setText(resourceMap.getString("finishButton.text")); // NOI18N
+        finishButton.setName("finishButton"); // NOI18N
+        finishButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finishButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
         cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
@@ -160,12 +174,12 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setIcon(resourceMap.getIcon("jButton3.icon")); // NOI18N
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        previousButton.setIcon(resourceMap.getIcon("previousButton.icon")); // NOI18N
+        previousButton.setText(resourceMap.getString("previousButton.text")); // NOI18N
+        previousButton.setName("previousButton"); // NOI18N
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                previousButtonActionPerformed(evt);
             }
         });
 
@@ -181,9 +195,9 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(previousButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(finishButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -195,8 +209,8 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
+                    .addComponent(finishButton)
+                    .addComponent(previousButton)
                     .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -210,15 +224,48 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
         previousDialog.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
         this.setVisible(false);
         previousDialog.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_previousButtonActionPerformed
 
+    private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
+        JTable table = previousDialog.getReportInternalFrame().getAnaloguesTable();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        String name = previousDialog.getNamesField().getText();
+        model.addRow(new String[]{name, "asdf", "qwerty"});
+        JPanel cards = previousDialog.getReportInternalFrame().getAnaloguesImageCards();
+
+        JPanel newCard = new JPanel();
+        newCard.setSize(cards.getSize());
+        JLabel label = null;
+        try {
+            if (previousDialog.getAnalogueImageFile() != null) {
+                ImageIcon ii = new ImageIcon(previousDialog.getAnalogueImageFile().getCanonicalPath());
+                Image image = ii.getImage().getScaledInstance(-1, previousDialog.getReportInternalFrame().getAnaloguesImageCards().getHeight(), Image.SCALE_SMOOTH);
+                if (image.getWidth(null) > cards.getWidth()) {
+                    image = image.getScaledInstance(cards.getWidth(), -1, 0);
+                }
+
+                label = new JLabel(new ImageIcon(image));
+            } else {
+                label = new JLabel();                
+                label.setSize(cards.getSize());
+                label.setVerticalTextPosition(SwingConstants.CENTER);
+                label.setVerticalAlignment(SwingConstants.CENTER);
+                label.setText("No Image");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(StructuralAnalogueWizard_Step2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        newCard.add(label);
+        cards.add(newCard, name);
+        previousDialog.dispose();
+        dispose();
+    }//GEN-LAST:event_finishButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton finishButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -228,7 +275,7 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton previousButton;
     // End of variables declaration//GEN-END:variables
-
     private StructuralAnalogueWizard_Step1 previousDialog;
 }
