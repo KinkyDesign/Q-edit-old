@@ -31,9 +31,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="cancelButton" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="previousButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="finishButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -49,8 +49,8 @@
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="1"/>
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="finishButton" alignment="3" min="-2" max="-2" attributes="1"/>
+                  <Component id="previousButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelButton" alignment="3" pref="44" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -153,7 +153,7 @@
                       <Component id="jTextField3" max="32767" attributes="1"/>
                       <Component id="jTextField2" alignment="0" pref="280" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="277" max="32767" attributes="0"/>
+                  <EmptySpace pref="285" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -202,12 +202,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="finishButton">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
-        <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
-        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="finishButton.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="finishButton.text"/>
+        <Property name="name" type="java.lang.String" value="finishButton" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
@@ -219,14 +222,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="previousButton">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton3.icon"/>
-        <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
-        <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="previousButton.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="previousButton.text"/>
+        <Property name="name" type="java.lang.String" value="previousButton" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="previousButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

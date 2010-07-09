@@ -28,9 +28,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton2" min="-2" pref="117" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" pref="117" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="115" max="-2" attributes="0"/>
+                      <Component id="nextButton" min="-2" pref="115" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -44,8 +44,8 @@
               <Component id="jPanel1" min="-2" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" pref="45" max="-2" attributes="1"/>
-                  <Component id="jButton1" alignment="3" pref="48" max="32767" attributes="1"/>
+                  <Component id="cancelButton" alignment="3" min="-2" pref="45" max="-2" attributes="1"/>
+                  <Component id="nextButton" alignment="3" pref="48" max="32767" attributes="1"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -53,24 +53,24 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton2.icon"/>
-        <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
-        <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="cancelButton.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="cancelButton.text"/>
+        <Property name="name" type="java.lang.String" value="cancelButton" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="nextButton">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
-        <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
-        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+        <Property name="icon" type="javax.swing.Icon" resourceKey="nextButton.icon"/>
+        <Property name="text" type="java.lang.String" resourceKey="nextButton.text"/>
+        <Property name="name" type="java.lang.String" value="nextButton" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextButtonActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -104,7 +104,7 @@
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jComboBox1" alignment="0" pref="153" max="32767" attributes="1"/>
                                       <Component id="jTextField2" alignment="0" min="-2" pref="162" max="-2" attributes="1"/>
-                                      <Component id="jTextField1" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="namesField" alignment="0" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -117,41 +117,39 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="useWebServiceButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="provideImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="1">
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField3" min="-2" pref="211" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton3" min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="1">
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="browseImageField" min="-2" pref="211" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="browseForImageButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="compoundFromOnlineChoise" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="compoundFromOnlineChoise" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTextField4" max="32767" attributes="1"/>
-                                  <Component id="jComboBox2" alignment="0" min="-2" pref="171" max="-2" attributes="1"/>
-                              </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextField4" max="32767" attributes="1"/>
+                              <Component id="jComboBox2" alignment="0" min="-2" pref="171" max="-2" attributes="1"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -166,7 +164,7 @@
                           <Component id="createNewCompoundOption" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="namesField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -201,16 +199,16 @@
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="useWebServiceButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
+                  <Component id="provideImageButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="browseImageField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="browseForImageButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -234,10 +232,10 @@
             <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="namesField">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jTextField1.text"/>
-            <Property name="name" type="java.lang.String" value="jTextField1" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="namesField.text"/>
+            <Property name="name" type="java.lang.String" value="namesField" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -319,23 +317,23 @@
             <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+        <Component class="javax.swing.JRadioButton" name="useWebServiceButton">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" resourceKey="jRadioButton3.text"/>
-            <Property name="name" type="java.lang.String" value="jRadioButton3" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="useWebServiceButton.text"/>
+            <Property name="name" type="java.lang.String" value="useWebServiceButton" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jRadioButton3ItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="useWebServiceButtonItemStateChanged"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+        <Component class="javax.swing.JRadioButton" name="provideImageButton">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jRadioButton4.text"/>
-            <Property name="name" type="java.lang.String" value="jRadioButton4" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="provideImageButton.text"/>
+            <Property name="name" type="java.lang.String" value="provideImageButton" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jRadioButton4ItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="provideImageButtonItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -345,20 +343,25 @@
             <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="browseImageField">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jTextField3.text"/>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" resourceKey="browseImageField.text"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="name" type="java.lang.String" value="jTextField3" noResource="true"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="browseImageField" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="browseForImageButton">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton3.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="browseForImageButton.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="browseForImageButton.text"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="browseForImageButton" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseForImageButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>

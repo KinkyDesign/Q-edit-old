@@ -10,14 +10,33 @@
  */
 package qedit;
 
+import java.awt.Frame;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JTextField;
 
 /**
  *
  * @author chung
  */
 public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
+
+    private ReportInternalFrame reportInternalFrame;
+    private File analogueImageFile = null;
+
+    public StructuralAnalogueWizard_Step1(Frame parent, ReportInternalFrame reportInternalFrame) {
+        super(parent);
+        initComponents();
+        this.reportInternalFrame = reportInternalFrame;
+
+    }
 
     public StructuralAnalogueWizard_Step1(java.awt.Frame parent) {
         super(parent);
@@ -30,6 +49,18 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         initComponents();
     }
 
+    public ReportInternalFrame getReportInternalFrame() {
+        return reportInternalFrame;
+    }
+
+    public File getAnalogueImageFile() {
+        return analogueImageFile;
+    }
+
+    public JTextField getNamesField() {
+        return namesField;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -39,12 +70,12 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         createNewCompoundOption = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        namesField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
@@ -56,11 +87,11 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jTextField4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        useWebServiceButton = new javax.swing.JRadioButton();
+        provideImageButton = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        browseImageField = new javax.swing.JTextField();
+        browseForImageButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -69,21 +100,21 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         setName("Form"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(StructuralAnalogueWizard_Step1.class);
-        jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
+        cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
+        cancelButton.setName("cancelButton"); // NOI18N
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setIcon(resourceMap.getIcon("nextButton.icon")); // NOI18N
+        nextButton.setText(resourceMap.getString("nextButton.text")); // NOI18N
+        nextButton.setName("nextButton"); // NOI18N
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -102,8 +133,8 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setName("jTextField1"); // NOI18N
+        namesField.setText(resourceMap.getString("namesField.text")); // NOI18N
+        namesField.setName("namesField"); // NOI18N
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
@@ -149,20 +180,20 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText(resourceMap.getString("jRadioButton3.text")); // NOI18N
-        jRadioButton3.setName("jRadioButton3"); // NOI18N
-        jRadioButton3.addItemListener(new java.awt.event.ItemListener() {
+        useWebServiceButton.setSelected(true);
+        useWebServiceButton.setText(resourceMap.getString("useWebServiceButton.text")); // NOI18N
+        useWebServiceButton.setName("useWebServiceButton"); // NOI18N
+        useWebServiceButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jRadioButton3ItemStateChanged(evt);
+                useWebServiceButtonItemStateChanged(evt);
             }
         });
 
-        jRadioButton4.setText(resourceMap.getString("jRadioButton4.text")); // NOI18N
-        jRadioButton4.setName("jRadioButton4"); // NOI18N
-        jRadioButton4.addItemListener(new java.awt.event.ItemListener() {
+        provideImageButton.setText(resourceMap.getString("provideImageButton.text")); // NOI18N
+        provideImageButton.setName("provideImageButton"); // NOI18N
+        provideImageButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jRadioButton4ItemStateChanged(evt);
+                provideImageButtonItemStateChanged(evt);
             }
         });
 
@@ -170,14 +201,21 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel5.setEnabled(false);
         jLabel5.setName("jLabel5"); // NOI18N
 
-        jTextField3.setText(resourceMap.getString("jTextField3.text")); // NOI18N
-        jTextField3.setEnabled(false);
-        jTextField3.setName("jTextField3"); // NOI18N
+        browseImageField.setEditable(false);
+        browseImageField.setText(resourceMap.getString("browseImageField.text")); // NOI18N
+        browseImageField.setEnabled(false);
+        browseImageField.setFocusable(false);
+        browseImageField.setName("browseImageField"); // NOI18N
 
-        jButton3.setIcon(resourceMap.getIcon("jButton3.icon")); // NOI18N
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setEnabled(false);
-        jButton3.setName("jButton3"); // NOI18N
+        browseForImageButton.setIcon(resourceMap.getIcon("browseForImageButton.icon")); // NOI18N
+        browseForImageButton.setText(resourceMap.getString("browseForImageButton.text")); // NOI18N
+        browseForImageButton.setEnabled(false);
+        browseForImageButton.setName("browseForImageButton"); // NOI18N
+        browseForImageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                browseForImageButtonActionPerformed(evt);
+            }
+        });
 
         jLabel9.setIcon(resourceMap.getIcon("jLabel9.icon")); // NOI18N
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
@@ -214,7 +252,7 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox1, 0, 153, Short.MAX_VALUE)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1)))
+                                    .addComponent(namesField)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9))))
@@ -222,32 +260,31 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4))
+                            .addComponent(useWebServiceButton)
+                            .addComponent(provideImageButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(26, 26, 26)
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton3, 0, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(compoundFromOnlineChoise)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel10))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel4))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField4)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(browseImageField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(browseForImageButton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(compoundFromOnlineChoise)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField4)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +297,7 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                         .addComponent(createNewCompoundOption)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -287,15 +324,15 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                 .addComponent(jLabel8)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
+                    .addComponent(useWebServiceButton)
                     .addComponent(jLabel11))
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton4)
+                .addComponent(provideImageButton)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(browseImageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseForImageButton))
                 .addContainerGap())
         );
 
@@ -308,9 +345,9 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -320,21 +357,21 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         close();
         if (nextDialog != null) {
             nextDialog.setVisible(false);
             nextDialog.dispose();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void createNewCompoundOptionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_createNewCompoundOptionItemStateChanged
         boolean createNewCompound = ItemEvent.SELECTED == evt.getStateChange();
@@ -350,23 +387,32 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         createNewCompoundOption.setSelected(!chooseOnlineCompound);
     }//GEN-LAST:event_compoundFromOnlineChoiseItemStateChanged
 
-    private void jRadioButton3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton3ItemStateChanged
+    private void useWebServiceButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_useWebServiceButtonItemStateChanged
         boolean onLineImage = ItemEvent.SELECTED == evt.getStateChange();
         jLabel5.setEnabled(!onLineImage);
-        jTextField3.setEnabled(!onLineImage);
-        jButton3.setEnabled(!onLineImage);
-        jRadioButton4.setSelected(!onLineImage);
-    }//GEN-LAST:event_jRadioButton3ItemStateChanged
+        browseImageField.setEnabled(!onLineImage);
+        browseForImageButton.setEnabled(!onLineImage);
+        provideImageButton.setSelected(!onLineImage);
+    }//GEN-LAST:event_useWebServiceButtonItemStateChanged
 
-    private void jRadioButton4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jRadioButton4ItemStateChanged
+    private void provideImageButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_provideImageButtonItemStateChanged
         boolean imageFile = ItemEvent.SELECTED == evt.getStateChange();
         jLabel5.setEnabled(imageFile);
-        jTextField3.setEnabled(imageFile);
-        jButton3.setEnabled(imageFile);
-        jRadioButton3.setSelected(!imageFile);
-    }//GEN-LAST:event_jRadioButton4ItemStateChanged
+        browseImageField.setEnabled(imageFile);
+        browseForImageButton.setEnabled(imageFile);
+        useWebServiceButton.setSelected(!imageFile);
+    }//GEN-LAST:event_provideImageButtonItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        if (namesField.getText().isEmpty()) {
+            return;
+        }
+        if (provideImageButton.isSelected()) {
+            if (analogueImageFile == null) {
+                return;
+            }
+        }
+
         if (nextDialog == null) {
             JFrame jframe = QEditApp.getView().getFrame();
             nextDialog = new StructuralAnalogueWizard_Step2(jframe);
@@ -379,13 +425,23 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
             nextDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
             nextDialog.setPreviousDialog(this);
         }
+
         setVisible(false);
         nextDialog.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void browseForImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseForImageButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        fileChooser.showOpenDialog(QEditApp.getApplication().getMainFrame());
+        File selectedFile = fileChooser.getSelectedFile();
+        analogueImageFile = selectedFile;
+        browseImageField.setText(selectedFile.getPath());
+    }//GEN-LAST:event_browseForImageButtonActionPerformed
 
     private void createNewCompound(boolean enabled) {
         jLabel1.setEnabled(enabled);
-        jTextField1.setEnabled(enabled);
+        namesField.setEnabled(enabled);
         jComboBox1.setEnabled(enabled);
         jLabel2.setEnabled(enabled);
         jLabel3.setEnabled(enabled);
@@ -404,11 +460,11 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton browseForImageButton;
+    private javax.swing.JTextField browseImageField;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JRadioButton compoundFromOnlineChoise;
     private javax.swing.JRadioButton createNewCompoundOption;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -423,12 +479,12 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField namesField;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JRadioButton provideImageButton;
+    private javax.swing.JRadioButton useWebServiceButton;
     // End of variables declaration//GEN-END:variables
     private StructuralAnalogueWizard_Step2 nextDialog;
 }

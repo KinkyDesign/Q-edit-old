@@ -5,7 +5,10 @@
  */
 package qedit;
 
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+=======
 import java.awt.CardLayout;
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JList;
@@ -241,6 +244,12 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         addDomainsDiscussionPanel = new javax.swing.JPanel();
         addDomainResultLabel = new javax.swing.JLabel();
         applicabilityDomainValue = new javax.swing.JLabel();
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea9 = new javax.swing.JTextArea();
+        domainChooserComboBox = new javax.swing.JComboBox();
+        chooseDomainLabel = new javax.swing.JLabel();
+=======
         domainChooserComboBox = new javax.swing.JComboBox();
         chooseDomainLabel = new javax.swing.JLabel();
         domainCardPanel = new javax.swing.JPanel();
@@ -252,6 +261,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         descriptorDomainText = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         mechanismDomainText = new javax.swing.JTextArea();
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
         structuralAnaloguesPanel = new javax.swing.JPanel();
         structuralAnaloguesToolbar = new javax.swing.JToolBar();
         compoundWizardButton = new javax.swing.JButton();
@@ -267,7 +277,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         analoguesTable = new javax.swing.JTable();
         analoguesCommentsScrollable = new javax.swing.JScrollPane();
         analoguesCommentsTextArea = new javax.swing.JTextArea();
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        structuralAnalogueImage = new javax.swing.JLabel();
+        loadStructAnalogueButton = new javax.swing.JButton();
+        clearStructAnalogueButton = new javax.swing.JButton();
+=======
         analoguesImageCards = new javax.swing.JPanel();
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
         predictionPanel = new javax.swing.JPanel();
         predictionInfoPanel = new javax.swing.JPanel();
         predictionValueLabel = new javax.swing.JLabel();
@@ -626,7 +642,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addContainerGap()
             .addComponent(structureImage, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
             .addContainerGap())
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        .addComponent(structureImageToolbar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+=======
         .addComponent(structureImageToolbar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     structureImagePanelLayout.setVerticalGroup(
         structureImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -679,7 +699,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(structureImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                .addComponent(compoundsToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
+=======
                 .addComponent(compoundsToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
             .addContainerGap())
     );
     compoundInfoPanelLayout.setVerticalGroup(
@@ -689,7 +713,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(compoundInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(structureImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+=======
                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, compoundInfoPanelLayout.createSequentialGroup()
                     .addGap(18, 18, 18)
                     .addGroup(compoundInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -821,7 +849,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(descriptorsPanelLayout.createSequentialGroup()
             .addComponent(descriptorsTableToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+=======
             .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
             .addContainerGap())
     );
 
@@ -865,7 +897,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(stereoChemHintLamp)
                 .addComponent(stereoChemHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+=======
             .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
             .addContainerGap())
     );
 
@@ -881,7 +917,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(descriptorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addGap(39, 39, 39))
+=======
             .addGap(180, 180, 180))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     compoundPanelLayout.setVerticalGroup(
         compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1233,7 +1273,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                             .addGap(86, 86, 86)
                                             .addComponent(algorithmNameLabel)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                                            .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))
+=======
                                             .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(qmrfReportLabel)
@@ -1243,6 +1287,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                                 .addComponent(qmrfReportDiscussionLabel))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
+                                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+=======
                                                 .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                                                 .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                                                 .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
@@ -1250,6 +1303,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                                                         .addComponent(qmrfReportTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1396,7 +1450,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(modelPanelLayout.createSequentialGroup()
             .addComponent(modelInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(47, Short.MAX_VALUE))
+=======
             .addContainerGap(191, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     modelPanelLayout.setVerticalGroup(
         modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1438,7 +1496,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(appDomainURIValue)
                 .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(224, Short.MAX_VALUE))
+=======
             .addContainerGap(379, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     appDomainInfoPanelLayout.setVerticalGroup(
         appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1495,6 +1557,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     structuralFragmentDomainText.setName("structuralFragmentDomainText"); // NOI18N
     jScrollPane2.setViewportView(structuralFragmentDomainText);
 
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    domainChooserComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Metabolic Domain", "Structural Fragment Domain", "Descriptor Domain", "Mechanism Domain" }));
+    domainChooserComboBox.setName("domainChooserComboBox"); // NOI18N
+
+    chooseDomainLabel.setText(resourceMap.getString("chooseDomainLabel.text")); // NOI18N
+    chooseDomainLabel.setName("chooseDomainLabel"); // NOI18N
+=======
     domainCardPanel.add(jScrollPane2, "Structural Fragment Domain");
 
     jScrollPane3.setName("jScrollPane3"); // NOI18N
@@ -1514,6 +1583,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     jScrollPane4.setViewportView(mechanismDomainText);
 
     domainCardPanel.add(jScrollPane4, "Mechanism Domain");
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
 
     javax.swing.GroupLayout addDomainsDiscussionPanelLayout = new javax.swing.GroupLayout(addDomainsDiscussionPanel);
     addDomainsDiscussionPanel.setLayout(addDomainsDiscussionPanelLayout);
@@ -1530,9 +1600,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(chooseDomainLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addGap(26, 26, 26)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(249, Short.MAX_VALUE))
+=======
             .addGap(48, 48, 48)
             .addComponent(domainCardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(411, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     addDomainsDiscussionPanelLayout.setVerticalGroup(
         addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1616,14 +1692,25 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     analoguesTableScrollable.setName("analoguesTableScrollable"); // NOI18N
 
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    analoguesTable.setAutoCreateRowSorter(true);
+    analoguesTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null}
+=======
     analoguesTable.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
 
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
         },
         new String [] {
             "Compound Name", "SMILES", "CAS-RN"
         }
     ));
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    analoguesTable.setColumnSelectionAllowed(false);
+    analoguesTable.setName("analoguesTable"); // NOI18N
+=======
     analoguesTable.setAutoCreateRowSorter(true);
     analoguesTable.setName("analoguesTable"); // NOI18N
     analoguesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -1632,6 +1719,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             analoguesTableMouseClicked(evt);
         }
     });
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     analoguesTableScrollable.setViewportView(analoguesTable);
     analoguesTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title0")); // NOI18N
     analoguesTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title1")); // NOI18N
@@ -1641,7 +1729,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     analoguesPanel.setLayout(analoguesPanelLayout);
     analoguesPanelLayout.setHorizontalGroup(
         analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        .addGap(0, 437, Short.MAX_VALUE)
+=======
         .addGap(0, 453, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
         .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analoguesPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -1650,7 +1742,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     );
     analoguesPanelLayout.setVerticalGroup(
         analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        .addGap(0, 223, Short.MAX_VALUE)
+=======
         .addGap(0, 239, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
         .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analoguesPanelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -1659,6 +1755,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     );
 
     analoguesCommentsScrollable.setName("analoguesCommentsScrollable"); // NOI18N
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+
+    analoguesCommentsTextArea.setColumns(20);
+    analoguesCommentsTextArea.setRows(5);
+    analoguesCommentsTextArea.setName("analoguesCommentsTextArea"); // NOI18N
+    analoguesCommentsScrollable.setViewportView(analoguesCommentsTextArea);
+=======
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
 
     analoguesCommentsTextArea.setColumns(20);
     analoguesCommentsTextArea.setRows(5);
@@ -1686,9 +1790,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(analoguesCommentsLabel)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+            .addContainerGap())
+        .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+=======
                 .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
             .addContainerGap())
         .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1167, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     structuralAnaloguesPanelLayout.setVerticalGroup(
         structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1697,7 +1807,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(analoguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+=======
                 .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
                     .addComponent(jLabel9)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1706,7 +1820,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
                     .addComponent(analoguesCommentsLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                    .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+=======
                     .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
             .addContainerGap())
     );
 
@@ -1731,7 +1849,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(88, Short.MAX_VALUE))
+=======
             .addContainerGap(28, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("applicabilityDomainPanel.TabConstraints.tabTitle"), applicabilityDomainPanel); // NOI18N
@@ -1782,6 +1904,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     exprerimentalValueTextField.setText(resourceMap.getString("exprerimentalValueTextField.text")); // NOI18N
     exprerimentalValueTextField.setName("exprerimentalValueTextField"); // NOI18N
 
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    experimentalValueUnitsTextField.setForeground(resourceMap.getColor("jTextField4.foreground")); // NOI18N
+=======
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     experimentalValueUnitsTextField.setText(resourceMap.getString("experimentalValueUnitsTextField.text")); // NOI18N
     experimentalValueUnitsTextField.setToolTipText(resourceMap.getString("experimentalValueUnitsTextField.toolTipText")); // NOI18N
     experimentalValueUnitsTextField.setName("experimentalValueUnitsTextField"); // NOI18N
@@ -1812,7 +1938,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(predictionUncertaintyLabel)
                 .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(97, Short.MAX_VALUE))
+=======
             .addContainerGap(247, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     predictionInfoPanelLayout.setVerticalGroup(
         predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1852,7 +1982,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(predictionPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(predictionInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(357, Short.MAX_VALUE))
+=======
             .addContainerGap(312, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("predictionPanel.TabConstraints.tabTitle"), predictionPanel); // NOI18N
@@ -2011,8 +2145,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     authorsPanel.setLayout(authorsPanelLayout);
     authorsPanelLayout.setHorizontalGroup(
         authorsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        .addComponent(authorsTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+        .addComponent(authorsToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+=======
         .addComponent(authorsTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
         .addComponent(authorsToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     authorsPanelLayout.setVerticalGroup(
         authorsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2083,7 +2222,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(qprfDayCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(qprfMonthCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(qprfYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(615, Short.MAX_VALUE))
+=======
             .addContainerGap(749, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     datePanelLayout.setVerticalGroup(
         datePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2126,7 +2269,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(authorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(30, 30, 30)
             .addComponent(datePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(242, Short.MAX_VALUE))
+=======
             .addContainerGap(212, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
 
     qprfInfoTabbedSubPanel.addTab(resourceMap.getString("generalInfoPanel.TabConstraints.tabTitle"), generalInfoPanel); // NOI18N
@@ -2240,15 +2387,26 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addGap(267, 267, 267))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyInfoPanelLayout.createSequentialGroup()
                             .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+=======
                                 .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adequacyInfoPanelLayout.createSequentialGroup()
                                     .addComponent(outcomeLabel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(outcomeHintLabel))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                            .addGap(27, 27, 27)))
+                    .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(qprfReportConclusionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+=======
                                 .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
                             .addGap(27, 27, 27)))
                     .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(qprfReportConclusionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                         .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
                             .addComponent(conclusionLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2257,11 +2415,19 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(regulatoryInterprLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(regulatoryInterprHintLabel))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                        .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)))
+                .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+                    .addComponent(adequacyInfoIndicatorLabel)
+                    .addGap(18, 18, 18)
+                    .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)))
+=======
                         .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)))
                 .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
                     .addComponent(adequacyInfoIndicatorLabel)
                     .addGap(18, 18, 18)
                     .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
             .addContainerGap())
     );
     adequacyInfoPanelLayout.setVerticalGroup(
@@ -2312,7 +2478,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(adequacyHintLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(adequacyInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(29, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab(resourceMap.getString("adequacyPanel.TabConstraints.tabTitle"), adequacyPanel); // NOI18N
@@ -2391,7 +2557,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(metaInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(metaInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                .addComponent(qprfReportTitleScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+=======
                 .addComponent(qprfReportTitleScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
                 .addGroup(metaInfoPanelLayout.createSequentialGroup()
                     .addComponent(titleLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2405,8 +2575,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(qprfCommentsLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(qprfCommentsHintLabel))
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+                .addComponent(qprfReportDescriptionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+                .addComponent(qprfReportCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
+=======
                 .addComponent(qprfReportDescriptionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
                 .addComponent(qprfReportCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
             .addContainerGap())
     );
     metaInfoPanelLayout.setVerticalGroup(
@@ -2447,7 +2622,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(otherInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(metaInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap(209, Short.MAX_VALUE))
+=======
             .addContainerGap(160, Short.MAX_VALUE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
 
     qprfInfoTabbedSubPanel.addTab("Other", otherInfoPanel);
@@ -2456,11 +2635,19 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     qprfReport.setLayout(qprfReportLayout);
     qprfReportLayout.setHorizontalGroup(
         qprfReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        .addComponent(qprfInfoTabbedSubPanel)
+    );
+    qprfReportLayout.setVerticalGroup(
+        qprfReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+=======
         .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1219, Short.MAX_VALUE)
     );
     qprfReportLayout.setVerticalGroup(
         qprfReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("qprfReport.TabConstraints.tabTitle"), qprfReport); // NOI18N
@@ -2470,8 +2657,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     basicContainerPanelLayout.setHorizontalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(basicContainerPanelLayout.createSequentialGroup()
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+            .addContainerGap()
+            .addComponent(basicTabbedPanel))
+=======
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(basicTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1240, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     basicContainerPanelLayout.setVerticalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2482,7 +2674,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(basicContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
         .addComponent(basicContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2861,6 +3059,31 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         enableDisableModelDate();
     }//GEN-LAST:event_modelCurrentDateActionPerformed
 
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    private void loadStructAnalogueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadStructAnalogueButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        fileChooser.showOpenDialog(QEditApp.getApplication().getMainFrame());
+        File selectedFile = fileChooser.getSelectedFile();
+        try {
+            ImageIcon ii = new ImageIcon(selectedFile.getCanonicalPath());
+            Image image = ii.getImage().getScaledInstance(-1, structuralAnalogueImage.getHeight(), Image.SCALE_SMOOTH);
+            if (image.getWidth(null) > structuralAnalogueImage.getWidth()) {
+                image = image.getScaledInstance(structuralAnalogueImage.getWidth(), -1, 0);
+            }
+
+            structuralAnalogueImage.setIcon(new ImageIcon(image));
+        } catch (IOException ex) {
+            Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loadStructAnalogueButtonActionPerformed
+
+    private void clearStructAnalogueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStructAnalogueButtonActionPerformed
+        structuralAnalogueImage.setIcon(new ImageIcon());
+    }//GEN-LAST:event_clearStructAnalogueButtonActionPerformed
+
+=======
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     private void modelUriDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelUriDetailsButtonActionPerformed
         modelInfoToolButtonActionPerformed(evt);
     }//GEN-LAST:event_modelUriDetailsButtonActionPerformed
@@ -2872,6 +3095,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private void predFeatureDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_predFeatureDetailsButtonActionPerformed
         predictedFeatureToolButtonActionPerformed(evt);
     }//GEN-LAST:event_predFeatureDetailsButtonActionPerformed
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+=======
 
     private void domainChooserComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_domainChooserComboBoxItemStateChanged
         CardLayout cl = (CardLayout)(domainCardPanel.getLayout());
@@ -2883,6 +3108,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         analoguesRowSelectionAction();
     }//GEN-LAST:event_analoguesTableMouseClicked
 
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCompoundSynonym;
     private javax.swing.JButton addDescriptorValueButton;
@@ -2903,7 +3129,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel analoguesCommentsLabel;
     private javax.swing.JScrollPane analoguesCommentsScrollable;
     private javax.swing.JTextArea analoguesCommentsTextArea;
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+=======
     private javax.swing.JPanel analoguesImageCards;
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     private javax.swing.JPanel analoguesPanel;
     private javax.swing.JTable analoguesTable;
     private javax.swing.JScrollPane analoguesTableScrollable;
@@ -2966,7 +3195,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane descriptorsScrollable;
     private javax.swing.JTable descriptorsTable;
     private javax.swing.JToolBar descriptorsTableToolbar;
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+=======
     private javax.swing.JPanel domainCardPanel;
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     private javax.swing.JComboBox domainChooserComboBox;
     private javax.swing.JLabel experimentalValueLabel;
     private javax.swing.JTextField experimentalValueUnitsTextField;
@@ -2978,10 +3210,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    private javax.swing.JScrollPane jScrollPane6;
+=======
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator2;
@@ -2991,10 +3227,18 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+    private javax.swing.JTextArea jTextArea9;
+    private javax.swing.JButton loadStructAnalogueButton;
+=======
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     private javax.swing.JButton loadStructureImgButton;
     private javax.swing.JTextArea mechanismDomainText;
     private javax.swing.JPanel metaInfoPanel;
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.java
+=======
     private javax.swing.JTextArea metabolicDomainText;
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.java
     private javax.swing.JLabel modelAndTrainingDSHeader;
     private javax.swing.JCheckBox modelCurrentDate;
     private javax.swing.JLabel modelDateLabel;
@@ -3106,5 +3350,4 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private DescriptorMetaDataDialog descriptorMetaDialog;
 
 }
-
 

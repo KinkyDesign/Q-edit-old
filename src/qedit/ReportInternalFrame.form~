@@ -144,7 +144,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="basicContainerPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+=======
           <Component id="basicContainerPanel" min="-2" max="-2" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -163,8 +170,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="basicTabbedPanel" max="32767" attributes="0"/>
+=======
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="basicTabbedPanel" min="-2" pref="1240" max="-2" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
               </Group>
           </Group>
         </DimensionLayout>
@@ -207,7 +219,11 @@
                                   <Component id="stereoChemFeaturesDiscussionPanel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+=======
                           <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -287,7 +303,11 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="structureImagePanel" max="32767" attributes="0"/>
                                   </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <Component id="compoundsToolbar" alignment="0" pref="968" max="32767" attributes="1"/>
+=======
                                   <Component id="compoundsToolbar" alignment="0" pref="987" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -300,7 +320,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="structureImagePanel" max="32767" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <Component id="jSeparator1" alignment="0" pref="314" max="32767" attributes="0"/>
+=======
                                   <Component id="jSeparator1" alignment="0" pref="333" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -486,6 +510,7 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="addCompoundSynonym">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" resourceKey="addCompoundSynonym.icon"/>
                         <Property name="text" type="java.lang.String" resourceKey="addCompoundSynonym.text"/>
@@ -515,6 +540,37 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllCompoundSynonymsActionPerformed"/>
                       </Events>
                     </Component>
+=======
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="addCompoundSynonym.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="addCompoundSynonym.text"/>
+                        <Property name="name" type="java.lang.String" value="addCompoundSynonym" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCompoundSynonymActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="removeCompoundSynonym">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="removeCompoundSynonym.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="removeCompoundSynonym.text"/>
+                        <Property name="name" type="java.lang.String" value="removeCompoundSynonym" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCompoundSynonymActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="clearAllCompoundSynonyms">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" resourceKey="clearAllCompoundSynonyms.icon"/>
+                        <Property name="text" type="java.lang.String" resourceKey="clearAllCompoundSynonyms.text"/>
+                        <Property name="name" type="java.lang.String" value="clearAllCompoundSynonyms" noResource="true"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllCompoundSynonymsActionPerformed"/>
+                      </Events>
+                    </Component>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                     <Container class="javax.swing.JPanel" name="structureImagePanel">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -535,7 +591,11 @@
                                   <Component id="structureImage" pref="341" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                              <Component id="structureImageToolbar" alignment="1" pref="365" max="32767" attributes="0"/>
+=======
                               <Component id="structureImageToolbar" alignment="1" pref="381" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -621,7 +681,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="descriptorsTableToolbar" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                              <Component id="descriptorsScrollable" pref="140" max="32767" attributes="0"/>
+=======
                               <Component id="descriptorsScrollable" pref="76" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -793,7 +857,11 @@
                                   <Component id="stereoChemHintLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                              <Component id="stereoChemScollPane" pref="118" max="32767" attributes="0"/>
+=======
                               <Component id="stereoChemScollPane" pref="48" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -856,7 +924,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
+=======
                           <EmptySpace pref="191" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -902,7 +974,11 @@
                                                               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                                               <Component id="algorithmNameLabel" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                                              <Component id="algorithmNameValue" pref="383" max="32767" attributes="1"/>
+=======
                                                               <Component id="algorithmNameValue" pref="388" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                                           </Group>
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Group type="103" groupAlignment="1" attributes="0">
@@ -914,6 +990,15 @@
                                                               </Group>
                                                               <EmptySpace max="-2" attributes="0"/>
                                                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                                                  <Component id="predFeatureUriValue" pref="383" max="32767" attributes="1"/>
+                                                                  <Component id="predictedFeatureNameValue" pref="383" max="32767" attributes="1"/>
+                                                                  <Component id="algorithmUriValue" alignment="0" pref="383" max="32767" attributes="1"/>
+                                                                  <Group type="102" alignment="1" attributes="0">
+                                                                      <Group type="103" groupAlignment="1" attributes="0">
+                                                                          <Component id="qmrfReportDiscussionScrollable" alignment="0" pref="377" max="32767" attributes="1"/>
+                                                                          <Component id="qmrfReportTextField" alignment="1" pref="377" max="32767" attributes="1"/>
+=======
                                                                   <Component id="predFeatureUriValue" pref="385" max="32767" attributes="1"/>
                                                                   <Component id="predictedFeatureNameValue" pref="385" max="32767" attributes="1"/>
                                                                   <Component id="algorithmUriValue" alignment="0" pref="385" max="32767" attributes="1"/>
@@ -921,6 +1006,7 @@
                                                                       <Group type="103" groupAlignment="1" attributes="0">
                                                                           <Component id="qmrfReportDiscussionScrollable" alignment="0" pref="378" max="32767" attributes="1"/>
                                                                           <Component id="qmrfReportTextField" alignment="1" pref="378" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                                                       </Group>
                                                                       <EmptySpace max="-2" attributes="0"/>
                                                                   </Group>
@@ -1622,7 +1708,11 @@
                           <Component id="structuralAnaloguesPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="addDomainsDiscussionPanel" min="-2" pref="109" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                          <EmptySpace pref="88" max="32767" attributes="0"/>
+=======
                           <EmptySpace pref="28" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1654,7 +1744,11 @@
                                   <Component id="appDomainURIValue" max="32767" attributes="1"/>
                                   <Component id="appDomainAlgorithmNameValue" alignment="0" pref="405" max="32767" attributes="1"/>
                               </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                              <EmptySpace pref="224" max="32767" attributes="0"/>
+=======
                               <EmptySpace pref="379" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1733,9 +1827,15 @@
                                       <Component id="domainChooserComboBox" min="-2" pref="242" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="357" max="-2" attributes="0"/>
+                              <EmptySpace pref="249" max="32767" attributes="0"/>
+=======
                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="domainCardPanel" min="-2" pref="333" max="-2" attributes="0"/>
                               <EmptySpace pref="411" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1890,6 +1990,23 @@
                         </Container>
                       </SubComponents>
                     </Container>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                    <Component class="javax.swing.JComboBox" name="domainChooserComboBox">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Metabolic Domain&quot;, &quot;Structural Fragment Domain&quot;, &quot;Descriptor Domain&quot;, &quot;Mechanism Domain&quot; })" type="code"/>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="domainChooserComboBox" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="chooseDomainLabel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="chooseDomainLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="chooseDomainLabel" noResource="true"/>
+                      </Properties>
+                    </Component>
+=======
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="structuralAnaloguesPanel">
@@ -1922,11 +2039,19 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="analoguesCommentsLabel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <Component id="analoguesCommentsScrollable" pref="277" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="structuralAnaloguesToolbar" alignment="0" pref="1008" max="32767" attributes="0"/>
+=======
                                   <Component id="analoguesCommentsScrollable" pref="367" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Component id="structuralAnaloguesToolbar" alignment="0" pref="1167" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1936,7 +2061,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="analoguesPanel" alignment="0" max="32767" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <Component id="structuralAnaloguesSeparator" alignment="0" pref="223" max="32767" attributes="0"/>
+=======
                                   <Component id="structuralAnaloguesSeparator" alignment="0" pref="239" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1946,7 +2075,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="analoguesCommentsLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                      <Component id="analoguesCommentsScrollable" pref="200" max="32767" attributes="0"/>
+=======
                                       <Component id="analoguesCommentsScrollable" pref="215" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -2079,13 +2212,20 @@
                             <Component class="javax.swing.JTable" name="analoguesTable">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <Table columnCount="3" rowCount="1">
+=======
                                   <Table columnCount="3" rowCount="0">
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                     <Column editable="true" title="Compound Name" type="java.lang.Object"/>
                                     <Column editable="true" title="SMILES" type="java.lang.Object"/>
                                     <Column editable="true" title="CAS-RN" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+=======
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -2105,10 +2245,15 @@
                                     </Column>
                                   </TableColumnModel>
                                 </Property>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                <Property name="columnSelectionAllowed" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="analoguesTable" noResource="true"/>
+=======
                                 <Property name="name" type="java.lang.String" value="analoguesTable" noResource="true"/>
                                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                                   <JTableSelectionModel selectionMode="0"/>
                                 </Property>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
@@ -2178,7 +2323,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="predictionInfoPanel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                          <EmptySpace pref="357" max="32767" attributes="0"/>
+=======
                           <EmptySpace pref="312" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2222,6 +2371,15 @@
                                       </Group>
                                   </Group>
                                   <Component id="predictionCommentLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                              </Group>
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="predictionUncertaintyLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionUncertaintyScrollable" min="-2" pref="388" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace pref="97" max="32767" attributes="0"/>
+=======
                               </Group>
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2229,6 +2387,7 @@
                                   <Component id="predictionUncertaintyScrollable" min="-2" pref="388" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace pref="247" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2355,6 +2514,10 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="experimentalValueUnitsTextField">
                       <Properties>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                        <Property name="foreground" type="java.awt.Color" resourceKey="jTextField4.foreground"/>
+=======
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                         <Property name="text" type="java.lang.String" resourceKey="experimentalValueUnitsTextField.text"/>
                         <Property name="toolTipText" type="java.lang.String" resourceKey="experimentalValueUnitsTextField.toolTipText"/>
                         <Property name="name" type="java.lang.String" value="experimentalValueUnitsTextField" noResource="true"/>
@@ -2379,12 +2542,20 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" max="32767" attributes="0"/>
+=======
                       <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="1219" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="669" max="32767" attributes="0"/>
+=======
                       <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="654" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -2431,7 +2602,11 @@
                                   <Component id="authorsPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="datePanel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <EmptySpace pref="242" max="32767" attributes="0"/>
+=======
                                   <EmptySpace pref="212" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2452,8 +2627,13 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <Component id="authorsTableScrollable" alignment="0" pref="1004" max="32767" attributes="0"/>
+                                  <Component id="authorsToolbar" alignment="0" pref="1004" max="32767" attributes="0"/>
+=======
                                   <Component id="authorsTableScrollable" alignment="0" pref="1146" max="32767" attributes="0"/>
                                   <Component id="authorsToolbar" alignment="0" pref="1146" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -2678,7 +2858,11 @@
                                           <Component id="qprfMonthCombo" alignment="0" max="32767" attributes="1"/>
                                           <Component id="qprfYearCombo" alignment="0" min="-2" pref="102" max="-2" attributes="1"/>
                                       </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                      <EmptySpace pref="615" max="32767" attributes="0"/>
+=======
                                       <EmptySpace pref="749" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2812,7 +2996,7 @@
                                   <Component id="adequacyHintLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="adequacyInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="29" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2859,19 +3043,31 @@
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                                          <Component id="qprfOutcomeScrollable" alignment="0" pref="467" max="32767" attributes="1"/>
+=======
                                                           <Component id="qprfOutcomeScrollable" alignment="0" pref="529" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Component id="outcomeLabel" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
                                                               <Component id="outcomeHintLabel" min="-2" max="-2" attributes="0"/>
                                                           </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                                          <Component id="regulatoryPurposeScrollable" alignment="0" pref="467" max="32767" attributes="1"/>
+=======
                                                           <Component id="regulatoryPurposeScrollable" alignment="0" pref="529" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                                       </Group>
                                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                                  <Component id="qprfReportConclusionScollable" pref="486" max="32767" attributes="1"/>
+=======
                                                   <Component id="qprfReportConclusionScollable" pref="550" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                                   <Group type="102" attributes="0">
                                                       <Component id="conclusionLabel" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -2882,13 +3078,21 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="regulatoryInterprHintLabel" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                                  <Component id="regulInterprScrollable" pref="486" max="32767" attributes="1"/>
+=======
                                                   <Component id="regulInterprScrollable" pref="550" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="adequacyInfoIndicatorLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                              <Component id="adequacyBottomMessageLabel" pref="946" max="32767" attributes="0"/>
+=======
                                               <Component id="adequacyBottomMessageLabel" pref="1072" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -3127,7 +3331,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                  <EmptySpace pref="209" max="32767" attributes="0"/>
+=======
                                   <EmptySpace pref="160" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3151,7 +3359,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                          <Component id="qprfReportTitleScrollable" alignment="0" pref="980" max="32767" attributes="1"/>
+=======
                                           <Component id="qprfReportTitleScrollable" alignment="0" pref="1106" max="32767" attributes="1"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -3168,8 +3380,13 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="qprfCommentsHintLabel" min="-2" max="-2" attributes="0"/>
                                           </Group>
+<<<<<<< HEAD:src/qedit/ReportInternalFrame.form
+                                          <Component id="qprfReportDescriptionScollable" alignment="0" pref="980" max="32767" attributes="1"/>
+                                          <Component id="qprfReportCommentsScrollable" alignment="0" pref="980" max="32767" attributes="0"/>
+=======
                                           <Component id="qprfReportDescriptionScollable" alignment="0" pref="1106" max="32767" attributes="1"/>
                                           <Component id="qprfReportCommentsScrollable" alignment="0" pref="1106" max="32767" attributes="0"/>
+>>>>>>> f2d121cf6c8905f4e4ed49d77c94c547bb2a8cd3:src/qedit/ReportInternalFrame.form
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -3335,4 +3552,3 @@
     </Container>
   </SubComponents>
 </Form>
-
