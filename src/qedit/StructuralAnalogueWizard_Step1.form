@@ -23,10 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="johnyRedLabel" alignment="0" pref="557" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="cancelButton" min="-2" pref="117" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -41,8 +42,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="586" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Component id="johnyRedLabel" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cancelButton" alignment="3" min="-2" pref="45" max="-2" attributes="1"/>
                   <Component id="nextButton" alignment="3" pref="48" max="32767" attributes="1"/>
@@ -144,7 +147,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField4" max="32767" attributes="1"/>
+                              <Component id="searchToken" max="32767" attributes="1"/>
                               <Component id="jComboBox2" alignment="0" min="-2" pref="171" max="-2" attributes="1"/>
                           </Group>
                       </Group>
@@ -193,7 +196,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchToken" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -296,11 +299,11 @@
             <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="searchToken">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jTextField4.text"/>
+            <Property name="text" type="java.lang.String" resourceKey="searchToken.text"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="name" type="java.lang.String" value="jTextField4" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="searchToken" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -395,5 +398,12 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="johnyRedLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" resourceKey="johnyRedLabel.foreground"/>
+        <Property name="text" type="java.lang.String" resourceKey="johnyRedLabel.text"/>
+        <Property name="name" type="java.lang.String" value="johnyRedLabel" noResource="true"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
