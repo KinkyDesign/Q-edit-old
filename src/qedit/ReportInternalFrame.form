@@ -145,21 +145,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <Component id="basicContainerPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+          <Component id="basicContainerPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel3">
+    <Container class="javax.swing.JPanel" name="basicContainerPanel">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="basicContainerPanel" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -256,9 +256,7 @@
                                                       <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <Component id="compoundNamesScrollable" min="-2" pref="395" max="-2" attributes="1"/>
@@ -290,7 +288,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jPanel2" max="32767" attributes="0"/>
+                                      <Component id="structureImagePanel" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="compoundsToolbar" alignment="0" pref="968" max="32767" attributes="1"/>
                               </Group>
@@ -304,16 +302,13 @@
                               <Component id="compoundsToolbar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jPanel2" max="32767" attributes="0"/>
+                                  <Component id="structureImagePanel" max="32767" attributes="0"/>
                                   <Component id="jSeparator1" alignment="0" pref="314" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="compoundNameHint" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="compoundNameHint" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -493,12 +488,6 @@
                         <Property name="name" type="java.lang.String" value="compoundUriHint" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel6">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel6.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JButton" name="addCompoundSynonym">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" resourceKey="addCompoundSynonym.icon"/>
@@ -529,16 +518,16 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllCompoundSynonymsActionPerformed"/>
                       </Events>
                     </Component>
-                    <Container class="javax.swing.JPanel" name="jPanel2">
+                    <Container class="javax.swing.JPanel" name="structureImagePanel">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="Structure Image">
-                              <Property name="titleX" resourceKey="jPanel2.border.title"/>
+                              <Property name="titleX" resourceKey="structureImagePanel.border.title"/>
                             </TitledBorder>
                           </Border>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="structureImagePanel" noResource="true"/>
                       </Properties>
 
                       <Layout>
@@ -549,14 +538,14 @@
                                   <Component id="structureImage" pref="341" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jToolBar1" alignment="1" pref="365" max="32767" attributes="0"/>
+                              <Component id="structureImageToolbar" alignment="1" pref="365" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jToolBar1" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="structureImageToolbar" min="-2" pref="25" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="structureImage" pref="226" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -565,11 +554,11 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Container class="javax.swing.JToolBar" name="jToolBar1">
+                        <Container class="javax.swing.JToolBar" name="structureImageToolbar">
                           <Properties>
                             <Property name="floatable" type="boolean" value="false"/>
                             <Property name="rollover" type="boolean" value="true"/>
-                            <Property name="name" type="java.lang.String" value="jToolBar1" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="structureImageToolbar" noResource="true"/>
                           </Properties>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
@@ -1561,7 +1550,7 @@
                             <Property name="name" type="java.lang.String" value="modelMonthCombo" noResource="true"/>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBox2.setSelectedItem(mmonths[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);"/>
+                            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="qprfMonthCombo.setSelectedItem(mmonths[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);"/>
                             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] mmonths = {&quot;January&quot;, &quot;February&quot;,&#xa;            &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;,&#xa;            &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;,&#xa;            &quot;December&quot;};"/>
                           </AuxValues>
                         </Component>
@@ -1742,12 +1731,12 @@
                                       <Component id="applicabilityDomainValue" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <Component id="chooseDomainLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBox4" min="-2" pref="156" max="-2" attributes="0"/>
+                                      <Component id="domainChooserComboBox" min="-2" pref="242" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jScrollPane6" min="-2" pref="357" max="-2" attributes="0"/>
                               <EmptySpace pref="249" max="32767" attributes="0"/>
                           </Group>
@@ -1766,8 +1755,8 @@
                                       </Group>
                                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="chooseDomainLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="domainChooserComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1810,18 +1799,18 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JComboBox" name="jComboBox4">
+                    <Component class="javax.swing.JComboBox" name="domainChooserComboBox">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Metabolic Domain&quot;, &quot;Structural Domain&quot;, &quot;Item 3&quot;, &quot;Item 4&quot; })" type="code"/>
+                          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Metabolic Domain&quot;, &quot;Structural Fragment Domain&quot;, &quot;Descriptor Domain&quot;, &quot;Mechanism Domain&quot; })" type="code"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="jComboBox4" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="domainChooserComboBox" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel11">
+                    <Component class="javax.swing.JLabel" name="chooseDomainLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel11.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="chooseDomainLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="chooseDomainLabel" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1843,7 +1832,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="analoguesPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="structuralAnaloguesSeparator" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1860,8 +1849,8 @@
                               <Component id="jSeparator6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" pref="277" max="32767" attributes="0"/>
+                                  <Component id="analoguesCommentsLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="analoguesCommentsScrollable" pref="277" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1874,7 +1863,7 @@
                               <Component id="structuralAnaloguesToolbar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="analoguesPanel" alignment="0" max="32767" attributes="0"/>
                                   <Component id="structuralAnaloguesSeparator" alignment="0" pref="223" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -1888,9 +1877,9 @@
                                   </Group>
                                   <Component id="jSeparator6" alignment="0" pref="223" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="analoguesCommentsLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane4" pref="200" max="32767" attributes="0"/>
+                                      <Component id="analoguesCommentsScrollable" pref="200" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1972,15 +1961,15 @@
                         <Property name="name" type="java.lang.String" value="jSeparator6" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel10">
+                    <Component class="javax.swing.JLabel" name="analoguesCommentsLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel10.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="analoguesCommentsLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="analoguesCommentsLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JPanel" name="jPanel1">
+                    <Container class="javax.swing.JPanel" name="analoguesPanel">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="analoguesPanel" noResource="true"/>
                       </Properties>
 
                       <Layout>
@@ -1990,7 +1979,7 @@
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane11" pref="413" max="32767" attributes="0"/>
+                                      <Component id="analoguesTableScrollable" pref="413" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2002,7 +1991,7 @@
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane11" pref="199" max="32767" attributes="0"/>
+                                      <Component id="analoguesTableScrollable" pref="199" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2010,9 +1999,9 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane11">
+                        <Container class="javax.swing.JScrollPane" name="analoguesTableScrollable">
                           <Properties>
-                            <Property name="name" type="java.lang.String" value="jScrollPane11" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="analoguesTableScrollable" noResource="true"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2020,37 +2009,37 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="compoundsTable">
+                            <Component class="javax.swing.JTable" name="analoguesTable">
                               <Properties>
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="3" rowCount="4">
+                                  <Table columnCount="3" rowCount="1">
                                     <Column editable="true" title="Compound Name" type="java.lang.Object"/>
                                     <Column editable="true" title="SMILES" type="java.lang.Object"/>
                                     <Column editable="true" title="CAS-RN" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
-                                <Property name="cellSelectionEnabled" type="boolean" value="true"/>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title resourceKey="compoundsTable.columnModel.title0"/>
+                                      <Title resourceKey="analoguesTable.columnModel.title0"/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title resourceKey="compoundsTable.columnModel.title1"/>
+                                      <Title resourceKey="analoguesTable.columnModel.title1"/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title resourceKey="compoundsTable.columnModel.title2"/>
+                                      <Title resourceKey="analoguesTable.columnModel.title2"/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
                                   </TableColumnModel>
                                 </Property>
-                                <Property name="name" type="java.lang.String" value="compoundsTable" noResource="true"/>
+                                <Property name="columnSelectionAllowed" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="analoguesTable" noResource="true"/>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
@@ -2060,9 +2049,9 @@
                         </Container>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+                    <Container class="javax.swing.JScrollPane" name="analoguesCommentsScrollable">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane4" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="analoguesCommentsScrollable" noResource="true"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2070,11 +2059,11 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+                        <Component class="javax.swing.JTextArea" name="analoguesCommentsTextArea">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="name" type="java.lang.String" value="jTextArea1" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="analoguesCommentsTextArea" noResource="true"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -2163,30 +2152,30 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jScrollPane16" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="predictionCommentScrollable" alignment="0" max="32767" attributes="1"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel25" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="experimentalValueLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="predictionValueLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTextField4" max="32767" attributes="1"/>
-                                              <Component id="jTextField2" alignment="0" pref="129" max="32767" attributes="1"/>
+                                              <Component id="exprerimentalValueTextField" max="32767" attributes="1"/>
+                                              <Component id="predictionValueTextField" alignment="0" pref="129" max="32767" attributes="1"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTextField5" max="32767" attributes="1"/>
-                                              <Component id="jTextField3" alignment="0" pref="74" max="32767" attributes="1"/>
+                                              <Component id="experimentalValueUnitsTextField" max="32767" attributes="1"/>
+                                              <Component id="predictionUnitsTextField" alignment="0" pref="74" max="32767" attributes="1"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionCommentLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane15" min="-2" pref="388" max="-2" attributes="1"/>
+                                  <Component id="predictionUncertaintyLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionUncertaintyScrollable" min="-2" pref="388" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace pref="97" max="32767" attributes="0"/>
                           </Group>
@@ -2197,25 +2186,25 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionUnitsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="experimentalValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="exprerimentalValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="experimentalValueUnitsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionCommentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionUncertaintyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jScrollPane15" pref="108" max="32767" attributes="1"/>
-                                  <Component id="jScrollPane16" alignment="0" min="-2" pref="108" max="-2" attributes="1"/>
+                                  <Component id="predictionUncertaintyScrollable" pref="108" max="32767" attributes="1"/>
+                                  <Component id="predictionCommentScrollable" alignment="0" min="-2" pref="108" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -2223,36 +2212,39 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel19">
+                    <Component class="javax.swing.JLabel" name="predictionValueLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel19.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel19" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="predictionValueLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="predictionValueLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField2">
+                    <Component class="javax.swing.JTextField" name="predictionValueTextField">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" resourceKey="jTextField2.foreground"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jTextField2.text"/>
-                        <Property name="name" type="java.lang.String" value="jTextField2" noResource="true"/>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="predictionValueTextField.foreground"/>
+                        <Property name="text" type="java.lang.String" resourceKey="predictionValueTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="predictionValueTextField" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField3">
+                    <Component class="javax.swing.JTextField" name="predictionUnitsTextField">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" resourceKey="jTextField3.foreground"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jTextField3.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField3.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jTextField3" noResource="true"/>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="predictionUnitsTextField.foreground"/>
+                        <Property name="text" type="java.lang.String" resourceKey="predictionUnitsTextField.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="predictionUnitsTextField.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="predictionUnitsTextField" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel23">
+                    <Component class="javax.swing.JLabel" name="predictionUncertaintyLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel23.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel23" noResource="true"/>
+                        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="predictionUncertaintyTextArea"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="predictionUncertaintyLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="predictionUncertaintyLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane15">
+                    <Container class="javax.swing.JScrollPane" name="predictionUncertaintyScrollable">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane15" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="predictionUncertaintyScrollable" noResource="true"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2260,24 +2252,27 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea14">
+                        <Component class="javax.swing.JTextArea" name="predictionUncertaintyTextArea">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="name" type="java.lang.String" value="jTextArea14" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="predictionUncertaintyTextArea" noResource="true"/>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel24">
+                    <Component class="javax.swing.JLabel" name="predictionCommentLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel24.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel24" noResource="true"/>
+                        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="predictionCommentTextArea"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="predictionCommentLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="predictionCommentLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane16">
+                    <Container class="javax.swing.JScrollPane" name="predictionCommentScrollable">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jScrollPane16" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="predictionCommentScrollable" noResource="true"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2285,34 +2280,34 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea15">
+                        <Component class="javax.swing.JTextArea" name="predictionCommentTextArea">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="name" type="java.lang.String" value="jTextArea15" noResource="true"/>
+                            <Property name="name" type="java.lang.String" value="predictionCommentTextArea" noResource="true"/>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel25">
+                    <Component class="javax.swing.JLabel" name="experimentalValueLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel25.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="experimentalValueLabel.text"/>
+                        <Property name="name" type="java.lang.String" value="experimentalValueLabel" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField4">
+                    <Component class="javax.swing.JTextField" name="exprerimentalValueTextField">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" resourceKey="jTextField4.foreground"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jTextField4.text"/>
-                        <Property name="name" type="java.lang.String" value="jTextField4" noResource="true"/>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="exprerimentalValueTextField.foreground"/>
+                        <Property name="text" type="java.lang.String" resourceKey="exprerimentalValueTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="exprerimentalValueTextField" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField5">
+                    <Component class="javax.swing.JTextField" name="experimentalValueUnitsTextField">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" resourceKey="jTextField4.foreground"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jTextField5.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField5.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jTextField5" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="experimentalValueUnitsTextField.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="experimentalValueUnitsTextField.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="experimentalValueUnitsTextField" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -2620,7 +2615,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="useCurrentDateForReport" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -2629,9 +2624,9 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jComboBox3" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="jComboBox2" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="jComboBox1" alignment="0" min="-2" pref="102" max="-2" attributes="1"/>
+                                          <Component id="qprfDayCombo" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="qprfMonthCombo" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="qprfYearCombo" alignment="0" min="-2" pref="102" max="-2" attributes="1"/>
                                       </Group>
                                       <EmptySpace pref="615" max="32767" attributes="0"/>
                                   </Group>
@@ -2643,23 +2638,23 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="useCurrentDateForReport" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="qprfYearCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="qprfMonthCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="qprfDayCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -2687,48 +2682,48 @@
                                 <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox1">
+                            <Component class="javax.swing.JComboBox" name="qprfYearCombo">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                                   <Connection code="new javax.swing.DefaultComboBoxModel(years)" type="code"/>
                                 </Property>
-                                <Property name="name" type="java.lang.String" value="jComboBox1" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfYearCombo" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="java.util.Calendar calendar = java.util.Calendar.getInstance();&#xa;int currentYear = calendar.get(java.util.Calendar.YEAR);&#xa;int yearsLister = 30;&#xa;String[] years = new String[yearsLister];&#xa;for (int i=0 ; i &lt; yearsLister ; i++){&#xa;    years[i]=Integer.toString(currentYear - i);&#xa;}"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox2">
+                            <Component class="javax.swing.JComboBox" name="qprfMonthCombo">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                                   <Connection code="new javax.swing.DefaultComboBoxModel(months)" type="code"/>
                                 </Property>
-                                <Property name="name" type="java.lang.String" value="jComboBox2" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfMonthCombo" noResource="true"/>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBox2.setSelectedItem(months[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);"/>
+                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="qprfMonthCombo.setSelectedItem(months[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);"/>
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] months = {&quot;January&quot;, &quot;February&quot;,&#xa;            &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;,&#xa;            &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;,&#xa;            &quot;December&quot;};"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox3">
+                            <Component class="javax.swing.JComboBox" name="qprfDayCombo">
                               <Properties>
-                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="jComboBox3.setSelectedIndex(java.util.Calendar.getInstance().get(java.util.Calendar.DATE)-1);">
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="qprfDayCombo.setSelectedIndex(java.util.Calendar.getInstance().get(java.util.Calendar.DATE)-1);">
                                   <Connection code="new javax.swing.DefaultComboBoxModel(selectableDays)" type="code"/>
                                 </Property>
-                                <Property name="name" type="java.lang.String" value="jComboBox3" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfDayCombo" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="java.util.ArrayList&lt;String&gt; listOfDays = new java.util.ArrayList&lt;String&gt;();&#xa;for (int i=1;i&lt;=31;i++){&#xa;    listOfDays.add(Integer.toString(i));&#xa;}&#xa;Object[] selectableDays = listOfDays.toArray();"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+                            <Component class="javax.swing.JCheckBox" name="useCurrentDateForReport">
                               <Properties>
                                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                                   <action class="qedit.ReportInternalFrame" id="enableDisableDate" methodName="enableDisableDate"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" resourceKey="jCheckBox1.text"/>
-                                <Property name="toolTipText" type="java.lang.String" resourceKey="jCheckBox1.toolTipText"/>
-                                <Property name="name" type="java.lang.String" value="jCheckBox1" noResource="true"/>
+                                <Property name="text" type="java.lang.String" resourceKey="useCurrentDateForReport.text"/>
+                                <Property name="toolTipText" type="java.lang.String" resourceKey="useCurrentDateForReport.toolTipText"/>
+                                <Property name="name" type="java.lang.String" value="useCurrentDateForReport" noResource="true"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2814,7 +2809,7 @@
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="jScrollPane8" alignment="0" pref="467" max="32767" attributes="1"/>
+                                                          <Component id="qprfOutcomeScrollable" alignment="0" pref="467" max="32767" attributes="1"/>
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Component id="outcomeLabel" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
@@ -2826,7 +2821,7 @@
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jScrollPane9" pref="486" max="32767" attributes="1"/>
+                                                  <Component id="qprfReportConclusionScollable" pref="486" max="32767" attributes="1"/>
                                                   <Group type="102" attributes="0">
                                                       <Component id="conclusionLabel" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -2837,7 +2832,7 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="regulatoryInterprHintLabel" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jScrollPane7" pref="486" max="32767" attributes="1"/>
+                                                  <Component id="regulInterprScrollable" pref="486" max="32767" attributes="1"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -2864,7 +2859,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="regulatoryPurposeScrollable" pref="183" max="32767" attributes="1"/>
-                                          <Component id="jScrollPane7" alignment="1" pref="183" max="32767" attributes="1"/>
+                                          <Component id="regulInterprScrollable" alignment="1" pref="183" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -2875,8 +2870,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jScrollPane9" max="32767" attributes="1"/>
-                                          <Component id="jScrollPane8" alignment="1" pref="174" max="32767" attributes="1"/>
+                                          <Component id="qprfReportConclusionScollable" max="32767" attributes="1"/>
+                                          <Component id="qprfOutcomeScrollable" alignment="1" pref="174" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2923,7 +2918,7 @@
                             <Component class="javax.swing.JLabel" name="conclusionLabel">
                               <Properties>
                                 <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                                  <ComponentRef name="jTextArea4"/>
+                                  <ComponentRef name="qprfReportConclusionTextArea"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" resourceKey="conclusionLabel.text"/>
                                 <Property name="name" type="java.lang.String" value="conclusionLabel" noResource="true"/>
@@ -2948,9 +2943,9 @@
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                            <Container class="javax.swing.JScrollPane" name="regulInterprScrollable">
                               <Properties>
-                                <Property name="name" type="java.lang.String" value="jScrollPane7" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="regulInterprScrollable" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2958,18 +2953,18 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea2">
+                                <Component class="javax.swing.JTextArea" name="regulInterprTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="name" type="java.lang.String" value="jTextArea2" noResource="true"/>
+                                    <Property name="name" type="java.lang.String" value="regulInterprTextArea" noResource="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                            <Container class="javax.swing.JScrollPane" name="qprfOutcomeScrollable">
                               <Properties>
-                                <Property name="name" type="java.lang.String" value="jScrollPane8" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfOutcomeScrollable" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2977,18 +2972,18 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea3">
+                                <Component class="javax.swing.JTextArea" name="qprfOutcomeTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="name" type="java.lang.String" value="jTextArea3" noResource="true"/>
+                                    <Property name="name" type="java.lang.String" value="qprfOutcomeTextArea" noResource="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                            <Container class="javax.swing.JScrollPane" name="qprfReportConclusionScollable">
                               <Properties>
-                                <Property name="name" type="java.lang.String" value="jScrollPane9" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfReportConclusionScollable" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -2996,11 +2991,11 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea4">
+                                <Component class="javax.swing.JTextArea" name="qprfReportConclusionTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="name" type="java.lang.String" value="jTextArea4" noResource="true"/>
+                                    <Property name="name" type="java.lang.String" value="qprfReportConclusionTextArea" noResource="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
@@ -3106,7 +3101,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane1" alignment="0" pref="980" max="32767" attributes="1"/>
+                                          <Component id="qprfReportTitleScrollable" alignment="0" pref="980" max="32767" attributes="1"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -3123,8 +3118,8 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="qprfCommentsHintLabel" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jScrollPane2" alignment="0" pref="980" max="32767" attributes="1"/>
-                                          <Component id="jScrollPane3" alignment="0" pref="980" max="32767" attributes="0"/>
+                                          <Component id="qprfReportDescriptionScollable" alignment="0" pref="980" max="32767" attributes="1"/>
+                                          <Component id="qprfReportCommentsScrollable" alignment="0" pref="980" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -3139,21 +3134,21 @@
                                           <Component id="qprfTitleHintLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="qprfReportTitleScrollable" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="qprfDescriptionLabel" min="-2" max="-2" attributes="0"/>
                                           <Component id="qprfDescriptionHintLabel" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="qprfReportDescriptionScollable" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="qprfCommentsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="qprfCommentsHintLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="qprfReportCommentsScrollable" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -3217,9 +3212,9 @@
                                 <Property name="name" type="java.lang.String" value="qprfTitleHintLabel" noResource="true"/>
                               </Properties>
                             </Component>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                            <Container class="javax.swing.JScrollPane" name="qprfReportTitleScrollable">
                               <Properties>
-                                <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfReportTitleScrollable" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -3227,20 +3222,20 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea5">
+                                <Component class="javax.swing.JTextArea" name="qprfReportTitleTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="editable" type="boolean" value="false"/>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="text" type="java.lang.String" resourceKey="jTextArea5.text"/>
-                                    <Property name="name" type="java.lang.String" value="jTextArea5" noResource="true"/>
+                                    <Property name="text" type="java.lang.String" resourceKey="qprfReportTitleTextArea.text"/>
+                                    <Property name="name" type="java.lang.String" value="qprfReportTitleTextArea" noResource="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                            <Container class="javax.swing.JScrollPane" name="qprfReportDescriptionScollable">
                               <Properties>
-                                <Property name="name" type="java.lang.String" value="jScrollPane2" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfReportDescriptionScollable" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -3248,18 +3243,18 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea6">
+                                <Component class="javax.swing.JTextArea" name="qprfReportDescriptionTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="name" type="java.lang.String" value="jTextArea6" noResource="true"/>
+                                    <Property name="name" type="java.lang.String" value="qprfReportDescriptionTextArea" noResource="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                            <Container class="javax.swing.JScrollPane" name="qprfReportCommentsScrollable">
                               <Properties>
-                                <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
+                                <Property name="name" type="java.lang.String" value="qprfReportCommentsScrollable" noResource="true"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -3267,11 +3262,11 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="jTextArea7">
+                                <Component class="javax.swing.JTextArea" name="qprfReportCommentsTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="name" type="java.lang.String" value="jTextArea7" noResource="true"/>
+                                    <Property name="name" type="java.lang.String" value="qprfReportCommentsTextArea" noResource="true"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>

@@ -34,9 +34,9 @@ public class TooManyOpenDocsWarning extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        warningPanel = new javax.swing.JPanel();
+        warningLabel = new javax.swing.JLabel();
+        doNotShowWarningAgain = new javax.swing.JCheckBox();
         cancelNewDocumentButton = new javax.swing.JButton();
         ignoreButton = new javax.swing.JButton();
 
@@ -46,31 +46,31 @@ public class TooManyOpenDocsWarning extends javax.swing.JDialog {
         setAlwaysOnTop(true);
         setName("Form"); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel1.border.title"))); // NOI18N
-        jPanel1.setName("jPanel1"); // NOI18N
+        warningPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("warningPanel.border.title"))); // NOI18N
+        warningPanel.setName("warningPanel"); // NOI18N
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        warningLabel.setText(resourceMap.getString("warningLabel.text")); // NOI18N
+        warningLabel.setName("warningLabel"); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout warningPanelLayout = new javax.swing.GroupLayout(warningPanel);
+        warningPanel.setLayout(warningPanelLayout);
+        warningPanelLayout.setHorizontalGroup(
+            warningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warningPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        warningPanelLayout.setVerticalGroup(
+            warningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warningPanelLayout.createSequentialGroup()
+                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jCheckBox1.setText(resourceMap.getString("jCheckBox1.text")); // NOI18N
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCheckBox1.setName("jCheckBox1"); // NOI18N
+        doNotShowWarningAgain.setText(resourceMap.getString("doNotShowWarningAgain.text")); // NOI18N
+        doNotShowWarningAgain.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        doNotShowWarningAgain.setName("doNotShowWarningAgain"); // NOI18N
 
         cancelNewDocumentButton.setText(resourceMap.getString("cancelNewDocumentButton.text")); // NOI18N
         cancelNewDocumentButton.setName("cancelNewDocumentButton"); // NOI18N
@@ -95,8 +95,8 @@ public class TooManyOpenDocsWarning extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1)
+                    .addComponent(warningPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(doNotShowWarningAgain)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(ignoreButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,9 +107,9 @@ public class TooManyOpenDocsWarning extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warningPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(doNotShowWarningAgain)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelNewDocumentButton)
@@ -129,7 +129,7 @@ public class TooManyOpenDocsWarning extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelNewDocumentButtonActionPerformed
 
     public boolean doShowAgain() {
-        return !jCheckBox1.isSelected();
+        return !doNotShowWarningAgain.isSelected();
     }
 
     /**
@@ -160,10 +160,10 @@ public class TooManyOpenDocsWarning extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelNewDocumentButton;
+    private javax.swing.JCheckBox doNotShowWarningAgain;
     private javax.swing.JButton ignoreButton;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel warningLabel;
+    private javax.swing.JPanel warningPanel;
     // End of variables declaration//GEN-END:variables
     private int returnStatus = CANCEL_WARNING;
 }
