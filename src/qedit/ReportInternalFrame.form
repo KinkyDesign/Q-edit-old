@@ -116,6 +116,8 @@
         </MenuItem>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
@@ -144,7 +146,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="basicContainerPanel" alignment="1" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="basicContainerPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -163,14 +168,14 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="basicTabbedPanel" min="-2" pref="1104" max="-2" attributes="0"/>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <Component id="basicTabbedPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="basicTabbedPanel" alignment="1" pref="701" max="32767" attributes="0"/>
+              <Component id="basicTabbedPanel" alignment="1" pref="713" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -200,14 +205,14 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="compoundInfoPanel" alignment="0" min="-2" max="-2" attributes="3"/>
                               <Group type="102" alignment="0" attributes="1">
                                   <Component id="descriptorsPanel" min="-2" max="-2" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="stereoChemFeaturesDiscussionPanel" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="compoundInfoPanel" alignment="0" min="-2" max="-2" attributes="3"/>
                           </Group>
-                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                          <EmptySpace pref="48" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -244,50 +249,54 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="compoundNamesScrollable" min="-2" pref="395" max="-2" attributes="1"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="clearAllCompoundSynonyms" max="32767" attributes="1"/>
-                                                  <Component id="addCompoundSynonym" max="32767" attributes="1"/>
-                                                  <Component id="removeCompoundSynonym" alignment="0" max="32767" attributes="1"/>
-                                              </Group>
-                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="compoundURILabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="compoundUriValue" min="-2" pref="280" max="-2" attributes="1"/>
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="compoundNamesScrollable" alignment="0" pref="395" max="32767" attributes="1"/>
+                                                  <Component id="compoundUriValue" alignment="0" max="32767" attributes="1"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="copyClipboardCompoundURI" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="copyClipboardCompoundURI" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="clearAllCompoundSynonyms" max="32767" attributes="1"/>
+                                                      <Component id="addCompoundSynonym" max="32767" attributes="1"/>
+                                                      <Component id="removeCompoundSynonym" alignment="0" max="32767" attributes="1"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="casRnLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                              <Component id="casRnValue" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="casRnRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="smilesRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="inchiRadio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="inChiValueTextField" alignment="0" pref="469" max="32767" attributes="0"/>
+                                                  <Component id="smilesValueTextField" alignment="0" pref="469" max="32767" attributes="0"/>
+                                                  <Component id="casRnValueTextField" alignment="0" pref="469" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="structureImagePanel" max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="structureImagePanel" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="compoundsToolbar" alignment="0" pref="987" max="32767" attributes="1"/>
+                                  <Component id="compoundsToolbar" alignment="0" pref="968" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -300,7 +309,6 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="structureImagePanel" max="32767" attributes="0"/>
-                                  <Component id="jSeparator1" alignment="0" pref="333" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -308,7 +316,7 @@
                                           <Component id="compoundNameHint" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="addCompoundSynonym" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -318,7 +326,7 @@
                                           </Group>
                                           <Component id="compoundNamesScrollable" min="0" pref="0" max="32767" attributes="1"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
@@ -330,12 +338,23 @@
                                           </Group>
                                           <Component id="copyClipboardCompoundURI" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="casRnLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="casRnValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="casRnValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="casRnRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="smilesValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="smilesRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="inChiValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="inchiRadio" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="jSeparator1" pref="349" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -391,18 +410,6 @@
                         <Property name="name" type="java.lang.String" value="jSeparator1" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="casRnLabel">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="casRnLabel.text"/>
-                        <Property name="name" type="java.lang.String" value="casRnLabel" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="casRnValue">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="casRnValue.text"/>
-                        <Property name="name" type="java.lang.String" value="casRnValue" noResource="true"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JButton" name="copyClipboardCompoundURI">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" resourceKey="copyClipboardCompoundURI.icon"/>
@@ -427,33 +434,6 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JButton" name="smilesButton">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" resourceKey="smilesButton.icon"/>
-                            <Property name="text" type="java.lang.String" resourceKey="smilesButton.text"/>
-                            <Property name="toolTipText" type="java.lang.String" resourceKey="smilesButton.toolTipText"/>
-                            <Property name="focusable" type="boolean" value="false"/>
-                            <Property name="horizontalTextPosition" type="int" value="0"/>
-                            <Property name="name" type="java.lang.String" value="smilesButton" noResource="true"/>
-                            <Property name="verticalTextPosition" type="int" value="3"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="inChIButton">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" resourceKey="inChIButton.icon"/>
-                            <Property name="text" type="java.lang.String" resourceKey="inChIButton.text"/>
-                            <Property name="toolTipText" type="java.lang.String" resourceKey="inChIButton.toolTipText"/>
-                            <Property name="focusable" type="boolean" value="false"/>
-                            <Property name="horizontalTextPosition" type="int" value="0"/>
-                            <Property name="name" type="java.lang.String" value="inChIButton" noResource="true"/>
-                            <Property name="verticalTextPosition" type="int" value="3"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
-                          <Properties>
-                            <Property name="name" type="java.lang.String" value="jSeparator2" noResource="true"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JButton" name="cmlCompoundButton">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" resourceKey="cmlCompoundButton.icon"/>
@@ -473,6 +453,21 @@
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="name" type="java.lang.String" value="rdfCompoundButton" noResource="true"/>
+                            <Property name="verticalTextPosition" type="int" value="3"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+                          <Properties>
+                            <Property name="name" type="java.lang.String" value="jSeparator2" noResource="true"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton1">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
+                            <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
+                            <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="horizontalTextPosition" type="int" value="0"/>
+                            <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
                         </Component>
@@ -530,21 +525,21 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Component id="structureImageToolbar" alignment="1" pref="359" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="structureImage" pref="360" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="structureImage" pref="335" max="32767" attributes="0"/>
+                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
                               </Group>
-                              <Component id="structureImageToolbar" alignment="1" pref="384" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="structureImageToolbar" min="-2" pref="25" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="structureImage" pref="245" max="32767" attributes="0"/>
+                                  <Component id="structureImageToolbar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="structureImage" min="-2" pref="262" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -569,6 +564,20 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadStructureImgButtonActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="downloadImageButton">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="downloadImageButton.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="downloadImageButton.text"/>
+                                <Property name="toolTipText" type="java.lang.String" resourceKey="downloadImageButton.toolTipText"/>
+                                <Property name="focusable" type="boolean" value="false"/>
+                                <Property name="horizontalTextPosition" type="int" value="0"/>
+                                <Property name="name" type="java.lang.String" value="downloadImageButton" noResource="true"/>
+                                <Property name="verticalTextPosition" type="int" value="3"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="downloadImageButtonActionPerformed"/>
                               </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="clearStructureImgButton">
@@ -597,6 +606,61 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JTextField" name="casRnValueTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="casRnValueTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="casRnValueTextField" noResource="true"/>
+                      </Properties>
+                      <BindingProperties>
+                        <BindingProperty name="enabled" source="casRnRadio" sourcePath="${selected}" target="casRnValueTextField" targetPath="enabled" updateStrategy="0" immediately="false"/>
+                      </BindingProperties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="smilesValueTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="smilesValueTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="smilesValueTextField" noResource="true"/>
+                      </Properties>
+                      <BindingProperties>
+                        <BindingProperty name="enabled" source="smilesRadio" sourcePath="${selected}" target="smilesValueTextField" targetPath="enabled" updateStrategy="0" immediately="false"/>
+                      </BindingProperties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="inChiValueTextField">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="inChiValueTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="inChiValueTextField" noResource="true"/>
+                      </Properties>
+                      <BindingProperties>
+                        <BindingProperty name="enabled" source="inchiRadio" sourcePath="${selected}" target="inChiValueTextField" targetPath="enabled" updateStrategy="0" immediately="false"/>
+                      </BindingProperties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="casRnRadio">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup1"/>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="casRnRadio.text"/>
+                        <Property name="name" type="java.lang.String" value="casRnRadio" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="smilesRadio">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="smilesRadio.text"/>
+                        <Property name="name" type="java.lang.String" value="smilesRadio" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="inchiRadio">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="inchiRadio.text"/>
+                        <Property name="name" type="java.lang.String" value="inchiRadio" noResource="true"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="descriptorsPanel">
@@ -773,10 +837,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="stereoChemScollPane" alignment="0" pref="404" max="32767" attributes="1"/>
+                                  <Component id="stereoChemScollPane" alignment="0" pref="385" max="32767" attributes="1"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="stereoChemHintLabel" min="-2" pref="332" max="-2" attributes="1"/>
-                                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                                      <EmptySpace pref="37" max="32767" attributes="0"/>
                                       <Component id="stereoChemHintLamp" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -856,7 +920,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="98" max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -864,7 +928,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="13" max="32767" attributes="0"/>
+                          <EmptySpace pref="25" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1618,7 +1682,7 @@
                           <Component id="structuralAnaloguesPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="addDomainsDiscussionPanel" min="-2" pref="109" max="-2" attributes="0"/>
-                          <EmptySpace pref="73" max="32767" attributes="0"/>
+                          <EmptySpace pref="85" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1650,7 +1714,7 @@
                                   <Component id="appDomainURIValue" max="32767" attributes="1"/>
                                   <Component id="appDomainAlgorithmNameValue" alignment="0" pref="405" max="32767" attributes="1"/>
                               </Group>
-                              <EmptySpace pref="280" max="32767" attributes="0"/>
+                              <EmptySpace pref="232" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1731,7 +1795,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="domainCardPanel" min="-2" pref="333" max="-2" attributes="0"/>
-                              <EmptySpace pref="307" max="32767" attributes="0"/>
+                              <EmptySpace pref="259" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1918,11 +1982,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="analoguesCommentsLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="analoguesCommentsScrollable" pref="298" max="32767" attributes="0"/>
+                                  <Component id="analoguesCommentsScrollable" pref="250" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Component id="structuralAnaloguesToolbar" alignment="0" pref="1064" max="32767" attributes="0"/>
+                          <Component id="structuralAnaloguesToolbar" alignment="0" pref="1016" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -2074,6 +2138,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JTable" name="analoguesTable">
                               <Properties>
+                                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="0">
                                     <Column editable="true" title="Compound Name" type="java.lang.Object"/>
@@ -2081,7 +2146,6 @@
                                     <Column editable="true" title="CAS-RN" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
-                                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -2174,7 +2238,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="predictionInfoPanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="358" max="32767" attributes="0"/>
+                          <EmptySpace pref="370" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2224,7 +2288,7 @@
                                   <Component id="predictionUncertaintyLabel" min="-2" max="-2" attributes="0"/>
                                   <Component id="predictionUncertaintyScrollable" min="-2" pref="388" max="-2" attributes="1"/>
                               </Group>
-                              <EmptySpace pref="153" max="32767" attributes="0"/>
+                              <EmptySpace pref="105" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2375,12 +2439,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="1100" max="32767" attributes="0"/>
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="1052" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="670" max="32767" attributes="0"/>
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="682" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -2427,7 +2491,7 @@
                                   <Component id="authorsPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="datePanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="243" max="32767" attributes="0"/>
+                                  <EmptySpace pref="255" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2448,8 +2512,8 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="authorsTableScrollable" alignment="0" pref="1060" max="32767" attributes="0"/>
-                                  <Component id="authorsToolbar" alignment="0" pref="1060" max="32767" attributes="0"/>
+                                  <Component id="authorsTableScrollable" alignment="0" pref="1012" max="32767" attributes="0"/>
+                                  <Component id="authorsToolbar" alignment="0" pref="1012" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -2674,7 +2738,7 @@
                                           <Component id="qprfMonthCombo" alignment="0" max="32767" attributes="1"/>
                                           <Component id="qprfYearCombo" alignment="0" min="-2" pref="102" max="-2" attributes="1"/>
                                       </Group>
-                                      <EmptySpace pref="671" max="32767" attributes="0"/>
+                                      <EmptySpace pref="623" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2808,7 +2872,7 @@
                                   <Component id="adequacyHintLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="adequacyInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                                  <EmptySpace pref="42" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2855,19 +2919,19 @@
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Component id="qprfOutcomeScrollable" alignment="0" pref="494" max="32767" attributes="1"/>
+                                                          <Component id="qprfOutcomeScrollable" alignment="0" pref="469" max="32767" attributes="1"/>
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Component id="outcomeLabel" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
                                                               <Component id="outcomeHintLabel" min="-2" max="-2" attributes="0"/>
                                                           </Group>
-                                                          <Component id="regulatoryPurposeScrollable" alignment="0" pref="494" max="32767" attributes="1"/>
+                                                          <Component id="regulatoryPurposeScrollable" alignment="0" pref="469" max="32767" attributes="1"/>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="qprfReportConclusionScollable" pref="515" max="32767" attributes="1"/>
+                                                  <Component id="qprfReportConclusionScollable" pref="492" max="32767" attributes="1"/>
                                                   <Group type="102" attributes="0">
                                                       <Component id="conclusionLabel" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -2878,13 +2942,13 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="regulatoryInterprHintLabel" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="regulInterprScrollable" pref="515" max="32767" attributes="1"/>
+                                                  <Component id="regulInterprScrollable" pref="492" max="32767" attributes="1"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="adequacyInfoIndicatorLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="adequacyBottomMessageLabel" pref="1002" max="32767" attributes="0"/>
+                                              <Component id="adequacyBottomMessageLabel" pref="954" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -3123,7 +3187,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="210" max="32767" attributes="0"/>
+                                  <EmptySpace pref="222" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3147,7 +3211,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="qprfReportTitleScrollable" alignment="0" pref="1036" max="32767" attributes="1"/>
+                                          <Component id="qprfReportTitleScrollable" alignment="0" pref="988" max="32767" attributes="1"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -3164,8 +3228,8 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="qprfCommentsHintLabel" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="qprfReportDescriptionScollable" alignment="0" pref="1036" max="32767" attributes="1"/>
-                                          <Component id="qprfReportCommentsScrollable" alignment="0" pref="1036" max="32767" attributes="0"/>
+                                          <Component id="qprfReportDescriptionScollable" alignment="0" pref="988" max="32767" attributes="1"/>
+                                          <Component id="qprfReportCommentsScrollable" alignment="0" pref="988" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>

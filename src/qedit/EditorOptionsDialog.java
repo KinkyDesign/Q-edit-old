@@ -76,7 +76,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         customImageServiceRadio.setText(resourceMap.getString("customImageServiceRadio.text")); // NOI18N
         customImageServiceRadio.setName("customImageServiceRadio"); // NOI18N
 
-        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambit cdk", "Ambit smiles" }));
+        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambit cdk", "Ambit daylight" }));
         imageServiceCombo.setName("imageServiceCombo"); // NOI18N
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chooseImageServiceRadio, org.jdesktop.beansbinding.ELProperty.create("${selected}"), imageServiceCombo, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
@@ -199,7 +199,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         if(chooseImageServiceRadio.isSelected()){
-            QEditApp.setImageService(imageServiceCombo.getSelectedItem().toString());
+            if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("Ambit cdk")){
+                QEditApp.setImageService(QEditApp.ambit_cdk_imageService);
+            }else if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("Ambit daylight")){
+                QEditApp.setImageService(QEditApp.ambit_daylight_imageService);
+            }
         }else{
             QEditApp.setImageService(imageServiceField.getText());
         }
