@@ -11,6 +11,8 @@
 
 package qedit;
 
+import java.awt.Frame;
+
 /**
  *
  * @author hampos
@@ -23,6 +25,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         initComponents();
     }
 
+    public EditorOptionsDialog(Frame owner) {
+        super(owner);
+        initComponents();
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -31,6 +38,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         imageServiceGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
@@ -41,6 +49,8 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         imageServiceField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        okButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -62,13 +72,17 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         customImageServiceRadio.setText(resourceMap.getString("customImageServiceRadio.text")); // NOI18N
         customImageServiceRadio.setName("customImageServiceRadio"); // NOI18N
 
-        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambit cdk", "Ambit smiles" }));
         imageServiceCombo.setName("imageServiceCombo"); // NOI18N
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chooseImageServiceRadio, org.jdesktop.beansbinding.ELProperty.create("${selected}"), imageServiceCombo, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         imageServiceField.setEditable(false);
-        imageServiceField.setText(resourceMap.getString("imageServiceField.text")); // NOI18N
-        imageServiceField.setEnabled(false);
         imageServiceField.setName("imageServiceField"); // NOI18N
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, customImageServiceRadio, org.jdesktop.beansbinding.ELProperty.create("${selected}"), imageServiceField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         jLabel2.setIcon(resourceMap.getIcon("jLabel2.icon")); // NOI18N
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
@@ -76,6 +90,24 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
         jLabel3.setIcon(null);
         jLabel3.setName("jLabel3"); // NOI18N
+
+        okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
+        okButton.setText(resourceMap.getString("okButton.text")); // NOI18N
+        okButton.setName("okButton"); // NOI18N
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
+        cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
+        cancelButton.setName("cancelButton"); // NOI18N
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,7 +132,13 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                             .add(org.jdesktop.layout.GroupLayout.LEADING, customImageServiceRadio))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jLabel3)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(179, Short.MAX_VALUE)
+                .add(okButton)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(cancelButton)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -120,14 +158,18 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                         .add(customImageServiceRadio)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(imageServiceField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 196, Short.MAX_VALUE)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(cancelButton)
+                    .add(okButton))
+                .addContainerGap())
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 431, Short.MAX_VALUE)
+            .add(0, 328, Short.MAX_VALUE)
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -138,8 +180,23 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        if(chooseImageServiceRadio.isSelected()){
+            QEditApp.setImageService(imageServiceCombo.getSelectedItem().toString());
+        }else{
+            QEditApp.setImageService(imageServiceField.getText());
+        }
+        dispose();
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
     * @param args the command line arguments
@@ -159,6 +216,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
     private javax.swing.JRadioButton chooseImageServiceRadio;
     private javax.swing.JRadioButton customImageServiceRadio;
     private javax.swing.JComboBox imageServiceCombo;
@@ -168,6 +226,8 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton okButton;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }

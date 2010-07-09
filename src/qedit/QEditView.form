@@ -102,9 +102,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="750" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="747" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="desktopPane" alignment="0" pref="750" max="32767" attributes="0"/>
+                          <Component id="desktopPane" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -226,11 +226,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="qprfOptionsMenuItem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+I"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="qprfOptionsMenuItem.icon"/>
                 <Property name="mnemonic" type="int" value="69"/>
                 <Property name="text" type="java.lang.String" resourceKey="qprfOptionsMenuItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="qprfOptionsMenuItem.toolTipText"/>
                 <Property name="name" type="java.lang.String" value="qprfOptionsMenuItem" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="qprfOptionsMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="secondFileMenuSeparatorItem">
               <Properties>
@@ -373,7 +380,7 @@
                   <Component id="statusFace" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="527" max="32767" attributes="0"/>
+                  <EmptySpace pref="516" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>

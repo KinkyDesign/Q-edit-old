@@ -140,6 +140,16 @@ public class QEditView extends FrameView {
     }
 
     @Action
+    public void editorOptionsDialogBox(){
+        if(editorOptionsBox == null){
+            JFrame mainFrame = QEditApp.getApplication().getMainFrame();
+            editorOptionsBox = new EditorOptionsDialog(mainFrame);
+            editorOptionsBox.setLocationRelativeTo(mainFrame);
+        }
+        QEditApp.getApplication().show(editorOptionsBox);
+    }
+
+    @Action
     public void statisticsDialogBox() {
         if (statisticsBox == null) {
             JFrame mainFrame = QEditApp.getApplication().getMainFrame();
@@ -343,9 +353,9 @@ public class QEditView extends FrameView {
         rightSplittedPanel.setLayout(rightSplittedPanelLayout);
         rightSplittedPanelLayout.setHorizontalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 747, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
+                .addComponent(desktopPane))
         );
         rightSplittedPanelLayout.setVerticalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,10 +441,17 @@ public class QEditView extends FrameView {
         firstFileMenuSeparatorItem.setName("firstFileMenuSeparatorItem"); // NOI18N
         fileMenu.add(firstFileMenuSeparatorItem);
 
+        qprfOptionsMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        qprfOptionsMenuItem.setIcon(resourceMap.getIcon("qprfOptionsMenuItem.icon")); // NOI18N
         qprfOptionsMenuItem.setMnemonic('E');
         qprfOptionsMenuItem.setText(resourceMap.getString("qprfOptionsMenuItem.text")); // NOI18N
         qprfOptionsMenuItem.setToolTipText(resourceMap.getString("qprfOptionsMenuItem.toolTipText")); // NOI18N
         qprfOptionsMenuItem.setName("qprfOptionsMenuItem"); // NOI18N
+        qprfOptionsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                qprfOptionsMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(qprfOptionsMenuItem);
 
         secondFileMenuSeparatorItem.setName("secondFileMenuSeparatorItem"); // NOI18N
@@ -540,7 +557,7 @@ public class QEditView extends FrameView {
                 .addComponent(statusFace)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
                 .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
                         .addComponent(statusAnimationLabel)
@@ -689,6 +706,11 @@ public class QEditView extends FrameView {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         createNewEmptyReport();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void qprfOptionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qprfOptionsMenuItemActionPerformed
+        editorOptionsDialogBox();
+    }//GEN-LAST:event_qprfOptionsMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JToolBar basicToolbar;
@@ -741,6 +763,7 @@ public class QEditView extends FrameView {
     private JDialog aboutBox;
     private JDialog enterUriBox;
     private JDialog statisticsBox;
+    private JDialog editorOptionsBox;
     private static int numOpenInternalFrames = 0;
     private static TooManyOpenDocsWarning warningDialog;
 }

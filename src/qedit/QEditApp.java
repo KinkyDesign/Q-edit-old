@@ -16,8 +16,18 @@ public class QEditApp extends SingleFrameApplication {
 
     private static QEditView theView;
 
+    private static String imageService;
+
     public static QEditView getView() {
         return theView;
+    }
+
+    public static String getImageService() {
+        return imageService;
+    }
+
+    public static void setImageService(String imageService) {
+        QEditApp.imageService = imageService;
     }
     
 
