@@ -886,127 +886,123 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="modelAndTrainingDSHeader" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="434" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="modelAndTrainingDSHeader" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="434" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                                      <Component id="algorithmNameLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="algorithmNameValue" pref="388" max="32767" attributes="1"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="1" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                                              <Component id="algorithmNameLabel" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="algorithmNameValue" pref="388" max="32767" attributes="1"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                                  <Component id="qmrfReportLabel" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="predFeatureNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="algorithmUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="predFeatureResourceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="qmrfReportDiscussionLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="predFeatureUriValue" pref="388" max="32767" attributes="1"/>
-                                                                  <Component id="predictedFeatureNameValue" pref="388" max="32767" attributes="1"/>
-                                                                  <Component id="algorithmUriValue" alignment="0" pref="388" max="32767" attributes="1"/>
-                                                                  <Group type="102" alignment="1" attributes="0">
-                                                                      <Group type="103" groupAlignment="1" attributes="0">
-                                                                          <Component id="qmrfReportDiscussionScrollable" alignment="0" pref="382" max="32767" attributes="1"/>
-                                                                          <Component id="qmrfReportTextField" alignment="1" pref="382" max="32767" attributes="1"/>
-                                                                      </Group>
-                                                                      <EmptySpace max="-2" attributes="0"/>
-                                                                  </Group>
-                                                              </Group>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="trainingDatasetLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="modelUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="modelUriValue" pref="402" max="32767" attributes="1"/>
-                                                                  <Component id="datasetValue" alignment="0" pref="402" max="32767" attributes="1"/>
-                                                              </Group>
-                                                          </Group>
+                                                          <Component id="qmrfReportLabel" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="predFeatureNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="algorithmUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="predFeatureResourceLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="qmrfReportDiscussionLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Group type="102" alignment="0" attributes="0">
-                                                                      <Component id="copyModelUriButton" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="modelUriDetailsButton" min="-2" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                                  <Group type="102" attributes="0">
-                                                                      <Component id="copyDatasetButton" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="datasetDetailsButton" min="-2" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                              </Group>
-                                                          </Group>
+                                                          <Component id="predFeatureUriValue" pref="388" max="32767" attributes="1"/>
+                                                          <Component id="predictedFeatureNameValue" pref="388" max="32767" attributes="1"/>
+                                                          <Component id="algorithmUriValue" alignment="0" pref="388" max="32767" attributes="1"/>
                                                           <Group type="102" alignment="1" attributes="0">
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                                  <Component id="copyAlgorithmName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                                  <Group type="102" alignment="0" attributes="0">
-                                                                      <Component id="copyAlgorithmUriButton" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="algorithmDetailsButton" min="-2" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                                  <Component id="copyPredFeatureNameButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                                  <Group type="102" alignment="0" attributes="0">
-                                                                      <Component id="copyPredFeatureUriButton" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="predFeatureDetailsButton" min="-2" max="-2" attributes="0"/>
-                                                                  </Group>
+                                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                                  <Component id="qmrfReportDiscussionScrollable" alignment="0" pref="382" max="32767" attributes="1"/>
+                                                                  <Component id="qmrfReportTextField" alignment="1" pref="382" max="32767" attributes="1"/>
                                                               </Group>
-                                                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="trainingDatasetLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="modelUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="modelUriValue" pref="402" max="32767" attributes="1"/>
+                                                          <Component id="datasetValue" alignment="0" pref="402" max="32767" attributes="1"/>
+                                                      </Group>
+                                                  </Group>
                                               </Group>
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="trainingAlgorithmHeader" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="545" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="predictedFeatureHeadline" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="564" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="qmrfReportHeader" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="540" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="modelVersionLabel" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="modelVersionHeader" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="modelVersionScrollPane" alignment="0" min="-2" pref="215" max="-2" attributes="1"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="copyModelUriButton" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="modelUriDetailsButton" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="102" attributes="0">
+                                                              <Component id="copyDatasetButton" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="datasetDetailsButton" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="copyAlgorithmName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="copyAlgorithmUriButton" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="algorithmDetailsButton" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Component id="copyPredFeatureNameButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="copyPredFeatureUriButton" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="predFeatureDetailsButton" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="modelDatePanel" alignment="1" max="32767" attributes="1"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="modelToolbar" alignment="0" min="-2" pref="960" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="trainingAlgorithmHeader" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="545" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="predictedFeatureHeadline" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="564" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="qmrfReportHeader" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="540" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="modelVersionLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="modelVersionHeader" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="modelVersionScrollPane" alignment="0" min="-2" pref="215" max="-2" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="modelDatePanel" alignment="1" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
+                          <Component id="modelToolbar" alignment="0" pref="990" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
