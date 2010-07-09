@@ -18,6 +18,7 @@ public class QEditApp extends SingleFrameApplication {
 
     public static final String ambit_cdk_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/cdk";
     public static final String ambit_daylight_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/daylight";
+    public static final String ambit_cactvs_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/cactvs";
     private static String imageService = ambit_cdk_imageService;
 
     public static QEditView getView() {

@@ -140,13 +140,27 @@ public class QEditView extends FrameView {
     }
 
     @Action
-    public void editorOptionsDialogBox(){
-        if(editorOptionsBox == null){
-            JFrame mainFrame = QEditApp.getApplication().getMainFrame();
-            editorOptionsBox = new EditorOptionsDialog(mainFrame);
-            editorOptionsBox.setLocationRelativeTo(mainFrame);
-        }
-        QEditApp.getApplication().show(editorOptionsBox);
+    public void editorOptionsDialogBox() {
+        org.jdesktop.application.Task optionsTask = new org.jdesktop.application.Task(QEditApp.getApplication()) {
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                setProgress(0);
+                if (editorOptionsBox == null) {
+                    JFrame mainFrame = QEditApp.getApplication().getMainFrame();
+                    editorOptionsBox = new EditorOptionsDialog(mainFrame);
+                    editorOptionsBox.setLocationRelativeTo(mainFrame);
+                }
+                QEditApp.getApplication().show(editorOptionsBox);
+                return new Object();
+            }
+        };
+        ApplicationContext appC = QEditApp.getInstance().getContext();
+        TaskMonitor taskMonitor = appC.getTaskMonitor();
+        TaskService taskService = appC.getTaskService();
+        taskService.execute(optionsTask);
+        taskMonitor.setForegroundTask(optionsTask);
+        
     }
 
     @Action
@@ -710,7 +724,6 @@ public class QEditView extends FrameView {
     private void qprfOptionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qprfOptionsMenuItemActionPerformed
         editorOptionsDialogBox();
     }//GEN-LAST:event_qprfOptionsMenuItemActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JToolBar basicToolbar;

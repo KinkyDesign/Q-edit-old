@@ -2934,12 +2934,20 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_addCompoundSynonymActionPerformed
 
     private void downloadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadImageButtonActionPerformed
+
         try {
             structureImage.setText("");
-            structureImage.setIcon(new ImageIcon(new URL(QEditApp.getImageService() + "?search="+smilesValueTextField.getText())));
+            ImageIcon icon = new ImageIcon(new URL(QEditApp.getImageService() + "?search=" + smilesValueTextField.getText()));
+            if (icon.getIconWidth()==-1){
+                structureImage.setIcon(new ImageIcon());
+                structureImage.setText("Depiction not possible...");
+                return;
+            }
+            structureImage.setIcon(icon);
         } catch (MalformedURLException ex) {
-            Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+            structureImage.setText("Communication Error...");
         }
+
     }//GEN-LAST:event_downloadImageButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCompoundSynonym;
