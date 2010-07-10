@@ -11,6 +11,7 @@
 
 package qedit;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
@@ -50,9 +51,10 @@ public class AddSynonymDialog extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         synonymNameLabel = new javax.swing.JLabel();
-        synonymNameField = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        johnyRedLabel = new javax.swing.JLabel();
+        synonymNameField = new javax.swing.JTextField();
 
         jPanel1.setName("jPanel1"); // NOI18N
 
@@ -68,6 +70,8 @@ public class AddSynonymDialog extends javax.swing.JDialog {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(AddSynonymDialog.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -75,20 +79,11 @@ public class AddSynonymDialog extends javax.swing.JDialog {
             }
         });
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(AddSynonymDialog.class);
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel2.border.title"))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
 
         synonymNameLabel.setText(resourceMap.getString("synonymNameLabel.text")); // NOI18N
         synonymNameLabel.setName("synonymNameLabel"); // NOI18N
-
-        synonymNameField.setText(resourceMap.getString("synonymNameField.text")); // NOI18N
-        synonymNameField.setName("synonymNameField"); // NOI18N
-        synonymNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                synonymNameFieldKeyPressed(evt);
-            }
-        });
 
         okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
         okButton.setText(resourceMap.getString("okButton.text")); // NOI18N
@@ -108,20 +103,32 @@ public class AddSynonymDialog extends javax.swing.JDialog {
             }
         });
 
+        johnyRedLabel.setForeground(resourceMap.getColor("johnyRedLabel.foreground")); // NOI18N
+        johnyRedLabel.setText(resourceMap.getString("johnyRedLabel.text")); // NOI18N
+        johnyRedLabel.setName("johnyRedLabel"); // NOI18N
+
+        synonymNameField.setText(resourceMap.getString("synonymNameField.text")); // NOI18N
+        synonymNameField.setName("synonymNameField"); // NOI18N
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(synonymNameLabel)
-                .add(18, 18, 18)
-                .add(synonymNameField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
-                .add(okButton)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(cancelButton))
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(20, 20, 20)
+                        .add(synonymNameLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(synonymNameField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(johnyRedLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 133, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 21, Short.MAX_VALUE)
+                        .add(okButton)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(cancelButton)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -130,10 +137,14 @@ public class AddSynonymDialog extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(synonymNameLabel)
                     .add(synonymNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 17, Short.MAX_VALUE)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(okButton)
-                    .add(cancelButton)))
+                .add(18, 18, 18)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(okButton)
+                        .add(cancelButton))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(johnyRedLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                        .add(12, 12, 12))))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -158,6 +169,10 @@ public class AddSynonymDialog extends javax.swing.JDialog {
         if(!synonymNameField.getText().isEmpty()){
             ListModel model = rif.getCompoundSynonymsList().getModel();
             ((DefaultListModel)model).addElement(synonymNameField.getText());
+        }else {
+            johnyRedLabel.setText("Provide a synonym!");
+            synonymNameField.setBackground(Color.yellow);
+            return;
         }
         dispose();
 }//GEN-LAST:event_okButtonActionPerformed
@@ -165,12 +180,6 @@ public class AddSynonymDialog extends javax.swing.JDialog {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 
 }//GEN-LAST:event_formKeyPressed
-
-    private void synonymNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_synonymNameFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            okButtonActionPerformed(null);
-        }
-    }//GEN-LAST:event_synonymNameFieldKeyPressed
 
     /**
     * @param args the command line arguments
@@ -193,6 +202,7 @@ public class AddSynonymDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel johnyRedLabel;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField synonymNameField;
     private javax.swing.JLabel synonymNameLabel;

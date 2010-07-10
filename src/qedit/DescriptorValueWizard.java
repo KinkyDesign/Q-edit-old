@@ -11,6 +11,7 @@
 
 package qedit;
 
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +43,9 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         newDescrRadioButton = new javax.swing.JRadioButton();
@@ -50,7 +53,7 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
         descrTitleLabel = new javax.swing.JLabel();
         descriptorTitle = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        decriptorIdentifierCOmbo = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -64,6 +67,7 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
         okButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         advancedDescriptorMetaLabel = new javax.swing.JLabel();
+        johnyRedLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(DescriptorValueWizard.class);
@@ -77,44 +81,50 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
+        buttonGroup1.add(newDescrRadioButton);
         newDescrRadioButton.setSelected(true);
         newDescrRadioButton.setText(resourceMap.getString("newDescrRadioButton.text")); // NOI18N
         newDescrRadioButton.setName("newDescrRadioButton"); // NOI18N
-        newDescrRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                newDescrRadioButtonItemStateChanged(evt);
-            }
-        });
 
+        buttonGroup1.add(existDescrRadioButton);
         existDescrRadioButton.setText(resourceMap.getString("existDescrRadioButton.text")); // NOI18N
         existDescrRadioButton.setName("existDescrRadioButton"); // NOI18N
-        existDescrRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                existDescrRadioButtonItemStateChanged(evt);
-            }
-        });
 
         descrTitleLabel.setText(resourceMap.getString("descrTitleLabel.text")); // NOI18N
         descrTitleLabel.setName("descrTitleLabel"); // NOI18N
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, newDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), descrTitleLabel, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         descriptorTitle.setText(resourceMap.getString("descriptorTitle.text")); // NOI18N
         descriptorTitle.setName("descriptorTitle"); // NOI18N
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, newDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), descriptorTitle, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
-        jLabel4.setEnabled(false);
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By Name (Title)", "By URI"}));
-        jComboBox1.setEnabled(false);
-        jComboBox1.setName("jComboBox1"); // NOI18N
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, existDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), jLabel4, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        decriptorIdentifierCOmbo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "By Name (Title)", "By URI"}));
+        decriptorIdentifierCOmbo.setName("decriptorIdentifierCOmbo"); // NOI18N
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, existDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), decriptorIdentifierCOmbo, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
-        jLabel5.setEnabled(false);
         jLabel5.setName("jLabel5"); // NOI18N
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, existDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), jLabel5, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setEnabled(false);
         jTextField2.setName("jTextField2"); // NOI18N
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, existDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), jTextField2, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         jLabel3.setFont(resourceMap.getFont("jLabel3.font")); // NOI18N
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
@@ -134,11 +144,20 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, newDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), jLabel7, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         unitsFeatLabel.setText(resourceMap.getString("unitsFeatLabel.text")); // NOI18N
         unitsFeatLabel.setName("unitsFeatLabel"); // NOI18N
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, newDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), unitsFeatLabel, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         featValueUnitsUserProvided.setText(resourceMap.getString("featValueUnitsUserProvided.text")); // NOI18N
         featValueUnitsUserProvided.setName("featValueUnitsUserProvided"); // NOI18N
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, newDescrRadioButton, org.jdesktop.beansbinding.ELProperty.create("${selected}"), featValueUnitsUserProvided, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,8 +172,10 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(decriptorIdentifierCOmbo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -164,33 +185,33 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
                                 .addGap(30, 30, 30)
                                 .addComponent(descrTitleLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(descriptorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(descriptorTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(existDescrRadioButton)))
-                .addGap(98, 98, 98))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(570, Short.MAX_VALUE))
+                .addContainerGap(452, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(featValueLabel)
                 .addGap(18, 18, 18)
-                .addComponent(featureValueUserProvided, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+                .addComponent(featureValueUserProvided, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(574, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(unitsFeatLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(featValueUnitsUserProvided, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addComponent(featValueUnitsUserProvided, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +229,7 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(decriptorIdentifierCOmbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -229,7 +250,7 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(unitsFeatLabel)
                     .addComponent(featValueUnitsUserProvided, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
@@ -256,46 +277,43 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
         advancedDescriptorMetaLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         advancedDescriptorMetaLabel.setName("advancedDescriptorMetaLabel"); // NOI18N
 
+        johnyRedLabel.setForeground(resourceMap.getColor("johnyRedLabel.foreground")); // NOI18N
+        johnyRedLabel.setText(resourceMap.getString("johnyRedLabel.text")); // NOI18N
+        johnyRedLabel.setName("johnyRedLabel"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(447, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(advancedDescriptorMetaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(johnyRedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(advancedDescriptorMetaLabel))
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(advancedDescriptorMetaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(okButton)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(advancedDescriptorMetaLabel)
-                        .addContainerGap())))
+                    .addComponent(johnyRedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(okButton)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -315,6 +333,22 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
     }
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        descriptorTitle.setBackground(Color.white);
+        if (newDescrRadioButton.isSelected() && descriptorTitle.getText().isEmpty()){
+            johnyRedLabel.setText("No Title Provided");
+            descriptorTitle.setBackground(Color.yellow);
+            return;
+        }
+        if (existDescrRadioButton.isSelected() && jTextField2.getText().isEmpty()){
+            if (decriptorIdentifierCOmbo.getSelectedItem().equals(decriptorIdentifierCOmbo.getItemAt(0))){
+                johnyRedLabel.setText("No Title Provided");
+            }else if (decriptorIdentifierCOmbo.getSelectedItem().equals(decriptorIdentifierCOmbo.getItemAt(1))){
+                johnyRedLabel.setText("No URI provided");
+            }
+            jTextField2.setBackground(Color.yellow);
+            return;
+        }
+        
         DefaultTableModel descritporsTableModel = (DefaultTableModel) descriptorsTable.getModel();
         String[] values = new String[descritporsTableModel.getColumnCount()];
         values[0] = descriptorTitle.getText();
@@ -327,32 +361,12 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         close();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void newDescrRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_newDescrRadioButtonItemStateChanged
-        boolean isButton1Selected =  (ItemEvent.SELECTED==evt.getStateChange());
-        descrTitleLabel.setEnabled(isButton1Selected);
-        descriptorTitle.setEnabled(isButton1Selected);
-        existDescrRadioButton.setSelected(!isButton1Selected);
-        jLabel4.setEnabled(!isButton1Selected);
-        jLabel5.setEnabled(!isButton1Selected);
-        jComboBox1.setEnabled(!isButton1Selected);
-        jTextField2.setEnabled(!isButton1Selected);
-    }//GEN-LAST:event_newDescrRadioButtonItemStateChanged
-
-    private void existDescrRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_existDescrRadioButtonItemStateChanged
-        boolean isButton2Selected =  (ItemEvent.SELECTED==evt.getStateChange());
-        descrTitleLabel.setEnabled(!isButton2Selected);
-        descriptorTitle.setEnabled(!isButton2Selected);
-        newDescrRadioButton.setSelected(!isButton2Selected);
-        jLabel4.setEnabled(isButton2Selected);
-        jLabel5.setEnabled(isButton2Selected);
-        jComboBox1.setEnabled(isButton2Selected);
-        jTextField2.setEnabled(isButton2Selected);
-    }//GEN-LAST:event_existDescrRadioButtonItemStateChanged
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel advancedDescriptorMetaLabel;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox decriptorIdentifierCOmbo;
     private javax.swing.JLabel descrTitleLabel;
     private javax.swing.JTextField descriptorTitle;
     private javax.swing.JRadioButton existDescrRadioButton;
@@ -360,7 +374,6 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
     private javax.swing.JTextField featValueUnitsUserProvided;
     private javax.swing.JTextField featureValueUserProvided;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -370,9 +383,11 @@ public class DescriptorValueWizard extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel johnyRedLabel;
     private javax.swing.JRadioButton newDescrRadioButton;
     private javax.swing.JButton okButton;
     private javax.swing.JLabel unitsFeatLabel;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 }

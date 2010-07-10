@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
   </Properties>
   <SyntheticProperties>
@@ -105,10 +106,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jComboBox1" alignment="0" pref="153" max="32767" attributes="1"/>
-                                      <Component id="jTextField2" alignment="0" min="-2" pref="162" max="-2" attributes="1"/>
+                                      <Component id="compoundInputMethodCombo" alignment="0" pref="153" max="32767" attributes="1"/>
+                                      <Component id="compoundStructureTextArea" alignment="0" min="-2" pref="162" max="-2" attributes="1"/>
                                       <Component id="namesField" alignment="0" max="32767" attributes="1"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="browseSDFileButton" pref="98" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -152,7 +155,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -173,12 +176,13 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="compoundInputMethodCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="compoundStructureTextArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="browseSDFileButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -247,13 +251,16 @@
             <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="compoundInputMethodCombo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Specify SMILES&quot;, &quot;Specify InChI&quot;, &quot;Provide CAS-RN&quot;, &quot;Upload SDF&quot; })" type="code"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="jComboBox1" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="compoundInputMethodCombo" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="compoundInputMethodComboItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -261,10 +268,10 @@
             <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="compoundStructureTextArea">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jTextField2.text"/>
-            <Property name="name" type="java.lang.String" value="jTextField2" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="compoundStructureTextArea.text"/>
+            <Property name="name" type="java.lang.String" value="compoundStructureTextArea" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="compoundFromOnlineChoise">
@@ -395,6 +402,16 @@
             </Property>
             <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="browseSDFileButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="browseSDFileButton.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="browseSDFileButton.text"/>
+            <Property name="name" type="java.lang.String" value="browseSDFileButton" noResource="true"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="browseSDFileButton.setVisible(false);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

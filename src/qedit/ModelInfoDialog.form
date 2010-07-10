@@ -25,308 +25,449 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="480" max="32767" attributes="0"/>
+          <Component id="containerPanel" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane3" alignment="0" pref="735" max="32767" attributes="1"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Component id="containerPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+    <Container class="javax.swing.JPanel" name="containerPanel">
       <Properties>
-        <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="containerPanel" noResource="true"/>
       </Properties>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="modelInfoPanel" alignment="0" max="32767" attributes="1"/>
+                      <Component id="modelParametersPanel" alignment="0" max="32767" attributes="1"/>
+                      <Component id="closeButton" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="modelParametersPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="closeButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="modelInfoPanel">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Model Information">
+                  <Property name="titleX" resourceKey="modelInfoPanel.border.title"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+            <Property name="name" type="java.lang.String" value="modelInfoPanel" noResource="true"/>
           </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="closeButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jPanel3" alignment="0" max="32767" attributes="1"/>
-                          <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="independentFeaturesLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="predictionFeatureLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="trainingDatasetLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modelUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dependentFeatureLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="modelTitleLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="trainingAlgorithmLabel" min="-2" max="-2" attributes="1"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="independentFeaturesListToolbar" min="-2" pref="99" max="-2" attributes="1"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="independentFeaturesScrollable" pref="315" max="32767" attributes="1"/>
+                          <Component id="modelUriField" alignment="0" pref="315" max="32767" attributes="1"/>
+                          <Component id="trainingDatasetField" alignment="0" pref="315" max="32767" attributes="1"/>
+                          <Component id="predictionFeatureField" alignment="0" pref="315" max="32767" attributes="1"/>
+                          <Component id="dependentFeatureField" alignment="0" pref="315" max="32767" attributes="1"/>
+                          <Component id="trainingAlgorithmField" alignment="1" pref="315" max="32767" attributes="1"/>
+                          <Component id="modelTitleTextField" alignment="0" pref="315" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="closeButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="53" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="modelTitleTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modelTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="modelUriField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="modelUriLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="trainingDatasetField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="trainingDatasetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="predictionFeatureField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="predictionFeatureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="dependentFeatureField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dependentFeatureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="independentFeaturesLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="independentFeaturesListToolbar" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="independentFeaturesScrollable" min="0" pref="0" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="trainingAlgorithmField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="trainingAlgorithmLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Component class="javax.swing.JLabel" name="modelUriLabel">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Model Information">
-                      <Property name="titleX" resourceKey="jPanel3.border.title"/>
-                    </TitledBorder>
-                  </Border>
+                <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="modelUriField"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="modelUriLabel.text"/>
+                <Property name="name" type="java.lang.String" value="modelUriLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="modelUriField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" resourceKey="modelUriField.text"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="modelUriField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="trainingDatasetField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" resourceKey="trainingDatasetField.text"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="trainingDatasetField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="trainingDatasetLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="trainingDatasetLabel.text"/>
+                <Property name="name" type="java.lang.String" value="trainingDatasetLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="predictionFeatureField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" resourceKey="predictionFeatureField.text"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="predictionFeatureField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="predictionFeatureLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="predictionFeatureLabel.text"/>
+                <Property name="name" type="java.lang.String" value="predictionFeatureLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="dependentFeatureField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" resourceKey="dependentFeatureField.text"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="dependentFeatureField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="dependentFeatureLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="dependentFeatureLabel.text"/>
+                <Property name="name" type="java.lang.String" value="dependentFeatureLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="trainingAlgorithmLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="trainingAlgorithmLabel.text"/>
+                <Property name="name" type="java.lang.String" value="trainingAlgorithmLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="independentFeaturesLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="independentFeaturesLabel.text"/>
+                <Property name="name" type="java.lang.String" value="independentFeaturesLabel" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="trainingAlgorithmField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" resourceKey="trainingAlgorithmField.text"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="name" type="java.lang.String" value="trainingAlgorithmField" noResource="true"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="independentFeaturesScrollable">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="independentFeaturesScrollable" noResource="true"/>
               </Properties>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" pref="376" max="32767" attributes="1"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="modelUriLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="trainingDatasetLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="predictionFeatureLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="dependentFeatureLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="modelUriField" alignment="0" pref="248" max="32767" attributes="1"/>
-                                      <Component id="trainingDatasetField" alignment="0" pref="248" max="32767" attributes="1"/>
-                                      <Component id="predictionFeatureField" alignment="0" pref="248" max="32767" attributes="1"/>
-                                      <Component id="dependentFeatureField" alignment="0" pref="248" max="32767" attributes="1"/>
-                                  </Group>
-                              </Group>
-                              <Component id="independentFeaturesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="trainingAlgorithmLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="trainingAlgorithmField" pref="239" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="modelUriField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="modelUriLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="trainingDatasetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="trainingDatasetField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="predictionFeatureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="predictionFeatureField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="dependentFeatureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dependentFeatureField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="independentFeaturesLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="110" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="trainingAlgorithmLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="trainingAlgorithmField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="modelUriLabel">
+                <Component class="javax.swing.JList" name="independentFeaturesList">
                   <Properties>
-                    <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="modelUriField"/>
+                    <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.AbstractListModel() {&#xa;    String[] strings = { &quot;Item 1&quot;, &quot;Item 2&quot; };&#xa;    public int getSize() { return strings.length; }&#xa;    public Object getElementAt(int i) { return strings[i]; }&#xa;}" type="code"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" resourceKey="modelUriLabel.text"/>
-                    <Property name="name" type="java.lang.String" value="modelUriLabel" noResource="true"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="independentFeaturesList" noResource="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="modelUriField">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" resourceKey="modelUriField.text"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="name" type="java.lang.String" value="modelUriField" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="trainingDatasetField">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" resourceKey="trainingDatasetField.text"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="name" type="java.lang.String" value="trainingDatasetField" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="trainingDatasetLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" resourceKey="trainingDatasetLabel.text"/>
-                    <Property name="name" type="java.lang.String" value="trainingDatasetLabel" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="predictionFeatureField">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" resourceKey="predictionFeatureField.text"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="name" type="java.lang.String" value="predictionFeatureField" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="predictionFeatureLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" resourceKey="predictionFeatureLabel.text"/>
-                    <Property name="name" type="java.lang.String" value="predictionFeatureLabel" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="dependentFeatureField">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" resourceKey="dependentFeatureField.text"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="name" type="java.lang.String" value="dependentFeatureField" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="dependentFeatureLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" resourceKey="dependentFeatureLabel.text"/>
-                    <Property name="name" type="java.lang.String" value="dependentFeatureLabel" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="trainingAlgorithmLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" resourceKey="trainingAlgorithmLabel.text"/>
-                    <Property name="name" type="java.lang.String" value="trainingAlgorithmLabel" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="independentFeaturesLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" resourceKey="independentFeaturesLabel.text"/>
-                    <Property name="name" type="java.lang.String" value="independentFeaturesLabel" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="trainingAlgorithmField">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" resourceKey="trainingAlgorithmField.text"/>
-                    <Property name="focusable" type="boolean" value="false"/>
-                    <Property name="name" type="java.lang.String" value="trainingAlgorithmField" noResource="true"/>
-                  </Properties>
-                </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-                  <Properties>
-                    <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
-                  </Properties>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JList" name="independentFeaturesList">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                            <StringItem index="4" value="Item 5"/>
-                          </StringArray>
-                        </Property>
-                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Hand Cursor"/>
-                        </Property>
-                        <Property name="name" type="java.lang.String" value="independentFeaturesList" noResource="true"/>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JToolBar" name="independentFeaturesListToolbar">
               <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Model Parameters">
-                      <Property name="titleX" resourceKey="jPanel2.border.title"/>
-                    </TitledBorder>
-                  </Border>
-                </Property>
-                <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+                <Property name="floatable" type="boolean" value="false"/>
+                <Property name="rollover" type="boolean" value="true"/>
+                <Property name="name" type="java.lang.String" value="independentFeaturesListToolbar" noResource="true"/>
               </Properties>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="1" pref="416" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="190" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
               <SubComponents>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                <Component class="javax.swing.JButton" name="newIndependentFeatureButton">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="jScrollPane2" noResource="true"/>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="newIndependentFeatureButton.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="newIndependentFeatureButton.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="newIndependentFeatureButton.toolTipText"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="newIndependentFeatureButton" noResource="true"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTable" name="parametersTable">
-                      <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
-                        <Property name="name" type="java.lang.String" value="parametersTable" noResource="true"/>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
+                </Component>
+                <Component class="javax.swing.JButton" name="removeIndependentFeatureButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="removeIndependentFeatureButton.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="removeIndependentFeatureButton.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="removeIndependentFeatureButton.toolTipText"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="removeIndependentFeatureButton" noResource="true"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="clearAllIndependentFeaturesButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="clearAllIndependentFeaturesButton.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="clearAllIndependentFeaturesButton.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="clearAllIndependentFeaturesButton.toolTipText"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="clearAllIndependentFeaturesButton" noResource="true"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="closeButton">
+            <Component class="javax.swing.JTextField" name="modelTitleTextField">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="closeButton.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="closeButton.text"/>
-                <Property name="name" type="java.lang.String" value="closeButton" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="modelTitleTextField.text"/>
+                <Property name="name" type="java.lang.String" value="modelTitleTextField" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeButtonActionPerformed"/>
-              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="modelTitleLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="modelTitleLabel.text"/>
+                <Property name="name" type="java.lang.String" value="modelTitleLabel" noResource="true"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
+        <Container class="javax.swing.JPanel" name="modelParametersPanel">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Model Parameters">
+                  <Property name="titleX" resourceKey="modelParametersPanel.border.title"/>
+                </TitledBorder>
+              </Border>
+            </Property>
+            <Property name="name" type="java.lang.String" value="modelParametersPanel" noResource="true"/>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="modelParametersScollable" alignment="1" pref="513" max="32767" attributes="0"/>
+                  <Component id="modelParametersToolbar" alignment="0" pref="513" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="modelParametersToolbar" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="modelParametersScollable" min="-2" pref="76" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="modelParametersScollable">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="modelParametersScollable" noResource="true"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="parametersTable">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Name" type="java.lang.Object"/>
+                        <Column editable="true" title="Value" type="java.lang.Object"/>
+                        <Column editable="true" title="Scope" type="java.lang.Object"/>
+                        <Column editable="true" title="Comment" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="cellSelectionEnabled" type="boolean" value="true"/>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title resourceKey="parametersTable.columnModel.title0"/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title resourceKey="parametersTable.columnModel.title1"/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title resourceKey="parametersTable.columnModel.title2"/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title resourceKey="parametersTable.columnModel.title3"/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="parametersTable" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JToolBar" name="modelParametersToolbar">
+              <Properties>
+                <Property name="floatable" type="boolean" value="false"/>
+                <Property name="rollover" type="boolean" value="true"/>
+                <Property name="name" type="java.lang.String" value="modelParametersToolbar" noResource="true"/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="newModelParameterButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="newModelParameterButton.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="newModelParameterButton.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="newModelParameterButton.toolTipText"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="newModelParameterButton" noResource="true"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="removeModelParameterButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="removeModelParameterButton.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="removeModelParameterButton.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="removeModelParameterButton.toolTipText"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="removeModelParameterButton" noResource="true"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="clearModelParametersButton">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="clearModelParametersButton.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="clearModelParametersButton.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="clearModelParametersButton.toolTipText"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="clearModelParametersButton" noResource="true"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="closeButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="closeButton.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="closeButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="closeButton.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="closeButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeButtonActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

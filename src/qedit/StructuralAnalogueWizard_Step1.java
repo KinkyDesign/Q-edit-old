@@ -5,6 +5,7 @@
  */
 package qedit;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ItemEvent;
 import java.io.File;
@@ -67,9 +68,9 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         namesField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        compoundInputMethodCombo = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        compoundStructureTextArea = new javax.swing.JTextField();
         compoundFromOnlineChoise = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -85,12 +86,14 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        browseSDFileButton = new javax.swing.JButton();
         johnyRedLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(StructuralAnalogueWizard_Step1.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(StructuralAnalogueWizard_Step1.class);
         cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
         cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
         cancelButton.setName("cancelButton"); // NOI18N
@@ -130,14 +133,19 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Specify SMILES", "Specify InChI", "Provide CAS-RN", "Upload SDF" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
+        compoundInputMethodCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Specify SMILES", "Specify InChI", "Provide CAS-RN", "Upload SDF" }));
+        compoundInputMethodCombo.setName("compoundInputMethodCombo"); // NOI18N
+        compoundInputMethodCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                compoundInputMethodComboItemStateChanged(evt);
+            }
+        });
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        jTextField2.setText(resourceMap.getString("jTextField2.text")); // NOI18N
-        jTextField2.setName("jTextField2"); // NOI18N
+        compoundStructureTextArea.setText(resourceMap.getString("compoundStructureTextArea.text")); // NOI18N
+        compoundStructureTextArea.setName("compoundStructureTextArea"); // NOI18N
 
         compoundFromOnlineChoise.setText(resourceMap.getString("compoundFromOnlineChoise.text")); // NOI18N
         compoundFromOnlineChoise.setName("compoundFromOnlineChoise"); // NOI18N
@@ -223,6 +231,11 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel11.setName("jLabel11"); // NOI18N
 
+        browseSDFileButton.setIcon(resourceMap.getIcon("browseSDFileButton.icon")); // NOI18N
+        browseSDFileButton.setText(resourceMap.getString("browseSDFileButton.text")); // NOI18N
+        browseSDFileButton.setName("browseSDFileButton"); // NOI18N
+        browseSDFileButton.setVisible(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -241,9 +254,11 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, 0, 153, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namesField)))
+                                    .addComponent(compoundInputMethodCombo, 0, 153, Short.MAX_VALUE)
+                                    .addComponent(compoundStructureTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(namesField))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(browseSDFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9))))
@@ -275,7 +290,7 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(searchToken)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,11 +308,12 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(compoundInputMethodCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(compoundStructureTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(browseSDFileButton)))
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,10 +418,13 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
     }//GEN-LAST:event_provideImageButtonItemStateChanged
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-
+        namesField.setBackground(Color.white);
+        searchToken.setBackground(Color.white);
+        browseImageField.setBackground(Color.white);
         if (createNewCompoundOption.isSelected()) {
             if (namesField.getText().isEmpty()) {
                 johnyRedLabel.setText("You need to provide a name!");
+                namesField.setBackground(Color.yellow);
                 return;
             }
         }
@@ -413,6 +432,7 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         if (compoundFromOnlineChoise.isSelected()) {
             if (searchToken.getText().isEmpty()) {
                 johnyRedLabel.setText("No search token provided!");
+                searchToken.setBackground(Color.yellow);
                 return;
             }
         }
@@ -420,6 +440,7 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         if (provideImageButton.isSelected()) {
             if (analogueImageFile == null) {
                 johnyRedLabel.setText("You did not provide an Image!");
+                browseImageField.setBackground(Color.yellow);
                 return;
             }
         } else {
@@ -453,13 +474,30 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
         browseImageField.setText(selectedFile.getPath());
     }//GEN-LAST:event_browseForImageButtonActionPerformed
 
+    private void compoundInputMethodComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_compoundInputMethodComboItemStateChanged
+        String choise = (String)evt.getItem();
+        if (choise.equalsIgnoreCase("Specify SMILES")){
+            jLabel3.setText("SMILES:");
+            browseSDFileButton.setVisible(false);
+        }else if (choise.equals("Specify InChI")){
+            jLabel3.setText("InChI:");
+            browseSDFileButton.setVisible(false);
+        }else if (choise.equals("Provide CAS-RN")){
+            jLabel3.setText("CAS-RN:");
+            browseSDFileButton.setVisible(false);
+        }else if (choise.equals("Upload SDF")){
+            jLabel3.setText("SDF File:");
+            browseSDFileButton.setVisible(true);
+        }
+    }//GEN-LAST:event_compoundInputMethodComboItemStateChanged
+
     private void createNewCompound(boolean enabled) {
         jLabel1.setEnabled(enabled);
         namesField.setEnabled(enabled);
-        jComboBox1.setEnabled(enabled);
+        compoundInputMethodCombo.setEnabled(enabled);
         jLabel2.setEnabled(enabled);
         jLabel3.setEnabled(enabled);
-        jTextField2.setEnabled(enabled);
+        compoundStructureTextArea.setEnabled(enabled);
     }
 
     private void chooseCompoundOnline(boolean enabled) {
@@ -476,10 +514,12 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseForImageButton;
     private javax.swing.JTextField browseImageField;
+    private javax.swing.JButton browseSDFileButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JRadioButton compoundFromOnlineChoise;
+    private javax.swing.JComboBox compoundInputMethodCombo;
+    private javax.swing.JTextField compoundStructureTextArea;
     private javax.swing.JRadioButton createNewCompoundOption;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -493,7 +533,6 @@ public class StructuralAnalogueWizard_Step1 extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel johnyRedLabel;
     private javax.swing.JTextField namesField;
     private javax.swing.JButton nextButton;
