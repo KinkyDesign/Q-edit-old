@@ -188,7 +188,6 @@ public class QEditView extends FrameView {
 
     @Action
     public void createNewEmptyReport() {
-        progressBar.repaint();
         if (doShowTooManyDocsWarning && desktopPane.getAllFrames().length > 2) {
             if (warningDialog == null) {
                 warningDialog = new TooManyOpenDocsWarning(QEditApp.getView().getFrame(), true);

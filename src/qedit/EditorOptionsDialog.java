@@ -101,7 +101,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         customImageServiceRadio.setText(resourceMap.getString("customImageServiceRadio.text")); // NOI18N
         customImageServiceRadio.setName("customImageServiceRadio"); // NOI18N
 
-        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambit cdk", "Ambit daylight", "Ambit cactvs" }));
+        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambit cactvs", "Ambit cdk", "Ambit daylight" }));
         imageServiceCombo.setName("imageServiceCombo"); // NOI18N
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chooseImageServiceRadio, org.jdesktop.beansbinding.ELProperty.create("${selected}"), imageServiceCombo, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
@@ -301,11 +301,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
     private void imageServiceComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_imageServiceComboItemStateChanged
         if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(0))){
-                imageServiceField.setText(QEditApp.ambit_cdk_imageService);
-            }else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(1))){
-                imageServiceField.setText(QEditApp.ambit_daylight_imageService);
-            }else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(2))){
                 imageServiceField.setText(QEditApp.ambit_cactvs_imageService);
+            }else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(1))){
+                imageServiceField.setText(QEditApp.ambit_cdk_imageService);
+            }else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(2))){
+                imageServiceField.setText(QEditApp.ambit_daylight_imageService);
             }
     }//GEN-LAST:event_imageServiceComboItemStateChanged
 
