@@ -12,14 +12,17 @@ import org.jdesktop.application.SingleFrameApplication;
  * The main class of the application.
  */
 public class QEditApp extends SingleFrameApplication {
-    public  static qedit.SplashScreen splash;
 
+    public static qedit.SplashScreen splash;
     private static QEditView theView;
-
-    public static final String ambit_cdk_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/cdk";
-    public static final String ambit_daylight_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/daylight";
-    public static final String ambit_cactvs_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/cactvs";
+    public static final String ambit_cdk_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/cdk?search=%s";
+    public static final String ambit_daylight_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/daylight?search=%s";
+    public static final String ambit_cactvs_imageService = "http://ambit.uni-plovdiv.bg:8080/ambit2/depict/cactvs?search=%s";
+    public static final String ideaconsult_cdk_imageService = "http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s";
+    public static final String ideaconsult_daylight_imageService = "http://apps.ideaconsult.net:8080/ambit2/depict/daylight?search=%s";
+    public static final String ideaconsult_cactvs_imageService = "http://apps.ideaconsult.net:8080/ambit2/depict/cactvs?search=%s";
     private static String imageService = ambit_cactvs_imageService;
+    public static String casToSmilesService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/csls/%s/smiles";
 
     public static QEditView getView() {
         return theView;
@@ -32,7 +35,6 @@ public class QEditApp extends SingleFrameApplication {
     public static void setImageService(String imageService) {
         QEditApp.imageService = imageService;
     }
-    
 
     /**
      * At startup create and show the main frame of the application.
@@ -63,7 +65,7 @@ public class QEditApp extends SingleFrameApplication {
     /**
      * Main method launching the application.
      */
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
         splash = new qedit.SplashScreen("resources/splash.png", null, 5000);
         try {
             Thread.sleep(1000);

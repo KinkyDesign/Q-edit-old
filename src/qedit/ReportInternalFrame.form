@@ -794,7 +794,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Stereochemical Features of the Substabce">
+                        <TitledBorder title="Stereochemical Features of the Substance">
                           <Property name="titleX" resourceKey="stereoChemFeaturesDiscussionPanel.border.title"/>
                         </TitledBorder>
                       </Border>

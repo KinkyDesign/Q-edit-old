@@ -2980,7 +2980,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 if (identifierChooserCombo.getSelectedIndex() == 0) {
                     try {
                         smiles = identifierValueTextField.getText();
-                        icon = new ImageIcon(new URL(QEditApp.getImageService() + "?search=" + smiles));
+                        icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
                     } catch (MalformedURLException ex) {
                         structureImage.setText("Communication Error...");
                         basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2990,7 +2990,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     if (identifierChooserCombo.getSelectedIndex() == 1) {// CAS-RN
                         try {
                             smiles = GetClient.smilesFromCasRn(identifierValueTextField.getText());
-                            icon = new ImageIcon(new URL(QEditApp.getImageService() + "?search=" + smiles));
+                            icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
                         } catch (Exception ex) {
                             Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }

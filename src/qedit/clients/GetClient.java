@@ -1,5 +1,7 @@
 package qedit.clients;
 
+import qedit.QEditApp;
+
 /**
  *
  * @author Pantelis Sopasakis
@@ -10,8 +12,7 @@ public class GetClient {
     private String mediaType;
     private java.net.URI uri;
     private java.net.HttpURLConnection con;
-    private static int bufferSize = 4194304;
-    private static String casToSmilesService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/csls/%s/smiles";
+    private static int bufferSize = 4194304;    
 
     public GetClient() {
     }
@@ -91,7 +92,7 @@ public class GetClient {
     public static String smilesFromCasRn(String casRn) throws ClientException, java.io.IOException {
         GetClient getter = new GetClient();
         try {
-            getter.setUri(String.format(casToSmilesService, casRn));
+            getter.setUri(String.format(QEditApp.casToSmilesService, casRn));
             return getter.getRemoteMessage();
         } catch (java.net.URISyntaxException ex) {
             throw new RuntimeException("Unexpected bad-uri!");
