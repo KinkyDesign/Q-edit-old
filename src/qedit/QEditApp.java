@@ -22,7 +22,35 @@ public class QEditApp extends SingleFrameApplication {
     public static final String ideaconsult_daylight_imageService = "http://apps.ideaconsult.net:8080/ambit2/depict/daylight?search=%s";
     public static final String ideaconsult_cactvs_imageService = "http://apps.ideaconsult.net:8080/ambit2/depict/cactvs?search=%s";
     private static String imageService = ambit_cactvs_imageService;
-    public static String casToSmilesService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/csls/%s/smiles";
+    private static String casToSmilesService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/csls/%s/smiles";
+    private static String smilesToUriService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/compound/%s";
+
+    private static int magnificationMode = java.awt.Image.SCALE_DEFAULT;
+
+    public static void setCasToSmilesService(String casToSmilesService) {
+        QEditApp.casToSmilesService = casToSmilesService;
+    }
+
+    public static void setMagnificationMode(int magnificationMode) {
+        QEditApp.magnificationMode = magnificationMode;
+    }
+
+    public static String getSmilesToUriService() {
+        return smilesToUriService;
+    }
+
+    public static void setSmilesToUriService(String smilesToUriService) {
+        QEditApp.smilesToUriService = smilesToUriService;
+    }        
+
+    
+    public static int getMagnificationMode() {
+        return magnificationMode;
+    }
+
+    public static String getCasToSmilesService() {
+        return casToSmilesService;
+    }
 
     public static QEditView getView() {
         return theView;

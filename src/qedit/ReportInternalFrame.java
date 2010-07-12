@@ -121,10 +121,119 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         authorsTable.setValueAt(null, selectedRowIndex, selectedColumnIndex);
     }
 
+    @Action
+    public void updateImage() {
+        Task downloadImageTask = new Task(QEditApp.getApplication()) {
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                setProgress(0);
+                basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                String smiles = "";
+                ImageIcon icon = null;
+                if (identifierChooserCombo.getSelectedIndex() == 0) {
+                    try {
+                        smiles = identifierValueTextField.getText();
+                        icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
+                    } catch (MalformedURLException ex) {
+                        structureImage.setText("Communication Error...");
+                        basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        return new Object();
+                    }
+                } else {
+                    if (identifierChooserCombo.getSelectedIndex() == 1) {// CAS-RN
+                        try {
+                            smiles = GetClient.smilesFromCasRn(identifierValueTextField.getText());
+                            icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
+                        } catch (Exception ex) {
+                            Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else if (identifierChooserCombo.getSelectedIndex() == 4) {//URI
+                        try {
+                            icon = new ImageIcon(new URL(identifierValueTextField.getText() + "?accept-header=image/png"));
+                        } catch (MalformedURLException ex) {
+                            structureImage.setText("Communication Error...");
+                            basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                            return new Object();
+                        }
+                    }
+                }
+
+                structureImage.setText("");
+
+                if (icon == null || icon.getIconWidth() == -1) {
+                    structureImage.setIcon(new ImageIcon());
+                    structureImage.setText("Depiction not possible...");
+                    basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                    return new Object();
+                }
+                structureImage.setIcon(icon);
+                basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                return new Object();
+            }
+        };
+
+        ApplicationContext appC = QEditApp.getInstance().getContext();
+        TaskMonitor taskMonitor = appC.getTaskMonitor();
+        TaskService taskService = appC.getTaskService();
+        taskService.execute(downloadImageTask);
+        taskMonitor.setForegroundTask(downloadImageTask);
+
+    }
+
+    @Action
+    public void deleteImage() {
+        structureImage.setIcon(new ImageIcon());
+        structureImage.setText("No Image");
+    }
+
+    @Action
+    public void addCompoundSynonym() {
+        JFrame jframe = QEditApp.getView().getFrame();
+        AddSynonymDialog addSynonymDialog = new AddSynonymDialog(jframe, this);
+        int frameWidth = jframe.getWidth();
+        int frameHeight = jframe.getHeight();
+        int dialogWidht = addSynonymDialog.getWidth();
+        int dialogHeight = addSynonymDialog.getHeight();
+        int dialog_x = (frameWidth - dialogWidht) / 2;
+        int dialog_y = (frameHeight - dialogHeight) / 2;
+        addSynonymDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
+        addSynonymDialog.setVisible(true);
+    }
+
+    @Action
+    public void addFeatureWizard() {
+        JFrame jframe = QEditApp.getView().getFrame();
+        desriptorWizard = new DescriptorValueWizard(jframe);
+        int frameWidth = jframe.getWidth();
+        int frameHeight = jframe.getHeight();
+        int dialogWidht = desriptorWizard.getWidth();
+        int dialogHeight = desriptorWizard.getHeight();
+        int dialog_x = (frameWidth - dialogWidht) / 2;
+        int dialog_y = (frameHeight - dialogHeight) / 2;
+        desriptorWizard.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
+        desriptorWizard.setDescriptorsTable(descriptorsTable);
+        desriptorWizard.setVisible(true);
+    }
+
+    @Action
+    public void addAuthorWizard(){
+        JFrame jframe = QEditApp.getView().getFrame();
+        authorsWizard = new AuthorWizard(jframe);
+        int frameWidth = jframe.getWidth();
+        int frameHeight = jframe.getHeight();
+        int dialogWidht = authorsWizard.getWidth();
+        int dialogHeight = authorsWizard.getHeight();
+        int dialog_x = (frameWidth - dialogWidht) / 2;
+        int dialog_y = (frameHeight - dialogHeight) / 2;
+        authorsWizard.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
+        authorsWizard.setAuthorsTable(authorsTable);
+        authorsWizard.setVisible(true);
+    }
+
     public JList getCompoundSynonymsList() {
         return compoundSynonymsList;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -853,7 +962,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(descriptorsPanelLayout.createSequentialGroup()
             .addComponent(descriptorsTableToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -898,7 +1007,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(stereoChemHintLamp)
                 .addComponent(stereoChemHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -1223,7 +1332,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(modelMonthCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(modelCurrentDate))
-            .addContainerGap(71, Short.MAX_VALUE))
+            .addContainerGap(82, Short.MAX_VALUE))
     );
     modelDatePanelLayout.setVerticalGroup(
         modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1267,7 +1376,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                             .addGap(86, 86, 86)
                                             .addComponent(algorithmNameLabel)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                                            .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(qmrfReportLabel)
@@ -1277,13 +1386,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                                 .addComponent(qmrfReportDiscussionLabel))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
-                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
-                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
                                                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
-                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1291,8 +1400,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                                 .addComponent(modelUriLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                                             .addGap(18, 18, 18)
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                                                .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))))
+                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                                                .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))))
                                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(modelInfoPanelLayout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1333,8 +1442,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(modelVersionLabel)
                         .addComponent(modelVersionHeader)
-                        .addComponent(modelVersionScrollPane)
-                        .addComponent(modelDatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modelVersionScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(11, 11, 11))
                 .addComponent(modelToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
             .addContainerGap())
     );
@@ -1433,7 +1543,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(modelPanelLayout.createSequentialGroup()
             .addComponent(modelInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(35, Short.MAX_VALUE))
+            .addContainerGap(37, Short.MAX_VALUE))
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("modelPanel.TabConstraints.tabTitle"), modelPanel); // NOI18N
@@ -1776,7 +1886,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(70, Short.MAX_VALUE))
+            .addContainerGap(72, Short.MAX_VALUE))
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("applicabilityDomainPanel.TabConstraints.tabTitle"), applicabilityDomainPanel); // NOI18N
@@ -1899,7 +2009,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(predictionPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(predictionInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(380, Short.MAX_VALUE))
+            .addContainerGap(382, Short.MAX_VALUE))
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("predictionPanel.TabConstraints.tabTitle"), predictionPanel); // NOI18N
@@ -1916,6 +2026,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     authorsTableScrollable.setName("authorsTableScrollable"); // NOI18N
 
+    authorsTable.setAutoCreateRowSorter(true);
     authorsTable.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
 
@@ -1932,7 +2043,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             return types [columnIndex];
         }
     });
-    authorsTable.setAutoCreateRowSorter(true);
     authorsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
     authorsTable.setCellSelectionEnabled(true);
     authorsTable.setName("authorsTable"); // NOI18N
@@ -2173,7 +2283,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(authorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(30, 30, 30)
             .addComponent(datePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(265, Short.MAX_VALUE))
+            .addContainerGap(267, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab(resourceMap.getString("generalInfoPanel.TabConstraints.tabTitle"), generalInfoPanel); // NOI18N
@@ -2363,7 +2473,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(adequacyHintLabel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(adequacyInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(52, Short.MAX_VALUE))
+            .addContainerGap(54, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab(resourceMap.getString("adequacyPanel.TabConstraints.tabTitle"), adequacyPanel); // NOI18N
@@ -2500,7 +2610,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(otherInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(metaInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(232, Short.MAX_VALUE))
+            .addContainerGap(234, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab("Other", otherInfoPanel);
@@ -2513,7 +2623,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     );
     qprfReportLayout.setVerticalGroup(
         qprfReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("qprfReport.TabConstraints.tabTitle"), qprfReport); // NOI18N
@@ -2528,7 +2638,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     );
     basicContainerPanelLayout.setVerticalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(basicTabbedPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+        .addComponent(basicTabbedPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2725,17 +2835,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_descriptorsTableMouseClicked
 
     private void authorsWizardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorsWizardButtonActionPerformed
-        JFrame jframe = QEditApp.getView().getFrame();
-        authorsWizard = new AuthorWizard(jframe);
-        int frameWidth = jframe.getWidth();
-        int frameHeight = jframe.getHeight();
-        int dialogWidht = authorsWizard.getWidth();
-        int dialogHeight = authorsWizard.getHeight();
-        int dialog_x = (frameWidth - dialogWidht) / 2;
-        int dialog_y = (frameHeight - dialogHeight) / 2;
-        authorsWizard.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
-        authorsWizard.setAuthorsTable(authorsTable);
-        authorsWizard.setVisible(true);
+        addAuthorWizard();
     }//GEN-LAST:event_authorsWizardButtonActionPerformed
 
     private void clearAllRows(JTable table) {
@@ -2762,17 +2862,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_clearAllDescriptorsButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JFrame jframe = QEditApp.getView().getFrame();
-        desriptorWizard = new DescriptorValueWizard(jframe);
-        int frameWidth = jframe.getWidth();
-        int frameHeight = jframe.getHeight();
-        int dialogWidht = desriptorWizard.getWidth();
-        int dialogHeight = desriptorWizard.getHeight();
-        int dialog_x = (frameWidth - dialogWidht) / 2;
-        int dialog_y = (frameHeight - dialogHeight) / 2;
-        desriptorWizard.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
-        desriptorWizard.setDescriptorsTable(descriptorsTable);
-        desriptorWizard.setVisible(true);
+        addFeatureWizard();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void compoundWizardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compoundWizardButtonActionPerformed
@@ -2890,8 +2980,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_analoguesTableMouseClicked
 
     private void clearStructureImgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStructureImgButtonActionPerformed
-        structureImage.setIcon(new ImageIcon());
-        structureImage.setText("No Image");
+        deleteImage();
 }//GEN-LAST:event_clearStructureImgButtonActionPerformed
 
     private void loadStructureImgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadStructureImgButtonActionPerformed
@@ -2955,86 +3044,27 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 }//GEN-LAST:event_removeCompoundSynonymActionPerformed
 
     private void addCompoundSynonymActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCompoundSynonymActionPerformed
-        JFrame jframe = QEditApp.getView().getFrame();
-        AddSynonymDialog addSynonymDialog = new AddSynonymDialog(jframe, this);
-        int frameWidth = jframe.getWidth();
-        int frameHeight = jframe.getHeight();
-        int dialogWidht = addSynonymDialog.getWidth();
-        int dialogHeight = addSynonymDialog.getHeight();
-        int dialog_x = (frameWidth - dialogWidht) / 2;
-        int dialog_y = (frameHeight - dialogHeight) / 2;
-        addSynonymDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
-        addSynonymDialog.setVisible(true);
+        addCompoundSynonym();
 }//GEN-LAST:event_addCompoundSynonymActionPerformed
 
     private void downloadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadImageButtonActionPerformed
-
-        Task downloadImageTask = new Task(QEditApp.getApplication()) {
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                setProgress(0);
-                basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                String smiles = "";
-                ImageIcon icon = null;
-                if (identifierChooserCombo.getSelectedIndex() == 0) {
-                    try {
-                        smiles = identifierValueTextField.getText();
-                        icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
-                    } catch (MalformedURLException ex) {
-                        structureImage.setText("Communication Error...");
-                        basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                        return new Object();
-                    }
-                } else {
-                    if (identifierChooserCombo.getSelectedIndex() == 1) {// CAS-RN
-                        try {
-                            smiles = GetClient.smilesFromCasRn(identifierValueTextField.getText());
-                            icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
-                        } catch (Exception ex) {
-                            Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else if (identifierChooserCombo.getSelectedIndex() == 4) {//URI
-                        try {
-                            icon = new ImageIcon(new URL(identifierValueTextField.getText() + "?accept-header=image/png"));
-                        } catch (MalformedURLException ex) {
-                            structureImage.setText("Communication Error...");
-                            basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                            return new Object();
-                        }
-                    }
-                }
-
-                structureImage.setText("");
-
-                if (icon == null || icon.getIconWidth() == -1) {
-                    structureImage.setIcon(new ImageIcon());
-                    structureImage.setText("Depiction not possible...");
-                    basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                    return new Object();
-                }
-                structureImage.setIcon(icon);
-                basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                return new Object();
-            }
-        };
-
-        ApplicationContext appC = QEditApp.getInstance().getContext();
-        TaskMonitor taskMonitor = appC.getTaskMonitor();
-        TaskService taskService = appC.getTaskService();
-        taskService.execute(downloadImageTask);
-        taskMonitor.setForegroundTask(downloadImageTask);
-
-
-
+        updateImage();
     }//GEN-LAST:event_downloadImageButtonActionPerformed
 
     private void showMagnifiedImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showMagnifiedImageActionPerformed
         if (structureImage.getText().isEmpty()) {
-            MagnifiedImage magnified = new MagnifiedImage(QEditApp.getView().getFrame());
+            JFrame jframe = QEditApp.getView().getFrame();
+            MagnifiedImage magnified = new MagnifiedImage(jframe);
+            int frameWidth = jframe.getWidth();
+            int frameHeight = jframe.getHeight();
+            int dialogWidht = magnified.getWidth();
+            int dialogHeight = magnified.getHeight();
+            int dialog_x = (frameWidth - dialogWidht) / 2;
+            int dialog_y = (frameHeight - dialogHeight) / 2;
+            magnified.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
             ImageIcon ic = (ImageIcon) structureImage.getIcon();
             Image im = ic.getImage().getScaledInstance(magnified.getImageLabel().getWidth(),
-                    magnified.getImageLabel().getHeight(), Image.SCALE_SMOOTH);
+                    magnified.getImageLabel().getHeight(), QEditApp.getMagnificationMode());
             magnified.setIcon(new ImageIcon(im));
             magnified.setVisible(true);
         }
@@ -3263,8 +3293,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private DescriptorValueWizard desriptorWizard;
     private StructuralAnalogueWizard_Step1 structuralAnalogueWizard;
     private DescriptorMetaDataDialog descriptorMetaDialog;
-
-
 }
 
 

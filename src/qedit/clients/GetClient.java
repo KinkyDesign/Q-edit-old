@@ -1,6 +1,9 @@
 package qedit.clients;
 
-import qedit.QEditApp;
+import com.hp.hpl.jena.ontology.OntModel;
+import java.io.IOException;
+import qedit.clients.components.Compound;
+import qedit.clients.ontol.impl.SimpleOntModelImpl;
 
 /**
  *
@@ -12,7 +15,7 @@ public class GetClient {
     private String mediaType;
     private java.net.URI uri;
     private java.net.HttpURLConnection con;
-    private static int bufferSize = 4194304;    
+    private static int bufferSize = 4194304;
 
     public GetClient() {
     }
@@ -23,6 +26,10 @@ public class GetClient {
 
     public void setMediaType(String mediaType) {
         this.mediaType = mediaType;
+    }
+
+    public void setMediaType(Media mediaType) {
+        this.mediaType = mediaType.toString();
     }
 
     public java.net.URI getUri() {
@@ -75,6 +82,21 @@ public class GetClient {
         return con.getResponseCode();
     }
 
+
+    public java.util.List<String> getUriList() throws ClientException, IOException{
+        java.util.List<String> list = new java.util.ArrayList<String>();
+        if (con == null) {
+            con = initializeConnection(uri);
+        }
+        java.io.InputStream is = getRemoteStream();
+        java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(is));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            list.add(line);
+        }
+        return list;
+    }
+
     public String getRemoteMessage() throws ClientException, java.io.IOException {
         if (con == null) {
             con = initializeConnection(uri);
@@ -92,11 +114,23 @@ public class GetClient {
     public static String smilesFromCasRn(String casRn) throws ClientException, java.io.IOException {
         GetClient getter = new GetClient();
         try {
-            getter.setUri(String.format(QEditApp.casToSmilesService, casRn));
+            getter.setUri(String.format(qedit.QEditApp.getCasToSmilesService(), casRn));
             return getter.getRemoteMessage();
         } catch (java.net.URISyntaxException ex) {
             throw new RuntimeException("Unexpected bad-uri!");
         }
     }
+
+    public com.hp.hpl.jena.ontology.OntModel getOntModel() throws ClientException {
+        try {
+            OntModel om = new SimpleOntModelImpl();
+            om.read(uri.toString(), null);
+            return om;
+        } catch (final Exception ex) {
+            throw new ClientException("Cannot read OntModel from " + uri.toString(), ex);
+        }
+    }    
+
+    
 }
 

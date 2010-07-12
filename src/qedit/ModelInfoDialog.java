@@ -81,6 +81,7 @@ public class ModelInfoDialog extends javax.swing.JDialog {
         modelInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("modelInfoPanel.border.title"))); // NOI18N
         modelInfoPanel.setName("modelInfoPanel"); // NOI18N
 
+        modelUriLabel.setIcon(resourceMap.getIcon("modelUriLabel.icon")); // NOI18N
         modelUriLabel.setLabelFor(modelUriField);
         modelUriLabel.setText(resourceMap.getString("modelUriLabel.text")); // NOI18N
         modelUriLabel.setName("modelUriLabel"); // NOI18N

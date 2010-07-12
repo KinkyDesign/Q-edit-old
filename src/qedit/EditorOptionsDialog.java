@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * EditorOptionsDialog.java
  *
  * Created on 9 Ιουλ 2010, 8:08:29 μμ
@@ -12,12 +7,33 @@ package qedit;
 
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Image;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
  * @author hampos
  */
 public class EditorOptionsDialog extends javax.swing.JDialog {
+
+    private static Map<String, String> imageServiceComboOptions = new java.util.LinkedHashMap<String, String>();
+    static {
+      imageServiceComboOptions.put("AMBIT Cactvs", QEditApp.ambit_cactvs_imageService);
+      imageServiceComboOptions.put("AMBIT CDK", QEditApp.ambit_cdk_imageService);
+      imageServiceComboOptions.put("AMBIT Daylight", QEditApp.ambit_daylight_imageService);
+      imageServiceComboOptions.put("Idea Cactvs", QEditApp.ideaconsult_cactvs_imageService);
+      imageServiceComboOptions.put("Idea CDK", QEditApp.ideaconsult_cdk_imageService);
+      imageServiceComboOptions.put("Idea Daylight", QEditApp.ideaconsult_daylight_imageService);
+    };
+    private static Map<String, Integer> magnificationAlgorithm = new java.util.LinkedHashMap<String, Integer>();
+    static {
+        magnificationAlgorithm.put("Default", Image.SCALE_DEFAULT);
+        magnificationAlgorithm.put("Area Averaging", Image.SCALE_AREA_AVERAGING);
+        magnificationAlgorithm.put("Fast", Image.SCALE_FAST);
+        magnificationAlgorithm.put("Replicate", Image.SCALE_REPLICATE);
+        magnificationAlgorithm.put("Smooth", Image.SCALE_SMOOTH);
+    }
 
     /** Creates new form EditorOptionsDialog */
     public EditorOptionsDialog(java.awt.Frame parent, boolean modal) {
@@ -52,10 +68,14 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         imageServiceCombo = new javax.swing.JComboBox();
         imageServiceField = new javax.swing.JTextField();
         imageServiceHintLamp = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        magnificationModeSelectorCombbo = new javax.swing.JComboBox();
         compoundServicePanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         casToSmilesServiceTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        smilesToUriServiceTextField = new javax.swing.JTextField();
         modelServicePanel = new javax.swing.JPanel();
         algorithmServicePanel = new javax.swing.JPanel();
         ontologyServicePanel = new javax.swing.JPanel();
@@ -79,6 +99,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
         okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
         okButton.setText(resourceMap.getString("okButton.text")); // NOI18N
+        okButton.setToolTipText(resourceMap.getString("okButton.toolTipText")); // NOI18N
         okButton.setName("okButton"); // NOI18N
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +125,9 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         customImageServiceRadio.setText(resourceMap.getString("customImageServiceRadio.text")); // NOI18N
         customImageServiceRadio.setName("customImageServiceRadio"); // NOI18N
 
-        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambit cactvs", "Ambit cdk", "Ambit daylight", "IdeaConsult Cactvs", "IdeaConsult CDK", "IdeaConsult Daylight" }));
+        String[] availableImageServices = imageServiceComboOptions.keySet().toArray(new String[]{});
+        imageServiceCombo.setModel(new javax.swing.DefaultComboBoxModel(availableImageServices));
+        imageServiceCombo.setToolTipText(resourceMap.getString("imageServiceCombo.toolTipText")); // NOI18N
         imageServiceCombo.setName("imageServiceCombo"); // NOI18N
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chooseImageServiceRadio, org.jdesktop.beansbinding.ELProperty.create("${selected}"), imageServiceCombo, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
@@ -127,6 +150,14 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         imageServiceHintLamp.setText(resourceMap.getString("imageServiceHintLamp.text")); // NOI18N
         imageServiceHintLamp.setName("imageServiceHintLamp"); // NOI18N
 
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        String[] availableMagnificationAlgorithms = magnificationAlgorithm.keySet().toArray(new String[]{});
+        magnificationModeSelectorCombbo.setModel(new javax.swing.DefaultComboBoxModel(availableMagnificationAlgorithms));
+        magnificationModeSelectorCombbo.setToolTipText(resourceMap.getString("magnificationModeSelectorCombbo.toolTipText")); // NOI18N
+        magnificationModeSelectorCombbo.setName("magnificationModeSelectorCombbo"); // NOI18N
+
         org.jdesktop.layout.GroupLayout imageServicePanelLayout = new org.jdesktop.layout.GroupLayout(imageServicePanel);
         imageServicePanel.setLayout(imageServicePanelLayout);
         imageServicePanelLayout.setHorizontalGroup(
@@ -141,7 +172,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(imageServiceHintLamp))
                     .add(customImageServiceRadio)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, imageServiceField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, imageServiceField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                    .add(imageServicePanelLayout.createSequentialGroup()
+                        .add(jLabel2)
+                        .add(18, 18, 18)
+                        .add(magnificationModeSelectorCombbo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 146, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         imageServicePanelLayout.setVerticalGroup(
@@ -155,11 +190,15 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                     .add(imageServiceHintLamp))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(imageServiceCombo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(41, 41, 41)
+                .add(18, 18, 18)
                 .add(customImageServiceRadio)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(imageServiceField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 36, Short.MAX_VALUE)
+                .add(imageServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(magnificationModeSelectorCombbo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         tabbedPanel.addTab(resourceMap.getString("imageServicePanel.TabConstraints.tabTitle"), imageServicePanel); // NOI18N
@@ -172,8 +211,17 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
+        casToSmilesServiceTextField.setForeground(resourceMap.getColor("jTextField1.foreground")); // NOI18N
         casToSmilesServiceTextField.setText(resourceMap.getString("casToSmilesServiceTextField.text")); // NOI18N
+        casToSmilesServiceTextField.setToolTipText(resourceMap.getString("casToSmilesServiceTextField.toolTipText")); // NOI18N
         casToSmilesServiceTextField.setName("casToSmilesServiceTextField"); // NOI18N
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        smilesToUriServiceTextField.setForeground(resourceMap.getColor("smilesToUriServiceTextField.foreground")); // NOI18N
+        smilesToUriServiceTextField.setText(resourceMap.getString("smilesToUriServiceTextField.text")); // NOI18N
+        smilesToUriServiceTextField.setName("smilesToUriServiceTextField"); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -181,10 +229,14 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jLabel3)
+                    .add(jLabel1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(casToSmilesServiceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 422, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(smilesToUriServiceTextField)
+                    .add(casToSmilesServiceTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -192,7 +244,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(casToSmilesServiceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel3)
+                    .add(smilesToUriServiceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout compoundServicePanelLayout = new org.jdesktop.layout.GroupLayout(compoundServicePanel);
@@ -209,7 +265,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
             .add(compoundServicePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab(resourceMap.getString("compoundServicePanel.TabConstraints.tabTitle"), compoundServicePanel); // NOI18N
@@ -321,19 +377,8 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         casToSmilesServiceTextField.setBackground(Color.white);
         if (chooseImageServiceRadio.isSelected()) {
-            if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("Ambit cdk")) {
-                QEditApp.setImageService(QEditApp.ambit_cdk_imageService);
-            } else if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("Ambit daylight")) {
-                QEditApp.setImageService(QEditApp.ambit_daylight_imageService);
-            } else if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("Ambit cactvs")) {
-                QEditApp.setImageService(QEditApp.ambit_cactvs_imageService);
-            } else if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("ideaconsult cdk")) {
-                QEditApp.setImageService(QEditApp.ideaconsult_cdk_imageService);
-            } else if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("ideaconsult daylight")) {
-                QEditApp.setImageService(QEditApp.ideaconsult_daylight_imageService);
-            } else if (imageServiceCombo.getSelectedItem().toString().equalsIgnoreCase("ideaconsult cactvs")) {
-                QEditApp.setImageService(QEditApp.ideaconsult_cactvs_imageService);
-            }
+                QEditApp.setImageService(imageServiceComboOptions.
+                        get(imageServiceCombo.getSelectedItem().toString()));
         } else {
             QEditApp.setImageService(imageServiceField.getText());
         }
@@ -342,7 +387,9 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
             casToSmilesServiceTextField.setBackground(Color.yellow);
             return;
         }
-        QEditApp.casToSmilesService = casToSmilesServiceTextField.getText();
+        QEditApp.setMagnificationMode(magnificationAlgorithm.get(magnificationModeSelectorCombbo.getSelectedItem().toString()));
+        QEditApp.setCasToSmilesService(casToSmilesServiceTextField.getText());
+        QEditApp.setSmilesToUriService(smilesToUriServiceTextField.getText());
         dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -351,19 +398,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void imageServiceComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_imageServiceComboItemStateChanged
-        if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(0))) {
-            imageServiceField.setText(QEditApp.ambit_cactvs_imageService);
-        } else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(1))) {
-            imageServiceField.setText(QEditApp.ambit_cdk_imageService);
-        } else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(2))) {
-            imageServiceField.setText(QEditApp.ambit_daylight_imageService);
-        } else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(3))) {
-            imageServiceField.setText(QEditApp.ideaconsult_cactvs_imageService);
-        } else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(4))) {
-            imageServiceField.setText(QEditApp.ideaconsult_cdk_imageService);
-        } else if (imageServiceCombo.getSelectedItem().equals(imageServiceCombo.getItemAt(5))) {
-            imageServiceField.setText(QEditApp.ideaconsult_daylight_imageService);
-        }
+        imageServiceField.setText(imageServiceComboOptions.get(imageServiceCombo.getSelectedItem().toString()));
     }//GEN-LAST:event_imageServiceComboItemStateChanged
 
     /**
@@ -372,10 +407,20 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
-                EditorOptionsDialog dialog = new EditorOptionsDialog(new javax.swing.JFrame(), true);
+                EditorOptionsDialog dialog = new EditorOptionsDialog(new javax.swing.JFrame(), true){
+
+                    @Override
+                    public void dispose() {
+                        super.dispose();
+                        System.exit(0);
+                    }
+
+                };
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
+                    @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -398,12 +443,16 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel imageServiceHintLamp;
     private javax.swing.JPanel imageServicePanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox magnificationModeSelectorCombbo;
     private javax.swing.JPanel modelServicePanel;
     private javax.swing.JButton okButton;
     private javax.swing.JPanel ontologyServicePanel;
     private javax.swing.JPanel pdfOptionsPanel;
+    private javax.swing.JTextField smilesToUriServiceTextField;
     private javax.swing.JTabbedPane tabbedPanel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables

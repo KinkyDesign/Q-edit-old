@@ -33,7 +33,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -94,6 +94,7 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="okButton.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="okButton.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="okButton.toolTipText"/>
             <Property name="name" type="java.lang.String" value="okButton" noResource="true"/>
           </Properties>
           <Events>
@@ -129,7 +130,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="imageServiceCombo" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
@@ -141,6 +142,11 @@
                               </Group>
                               <Component id="customImageServiceRadio" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="imageServiceField" alignment="1" pref="610" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="magnificationModeSelectorCombbo" min="-2" pref="146" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -158,11 +164,16 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="imageServiceCombo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="customImageServiceRadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="imageServiceField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="magnificationModeSelectorCombbo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -196,16 +207,10 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="imageServiceCombo">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="6">
-                        <StringItem index="0" value="Ambit cactvs"/>
-                        <StringItem index="1" value="Ambit cdk"/>
-                        <StringItem index="2" value="Ambit daylight"/>
-                        <StringItem index="3" value="IdeaConsult Cactvs"/>
-                        <StringItem index="4" value="IdeaConsult CDK"/>
-                        <StringItem index="5" value="IdeaConsult Daylight"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(availableImageServices)" type="code"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="imageServiceCombo.toolTipText"/>
                     <Property name="name" type="java.lang.String" value="imageServiceCombo" noResource="true"/>
                   </Properties>
                   <BindingProperties>
@@ -214,6 +219,9 @@
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="imageServiceComboItemStateChanged"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] availableImageServices = imageServiceComboOptions.keySet().toArray(new String[]{});"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="imageServiceField">
                   <Properties>
@@ -231,6 +239,24 @@
                     <Property name="text" type="java.lang.String" resourceKey="imageServiceHintLamp.text"/>
                     <Property name="name" type="java.lang.String" value="imageServiceHintLamp" noResource="true"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="magnificationModeSelectorCombbo">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.DefaultComboBoxModel(availableMagnificationAlgorithms)" type="code"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="magnificationModeSelectorCombbo.toolTipText"/>
+                    <Property name="name" type="java.lang.String" value="magnificationModeSelectorCombbo" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] availableMagnificationAlgorithms = magnificationAlgorithm.keySet().toArray(new String[]{});"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -261,7 +287,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="134" max="32767" attributes="0"/>
+                          <EmptySpace pref="124" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -284,10 +310,16 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="casToSmilesServiceTextField" min="-2" pref="422" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="smilesToUriServiceTextField" max="32767" attributes="1"/>
+                                  <Component id="casToSmilesServiceTextField" alignment="0" pref="422" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -298,7 +330,12 @@
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="casToSmilesServiceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="83" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="smilesToUriServiceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="60" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -312,8 +349,23 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="casToSmilesServiceTextField">
                       <Properties>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="jTextField1.foreground"/>
                         <Property name="text" type="java.lang.String" resourceKey="casToSmilesServiceTextField.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="casToSmilesServiceTextField.toolTipText"/>
                         <Property name="name" type="java.lang.String" value="casToSmilesServiceTextField" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel3">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
+                        <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="smilesToUriServiceTextField">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="smilesToUriServiceTextField.foreground"/>
+                        <Property name="text" type="java.lang.String" resourceKey="smilesToUriServiceTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="smilesToUriServiceTextField" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>

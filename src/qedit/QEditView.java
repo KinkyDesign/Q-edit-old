@@ -160,7 +160,7 @@ public class QEditView extends FrameView {
         TaskService taskService = appC.getTaskService();
         taskService.execute(optionsTask);
         taskMonitor.setForegroundTask(optionsTask);
-        
+
     }
 
     @Action
@@ -284,6 +284,27 @@ public class QEditView extends FrameView {
         toolsMenu = new javax.swing.JMenu();
         toolsOptionsMenuItem = new javax.swing.JMenuItem();
         statisticsMenuItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        compoundSubmenu = new javax.swing.JMenu();
+        compoundInfo = new javax.swing.JMenuItem();
+        saveCompoundRdfMenuItem = new javax.swing.JMenuItem();
+        saveCompoundCML = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        updateImageMenuItem = new javax.swing.JMenuItem();
+        clearCompoundImage = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        addSynonymMenuItem = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        modelSubmenu = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        madSubmenu = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        reportSubmenu = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -366,9 +387,9 @@ public class QEditView extends FrameView {
         rightSplittedPanel.setLayout(rightSplittedPanelLayout);
         rightSplittedPanelLayout.setHorizontalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 747, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane))
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
         );
         rightSplittedPanelLayout.setVerticalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,6 +534,134 @@ public class QEditView extends FrameView {
         statisticsMenuItem.setName("statisticsMenuItem"); // NOI18N
         toolsMenu.add(statisticsMenuItem);
 
+        jSeparator3.setName("jSeparator3"); // NOI18N
+        toolsMenu.add(jSeparator3);
+
+        compoundSubmenu.setIcon(resourceMap.getIcon("compoundSubmenu.icon")); // NOI18N
+        compoundSubmenu.setText(resourceMap.getString("compoundSubmenu.text")); // NOI18N
+        compoundSubmenu.setName("compoundSubmenu"); // NOI18N
+
+        compoundInfo.setIcon(resourceMap.getIcon("compoundInfo.icon")); // NOI18N
+        compoundInfo.setText(resourceMap.getString("compoundInfo.text")); // NOI18N
+        compoundInfo.setName("compoundInfo"); // NOI18N
+        compoundSubmenu.add(compoundInfo);
+
+        saveCompoundRdfMenuItem.setIcon(resourceMap.getIcon("saveCompoundRdfMenuItem.icon")); // NOI18N
+        saveCompoundRdfMenuItem.setText(resourceMap.getString("saveCompoundRdfMenuItem.text")); // NOI18N
+        saveCompoundRdfMenuItem.setName("saveCompoundRdfMenuItem"); // NOI18N
+        compoundSubmenu.add(saveCompoundRdfMenuItem);
+
+        saveCompoundCML.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/xml.png"))); // NOI18N
+        saveCompoundCML.setText(resourceMap.getString("saveCompoundCML.text")); // NOI18N
+        saveCompoundCML.setName("saveCompoundCML"); // NOI18N
+        compoundSubmenu.add(saveCompoundCML);
+
+        jSeparator5.setName("jSeparator5"); // NOI18N
+        compoundSubmenu.add(jSeparator5);
+
+        updateImageMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        updateImageMenuItem.setIcon(resourceMap.getIcon("updateImageMenuItem.icon")); // NOI18N
+        updateImageMenuItem.setText(resourceMap.getString("updateImageMenuItem.text")); // NOI18N
+        updateImageMenuItem.setName("updateImageMenuItem"); // NOI18N
+        updateImageMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateImageMenuItemActionPerformed(evt);
+            }
+        });
+        compoundSubmenu.add(updateImageMenuItem);
+
+        clearCompoundImage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        clearCompoundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/news-unsubscribe.png"))); // NOI18N
+        clearCompoundImage.setText(resourceMap.getString("clearCompoundImage.text")); // NOI18N
+        clearCompoundImage.setName("clearCompoundImage"); // NOI18N
+        clearCompoundImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearCompoundImageActionPerformed(evt);
+            }
+        });
+        compoundSubmenu.add(clearCompoundImage);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/document-preview.png"))); // NOI18N
+        jMenuItem3.setText(resourceMap.getString("jMenuItem3.text")); // NOI18N
+        jMenuItem3.setName("jMenuItem3"); // NOI18N
+        compoundSubmenu.add(jMenuItem3);
+
+        jSeparator4.setName("jSeparator4"); // NOI18N
+        compoundSubmenu.add(jSeparator4);
+
+        addSynonymMenuItem.setIcon(resourceMap.getIcon("addSynonymMenuItem.icon")); // NOI18N
+        addSynonymMenuItem.setText(resourceMap.getString("addSynonymMenuItem.text")); // NOI18N
+        addSynonymMenuItem.setName("addSynonymMenuItem"); // NOI18N
+        addSynonymMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSynonymMenuItemActionPerformed(evt);
+            }
+        });
+        compoundSubmenu.add(addSynonymMenuItem);
+
+        jMenuItem2.setIcon(resourceMap.getIcon("jMenuItem2.icon")); // NOI18N
+        jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
+        jMenuItem2.setName("jMenuItem2"); // NOI18N
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        compoundSubmenu.add(jMenuItem2);
+
+        toolsMenu.add(compoundSubmenu);
+
+        modelSubmenu.setIcon(resourceMap.getIcon("modelSubmenu.icon")); // NOI18N
+        modelSubmenu.setText(resourceMap.getString("modelSubmenu.text")); // NOI18N
+        modelSubmenu.setName("modelSubmenu"); // NOI18N
+
+        jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
+        jMenuItem4.setName("jMenuItem4"); // NOI18N
+        modelSubmenu.add(jMenuItem4);
+
+        jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
+        jMenuItem5.setName("jMenuItem5"); // NOI18N
+        modelSubmenu.add(jMenuItem5);
+
+        jMenuItem6.setText(resourceMap.getString("jMenuItem6.text")); // NOI18N
+        jMenuItem6.setName("jMenuItem6"); // NOI18N
+        modelSubmenu.add(jMenuItem6);
+
+        jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
+        jMenuItem7.setName("jMenuItem7"); // NOI18N
+        modelSubmenu.add(jMenuItem7);
+
+        toolsMenu.add(modelSubmenu);
+
+        madSubmenu.setIcon(resourceMap.getIcon("madSubmenu.icon")); // NOI18N
+        madSubmenu.setText(resourceMap.getString("madSubmenu.text")); // NOI18N
+        madSubmenu.setName("madSubmenu"); // NOI18N
+
+        jMenuItem8.setIcon(resourceMap.getIcon("jMenuItem8.icon")); // NOI18N
+        jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
+        jMenuItem8.setName("jMenuItem8"); // NOI18N
+        madSubmenu.add(jMenuItem8);
+
+        toolsMenu.add(madSubmenu);
+
+        reportSubmenu.setIcon(resourceMap.getIcon("reportSubmenu.icon")); // NOI18N
+        reportSubmenu.setText(resourceMap.getString("reportSubmenu.text")); // NOI18N
+        reportSubmenu.setName("reportSubmenu"); // NOI18N
+
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem9.setIcon(resourceMap.getIcon("jMenuItem9.icon")); // NOI18N
+        jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
+        jMenuItem9.setName("jMenuItem9"); // NOI18N
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        reportSubmenu.add(jMenuItem9);
+
+        toolsMenu.add(reportSubmenu);
+
         menuBar.add(toolsMenu);
 
         helpMenu.setMnemonic('H');
@@ -570,7 +719,7 @@ public class QEditView extends FrameView {
                 .addComponent(statusFace)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
                 .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
                         .addComponent(statusAnimationLabel)
@@ -723,9 +872,59 @@ public class QEditView extends FrameView {
     private void qprfOptionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qprfOptionsMenuItemActionPerformed
         editorOptionsDialogBox();
     }//GEN-LAST:event_qprfOptionsMenuItemActionPerformed
+
+    private void updateImageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateImageMenuItemActionPerformed
+        ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (selectedFrame != null) {
+            selectedFrame.updateImage();
+        } else {
+            getStatusLabel().setText("No document is selected");
+        }
+    }//GEN-LAST:event_updateImageMenuItemActionPerformed
+
+    private void clearCompoundImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCompoundImageActionPerformed
+        ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (selectedFrame != null) {
+            selectedFrame.deleteImage();
+        } else {
+            getStatusLabel().setText("No document is selected");
+        }
+    }//GEN-LAST:event_clearCompoundImageActionPerformed
+
+    private void addSynonymMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSynonymMenuItemActionPerformed
+        ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (selectedFrame != null) {
+            selectedFrame.addCompoundSynonym();
+        } else {
+            getStatusLabel().setText("No document is selected");
+        }
+    }//GEN-LAST:event_addSynonymMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (selectedFrame != null) {
+            selectedFrame.addFeatureWizard();
+        } else {
+            getStatusLabel().setText("No document is selected");
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+         ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (selectedFrame != null) {
+            selectedFrame.addAuthorWizard();
+        } else {
+            getStatusLabel().setText("No document is selected");
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
+    private javax.swing.JMenuItem addSynonymMenuItem;
     private javax.swing.JToolBar basicToolbar;
+    private javax.swing.JMenuItem clearCompoundImage;
+    private javax.swing.JMenuItem compoundInfo;
+    private javax.swing.JMenu compoundSubmenu;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JButton ejectButton;
     private javax.swing.JButton exportDocButton;
@@ -733,16 +932,29 @@ public class QEditView extends FrameView {
     private javax.swing.JPopupMenu.Separator firstFileMenuSeparatorItem;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTree jTree1;
     private javax.swing.JPanel leftSplittedPanel;
     private javax.swing.JFileChooser localFileChooserWindow;
+    private javax.swing.JMenu madSubmenu;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JSplitPane mainSplitPane;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu modelSubmenu;
     private javax.swing.JMenuItem newEmptyReport;
     private javax.swing.JMenu newProjectSubMenu;
     private javax.swing.JMenuItem newReport;
@@ -753,8 +965,11 @@ public class QEditView extends FrameView {
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenuItem qprfOptionsMenuItem;
     private javax.swing.JMenu reportMenu;
+    private javax.swing.JMenu reportSubmenu;
     private javax.swing.JPanel rightSplittedPanel;
     private javax.swing.JButton saveButton;
+    private javax.swing.JMenuItem saveCompoundCML;
+    private javax.swing.JMenuItem saveCompoundRdfMenuItem;
     private javax.swing.JFileChooser saveFileChooserWindow;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JPopupMenu.Separator secondFileMenuSeparatorItem;
@@ -765,6 +980,7 @@ public class QEditView extends FrameView {
     private javax.swing.JPanel statusPanel;
     private javax.swing.JMenu toolsMenu;
     private javax.swing.JMenuItem toolsOptionsMenuItem;
+    private javax.swing.JMenuItem updateImageMenuItem;
     private javax.swing.JMenuItem wordReportMenuItem;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;

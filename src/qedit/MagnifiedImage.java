@@ -6,10 +6,8 @@
 package qedit;
 
 import java.awt.Frame;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import org.jdesktop.application.ApplicationContext;
 import org.jdesktop.application.Task;
 import org.jdesktop.application.TaskMonitor;
@@ -17,7 +15,8 @@ import org.jdesktop.application.TaskService;
 
 /**
  *
- * @author chung
+ * @author Sopasakis Pantelis
+ * @author Charalampos Chomenides
  */
 public class MagnifiedImage extends javax.swing.JDialog {
 
@@ -190,7 +189,7 @@ public class MagnifiedImage extends javax.swing.JDialog {
                 int newWidth = (int) Math.round((double)imageLabel.getIcon().getIconWidth() * scalingFactor);
                 int newHeight = (int) Math.round((double)imageLabel.getIcon().getIconHeight()* scalingFactor);
                 imageLabel.setIcon(new ImageIcon(((ImageIcon) imageLabel.getIcon()).getImage().
-                        getScaledInstance(newWidth, newHeight, Image.SCALE_AREA_AVERAGING)));
+                        getScaledInstance(newWidth, newHeight, QEditApp.getMagnificationMode())));
                 imageLabel.setSize(newWidth, newHeight);
                 return new Object();
             }

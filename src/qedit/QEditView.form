@@ -310,6 +310,184 @@
                 <Property name="name" type="java.lang.String" value="statisticsMenuItem" noResource="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator3">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator3" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="compoundSubmenu">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="compoundSubmenu.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="compoundSubmenu.text"/>
+                <Property name="name" type="java.lang.String" value="compoundSubmenu" noResource="true"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="compoundInfo">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="compoundInfo.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="compoundInfo.text"/>
+                    <Property name="name" type="java.lang.String" value="compoundInfo" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="saveCompoundRdfMenuItem">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="saveCompoundRdfMenuItem.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="saveCompoundRdfMenuItem.text"/>
+                    <Property name="name" type="java.lang.String" value="saveCompoundRdfMenuItem" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="saveCompoundCML">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/xml.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" resourceKey="saveCompoundCML.text"/>
+                    <Property name="name" type="java.lang.String" value="saveCompoundCML" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator5">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jSeparator5" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="updateImageMenuItem">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="Ctrl+D"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="updateImageMenuItem.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="updateImageMenuItem.text"/>
+                    <Property name="name" type="java.lang.String" value="updateImageMenuItem" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateImageMenuItemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="clearCompoundImage">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="Shift+Ctrl+D"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/news-unsubscribe.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" resourceKey="clearCompoundImage.text"/>
+                    <Property name="name" type="java.lang.String" value="clearCompoundImage" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearCompoundImageActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="Ctrl+T"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/document-preview.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem3.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem3" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator4">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jSeparator4" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="addSynonymMenuItem">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="addSynonymMenuItem.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="addSynonymMenuItem.text"/>
+                    <Property name="name" type="java.lang.String" value="addSynonymMenuItem" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addSynonymMenuItemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem2.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem2.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="modelSubmenu">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="modelSubmenu.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="modelSubmenu.text"/>
+                <Property name="name" type="java.lang.String" value="modelSubmenu" noResource="true"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem4.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem4" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem5.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem5" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem6.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem6" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem7.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem7" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="madSubmenu">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="madSubmenu.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="madSubmenu.text"/>
+                <Property name="name" type="java.lang.String" value="madSubmenu" noResource="true"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem8.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem8.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem8" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="reportSubmenu">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="reportSubmenu.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="reportSubmenu.text"/>
+                <Property name="name" type="java.lang.String" value="reportSubmenu" noResource="true"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+                  <Properties>
+                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                      <KeyStroke key="Ctrl+U"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem9.icon"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem9.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem9" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem9ActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
