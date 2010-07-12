@@ -23,7 +23,7 @@ public class QEditApp extends SingleFrameApplication {
     public static final String ideaconsult_cactvs_imageService = "http://apps.ideaconsult.net:8080/ambit2/depict/cactvs?search=%s";
     private static String imageService = ambit_cactvs_imageService;
     private static String casToSmilesService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/csls/%s/smiles";
-    private static String smilesToUriService = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/compound/%s";
+    private static String smilesToUriService = "http://apps.ideaconsult.net:8080/ambit2/query/compound/%s";
 
     private static int magnificationMode = java.awt.Image.SCALE_DEFAULT;
 

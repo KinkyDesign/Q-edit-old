@@ -10,12 +10,13 @@ import com.hp.hpl.jena.ontology.Individual;
 public class Compound extends AbstractComponent {
 
     private String iupacName;
+    private String chemicalName;
     private String smiles;
     private String generatedMW;
     private String inChI;
     private String casRn;
     private String molFormula;
-    private String ecName;
+    private String einecs;
     private String uri;
 
     public Compound() {
@@ -25,13 +26,22 @@ public class Compound extends AbstractComponent {
         this.uri = uri;
     }
 
-    public String getEcName() {
-        return ecName;
+    public String getEINECS() {
+        return einecs;
     }
 
-    public void setEcName(String ecName) {
-        this.ecName = ecName;
+    public void setEINECS(String ecName) {
+        this.einecs = ecName;
     }
+
+    public String getChemicalName() {
+        return chemicalName;
+    }
+
+    public void setChemicalName(String chemicalName) {
+        this.chemicalName = chemicalName;
+    }
+    
 
     // DO NOT MODIFY!
     // <editor-fold defaultstate="collapsed" desc="Getters and Settters">
@@ -100,15 +110,20 @@ public class Compound extends AbstractComponent {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        if (casRn!=null){
-            builder.append("CAS-RN        : ");
-            builder.append(casRn);
-            builder.append("\n");
-        }
+        StringBuilder builder = new StringBuilder();        
         if (getIupacName()!=null){
             builder.append("IUPAC Name    : ");
             builder.append(getIupacName());
+            builder.append("\n");
+        }
+        if (getChemicalName()!=null && getChemicalName()!=getIupacName()){
+            builder.append("Chemical Name : ");
+            builder.append(getChemicalName());
+            builder.append("\n");
+        }
+        if (casRn!=null){
+            builder.append("CAS-RN        : ");
+            builder.append(casRn);
             builder.append("\n");
         }
         if (getSmiles()!=null){
@@ -116,14 +131,10 @@ public class Compound extends AbstractComponent {
             builder.append(getSmiles());
             builder.append("\n");
         }
-        if (getMolFormula()!=null){
-            builder.append("Mol. Formula  : ");
-            builder.append(getMolFormula());
-            builder.append("\n");
-        }
-        if (getGeneratedMW()!=null){
-            builder.append("Mol. Weight   : ");
-            builder.append(getGeneratedMW());
+        
+        if (getEINECS()!=null){
+            builder.append("EINCES        : ");
+            builder.append(getEINECS());
             builder.append("\n");
         }
         if (getInChI()!=null){
