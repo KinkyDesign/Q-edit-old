@@ -7,8 +7,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.OWL;
-import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
+import java.io.Closeable;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -31,7 +30,7 @@ import qedit.clients.ontol.collections.OTObjectProperties;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public class CompoundSpider {
+public class CompoundSpider implements Closeable {
 
     public enum LookupMethod {
 
@@ -45,6 +44,16 @@ public class CompoundSpider {
     public static final String einecs = OTClasses.NS + "EINECS";
     public static final String iupacName = OTClasses.NS + "IUPACName";
     public static final String casRn = OTClasses.NS + "CASRN";
+    private boolean doRetrieveSmiles = true;
+
+    public boolean isDoRetrieveSmiles() {
+        return doRetrieveSmiles;
+    }
+
+    public void setDoRetrieveSmiles(boolean doRetrieveSmiles) {
+        this.doRetrieveSmiles = doRetrieveSmiles;
+    }
+
 
     public CompoundSpider(LookupMethod lookup, String keyword) throws ClientException {
         if (lookup.equals(LookupMethod.Uri)) {
@@ -65,17 +74,22 @@ public class CompoundSpider {
 
     private Compound parse() throws ClientException {
         Compound compound = new Compound(uri);
-        StmtIterator it = om.listStatements(new SimpleSelector(om.getResource(uri), OTObjectProperties.dataEntry().asObjectProperty(om), (RDFNode) null));
+        StmtIterator it = om.listStatements(
+                new SimpleSelector(om.getResource(uri), OTObjectProperties.dataEntry().asObjectProperty(om), (RDFNode) null));
+        StmtIterator it2 = null, it3 = null;
 
         if (it.hasNext()) {
             Resource dataEntryNode = it.nextStatement().getObject().as(Resource.class);
-            StmtIterator it2 = om.listStatements(new SimpleSelector(dataEntryNode, OTObjectProperties.values().asObjectProperty(om), (RDFNode) null));
+            it2 = om.listStatements(
+                    new SimpleSelector(dataEntryNode, OTObjectProperties.values().asObjectProperty(om), (RDFNode) null));
             while (it2.hasNext()) {
                 Resource valuesResource = it2.nextStatement().getObject().as(Resource.class);
-                StmtIterator it3 = om.listStatements(new SimpleSelector(valuesResource, OTObjectProperties.feature().asObjectProperty(om), (RDFNode) null));
+                it3 = om.listStatements(
+                        new SimpleSelector(valuesResource, OTObjectProperties.feature().asObjectProperty(om), (RDFNode) null));
                 if (it3.hasNext()) {
                     Resource featureNode = it3.nextStatement().getObject().as(Resource.class);
-                    String featureSameAsURI = featureNode.getProperty(om.getProperty(OWL.sameAs.getURI())).getObject().as(Resource.class).getURI();
+                    String featureSameAsURI = featureNode.getProperty(om.getProperty(
+                            OWL.sameAs.getURI())).getObject().as(Resource.class).getURI();
                     String val = valuesResource.getProperty(OTDatatypeProperties.value().asDatatypeProperty(om)).getObject().as(Literal.class).getString();
                     if (featureSameAsURI.equals(iupacName)) {
                         compound.setIupacName(val);
@@ -89,8 +103,17 @@ public class CompoundSpider {
                 }
             }
         }
+        if (it != null) {
+            it.close();
+        }
+        if (it2 != null) {
+            it2.close();
+        }
+        if (it3 != null) {
+            it3.close();
+        }
         // GET SMILES:
-        if (compound.getCasRn() != null) {
+        if (compound.getCasRn() != null && doRetrieveSmiles) {
             GetClient gc = new GetClient();
             try {
                 gc.setUri(String.format(QEditApp.getCasToSmilesService(), compound.getCasRn()));
@@ -105,8 +128,16 @@ public class CompoundSpider {
         return compound;
     }
 
+    @Override
+    public void close() {
+        if (om != null) {
+            om.close();
+        }
+    }
+
     public static void main(String... args) throws ClientException {
-        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "dopamine");
+        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "59-51-8");
         System.out.println(spider.parse());
+        spider.close();
     }
 }
