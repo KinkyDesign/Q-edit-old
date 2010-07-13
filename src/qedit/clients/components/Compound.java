@@ -3,19 +3,21 @@ package qedit.clients.components;
 import com.hp.hpl.jena.ontology.Individual;
 
 /**
- *
+ * A Chemical Compound.
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
 public class Compound extends AbstractComponent {
 
+    private static final String CHEMICAL_NAMES_SEPARATOR = ";";
+
     private String iupacName;
+    private String inChI;
+    private String inChIKey;
+    private String REACHRegistrationDate;
     private String chemicalName;
     private String smiles;
-    private String generatedMW;
-    private String inChI;
     private String casRn;
-    private String molFormula;
     private String einecs;
     private String uri;
 
@@ -26,6 +28,23 @@ public class Compound extends AbstractComponent {
         this.uri = uri;
     }
 
+    public String getREACHRegistrationDate() {
+        return REACHRegistrationDate;
+    }
+
+    public void setREACHRegistrationDate(String REACHRegistrationDate) {
+        this.REACHRegistrationDate = REACHRegistrationDate;
+    }
+
+    public String getInChIKey() {
+        return inChIKey;
+    }
+
+    public void setInChIKey(String inChIKey) {
+        this.inChIKey = inChIKey;
+    }
+
+    
     public String getEINECS() {
         return einecs;
     }
@@ -41,7 +60,6 @@ public class Compound extends AbstractComponent {
     public void setChemicalName(String chemicalName) {
         this.chemicalName = chemicalName;
     }
-    
 
     // DO NOT MODIFY!
     // <editor-fold defaultstate="collapsed" desc="Getters and Settters">
@@ -61,14 +79,6 @@ public class Compound extends AbstractComponent {
         this.casRn = casRn;
     }
 
-    public String getGeneratedMW() {
-        return generatedMW;
-    }
-
-    public void setGeneratedMW(String generatedMW) {
-        this.generatedMW = generatedMW;
-    }
-
     public String getInChI() {
         return inChI;
     }
@@ -85,14 +95,6 @@ public class Compound extends AbstractComponent {
         this.iupacName = iupacName;
     }
 
-    public String getMolFormula() {
-        return molFormula;
-    }
-
-    public void setMolFormula(String molFormula) {
-        this.molFormula = molFormula;
-    }
-
     public String getSmiles() {
         return smiles;
     }
@@ -101,7 +103,14 @@ public class Compound extends AbstractComponent {
         this.smiles = smiles;
     }
     // </editor-fold>
-   
+
+    public java.util.List<String> getSynonyms() {
+        if (chemicalName == null) {
+            return new java.util.ArrayList<String>();
+        }
+        java.util.List<String> list = java.util.Arrays.asList(chemicalName.split(CHEMICAL_NAMES_SEPARATOR));
+        return list;
+    }
 
     @Override
     public Individual asIndividual() {
@@ -110,39 +119,52 @@ public class Compound extends AbstractComponent {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();        
-        if (getIupacName()!=null){
+        StringBuilder builder = new StringBuilder();
+        if (getIupacName() != null) {
             builder.append("IUPAC Name    : ");
             builder.append(getIupacName());
             builder.append("\n");
         }
-        if (getChemicalName()!=null && getChemicalName()!=getIupacName()){
-            builder.append("Chemical Name : ");
-            builder.append(getChemicalName());
-            builder.append("\n");
+        // Display the Chemical Name only when it is different from the IUPAC Name
+        if (getChemicalName() != null && !getChemicalName().equals(getIupacName())) {
+            builder.append("Chemical Names... \n");
+            for (String synonym : getSynonyms()) {                
+                builder.append("     - ");
+                builder.append(synonym.trim());
+                builder.append("\n");
+            }
         }
-        if (casRn!=null){
+        if (casRn != null) {
             builder.append("CAS-RN        : ");
             builder.append(casRn);
             builder.append("\n");
         }
-        if (getSmiles()!=null){
+        if (getSmiles() != null) {
             builder.append("SMILES String : ");
             builder.append(getSmiles());
             builder.append("\n");
         }
-        
-        if (getEINECS()!=null){
+
+        if (getEINECS() != null) {
             builder.append("EINCES        : ");
             builder.append(getEINECS());
             builder.append("\n");
         }
-        if (getInChI()!=null){
+        if (getInChI() != null) {
             builder.append("InChI Code    : ");
             builder.append(getInChI());
             builder.append("\n");
         }
+        if (getInChIKey() != null) {
+            builder.append("InChI Key     : ");
+            builder.append(getInChIKey());
+            builder.append("\n");
+        }
+        if (getREACHRegistrationDate() != null) {
+            builder.append("REACH Reg. Date : ");
+            builder.append(getREACHRegistrationDate());
+            builder.append("\n");
+        }
         return new String(builder);
     }
-
 }

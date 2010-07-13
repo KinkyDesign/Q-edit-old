@@ -16,9 +16,10 @@ import qedit.QEditApp;
 import qedit.clients.ClientException;
 import qedit.clients.GetClient;
 import qedit.clients.Media;
+import qedit.clients.ClientConstants;
 import qedit.clients.components.Compound;
-import qedit.clients.ontol.collections.OTClasses;
 import qedit.clients.ontol.collections.OTDatatypeProperties;
+import qedit.clients.ontol.collections.OTFeatures;
 import qedit.clients.ontol.collections.OTObjectProperties;
 
 /**
@@ -32,34 +33,66 @@ import qedit.clients.ontol.collections.OTObjectProperties;
  */
 public class CompoundSpider implements Closeable {
 
+    /**
+     * Method according to which compounds are searched (e.g. by URI)
+     */
     public enum LookupMethod {
 
-        Uri,
+        /**
+         * Lookup method where the user provides
+         * the URI of the compound
+         */
+        ByUri,
+        /**
+         * Autodetect the search keyword
+         */
         AutoDetect;
     }
-    private static final String namesToken = "%s/names";// <--    ?feature_uris[]
+    private static final String namesToken = "%s/all";// <--    ?feature_uris[]
     private OntModel om;
     private String uri;
-    public static final String chemicalName = OTClasses.NS + "ChemicalName";
-    public static final String einecs = OTClasses.NS + "EINECS";
-    public static final String iupacName = OTClasses.NS + "IUPACName";
-    public static final String casRn = OTClasses.NS + "CASRN";
-    private boolean doRetrieveSmiles = true;
+    private boolean doRetrieveSmiles = false;
 
     public boolean isDoRetrieveSmiles() {
         return doRetrieveSmiles;
     }
 
+    /**
+     * If set to <code>true</code>, the SMILES string will be retrieved from the
+     * remote service at {@link QEditApp#getCasToSmilesService() } but this will
+     * take more time. Note that this will not be applied if the SMILES is already
+     * included in the RDF representation received from the STD compound service;
+     * Setting to true will just force the retrieval of SMILES.
+     * @param doRetrieveSmiles
+     *      Whether the SMILES string should be retrieved from the remote.
+     */
     public void setDoRetrieveSmiles(boolean doRetrieveSmiles) {
         this.doRetrieveSmiles = doRetrieveSmiles;
     }
 
-
+    /**
+     * Construct a new instance of CompoundSpider. CompoundSpider will load all
+     * information concerning the identification of a chemical (like its CAS Registration
+     * Number, its EINECS and other related infp) from a remote serive either explicitly
+     * provided (with its URI) or using some lookup service. This constructor will
+     * download the Ontological Model of the compound identified by the provided keyword,
+     * or will throw an exception if the keyword does not identify any compounds on
+     * the online database.
+     * @param lookup
+     *      The Lookup method (Look up by URI or by other keyword)
+     * @param keyword
+     *      The keyword
+     * @throws ClientException
+     *      An exception thrown in case the keyword does not identify any compounds
+     *      or if some communication error happens. Might be thrown because {@link
+     *      QEditApp#getCasToSmilesService() } returns an invalid service, or the
+     *      service has encountered some error.
+     */
     public CompoundSpider(LookupMethod lookup, String keyword) throws ClientException {
-        if (lookup.equals(LookupMethod.Uri)) {
+        if (lookup.equals(LookupMethod.ByUri)) {
             this.uri = keyword;
         } else {
-            uri = String.format(QEditApp.getSmilesToUriService(), keyword);
+            uri = String.format(ClientConstants.getCompoundLookupService(), keyword);
         }
         GetClient client = new GetClient();
         try {
@@ -72,10 +105,22 @@ public class CompoundSpider implements Closeable {
         om = client.getOntModel();
     }
 
-    private Compound parse() throws ClientException {
+    /**
+     * Parses the downloaded Ontological Model into an instance of {@link Compound }.
+     * The compound contains information about the chemical's CAS-RN, IUPAC Name,
+     * EINECS, SMILES (except if you have disabled it) and Chemical Name.
+     * @return
+     *      The parsed compound
+     * @throws ClientException
+     *      In case some communication error is encountered while the method tries to
+     *      retireve the SMILES string from the remote service. In case you have disabled
+     *      SMILES retrieval, this exception will not be thrown.
+     */
+    public Compound parse() throws ClientException {
         Compound compound = new Compound(uri);
         StmtIterator it = om.listStatements(
-                new SimpleSelector(om.getResource(uri), OTObjectProperties.dataEntry().asObjectProperty(om), (RDFNode) null));
+                new SimpleSelector(om.getResource(uri),
+                OTObjectProperties.dataEntry().asObjectProperty(om), (RDFNode) null));
         StmtIterator it2 = null, it3 = null;
 
         if (it.hasNext()) {
@@ -90,15 +135,24 @@ public class CompoundSpider implements Closeable {
                     Resource featureNode = it3.nextStatement().getObject().as(Resource.class);
                     String featureSameAsURI = featureNode.getProperty(om.getProperty(
                             OWL.sameAs.getURI())).getObject().as(Resource.class).getURI();
-                    String val = valuesResource.getProperty(OTDatatypeProperties.value().asDatatypeProperty(om)).getObject().as(Literal.class).getString();
-                    if (featureSameAsURI.equals(iupacName)) {
+                    String val = valuesResource.getProperty(OTDatatypeProperties.value().
+                            asDatatypeProperty(om)).getObject().as(Literal.class).getString();
+                    if (featureSameAsURI.equals(OTFeatures.IUPACName().getUri())) {
                         compound.setIupacName(val);
-                    } else if (featureSameAsURI.equals(einecs)) {
+                    } else if (featureSameAsURI.equals(OTFeatures.EINECS().getUri())) {
                         compound.setEINECS(val);
-                    } else if (featureSameAsURI.equals(chemicalName)) {
+                    } else if (featureSameAsURI.equals(OTFeatures.ChemicalName().getUri())) {
                         compound.setChemicalName(val);
-                    } else if (featureSameAsURI.equals(casRn)) {
+                    } else if (featureSameAsURI.equals(OTFeatures.CASRN().getUri())) {
                         compound.setCasRn(val);
+                    } else if (featureSameAsURI.equals(OTFeatures.SMILES().getUri())) {
+                        compound.setSmiles(val);
+                    }else if (featureSameAsURI.equals(OTFeatures.InChI_std().getUri())) {
+                        compound.setInChI(val);
+                    }else if (featureSameAsURI.equals(OTFeatures.InChIKey_std().getUri())) {
+                        compound.setInChIKey(val);
+                    }else if (featureSameAsURI.equals(OTFeatures.REACHRegistrationDate().getUri())) {
+                        compound.setREACHRegistrationDate(val);
                     }
                 }
             }
@@ -116,7 +170,7 @@ public class CompoundSpider implements Closeable {
         if (compound.getCasRn() != null && doRetrieveSmiles) {
             GetClient gc = new GetClient();
             try {
-                gc.setUri(String.format(QEditApp.getCasToSmilesService(), compound.getCasRn()));
+                gc.setUri(String.format(ClientConstants.getCasToSmilesService(), compound.getCasRn()));
                 gc.setMediaType("text/plain");
                 compound.setSmiles(gc.getRemoteMessage());
             } catch (IOException ex) {
@@ -128,6 +182,11 @@ public class CompoundSpider implements Closeable {
         return compound;
     }
 
+    /**
+     * Closes the ontological model used by the Spider (if any) and releases all
+     * resources it holds. Closing the Spider is considered good practise and prefered
+     * comparing to leaving it to the finalizer.
+     */
     @Override
     public void close() {
         if (om != null) {
@@ -135,8 +194,26 @@ public class CompoundSpider implements Closeable {
         }
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        close();
+        super.finalize();
+    }
+
+    /**
+     * Outputs:
+     * <pre>
+     * IUPAC Name    : 1-ethyl-2-methylbenzene
+     * Chemical Name : 2-ethyltoluene
+     * CAS-RN        : 611-14-3
+     * SMILES String : CCc1ccccc1C
+     * EINCES        : 210-255-1
+     * </pre>
+     * @param args - Not used
+     * @throws ClientException
+     */
     public static void main(String... args) throws ClientException {
-        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "59-51-8");
+        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
         System.out.println(spider.parse());
         spider.close();
     }

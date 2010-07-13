@@ -134,7 +134,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 if (identifierChooserCombo.getSelectedIndex() == 0) {
                     try {
                         smiles = identifierValueTextField.getText();
-                        icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
+                        icon = new ImageIcon(new URL(String.format(qedit.clients.ClientConstants.getImageService(), smiles)));
                     } catch (MalformedURLException ex) {
                         structureImage.setText("Communication Error...");
                         basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -144,7 +144,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     if (identifierChooserCombo.getSelectedIndex() == 1) {// CAS-RN
                         try {
                             smiles = GetClient.smilesFromCasRn(identifierValueTextField.getText());
-                            icon = new ImageIcon(new URL(String.format(QEditApp.getImageService(), smiles)));
+                            icon = new ImageIcon(new URL(String.format(qedit.clients.ClientConstants.getImageService(), smiles)));
                         } catch (Exception ex) {
                             Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -217,7 +217,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }
 
     @Action
-    public void addAuthorWizard(){
+    public void addAuthorWizard() {
         JFrame jframe = QEditApp.getView().getFrame();
         authorsWizard = new AuthorWizard(jframe);
         int frameWidth = jframe.getWidth();
@@ -298,6 +298,58 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         stereoChemScollPane = new javax.swing.JScrollPane();
         stereoChemDiscussionTextArea = new javax.swing.JTextArea();
         stereoChemHintLamp = new javax.swing.JLabel();
+        qprfReport = new javax.swing.JPanel();
+        qprfInfoTabbedSubPanel = new javax.swing.JTabbedPane();
+        generalInfoPanel = new javax.swing.JPanel();
+        authorsPanel = new javax.swing.JPanel();
+        authorsTableScrollable = new javax.swing.JScrollPane();
+        authorsTable = new javax.swing.JTable(){
+            @Override
+            protected boolean processKeyBinding(KeyStroke ks, KeyEvent e,
+                int condition, boolean pressed) {
+                int code = e.getKeyCode();
+                if (code == KeyEvent.VK_CONTEXT_MENU) {
+                    return false;
+                }
+                return super.processKeyBinding(ks, e, condition, pressed);
+            }
+        }
+        ;
+        authorsToolbar = new javax.swing.JToolBar();
+        appendRowButton = new javax.swing.JButton();
+        removeSelectedRowButton = new javax.swing.JButton();
+        moveUpRowButton = new javax.swing.JButton();
+        moveDownRowButton = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        authorsWizardButton = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JToolBar.Separator();
+        clearAllAuthorsButton = new javax.swing.JButton();
+        datePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        qprfYearCombo = new javax.swing.JComboBox();
+        qprfMonthCombo = new javax.swing.JComboBox();
+        qprfDayCombo = new javax.swing.JComboBox();
+        useCurrentDateForReport = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
+        otherInfoPanel = new javax.swing.JPanel();
+        metaInfoPanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        qprfDescriptionLabel = new javax.swing.JLabel();
+        qprfCommentsLabel = new javax.swing.JLabel();
+        qprfDescriptionHintLabel = new javax.swing.JLabel();
+        qprfCommentsHintLabel = new javax.swing.JLabel();
+        qprfTitleHintLabel = new javax.swing.JLabel();
+        qprfReportTitleScrollable = new javax.swing.JScrollPane();
+        qprfReportTitleTextArea = new javax.swing.JTextArea();
+        qprfReportDescriptionScollable = new javax.swing.JScrollPane();
+        qprfReportDescriptionTextArea = new javax.swing.JTextArea();
+        qprfReportCommentsScrollable = new javax.swing.JScrollPane();
+        qprfReportCommentsTextArea = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        reportPredictionPanel = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         modelPanel = new javax.swing.JPanel();
         modelInfoPanel = new javax.swing.JPanel();
         modelUriLabel = new javax.swing.JLabel();
@@ -349,6 +401,23 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelDayLabel = new javax.swing.JLabel();
         modelDayCombo = new javax.swing.JComboBox();
         modelCurrentDate = new javax.swing.JCheckBox();
+        predictionPanel = new javax.swing.JPanel();
+        predictionInfoPanel = new javax.swing.JPanel();
+        predictionValueLabel = new javax.swing.JLabel();
+        predictionValueTextField = new javax.swing.JTextField();
+        predictionUnitsTextField = new javax.swing.JTextField();
+        predictionUncertaintyLabel = new javax.swing.JLabel();
+        predictionUncertaintyScrollable = new javax.swing.JScrollPane();
+        predictionUncertaintyTextArea = new javax.swing.JTextArea();
+        predictionCommentLabel = new javax.swing.JLabel();
+        predictionCommentScrollable = new javax.swing.JScrollPane();
+        predictionCommentTextArea = new javax.swing.JTextArea();
+        experimentalValueLabel = new javax.swing.JLabel();
+        exprerimentalValueTextField = new javax.swing.JTextField();
+        experimentalValueUnitsTextField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         applicabilityDomainPanel = new javax.swing.JPanel();
         appDomainInfoPanel = new javax.swing.JPanel();
         appDomAlgorithmNameLabel = new javax.swing.JLabel();
@@ -385,56 +454,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         analoguesCommentsScrollable = new javax.swing.JScrollPane();
         analoguesCommentsTextArea = new javax.swing.JTextArea();
         analoguesImageCards = new javax.swing.JPanel();
-        predictionPanel = new javax.swing.JPanel();
-        predictionInfoPanel = new javax.swing.JPanel();
-        predictionValueLabel = new javax.swing.JLabel();
-        predictionValueTextField = new javax.swing.JTextField();
-        predictionUnitsTextField = new javax.swing.JTextField();
-        predictionUncertaintyLabel = new javax.swing.JLabel();
-        predictionUncertaintyScrollable = new javax.swing.JScrollPane();
-        predictionUncertaintyTextArea = new javax.swing.JTextArea();
-        predictionCommentLabel = new javax.swing.JLabel();
-        predictionCommentScrollable = new javax.swing.JScrollPane();
-        predictionCommentTextArea = new javax.swing.JTextArea();
-        experimentalValueLabel = new javax.swing.JLabel();
-        exprerimentalValueTextField = new javax.swing.JTextField();
-        experimentalValueUnitsTextField = new javax.swing.JTextField();
-        qprfReport = new javax.swing.JPanel();
-        qprfInfoTabbedSubPanel = new javax.swing.JTabbedPane();
-        generalInfoPanel = new javax.swing.JPanel();
-        authorsPanel = new javax.swing.JPanel();
-        authorsTableScrollable = new javax.swing.JScrollPane();
-        authorsTable = new javax.swing.JTable(){
-            @Override
-            protected boolean processKeyBinding(KeyStroke ks, KeyEvent e,
-                int condition, boolean pressed) {
-                int code = e.getKeyCode();
-                if (code == KeyEvent.VK_CONTEXT_MENU) {
-                    return false;
-                }
-                return super.processKeyBinding(ks, e, condition, pressed);
-            }
-        }
-        ;
-        authorsToolbar = new javax.swing.JToolBar();
-        appendRowButton = new javax.swing.JButton();
-        removeSelectedRowButton = new javax.swing.JButton();
-        moveUpRowButton = new javax.swing.JButton();
-        moveDownRowButton = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JToolBar.Separator();
-        authorsWizardButton = new javax.swing.JButton();
-        jSeparator7 = new javax.swing.JToolBar.Separator();
-        clearAllAuthorsButton = new javax.swing.JButton();
-        datePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        qprfYearCombo = new javax.swing.JComboBox();
-        qprfMonthCombo = new javax.swing.JComboBox();
-        qprfDayCombo = new javax.swing.JComboBox();
-        useCurrentDateForReport = new javax.swing.JCheckBox();
-        adequacyPanel = new javax.swing.JPanel();
-        adequacyHintLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         adequacyInfoPanel = new javax.swing.JPanel();
         regulatoryPurposeLabel = new javax.swing.JLabel();
         regulatoryPurposeHintLabel = new javax.swing.JLabel();
@@ -454,20 +474,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         conclusionHintLabel = new javax.swing.JLabel();
         adequacyInfoIndicatorLabel = new javax.swing.JLabel();
         adequacyBottomMessageLabel = new javax.swing.JLabel();
-        otherInfoPanel = new javax.swing.JPanel();
-        metaInfoPanel = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
-        qprfDescriptionLabel = new javax.swing.JLabel();
-        qprfCommentsLabel = new javax.swing.JLabel();
-        qprfDescriptionHintLabel = new javax.swing.JLabel();
-        qprfCommentsHintLabel = new javax.swing.JLabel();
-        qprfTitleHintLabel = new javax.swing.JLabel();
-        qprfReportTitleScrollable = new javax.swing.JScrollPane();
-        qprfReportTitleTextArea = new javax.swing.JTextArea();
-        qprfReportDescriptionScollable = new javax.swing.JScrollPane();
-        qprfReportDescriptionTextArea = new javax.swing.JTextArea();
-        qprfReportCommentsScrollable = new javax.swing.JScrollPane();
-        qprfReportCommentsTextArea = new javax.swing.JTextArea();
+        adequacyHintLabel = new javax.swing.JLabel();
 
         authorsTablePopupMenu.setName("authorsTablePopupMenu"); // NOI18N
 
@@ -962,7 +969,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(descriptorsPanelLayout.createSequentialGroup()
             .addComponent(descriptorsTableToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -1007,7 +1014,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(stereoChemHintLamp)
                 .addComponent(stereoChemHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -1018,1001 +1025,26 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(compoundPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(compoundInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(compoundPanelLayout.createSequentialGroup()
                     .addComponent(descriptorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(compoundInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     compoundPanelLayout.setVerticalGroup(
         compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(compoundPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(compoundInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(compoundInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(descriptorsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("compoundPanel.TabConstraints.tabTitle"), compoundPanel); // NOI18N
-
-    modelPanel.setName("modelPanel"); // NOI18N
-
-    modelInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("modelInfoPanel.border.title"))); // NOI18N
-    modelInfoPanel.setName("modelInfoPanel"); // NOI18N
-
-    modelUriLabel.setFont(resourceMap.getFont("modelUriLabel.font")); // NOI18N
-    modelUriLabel.setIcon(resourceMap.getIcon("modelUriLabel.icon")); // NOI18N
-    modelUriLabel.setText(resourceMap.getString("modelUriLabel.text")); // NOI18N
-    modelUriLabel.setName("modelUriLabel"); // NOI18N
-
-    modelUriValue.setForeground(resourceMap.getColor("modelUriValue.foreground")); // NOI18N
-    modelUriValue.setText(resourceMap.getString("modelUriValue.text")); // NOI18N
-    modelUriValue.setName("modelUriValue"); // NOI18N
-
-    copyModelUriButton.setIcon(resourceMap.getIcon("copyModelUriButton.icon")); // NOI18N
-    copyModelUriButton.setText(resourceMap.getString("copyModelUriButton.text")); // NOI18N
-    copyModelUriButton.setToolTipText(resourceMap.getString("copyModelUriButton.toolTipText")); // NOI18N
-    copyModelUriButton.setName("copyModelUriButton"); // NOI18N
-
-    trainingDatasetLabel.setIcon(resourceMap.getIcon("trainingDatasetLabel.icon")); // NOI18N
-    trainingDatasetLabel.setText(resourceMap.getString("trainingDatasetLabel.text")); // NOI18N
-    trainingDatasetLabel.setName("trainingDatasetLabel"); // NOI18N
-
-    datasetValue.setForeground(resourceMap.getColor("datasetValue.foreground")); // NOI18N
-    datasetValue.setText(resourceMap.getString("datasetValue.text")); // NOI18N
-    datasetValue.setName("datasetValue"); // NOI18N
-
-    copyDatasetButton.setIcon(resourceMap.getIcon("copyDatasetButton.icon")); // NOI18N
-    copyDatasetButton.setText(resourceMap.getString("copyDatasetButton.text")); // NOI18N
-    copyDatasetButton.setToolTipText(resourceMap.getString("copyDatasetButton.toolTipText")); // NOI18N
-    copyDatasetButton.setName("copyDatasetButton"); // NOI18N
-
-    modelAndTrainingDSHeader.setFont(resourceMap.getFont("modelAndTrainingDSHeader.font")); // NOI18N
-    modelAndTrainingDSHeader.setText(resourceMap.getString("modelAndTrainingDSHeader.text")); // NOI18N
-    modelAndTrainingDSHeader.setName("modelAndTrainingDSHeader"); // NOI18N
-
-    trainingAlgorithmHeader.setFont(resourceMap.getFont("trainingAlgorithmHeader.font")); // NOI18N
-    trainingAlgorithmHeader.setText(resourceMap.getString("trainingAlgorithmHeader.text")); // NOI18N
-    trainingAlgorithmHeader.setName("trainingAlgorithmHeader"); // NOI18N
-
-    algorithmNameLabel.setText(resourceMap.getString("algorithmNameLabel.text")); // NOI18N
-    algorithmNameLabel.setName("algorithmNameLabel"); // NOI18N
-
-    modelUriDetailsButton.setIcon(resourceMap.getIcon("modelUriDetailsButton.icon")); // NOI18N
-    modelUriDetailsButton.setText(resourceMap.getString("modelUriDetailsButton.text")); // NOI18N
-    modelUriDetailsButton.setToolTipText(resourceMap.getString("modelUriDetailsButton.toolTipText")); // NOI18N
-    modelUriDetailsButton.setName("modelUriDetailsButton"); // NOI18N
-    modelUriDetailsButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            modelUriDetailsButtonActionPerformed(evt);
-        }
-    });
-
-    datasetDetailsButton.setIcon(resourceMap.getIcon("datasetDetailsButton.icon")); // NOI18N
-    datasetDetailsButton.setText(resourceMap.getString("datasetDetailsButton.text")); // NOI18N
-    datasetDetailsButton.setToolTipText(resourceMap.getString("datasetDetailsButton.toolTipText")); // NOI18N
-    datasetDetailsButton.setName("datasetDetailsButton"); // NOI18N
-
-    algorithmNameValue.setText(resourceMap.getString("algorithmNameValue.text")); // NOI18N
-    algorithmNameValue.setName("algorithmNameValue"); // NOI18N
-
-    copyAlgorithmName.setIcon(resourceMap.getIcon("copyAlgorithmName.icon")); // NOI18N
-    copyAlgorithmName.setText(resourceMap.getString("copyAlgorithmName.text")); // NOI18N
-    copyAlgorithmName.setToolTipText(resourceMap.getString("copyAlgorithmName.toolTipText")); // NOI18N
-    copyAlgorithmName.setName("copyAlgorithmName"); // NOI18N
-
-    algorithmUriLabel.setIcon(resourceMap.getIcon("algorithmUriLabel.icon")); // NOI18N
-    algorithmUriLabel.setText(resourceMap.getString("algorithmUriLabel.text")); // NOI18N
-    algorithmUriLabel.setName("algorithmUriLabel"); // NOI18N
-
-    algorithmUriValue.setForeground(resourceMap.getColor("algorithmUriValue.foreground")); // NOI18N
-    algorithmUriValue.setText(resourceMap.getString("algorithmUriValue.text")); // NOI18N
-    algorithmUriValue.setName("algorithmUriValue"); // NOI18N
-
-    copyAlgorithmUriButton.setIcon(resourceMap.getIcon("copyAlgorithmUriButton.icon")); // NOI18N
-    copyAlgorithmUriButton.setText(resourceMap.getString("copyAlgorithmUriButton.text")); // NOI18N
-    copyAlgorithmUriButton.setToolTipText(resourceMap.getString("copyAlgorithmUriButton.toolTipText")); // NOI18N
-    copyAlgorithmUriButton.setName("copyAlgorithmUriButton"); // NOI18N
-
-    algorithmDetailsButton.setIcon(resourceMap.getIcon("algorithmDetailsButton.icon")); // NOI18N
-    algorithmDetailsButton.setText(resourceMap.getString("algorithmDetailsButton.text")); // NOI18N
-    algorithmDetailsButton.setToolTipText(resourceMap.getString("algorithmDetailsButton.toolTipText")); // NOI18N
-    algorithmDetailsButton.setName("algorithmDetailsButton"); // NOI18N
-    algorithmDetailsButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            algorithmDetailsButtonActionPerformed(evt);
-        }
-    });
-
-    predictedFeatureHeadline.setFont(resourceMap.getFont("predictedFeatureHeadline.font")); // NOI18N
-    predictedFeatureHeadline.setText(resourceMap.getString("predictedFeatureHeadline.text")); // NOI18N
-    predictedFeatureHeadline.setName("predictedFeatureHeadline"); // NOI18N
-
-    predFeatureNameLabel.setText(resourceMap.getString("predFeatureNameLabel.text")); // NOI18N
-    predFeatureNameLabel.setName("predFeatureNameLabel"); // NOI18N
-
-    predictedFeatureNameValue.setText(resourceMap.getString("predictedFeatureNameValue.text")); // NOI18N
-    predictedFeatureNameValue.setToolTipText(resourceMap.getString("predictedFeatureNameValue.toolTipText")); // NOI18N
-    predictedFeatureNameValue.setName("predictedFeatureNameValue"); // NOI18N
-
-    copyPredFeatureNameButton.setIcon(resourceMap.getIcon("copyPredFeatureNameButton.icon")); // NOI18N
-    copyPredFeatureNameButton.setText(resourceMap.getString("copyPredFeatureNameButton.text")); // NOI18N
-    copyPredFeatureNameButton.setName("copyPredFeatureNameButton"); // NOI18N
-
-    predFeatureResourceLabel.setIcon(resourceMap.getIcon("predFeatureResourceLabel.icon")); // NOI18N
-    predFeatureResourceLabel.setText(resourceMap.getString("predFeatureResourceLabel.text")); // NOI18N
-    predFeatureResourceLabel.setName("predFeatureResourceLabel"); // NOI18N
-
-    predFeatureUriValue.setForeground(resourceMap.getColor("predFeatureUriValue.foreground")); // NOI18N
-    predFeatureUriValue.setText(resourceMap.getString("predFeatureUriValue.text")); // NOI18N
-    predFeatureUriValue.setName("predFeatureUriValue"); // NOI18N
-
-    copyPredFeatureUriButton.setIcon(resourceMap.getIcon("copyPredFeatureUriButton.icon")); // NOI18N
-    copyPredFeatureUriButton.setText(resourceMap.getString("copyPredFeatureUriButton.text")); // NOI18N
-    copyPredFeatureUriButton.setToolTipText(resourceMap.getString("copyPredFeatureUriButton.toolTipText")); // NOI18N
-    copyPredFeatureUriButton.setName("copyPredFeatureUriButton"); // NOI18N
-
-    predFeatureDetailsButton.setIcon(resourceMap.getIcon("predFeatureDetailsButton.icon")); // NOI18N
-    predFeatureDetailsButton.setText(resourceMap.getString("predFeatureDetailsButton.text")); // NOI18N
-    predFeatureDetailsButton.setToolTipText(resourceMap.getString("predFeatureDetailsButton.toolTipText")); // NOI18N
-    predFeatureDetailsButton.setName("predFeatureDetailsButton"); // NOI18N
-    predFeatureDetailsButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            predFeatureDetailsButtonActionPerformed(evt);
-        }
-    });
-
-    modelToolbar.setFloatable(false);
-    modelToolbar.setRollover(true);
-    modelToolbar.setName("modelToolbar"); // NOI18N
-
-    modelInfoToolButton.setIcon(resourceMap.getIcon("modelInfoToolButton.icon")); // NOI18N
-    modelInfoToolButton.setText(resourceMap.getString("modelInfoToolButton.text")); // NOI18N
-    modelInfoToolButton.setFocusable(false);
-    modelInfoToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    modelInfoToolButton.setName("modelInfoToolButton"); // NOI18N
-    modelInfoToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    modelInfoToolButton.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            modelInfoToolButtonMouseClicked(evt);
-        }
-    });
-    modelInfoToolButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            modelInfoToolButtonActionPerformed(evt);
-        }
-    });
-    modelToolbar.add(modelInfoToolButton);
-
-    algorithmInfoToolButton.setIcon(resourceMap.getIcon("algorithmInfoToolButton.icon")); // NOI18N
-    algorithmInfoToolButton.setText(resourceMap.getString("algorithmInfoToolButton.text")); // NOI18N
-    algorithmInfoToolButton.setFocusable(false);
-    algorithmInfoToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    algorithmInfoToolButton.setName("algorithmInfoToolButton"); // NOI18N
-    algorithmInfoToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    algorithmInfoToolButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            algorithmInfoToolButtonActionPerformed(evt);
-        }
-    });
-    modelToolbar.add(algorithmInfoToolButton);
-
-    predictedFeatureToolButton.setIcon(resourceMap.getIcon("predictedFeatureToolButton.icon")); // NOI18N
-    predictedFeatureToolButton.setText(resourceMap.getString("predictedFeatureToolButton.text")); // NOI18N
-    predictedFeatureToolButton.setFocusable(false);
-    predictedFeatureToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    predictedFeatureToolButton.setName("predictedFeatureToolButton"); // NOI18N
-    predictedFeatureToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    predictedFeatureToolButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            predictedFeatureToolButtonActionPerformed(evt);
-        }
-    });
-    modelToolbar.add(predictedFeatureToolButton);
-
-    dependentFeatureToolButton.setIcon(resourceMap.getIcon("dependentFeatureToolButton.icon")); // NOI18N
-    dependentFeatureToolButton.setText(resourceMap.getString("dependentFeatureToolButton.text")); // NOI18N
-    dependentFeatureToolButton.setFocusable(false);
-    dependentFeatureToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    dependentFeatureToolButton.setName("dependentFeatureToolButton"); // NOI18N
-    dependentFeatureToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    dependentFeatureToolButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            dependentFeatureToolButtonActionPerformed(evt);
-        }
-    });
-    modelToolbar.add(dependentFeatureToolButton);
-
-    qmrfReportHeader.setFont(resourceMap.getFont("qmrfReportHeader.font")); // NOI18N
-    qmrfReportHeader.setText(resourceMap.getString("qmrfReportHeader.text")); // NOI18N
-    qmrfReportHeader.setName("qmrfReportHeader"); // NOI18N
-
-    qmrfReportLabel.setText(resourceMap.getString("qmrfReportLabel.text")); // NOI18N
-    qmrfReportLabel.setName("qmrfReportLabel"); // NOI18N
-
-    qmrfReportTextField.setText(resourceMap.getString("qmrfReportTextField.text")); // NOI18N
-    qmrfReportTextField.setName("qmrfReportTextField"); // NOI18N
-
-    modelVersionHeader.setFont(resourceMap.getFont("modelVersionHeader.font")); // NOI18N
-    modelVersionHeader.setText(resourceMap.getString("modelVersionHeader.text")); // NOI18N
-    modelVersionHeader.setName("modelVersionHeader"); // NOI18N
-
-    modelVersionLabel.setText(resourceMap.getString("modelVersionLabel.text")); // NOI18N
-    modelVersionLabel.setName("modelVersionLabel"); // NOI18N
-
-    modelVersionScrollPane.setName("modelVersionScrollPane"); // NOI18N
-
-    modelVersionInfoTextArea.setColumns(20);
-    modelVersionInfoTextArea.setRows(5);
-    modelVersionInfoTextArea.setName("modelVersionInfoTextArea"); // NOI18N
-    modelVersionScrollPane.setViewportView(modelVersionInfoTextArea);
-
-    qmrfReportDiscussionScrollable.setName("qmrfReportDiscussionScrollable"); // NOI18N
-
-    qmrfReportDiscussionTextArea.setColumns(20);
-    qmrfReportDiscussionTextArea.setLineWrap(true);
-    qmrfReportDiscussionTextArea.setRows(5);
-    qmrfReportDiscussionTextArea.setName("qmrfReportDiscussionTextArea"); // NOI18N
-    qmrfReportDiscussionScrollable.setViewportView(qmrfReportDiscussionTextArea);
-
-    qmrfReportDiscussionLabel.setText(resourceMap.getString("qmrfReportDiscussionLabel.text")); // NOI18N
-    qmrfReportDiscussionLabel.setName("qmrfReportDiscussionLabel"); // NOI18N
-
-    modelDatePanel.setName("modelDatePanel"); // NOI18N
-
-    modelDateLabel.setText(resourceMap.getString("modelDateLabel.text")); // NOI18N
-    modelDateLabel.setName("modelDateLabel"); // NOI18N
-
-    modelYearLabel.setText(resourceMap.getString("modelYearLabel.text")); // NOI18N
-    modelYearLabel.setName("modelYearLabel"); // NOI18N
-
-    java.util.Calendar mcalendar = java.util.Calendar.getInstance();
-    int mcurrentYear = mcalendar.get(java.util.Calendar.YEAR);
-    int myearsLister = 30;
-    String[] myears = new String[myearsLister];
-    for (int i=0 ; i < myearsLister ; i++){
-        myears[i]=Integer.toString(mcurrentYear - i);
-    }
-    modelYearCombo.setModel(new javax.swing.DefaultComboBoxModel(myears));
-    modelYearCombo.setName("modelYearCombo"); // NOI18N
-
-    modelMonthLabel.setText(resourceMap.getString("modelMonthLabel.text")); // NOI18N
-    modelMonthLabel.setName("modelMonthLabel"); // NOI18N
-
-    String[] mmonths = {"January", "February",
-        "March", "April", "May", "June", "July",
-        "August", "September", "October", "November",
-        "December"};
-    modelMonthCombo.setModel(new javax.swing.DefaultComboBoxModel(mmonths));
-    modelMonthCombo.setName("modelMonthCombo"); // NOI18N
-    qprfMonthCombo.setSelectedItem(mmonths[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);
-
-    modelDayLabel.setText(resourceMap.getString("modelDayLabel.text")); // NOI18N
-    modelDayLabel.setName("modelDayLabel"); // NOI18N
-
-    java.util.ArrayList<String> mlistOfDays = new java.util.ArrayList<String>();
-    for (int i=1;i<=31;i++){
-        mlistOfDays.add(Integer.toString(i));
-    }
-    Object[] mselectableDays = mlistOfDays.toArray();
-    modelDayCombo.setModel(new javax.swing.DefaultComboBoxModel(mselectableDays));
-    modelDayCombo.setName("modelDayCombo"); // NOI18N
-
-    javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getActionMap(ReportInternalFrame.class, this);
-    modelCurrentDate.setAction(actionMap.get("enableDisableDate")); // NOI18N
-    modelCurrentDate.setText(resourceMap.getString("modelCurrentDate.text")); // NOI18N
-    modelCurrentDate.setToolTipText(resourceMap.getString("modelCurrentDate.toolTipText")); // NOI18N
-    modelCurrentDate.setName("modelCurrentDate"); // NOI18N
-    modelCurrentDate.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            modelCurrentDateActionPerformed(evt);
-        }
-    });
-
-    javax.swing.GroupLayout modelDatePanelLayout = new javax.swing.GroupLayout(modelDatePanel);
-    modelDatePanel.setLayout(modelDatePanelLayout);
-    modelDatePanelLayout.setHorizontalGroup(
-        modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(modelDatePanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(modelDateLabel)
-                .addGroup(modelDatePanelLayout.createSequentialGroup()
-                    .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(modelDayLabel)
-                        .addComponent(modelMonthLabel)
-                        .addComponent(modelYearLabel))
-                    .addGap(18, 18, 18)
-                    .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(modelDayCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(modelMonthCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(modelCurrentDate))
-            .addContainerGap(82, Short.MAX_VALUE))
-    );
-    modelDatePanelLayout.setVerticalGroup(
-        modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(modelDatePanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(modelDateLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(modelCurrentDate)
-            .addGap(26, 26, 26)
-            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(modelYearLabel)
-                .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(modelMonthLabel)
-                .addComponent(modelMonthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(modelDayLabel)
-                .addComponent(modelDayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(168, Short.MAX_VALUE))
-    );
-
-    javax.swing.GroupLayout modelInfoPanelLayout = new javax.swing.GroupLayout(modelInfoPanel);
-    modelInfoPanel.setLayout(modelInfoPanelLayout);
-    modelInfoPanelLayout.setHorizontalGroup(
-        modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                    .addComponent(modelAndTrainingDSHeader)
-                                    .addGap(434, 434, 434))
-                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addGap(86, 86, 86)
-                                            .addComponent(algorithmNameLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(qmrfReportLabel)
-                                                .addComponent(predFeatureNameLabel)
-                                                .addComponent(algorithmUriLabel)
-                                                .addComponent(predFeatureResourceLabel)
-                                                .addComponent(qmrfReportDiscussionLabel))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
-                                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(trainingDatasetLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(modelUriLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-                                                .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))))
-                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyModelUriButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(modelUriDetailsButton))
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyDatasetButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(datasetDetailsButton))))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(copyAlgorithmName)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyAlgorithmUriButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(algorithmDetailsButton))
-                                                .addComponent(copyPredFeatureNameButton)
-                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                                    .addComponent(copyPredFeatureUriButton)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(predFeatureDetailsButton)))
-                                            .addGap(42, 42, 42)))))
-                            .addGap(12, 12, 12))
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addComponent(trainingAlgorithmHeader)
-                            .addGap(545, 545, 545))
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addComponent(predictedFeatureHeadline)
-                            .addGap(564, 564, 564))
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addComponent(qmrfReportHeader)
-                            .addGap(540, 540, 540)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(modelVersionLabel)
-                        .addComponent(modelVersionHeader)
-                        .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(modelVersionScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(11, 11, 11))
-                .addComponent(modelToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-    modelInfoPanelLayout.setVerticalGroup(
-        modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-            .addComponent(modelToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                    .addComponent(modelAndTrainingDSHeader)
-                    .addGap(27, 27, 27)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(copyModelUriButton)
-                                .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(modelUriLabel)
-                                    .addComponent(modelUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(trainingDatasetLabel)
-                                    .addComponent(datasetValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(copyDatasetButton)))
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addComponent(modelUriDetailsButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(datasetDetailsButton)))
-                    .addGap(18, 18, 18)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                                    .addComponent(trainingAlgorithmHeader)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(algorithmNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(algorithmNameLabel)))
-                                .addComponent(copyAlgorithmName))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(copyAlgorithmUriButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(algorithmUriLabel)
-                                    .addComponent(algorithmUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(algorithmDetailsButton))
-                    .addGap(18, 18, 18)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addComponent(predictedFeatureHeadline)
-                            .addGap(18, 18, 18)
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(predFeatureNameLabel)
-                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(copyPredFeatureNameButton))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(predFeatureDetailsButton)
-                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(predFeatureResourceLabel)
-                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addComponent(qmrfReportHeader)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(qmrfReportTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(qmrfReportLabel)))
-                        .addComponent(copyPredFeatureUriButton))
-                    .addGap(12, 12, 12)
-                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(qmrfReportDiscussionLabel)
-                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(27, 27, 27))
-                .addGroup(modelInfoPanelLayout.createSequentialGroup()
-                    .addComponent(modelVersionHeader)
-                    .addGap(18, 18, 18)
-                    .addComponent(modelVersionLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(modelVersionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addContainerGap())
-    );
-
-    javax.swing.GroupLayout modelPanelLayout = new javax.swing.GroupLayout(modelPanel);
-    modelPanel.setLayout(modelPanelLayout);
-    modelPanelLayout.setHorizontalGroup(
-        modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(modelPanelLayout.createSequentialGroup()
-            .addComponent(modelInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
-    );
-    modelPanelLayout.setVerticalGroup(
-        modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(modelPanelLayout.createSequentialGroup()
-            .addComponent(modelInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(37, Short.MAX_VALUE))
-    );
-
-    basicTabbedPanel.addTab(resourceMap.getString("modelPanel.TabConstraints.tabTitle"), modelPanel); // NOI18N
-
-    applicabilityDomainPanel.setName("applicabilityDomainPanel"); // NOI18N
-
-    appDomainInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("appDomainInfoPanel.border.title"))); // NOI18N
-    appDomainInfoPanel.setName("appDomainInfoPanel"); // NOI18N
-
-    appDomAlgorithmNameLabel.setText(resourceMap.getString("appDomAlgorithmNameLabel.text")); // NOI18N
-    appDomAlgorithmNameLabel.setName("appDomAlgorithmNameLabel"); // NOI18N
-
-    addDomLinkLabel.setText(resourceMap.getString("addDomLinkLabel.text")); // NOI18N
-    addDomLinkLabel.setName("addDomLinkLabel"); // NOI18N
-
-    appDomainAlgorithmNameValue.setText(resourceMap.getString("appDomainAlgorithmNameValue.text")); // NOI18N
-    appDomainAlgorithmNameValue.setName("appDomainAlgorithmNameValue"); // NOI18N
-
-    appDomainURIValue.setForeground(resourceMap.getColor("appDomainURIValue.foreground")); // NOI18N
-    appDomainURIValue.setText(resourceMap.getString("appDomainURIValue.text")); // NOI18N
-    appDomainURIValue.setName("appDomainURIValue"); // NOI18N
-
-    javax.swing.GroupLayout appDomainInfoPanelLayout = new javax.swing.GroupLayout(appDomainInfoPanel);
-    appDomainInfoPanel.setLayout(appDomainInfoPanelLayout);
-    appDomainInfoPanelLayout.setHorizontalGroup(
-        appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(appDomainInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(addDomLinkLabel)
-                .addComponent(appDomAlgorithmNameLabel))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(appDomainURIValue)
-                .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
-            .addContainerGap(215, Short.MAX_VALUE))
-    );
-    appDomainInfoPanelLayout.setVerticalGroup(
-        appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(appDomainInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(appDomAlgorithmNameLabel)
-                .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(18, 18, 18)
-            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(addDomLinkLabel)
-                .addComponent(appDomainURIValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    addDomainsDiscussionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("addDomainsDiscussionPanel.border.title"))); // NOI18N
-    addDomainsDiscussionPanel.setName("addDomainsDiscussionPanel"); // NOI18N
-
-    addDomainResultLabel.setText(resourceMap.getString("addDomainResultLabel.text")); // NOI18N
-    addDomainResultLabel.setName("addDomainResultLabel"); // NOI18N
-
-    applicabilityDomainValue.setIcon(resourceMap.getIcon("applicabilityDomainValue.icon")); // NOI18N
-    applicabilityDomainValue.setText(resourceMap.getString("applicabilityDomainValue.text")); // NOI18N
-    applicabilityDomainValue.setToolTipText(resourceMap.getString("applicabilityDomainValue.toolTipText")); // NOI18N
-    applicabilityDomainValue.setName("applicabilityDomainValue"); // NOI18N
-
-    domainChooserComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Metabolic Domain", "Structural Fragment Domain", "Descriptor Domain", "Mechanism Domain" }));
-    domainChooserComboBox.setName("domainChooserComboBox"); // NOI18N
-    domainChooserComboBox.addItemListener(new java.awt.event.ItemListener() {
-        public void itemStateChanged(java.awt.event.ItemEvent evt) {
-            domainChooserComboBoxItemStateChanged(evt);
-        }
-    });
-
-    chooseDomainLabel.setText(resourceMap.getString("chooseDomainLabel.text")); // NOI18N
-    chooseDomainLabel.setName("chooseDomainLabel"); // NOI18N
-
-    domainCardPanel.setName("domainCardPanel"); // NOI18N
-    domainCardPanel.setLayout(new java.awt.CardLayout());
-
-    jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-    metabolicDomainText.setBackground(resourceMap.getColor("metabolicDomainText.background")); // NOI18N
-    metabolicDomainText.setColumns(20);
-    metabolicDomainText.setLineWrap(true);
-    metabolicDomainText.setRows(5);
-    metabolicDomainText.setName("metabolicDomainText"); // NOI18N
-    jScrollPane1.setViewportView(metabolicDomainText);
-
-    domainCardPanel.add(jScrollPane1, "Metabolic Domain");
-
-    jScrollPane2.setName("jScrollPane2"); // NOI18N
-
-    structuralFragmentDomainText.setBackground(resourceMap.getColor("structuralFragmentDomainText.background")); // NOI18N
-    structuralFragmentDomainText.setColumns(20);
-    structuralFragmentDomainText.setLineWrap(true);
-    structuralFragmentDomainText.setRows(5);
-    structuralFragmentDomainText.setName("structuralFragmentDomainText"); // NOI18N
-    jScrollPane2.setViewportView(structuralFragmentDomainText);
-
-    domainCardPanel.add(jScrollPane2, "Structural Fragment Domain");
-
-    jScrollPane3.setName("jScrollPane3"); // NOI18N
-
-    descriptorDomainText.setBackground(resourceMap.getColor("descriptorDomainText.background")); // NOI18N
-    descriptorDomainText.setColumns(20);
-    descriptorDomainText.setLineWrap(true);
-    descriptorDomainText.setRows(5);
-    descriptorDomainText.setName("descriptorDomainText"); // NOI18N
-    jScrollPane3.setViewportView(descriptorDomainText);
-
-    domainCardPanel.add(jScrollPane3, "Descriptor Domain");
-
-    jScrollPane4.setName("jScrollPane4"); // NOI18N
-
-    mechanismDomainText.setBackground(resourceMap.getColor("mechanismDomainText.background")); // NOI18N
-    mechanismDomainText.setColumns(20);
-    mechanismDomainText.setLineWrap(true);
-    mechanismDomainText.setRows(5);
-    mechanismDomainText.setName("mechanismDomainText"); // NOI18N
-    jScrollPane4.setViewportView(mechanismDomainText);
-
-    domainCardPanel.add(jScrollPane4, "Mechanism Domain");
-
-    javax.swing.GroupLayout addDomainsDiscussionPanelLayout = new javax.swing.GroupLayout(addDomainsDiscussionPanel);
-    addDomainsDiscussionPanel.setLayout(addDomainsDiscussionPanelLayout);
-    addDomainsDiscussionPanelLayout.setHorizontalGroup(
-        addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
-                    .addComponent(addDomainResultLabel)
-                    .addGap(18, 18, 18)
-                    .addComponent(applicabilityDomainValue))
-                .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
-                    .addComponent(chooseDomainLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(48, 48, 48)
-            .addComponent(domainCardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(242, Short.MAX_VALUE))
-    );
-    addDomainsDiscussionPanelLayout.setVerticalGroup(
-        addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
-            .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(domainCardPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addDomainsDiscussionPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addDomainResultLabel)
-                        .addComponent(applicabilityDomainValue))
-                    .addGap(18, 18, 18)
-                    .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(chooseDomainLabel)
-                        .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addContainerGap())
-    );
-
-    structuralAnaloguesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("structuralAnaloguesPanel.border.title"))); // NOI18N
-    structuralAnaloguesPanel.setName("structuralAnaloguesPanel"); // NOI18N
-
-    structuralAnaloguesToolbar.setFloatable(false);
-    structuralAnaloguesToolbar.setRollover(true);
-    structuralAnaloguesToolbar.setName("structuralAnaloguesToolbar"); // NOI18N
-
-    compoundWizardButton.setIcon(resourceMap.getIcon("compoundWizardButton.icon")); // NOI18N
-    compoundWizardButton.setText(resourceMap.getString("compoundWizardButton.text")); // NOI18N
-    compoundWizardButton.setFocusable(false);
-    compoundWizardButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    compoundWizardButton.setName("compoundWizardButton"); // NOI18N
-    compoundWizardButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    compoundWizardButton.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            compoundWizardButtonActionPerformed(evt);
-        }
-    });
-    structuralAnaloguesToolbar.add(compoundWizardButton);
-
-    structAnalToolbarSeparator.setName("structAnalToolbarSeparator"); // NOI18N
-    structuralAnaloguesToolbar.add(structAnalToolbarSeparator);
-
-    removeStructuralAnalogue.setIcon(resourceMap.getIcon("removeStructuralAnalogue.icon")); // NOI18N
-    removeStructuralAnalogue.setText(resourceMap.getString("removeStructuralAnalogue.text")); // NOI18N
-    removeStructuralAnalogue.setFocusable(false);
-    removeStructuralAnalogue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    removeStructuralAnalogue.setName("removeStructuralAnalogue"); // NOI18N
-    removeStructuralAnalogue.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    removeStructuralAnalogue.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            removeStructuralAnalogueActionPerformed(evt);
-        }
-    });
-    structuralAnaloguesToolbar.add(removeStructuralAnalogue);
-
-    clearAllStructuralAnalogues.setIcon(resourceMap.getIcon("clearAllStructuralAnalogues.icon")); // NOI18N
-    clearAllStructuralAnalogues.setText(resourceMap.getString("clearAllStructuralAnalogues.text")); // NOI18N
-    clearAllStructuralAnalogues.setFocusable(false);
-    clearAllStructuralAnalogues.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    clearAllStructuralAnalogues.setName("clearAllStructuralAnalogues"); // NOI18N
-    clearAllStructuralAnalogues.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    clearAllStructuralAnalogues.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            clearAllStructuralAnaloguesActionPerformed(evt);
-        }
-    });
-    structuralAnaloguesToolbar.add(clearAllStructuralAnalogues);
-
-    structuralAnaloguesSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
-    structuralAnaloguesSeparator.setName("structuralAnaloguesSeparator"); // NOI18N
-
-    jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
-    jLabel9.setName("jLabel9"); // NOI18N
-
-    jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-    jSeparator6.setName("jSeparator6"); // NOI18N
-
-    analoguesCommentsLabel.setText(resourceMap.getString("analoguesCommentsLabel.text")); // NOI18N
-    analoguesCommentsLabel.setToolTipText(resourceMap.getString("analoguesCommentsLabel.toolTipText")); // NOI18N
-    analoguesCommentsLabel.setName("analoguesCommentsLabel"); // NOI18N
-
-    analoguesPanel.setName("analoguesPanel"); // NOI18N
-
-    analoguesTableScrollable.setName("analoguesTableScrollable"); // NOI18N
-
-    analoguesTable.setAutoCreateRowSorter(true);
-    analoguesTable.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-
-        },
-        new String [] {
-            "Compound Name", "SMILES", "CAS-RN"
-        }
-    ));
-    analoguesTable.setName("analoguesTable"); // NOI18N
-    analoguesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    analoguesTable.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            analoguesTableMouseClicked(evt);
-        }
-    });
-    analoguesTableScrollable.setViewportView(analoguesTable);
-    analoguesTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title0")); // NOI18N
-    analoguesTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title1")); // NOI18N
-    analoguesTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title2")); // NOI18N
-
-    javax.swing.GroupLayout analoguesPanelLayout = new javax.swing.GroupLayout(analoguesPanel);
-    analoguesPanel.setLayout(analoguesPanelLayout);
-    analoguesPanelLayout.setHorizontalGroup(
-        analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 314, Short.MAX_VALUE)
-        .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(analoguesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                .addContainerGap()))
-    );
-    analoguesPanelLayout.setVerticalGroup(
-        analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 239, Short.MAX_VALUE)
-        .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(analoguesPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                .addContainerGap()))
-    );
-
-    analoguesCommentsScrollable.setName("analoguesCommentsScrollable"); // NOI18N
-
-    analoguesCommentsTextArea.setColumns(20);
-    analoguesCommentsTextArea.setLineWrap(true);
-    analoguesCommentsTextArea.setRows(5);
-    analoguesCommentsTextArea.setName("analoguesCommentsTextArea"); // NOI18N
-    analoguesCommentsScrollable.setViewportView(analoguesCommentsTextArea);
-
-    analoguesImageCards.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-    analoguesImageCards.setName("analoguesImageCards"); // NOI18N
-    analoguesImageCards.setLayout(new java.awt.CardLayout());
-
-    javax.swing.GroupLayout structuralAnaloguesPanelLayout = new javax.swing.GroupLayout(structuralAnaloguesPanel);
-    structuralAnaloguesPanel.setLayout(structuralAnaloguesPanelLayout);
-    structuralAnaloguesPanelLayout.setHorizontalGroup(
-        structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(analoguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
-                    .addGap(27, 27, 27)
-                    .addComponent(analoguesImageCards, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel9)))
-            .addGap(18, 18, 18)
-            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                .addComponent(analoguesCommentsLabel))
-            .addContainerGap())
-        .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
-    );
-    structuralAnaloguesPanelLayout.setVerticalGroup(
-        structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
-            .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(analoguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel9)
-                    .addGap(12, 12, 12)
-                    .addComponent(analoguesImageCards, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
-                    .addComponent(analoguesCommentsLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-
-    javax.swing.GroupLayout applicabilityDomainPanelLayout = new javax.swing.GroupLayout(applicabilityDomainPanel);
-    applicabilityDomainPanel.setLayout(applicabilityDomainPanelLayout);
-    applicabilityDomainPanelLayout.setHorizontalGroup(
-        applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, applicabilityDomainPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(appDomainInfoPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-    applicabilityDomainPanelLayout.setVerticalGroup(
-        applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(applicabilityDomainPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(appDomainInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(72, Short.MAX_VALUE))
-    );
-
-    basicTabbedPanel.addTab(resourceMap.getString("applicabilityDomainPanel.TabConstraints.tabTitle"), applicabilityDomainPanel); // NOI18N
-
-    predictionPanel.setName("predictionPanel"); // NOI18N
-
-    predictionInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("predictionInfoPanel.border.title"))); // NOI18N
-    predictionInfoPanel.setName("predictionInfoPanel"); // NOI18N
-
-    predictionValueLabel.setText(resourceMap.getString("predictionValueLabel.text")); // NOI18N
-    predictionValueLabel.setName("predictionValueLabel"); // NOI18N
-
-    predictionValueTextField.setForeground(resourceMap.getColor("predictionValueTextField.foreground")); // NOI18N
-    predictionValueTextField.setText(resourceMap.getString("predictionValueTextField.text")); // NOI18N
-    predictionValueTextField.setName("predictionValueTextField"); // NOI18N
-
-    predictionUnitsTextField.setForeground(resourceMap.getColor("predictionUnitsTextField.foreground")); // NOI18N
-    predictionUnitsTextField.setText(resourceMap.getString("predictionUnitsTextField.text")); // NOI18N
-    predictionUnitsTextField.setToolTipText(resourceMap.getString("predictionUnitsTextField.toolTipText")); // NOI18N
-    predictionUnitsTextField.setName("predictionUnitsTextField"); // NOI18N
-
-    predictionUncertaintyLabel.setLabelFor(predictionUncertaintyTextArea);
-    predictionUncertaintyLabel.setText(resourceMap.getString("predictionUncertaintyLabel.text")); // NOI18N
-    predictionUncertaintyLabel.setName("predictionUncertaintyLabel"); // NOI18N
-
-    predictionUncertaintyScrollable.setName("predictionUncertaintyScrollable"); // NOI18N
-
-    predictionUncertaintyTextArea.setColumns(20);
-    predictionUncertaintyTextArea.setLineWrap(true);
-    predictionUncertaintyTextArea.setRows(5);
-    predictionUncertaintyTextArea.setName("predictionUncertaintyTextArea"); // NOI18N
-    predictionUncertaintyScrollable.setViewportView(predictionUncertaintyTextArea);
-
-    predictionCommentLabel.setLabelFor(predictionCommentTextArea);
-    predictionCommentLabel.setText(resourceMap.getString("predictionCommentLabel.text")); // NOI18N
-    predictionCommentLabel.setName("predictionCommentLabel"); // NOI18N
-
-    predictionCommentScrollable.setName("predictionCommentScrollable"); // NOI18N
-
-    predictionCommentTextArea.setColumns(20);
-    predictionCommentTextArea.setLineWrap(true);
-    predictionCommentTextArea.setRows(5);
-    predictionCommentTextArea.setName("predictionCommentTextArea"); // NOI18N
-    predictionCommentScrollable.setViewportView(predictionCommentTextArea);
-
-    experimentalValueLabel.setText(resourceMap.getString("experimentalValueLabel.text")); // NOI18N
-    experimentalValueLabel.setName("experimentalValueLabel"); // NOI18N
-
-    exprerimentalValueTextField.setForeground(resourceMap.getColor("exprerimentalValueTextField.foreground")); // NOI18N
-    exprerimentalValueTextField.setText(resourceMap.getString("exprerimentalValueTextField.text")); // NOI18N
-    exprerimentalValueTextField.setName("exprerimentalValueTextField"); // NOI18N
-
-    experimentalValueUnitsTextField.setText(resourceMap.getString("experimentalValueUnitsTextField.text")); // NOI18N
-    experimentalValueUnitsTextField.setToolTipText(resourceMap.getString("experimentalValueUnitsTextField.toolTipText")); // NOI18N
-    experimentalValueUnitsTextField.setName("experimentalValueUnitsTextField"); // NOI18N
-
-    javax.swing.GroupLayout predictionInfoPanelLayout = new javax.swing.GroupLayout(predictionInfoPanel);
-    predictionInfoPanel.setLayout(predictionInfoPanelLayout);
-    predictionInfoPanelLayout.setHorizontalGroup(
-        predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(predictionInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(predictionCommentScrollable, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, predictionInfoPanelLayout.createSequentialGroup()
-                        .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(experimentalValueLabel)
-                            .addComponent(predictionValueLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(exprerimentalValueTextField)
-                            .addComponent(predictionValueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(experimentalValueUnitsTextField)
-                            .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))))
-                .addComponent(predictionCommentLabel))
-            .addGap(70, 70, 70)
-            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(predictionUncertaintyLabel)
-                .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
-            .addContainerGap())
-    );
-    predictionInfoPanelLayout.setVerticalGroup(
-        predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(predictionInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(predictionValueLabel)
-                .addComponent(predictionValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(experimentalValueLabel)
-                .addComponent(exprerimentalValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(experimentalValueUnitsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(52, 52, 52)
-            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(predictionCommentLabel)
-                .addComponent(predictionUncertaintyLabel))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addComponent(predictionCommentScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    javax.swing.GroupLayout predictionPanelLayout = new javax.swing.GroupLayout(predictionPanel);
-    predictionPanel.setLayout(predictionPanelLayout);
-    predictionPanelLayout.setHorizontalGroup(
-        predictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(predictionPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(predictionInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
-    );
-    predictionPanelLayout.setVerticalGroup(
-        predictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(predictionPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(predictionInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(382, Short.MAX_VALUE))
-    );
-
-    basicTabbedPanel.addTab(resourceMap.getString("predictionPanel.TabConstraints.tabTitle"), predictionPanel); // NOI18N
 
     qprfReport.setName("qprfReport"); // NOI18N
 
@@ -2218,6 +1250,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     qprfDayCombo.setSelectedIndex(java.util.Calendar.getInstance().get(java.util.Calendar.DATE)-1);
     qprfDayCombo.setName("qprfDayCombo"); // NOI18N
 
+    javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getActionMap(ReportInternalFrame.class, this);
     useCurrentDateForReport.setAction(actionMap.get("enableDisableDate")); // NOI18N
     useCurrentDateForReport.setText(resourceMap.getString("useCurrentDateForReport.text")); // NOI18N
     useCurrentDateForReport.setToolTipText(resourceMap.getString("useCurrentDateForReport.toolTipText")); // NOI18N
@@ -2265,218 +1298,35 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addContainerGap(22, Short.MAX_VALUE))
     );
 
+    jLabel6.setIcon(resourceMap.getIcon("jLabel6.icon")); // NOI18N
+    jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+    jLabel6.setName("jLabel6"); // NOI18N
+
     javax.swing.GroupLayout generalInfoPanelLayout = new javax.swing.GroupLayout(generalInfoPanel);
     generalInfoPanel.setLayout(generalInfoPanelLayout);
     generalInfoPanelLayout.setHorizontalGroup(
         generalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generalInfoPanelLayout.createSequentialGroup()
+        .addGroup(generalInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(generalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(datePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(authorsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(generalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(datePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(authorsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap())
     );
     generalInfoPanelLayout.setVerticalGroup(
         generalInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(generalInfoPanelLayout.createSequentialGroup()
-            .addGap(27, 27, 27)
+            .addGap(16, 16, 16)
+            .addComponent(jLabel6)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(authorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(30, 30, 30)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(datePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(267, Short.MAX_VALUE))
+            .addContainerGap(285, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab(resourceMap.getString("generalInfoPanel.TabConstraints.tabTitle"), generalInfoPanel); // NOI18N
-
-    adequacyPanel.setName("adequacyPanel"); // NOI18N
-
-    adequacyHintLabel.setIcon(resourceMap.getIcon("adequacyHintLabel.icon")); // NOI18N
-    adequacyHintLabel.setText(resourceMap.getString("adequacyHintLabel.text")); // NOI18N
-    adequacyHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    adequacyHintLabel.setName("adequacyHintLabel"); // NOI18N
-    adequacyHintLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            adequacyHintLabelMouseClicked(evt);
-        }
-    });
-
-    adequacyInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("adequacyInfoPanel.border.title"))); // NOI18N
-    adequacyInfoPanel.setName("adequacyInfoPanel"); // NOI18N
-
-    regulatoryPurposeLabel.setText(resourceMap.getString("regulatoryPurposeLabel.text")); // NOI18N
-    regulatoryPurposeLabel.setName("regulatoryPurposeLabel"); // NOI18N
-
-    regulatoryPurposeHintLabel.setIcon(resourceMap.getIcon("regulatoryPurposeHintLabel.icon")); // NOI18N
-    regulatoryPurposeHintLabel.setText(resourceMap.getString("regulatoryPurposeHintLabel.text")); // NOI18N
-    regulatoryPurposeHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    regulatoryPurposeHintLabel.setName("regulatoryPurposeHintLabel"); // NOI18N
-    regulatoryPurposeHintLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            regulatoryPurposeHintLabelMouseClicked(evt);
-        }
-    });
-
-    regulatoryInterprLabel.setText(resourceMap.getString("regulatoryInterprLabel.text")); // NOI18N
-    regulatoryInterprLabel.setName("regulatoryInterprLabel"); // NOI18N
-
-    outcomeLabel.setText(resourceMap.getString("outcomeLabel.text")); // NOI18N
-    outcomeLabel.setName("outcomeLabel"); // NOI18N
-
-    conclusionLabel.setLabelFor(qprfReportConclusionTextArea);
-    conclusionLabel.setText(resourceMap.getString("conclusionLabel.text")); // NOI18N
-    conclusionLabel.setName("conclusionLabel"); // NOI18N
-
-    regulatoryPurposeScrollable.setName("regulatoryPurposeScrollable"); // NOI18N
-
-    regulatoryPurposeTextArea.setColumns(20);
-    regulatoryPurposeTextArea.setLineWrap(true);
-    regulatoryPurposeTextArea.setRows(5);
-    regulatoryPurposeTextArea.setName("regulatoryPurposeTextArea"); // NOI18N
-    regulatoryPurposeScrollable.setViewportView(regulatoryPurposeTextArea);
-
-    regulInterprScrollable.setName("regulInterprScrollable"); // NOI18N
-
-    regulInterprTextArea.setColumns(20);
-    regulInterprTextArea.setLineWrap(true);
-    regulInterprTextArea.setRows(5);
-    regulInterprTextArea.setName("regulInterprTextArea"); // NOI18N
-    regulInterprScrollable.setViewportView(regulInterprTextArea);
-
-    qprfOutcomeScrollable.setName("qprfOutcomeScrollable"); // NOI18N
-
-    qprfOutcomeTextArea.setColumns(20);
-    qprfOutcomeTextArea.setLineWrap(true);
-    qprfOutcomeTextArea.setRows(5);
-    qprfOutcomeTextArea.setName("qprfOutcomeTextArea"); // NOI18N
-    qprfOutcomeScrollable.setViewportView(qprfOutcomeTextArea);
-
-    qprfReportConclusionScollable.setName("qprfReportConclusionScollable"); // NOI18N
-
-    qprfReportConclusionTextArea.setColumns(20);
-    qprfReportConclusionTextArea.setLineWrap(true);
-    qprfReportConclusionTextArea.setRows(5);
-    qprfReportConclusionTextArea.setName("qprfReportConclusionTextArea"); // NOI18N
-    qprfReportConclusionScollable.setViewportView(qprfReportConclusionTextArea);
-
-    regulatoryInterprHintLabel.setIcon(resourceMap.getIcon("regulatoryInterprHintLabel.icon")); // NOI18N
-    regulatoryInterprHintLabel.setText(resourceMap.getString("regulatoryInterprHintLabel.text")); // NOI18N
-    regulatoryInterprHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    regulatoryInterprHintLabel.setName("regulatoryInterprHintLabel"); // NOI18N
-    regulatoryInterprHintLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            regulatoryInterprHintLabelMouseClicked(evt);
-        }
-    });
-
-    outcomeHintLabel.setIcon(resourceMap.getIcon("outcomeHintLabel.icon")); // NOI18N
-    outcomeHintLabel.setText(resourceMap.getString("outcomeHintLabel.text")); // NOI18N
-    outcomeHintLabel.setName("outcomeHintLabel"); // NOI18N
-
-    conclusionHintLabel.setIcon(resourceMap.getIcon("conclusionHintLabel.icon")); // NOI18N
-    conclusionHintLabel.setLabelFor(conclusionLabel);
-    conclusionHintLabel.setText(resourceMap.getString("conclusionHintLabel.text")); // NOI18N
-    conclusionHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    conclusionHintLabel.setName("conclusionHintLabel"); // NOI18N
-
-    adequacyInfoIndicatorLabel.setIcon(resourceMap.getIcon("adequacyInfoIndicatorLabel.icon")); // NOI18N
-    adequacyInfoIndicatorLabel.setText(resourceMap.getString("adequacyInfoIndicatorLabel.text")); // NOI18N
-    adequacyInfoIndicatorLabel.setName("adequacyInfoIndicatorLabel"); // NOI18N
-
-    adequacyBottomMessageLabel.setText(resourceMap.getString("adequacyBottomMessageLabel.text")); // NOI18N
-    adequacyBottomMessageLabel.setName("adequacyBottomMessageLabel"); // NOI18N
-
-    javax.swing.GroupLayout adequacyInfoPanelLayout = new javax.swing.GroupLayout(adequacyInfoPanel);
-    adequacyInfoPanel.setLayout(adequacyInfoPanelLayout);
-    adequacyInfoPanelLayout.setHorizontalGroup(
-        adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
-                    .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
-                            .addComponent(regulatoryPurposeLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(regulatoryPurposeHintLabel)
-                            .addGap(267, 267, 267))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyInfoPanelLayout.createSequentialGroup()
-                            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adequacyInfoPanelLayout.createSequentialGroup()
-                                    .addComponent(outcomeLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(outcomeHintLabel))
-                                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
-                            .addGap(27, 27, 27)))
-                    .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(qprfReportConclusionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-                        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
-                            .addComponent(conclusionLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(conclusionHintLabel))
-                        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
-                            .addComponent(regulatoryInterprLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(regulatoryInterprHintLabel))
-                        .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)))
-                .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
-                    .addComponent(adequacyInfoIndicatorLabel)
-                    .addGap(18, 18, 18)
-                    .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)))
-            .addContainerGap())
-    );
-    adequacyInfoPanelLayout.setVerticalGroup(
-        adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyInfoPanelLayout.createSequentialGroup()
-            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(regulatoryPurposeHintLabel)
-                .addComponent(regulatoryInterprHintLabel)
-                .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(regulatoryInterprLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regulatoryPurposeLabel)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
-            .addGap(18, 18, 18)
-            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(outcomeLabel)
-                .addComponent(conclusionLabel)
-                .addComponent(outcomeHintLabel)
-                .addComponent(conclusionHintLabel))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(qprfReportConclusionScollable)
-                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
-            .addGap(30, 30, 30)
-            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(adequacyInfoIndicatorLabel)
-                .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap())
-    );
-
-    javax.swing.GroupLayout adequacyPanelLayout = new javax.swing.GroupLayout(adequacyPanel);
-    adequacyPanel.setLayout(adequacyPanelLayout);
-    adequacyPanelLayout.setHorizontalGroup(
-        adequacyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(adequacyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(adequacyInfoPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(adequacyHintLabel))
-            .addContainerGap())
-    );
-    adequacyPanelLayout.setVerticalGroup(
-        adequacyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(adequacyPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(adequacyHintLabel)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(adequacyInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(54, Short.MAX_VALUE))
-    );
-
-    qprfInfoTabbedSubPanel.addTab(resourceMap.getString("adequacyPanel.TabConstraints.tabTitle"), adequacyPanel); // NOI18N
 
     otherInfoPanel.setName("otherInfoPanel"); // NOI18N
 
@@ -2596,21 +1446,29 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
+    jLabel7.setIcon(resourceMap.getIcon("jLabel7.icon")); // NOI18N
+    jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+    jLabel7.setName("jLabel7"); // NOI18N
+
     javax.swing.GroupLayout otherInfoPanelLayout = new javax.swing.GroupLayout(otherInfoPanel);
     otherInfoPanel.setLayout(otherInfoPanelLayout);
     otherInfoPanelLayout.setHorizontalGroup(
         otherInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(otherInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(metaInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(otherInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(metaInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7))
             .addContainerGap())
     );
     otherInfoPanelLayout.setVerticalGroup(
         otherInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(otherInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
+            .addGap(17, 17, 17)
+            .addComponent(jLabel7)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(metaInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(234, Short.MAX_VALUE))
+            .addContainerGap(218, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab("Other", otherInfoPanel);
@@ -2623,29 +1481,1237 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     );
     qprfReportLayout.setVerticalGroup(
         qprfReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("qprfReport.TabConstraints.tabTitle"), qprfReport); // NOI18N
+
+    reportPredictionPanel.setName("reportPredictionPanel"); // NOI18N
+
+    jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+
+    modelPanel.setName("modelPanel"); // NOI18N
+
+    modelInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("modelInfoPanel.border.title"))); // NOI18N
+    modelInfoPanel.setName("modelInfoPanel"); // NOI18N
+
+    modelUriLabel.setFont(resourceMap.getFont("modelUriLabel.font")); // NOI18N
+    modelUriLabel.setIcon(resourceMap.getIcon("modelUriLabel.icon")); // NOI18N
+    modelUriLabel.setText(resourceMap.getString("modelUriLabel.text")); // NOI18N
+    modelUriLabel.setName("modelUriLabel"); // NOI18N
+
+    modelUriValue.setForeground(resourceMap.getColor("modelUriValue.foreground")); // NOI18N
+    modelUriValue.setText(resourceMap.getString("modelUriValue.text")); // NOI18N
+    modelUriValue.setName("modelUriValue"); // NOI18N
+
+    copyModelUriButton.setIcon(resourceMap.getIcon("copyModelUriButton.icon")); // NOI18N
+    copyModelUriButton.setText(resourceMap.getString("copyModelUriButton.text")); // NOI18N
+    copyModelUriButton.setToolTipText(resourceMap.getString("copyModelUriButton.toolTipText")); // NOI18N
+    copyModelUriButton.setName("copyModelUriButton"); // NOI18N
+
+    trainingDatasetLabel.setIcon(resourceMap.getIcon("trainingDatasetLabel.icon")); // NOI18N
+    trainingDatasetLabel.setText(resourceMap.getString("trainingDatasetLabel.text")); // NOI18N
+    trainingDatasetLabel.setName("trainingDatasetLabel"); // NOI18N
+
+    datasetValue.setForeground(resourceMap.getColor("datasetValue.foreground")); // NOI18N
+    datasetValue.setText(resourceMap.getString("datasetValue.text")); // NOI18N
+    datasetValue.setName("datasetValue"); // NOI18N
+
+    copyDatasetButton.setIcon(resourceMap.getIcon("copyDatasetButton.icon")); // NOI18N
+    copyDatasetButton.setText(resourceMap.getString("copyDatasetButton.text")); // NOI18N
+    copyDatasetButton.setToolTipText(resourceMap.getString("copyDatasetButton.toolTipText")); // NOI18N
+    copyDatasetButton.setName("copyDatasetButton"); // NOI18N
+
+    modelAndTrainingDSHeader.setFont(resourceMap.getFont("modelAndTrainingDSHeader.font")); // NOI18N
+    modelAndTrainingDSHeader.setText(resourceMap.getString("modelAndTrainingDSHeader.text")); // NOI18N
+    modelAndTrainingDSHeader.setName("modelAndTrainingDSHeader"); // NOI18N
+
+    trainingAlgorithmHeader.setFont(resourceMap.getFont("trainingAlgorithmHeader.font")); // NOI18N
+    trainingAlgorithmHeader.setText(resourceMap.getString("trainingAlgorithmHeader.text")); // NOI18N
+    trainingAlgorithmHeader.setName("trainingAlgorithmHeader"); // NOI18N
+
+    algorithmNameLabel.setText(resourceMap.getString("algorithmNameLabel.text")); // NOI18N
+    algorithmNameLabel.setName("algorithmNameLabel"); // NOI18N
+
+    modelUriDetailsButton.setIcon(resourceMap.getIcon("modelUriDetailsButton.icon")); // NOI18N
+    modelUriDetailsButton.setText(resourceMap.getString("modelUriDetailsButton.text")); // NOI18N
+    modelUriDetailsButton.setToolTipText(resourceMap.getString("modelUriDetailsButton.toolTipText")); // NOI18N
+    modelUriDetailsButton.setName("modelUriDetailsButton"); // NOI18N
+    modelUriDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modelUriDetailsButtonActionPerformed(evt);
+        }
+    });
+
+    datasetDetailsButton.setIcon(resourceMap.getIcon("datasetDetailsButton.icon")); // NOI18N
+    datasetDetailsButton.setText(resourceMap.getString("datasetDetailsButton.text")); // NOI18N
+    datasetDetailsButton.setToolTipText(resourceMap.getString("datasetDetailsButton.toolTipText")); // NOI18N
+    datasetDetailsButton.setName("datasetDetailsButton"); // NOI18N
+
+    algorithmNameValue.setText(resourceMap.getString("algorithmNameValue.text")); // NOI18N
+    algorithmNameValue.setName("algorithmNameValue"); // NOI18N
+
+    copyAlgorithmName.setIcon(resourceMap.getIcon("copyAlgorithmName.icon")); // NOI18N
+    copyAlgorithmName.setText(resourceMap.getString("copyAlgorithmName.text")); // NOI18N
+    copyAlgorithmName.setToolTipText(resourceMap.getString("copyAlgorithmName.toolTipText")); // NOI18N
+    copyAlgorithmName.setName("copyAlgorithmName"); // NOI18N
+
+    algorithmUriLabel.setIcon(resourceMap.getIcon("algorithmUriLabel.icon")); // NOI18N
+    algorithmUriLabel.setText(resourceMap.getString("algorithmUriLabel.text")); // NOI18N
+    algorithmUriLabel.setName("algorithmUriLabel"); // NOI18N
+
+    algorithmUriValue.setForeground(resourceMap.getColor("algorithmUriValue.foreground")); // NOI18N
+    algorithmUriValue.setText(resourceMap.getString("algorithmUriValue.text")); // NOI18N
+    algorithmUriValue.setName("algorithmUriValue"); // NOI18N
+
+    copyAlgorithmUriButton.setIcon(resourceMap.getIcon("copyAlgorithmUriButton.icon")); // NOI18N
+    copyAlgorithmUriButton.setText(resourceMap.getString("copyAlgorithmUriButton.text")); // NOI18N
+    copyAlgorithmUriButton.setToolTipText(resourceMap.getString("copyAlgorithmUriButton.toolTipText")); // NOI18N
+    copyAlgorithmUriButton.setName("copyAlgorithmUriButton"); // NOI18N
+
+    algorithmDetailsButton.setIcon(resourceMap.getIcon("algorithmDetailsButton.icon")); // NOI18N
+    algorithmDetailsButton.setText(resourceMap.getString("algorithmDetailsButton.text")); // NOI18N
+    algorithmDetailsButton.setToolTipText(resourceMap.getString("algorithmDetailsButton.toolTipText")); // NOI18N
+    algorithmDetailsButton.setName("algorithmDetailsButton"); // NOI18N
+    algorithmDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            algorithmDetailsButtonActionPerformed(evt);
+        }
+    });
+
+    predictedFeatureHeadline.setFont(resourceMap.getFont("predictedFeatureHeadline.font")); // NOI18N
+    predictedFeatureHeadline.setText(resourceMap.getString("predictedFeatureHeadline.text")); // NOI18N
+    predictedFeatureHeadline.setName("predictedFeatureHeadline"); // NOI18N
+
+    predFeatureNameLabel.setText(resourceMap.getString("predFeatureNameLabel.text")); // NOI18N
+    predFeatureNameLabel.setName("predFeatureNameLabel"); // NOI18N
+
+    predictedFeatureNameValue.setText(resourceMap.getString("predictedFeatureNameValue.text")); // NOI18N
+    predictedFeatureNameValue.setToolTipText(resourceMap.getString("predictedFeatureNameValue.toolTipText")); // NOI18N
+    predictedFeatureNameValue.setName("predictedFeatureNameValue"); // NOI18N
+
+    copyPredFeatureNameButton.setIcon(resourceMap.getIcon("copyPredFeatureNameButton.icon")); // NOI18N
+    copyPredFeatureNameButton.setText(resourceMap.getString("copyPredFeatureNameButton.text")); // NOI18N
+    copyPredFeatureNameButton.setName("copyPredFeatureNameButton"); // NOI18N
+
+    predFeatureResourceLabel.setIcon(resourceMap.getIcon("predFeatureResourceLabel.icon")); // NOI18N
+    predFeatureResourceLabel.setText(resourceMap.getString("predFeatureResourceLabel.text")); // NOI18N
+    predFeatureResourceLabel.setName("predFeatureResourceLabel"); // NOI18N
+
+    predFeatureUriValue.setForeground(resourceMap.getColor("predFeatureUriValue.foreground")); // NOI18N
+    predFeatureUriValue.setText(resourceMap.getString("predFeatureUriValue.text")); // NOI18N
+    predFeatureUriValue.setName("predFeatureUriValue"); // NOI18N
+
+    copyPredFeatureUriButton.setIcon(resourceMap.getIcon("copyPredFeatureUriButton.icon")); // NOI18N
+    copyPredFeatureUriButton.setText(resourceMap.getString("copyPredFeatureUriButton.text")); // NOI18N
+    copyPredFeatureUriButton.setToolTipText(resourceMap.getString("copyPredFeatureUriButton.toolTipText")); // NOI18N
+    copyPredFeatureUriButton.setName("copyPredFeatureUriButton"); // NOI18N
+
+    predFeatureDetailsButton.setIcon(resourceMap.getIcon("predFeatureDetailsButton.icon")); // NOI18N
+    predFeatureDetailsButton.setText(resourceMap.getString("predFeatureDetailsButton.text")); // NOI18N
+    predFeatureDetailsButton.setToolTipText(resourceMap.getString("predFeatureDetailsButton.toolTipText")); // NOI18N
+    predFeatureDetailsButton.setName("predFeatureDetailsButton"); // NOI18N
+    predFeatureDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            predFeatureDetailsButtonActionPerformed(evt);
+        }
+    });
+
+    modelToolbar.setFloatable(false);
+    modelToolbar.setRollover(true);
+    modelToolbar.setName("modelToolbar"); // NOI18N
+
+    modelInfoToolButton.setIcon(resourceMap.getIcon("modelInfoToolButton.icon")); // NOI18N
+    modelInfoToolButton.setText(resourceMap.getString("modelInfoToolButton.text")); // NOI18N
+    modelInfoToolButton.setFocusable(false);
+    modelInfoToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    modelInfoToolButton.setName("modelInfoToolButton"); // NOI18N
+    modelInfoToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    modelInfoToolButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            modelInfoToolButtonMouseClicked(evt);
+        }
+    });
+    modelInfoToolButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modelInfoToolButtonActionPerformed(evt);
+        }
+    });
+    modelToolbar.add(modelInfoToolButton);
+
+    algorithmInfoToolButton.setIcon(resourceMap.getIcon("algorithmInfoToolButton.icon")); // NOI18N
+    algorithmInfoToolButton.setText(resourceMap.getString("algorithmInfoToolButton.text")); // NOI18N
+    algorithmInfoToolButton.setFocusable(false);
+    algorithmInfoToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    algorithmInfoToolButton.setName("algorithmInfoToolButton"); // NOI18N
+    algorithmInfoToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    algorithmInfoToolButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            algorithmInfoToolButtonActionPerformed(evt);
+        }
+    });
+    modelToolbar.add(algorithmInfoToolButton);
+
+    predictedFeatureToolButton.setIcon(resourceMap.getIcon("predictedFeatureToolButton.icon")); // NOI18N
+    predictedFeatureToolButton.setText(resourceMap.getString("predictedFeatureToolButton.text")); // NOI18N
+    predictedFeatureToolButton.setFocusable(false);
+    predictedFeatureToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    predictedFeatureToolButton.setName("predictedFeatureToolButton"); // NOI18N
+    predictedFeatureToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    predictedFeatureToolButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            predictedFeatureToolButtonActionPerformed(evt);
+        }
+    });
+    modelToolbar.add(predictedFeatureToolButton);
+
+    dependentFeatureToolButton.setIcon(resourceMap.getIcon("dependentFeatureToolButton.icon")); // NOI18N
+    dependentFeatureToolButton.setText(resourceMap.getString("dependentFeatureToolButton.text")); // NOI18N
+    dependentFeatureToolButton.setFocusable(false);
+    dependentFeatureToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    dependentFeatureToolButton.setName("dependentFeatureToolButton"); // NOI18N
+    dependentFeatureToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    dependentFeatureToolButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            dependentFeatureToolButtonActionPerformed(evt);
+        }
+    });
+    modelToolbar.add(dependentFeatureToolButton);
+
+    qmrfReportHeader.setFont(resourceMap.getFont("qmrfReportHeader.font")); // NOI18N
+    qmrfReportHeader.setText(resourceMap.getString("qmrfReportHeader.text")); // NOI18N
+    qmrfReportHeader.setName("qmrfReportHeader"); // NOI18N
+
+    qmrfReportLabel.setText(resourceMap.getString("qmrfReportLabel.text")); // NOI18N
+    qmrfReportLabel.setToolTipText(resourceMap.getString("qmrfReportLabel.toolTipText")); // NOI18N
+    qmrfReportLabel.setName("qmrfReportLabel"); // NOI18N
+
+    qmrfReportTextField.setText(resourceMap.getString("qmrfReportTextField.text")); // NOI18N
+    qmrfReportTextField.setName("qmrfReportTextField"); // NOI18N
+
+    modelVersionHeader.setFont(resourceMap.getFont("modelVersionHeader.font")); // NOI18N
+    modelVersionHeader.setText(resourceMap.getString("modelVersionHeader.text")); // NOI18N
+    modelVersionHeader.setName("modelVersionHeader"); // NOI18N
+
+    modelVersionLabel.setText(resourceMap.getString("modelVersionLabel.text")); // NOI18N
+    modelVersionLabel.setToolTipText(resourceMap.getString("modelVersionLabel.toolTipText")); // NOI18N
+    modelVersionLabel.setName("modelVersionLabel"); // NOI18N
+
+    modelVersionScrollPane.setName("modelVersionScrollPane"); // NOI18N
+
+    modelVersionInfoTextArea.setColumns(20);
+    modelVersionInfoTextArea.setRows(5);
+    modelVersionInfoTextArea.setName("modelVersionInfoTextArea"); // NOI18N
+    modelVersionScrollPane.setViewportView(modelVersionInfoTextArea);
+
+    qmrfReportDiscussionScrollable.setName("qmrfReportDiscussionScrollable"); // NOI18N
+
+    qmrfReportDiscussionTextArea.setColumns(20);
+    qmrfReportDiscussionTextArea.setLineWrap(true);
+    qmrfReportDiscussionTextArea.setRows(5);
+    qmrfReportDiscussionTextArea.setName("qmrfReportDiscussionTextArea"); // NOI18N
+    qmrfReportDiscussionScrollable.setViewportView(qmrfReportDiscussionTextArea);
+
+    qmrfReportDiscussionLabel.setText(resourceMap.getString("qmrfReportDiscussionLabel.text")); // NOI18N
+    qmrfReportDiscussionLabel.setToolTipText(resourceMap.getString("qmrfReportDiscussionLabel.toolTipText")); // NOI18N
+    qmrfReportDiscussionLabel.setName("qmrfReportDiscussionLabel"); // NOI18N
+
+    modelDatePanel.setName("modelDatePanel"); // NOI18N
+
+    modelDateLabel.setText(resourceMap.getString("modelDateLabel.text")); // NOI18N
+    modelDateLabel.setToolTipText(resourceMap.getString("modelDateLabel.toolTipText")); // NOI18N
+    modelDateLabel.setName("modelDateLabel"); // NOI18N
+
+    modelYearLabel.setText(resourceMap.getString("modelYearLabel.text")); // NOI18N
+    modelYearLabel.setName("modelYearLabel"); // NOI18N
+
+    java.util.Calendar mcalendar = java.util.Calendar.getInstance();
+    int mcurrentYear = mcalendar.get(java.util.Calendar.YEAR);
+    int myearsLister = 30;
+    String[] myears = new String[myearsLister];
+    for (int i=0 ; i < myearsLister ; i++){
+        myears[i]=Integer.toString(mcurrentYear - i);
+    }
+    modelYearCombo.setModel(new javax.swing.DefaultComboBoxModel(myears));
+    modelYearCombo.setName("modelYearCombo"); // NOI18N
+
+    modelMonthLabel.setText(resourceMap.getString("modelMonthLabel.text")); // NOI18N
+    modelMonthLabel.setName("modelMonthLabel"); // NOI18N
+
+    String[] mmonths = {"January", "February",
+        "March", "April", "May", "June", "July",
+        "August", "September", "October", "November",
+        "December"};
+    modelMonthCombo.setModel(new javax.swing.DefaultComboBoxModel(mmonths));
+    modelMonthCombo.setName("modelMonthCombo"); // NOI18N
+    qprfMonthCombo.setSelectedItem(mmonths[java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)]);
+
+    modelDayLabel.setText(resourceMap.getString("modelDayLabel.text")); // NOI18N
+    modelDayLabel.setName("modelDayLabel"); // NOI18N
+
+    java.util.ArrayList<String> mlistOfDays = new java.util.ArrayList<String>();
+    for (int i=1;i<=31;i++){
+        mlistOfDays.add(Integer.toString(i));
+    }
+    Object[] mselectableDays = mlistOfDays.toArray();
+    modelDayCombo.setModel(new javax.swing.DefaultComboBoxModel(mselectableDays));
+    modelDayCombo.setName("modelDayCombo"); // NOI18N
+
+    modelCurrentDate.setAction(actionMap.get("enableDisableDate")); // NOI18N
+    modelCurrentDate.setText(resourceMap.getString("modelCurrentDate.text")); // NOI18N
+    modelCurrentDate.setToolTipText(resourceMap.getString("modelCurrentDate.toolTipText")); // NOI18N
+    modelCurrentDate.setName("modelCurrentDate"); // NOI18N
+    modelCurrentDate.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            modelCurrentDateActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout modelDatePanelLayout = new javax.swing.GroupLayout(modelDatePanel);
+    modelDatePanel.setLayout(modelDatePanelLayout);
+    modelDatePanelLayout.setHorizontalGroup(
+        modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelDatePanelLayout.createSequentialGroup()
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(modelDatePanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(modelDatePanelLayout.createSequentialGroup()
+                            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(modelDayLabel)
+                                .addComponent(modelMonthLabel)
+                                .addComponent(modelYearLabel))
+                            .addGap(18, 18, 18)
+                            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(modelDayCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(modelMonthCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(modelCurrentDate)))
+                .addComponent(modelDateLabel))
+            .addContainerGap(82, Short.MAX_VALUE))
+    );
+    modelDatePanelLayout.setVerticalGroup(
+        modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelDatePanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(modelDateLabel)
+            .addGap(12, 12, 12)
+            .addComponent(modelCurrentDate)
+            .addGap(26, 26, 26)
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(modelYearLabel)
+                .addComponent(modelYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(modelMonthLabel)
+                .addComponent(modelMonthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(modelDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(modelDayLabel)
+                .addComponent(modelDayCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(168, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout modelInfoPanelLayout = new javax.swing.GroupLayout(modelInfoPanel);
+    modelInfoPanel.setLayout(modelInfoPanelLayout);
+    modelInfoPanelLayout.setHorizontalGroup(
+        modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                    .addComponent(modelAndTrainingDSHeader)
+                                    .addGap(434, 434, 434))
+                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
+                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(qmrfReportLabel)
+                                                .addComponent(predFeatureNameLabel)
+                                                .addComponent(algorithmUriLabel)
+                                                .addComponent(predFeatureResourceLabel)
+                                                .addComponent(qmrfReportDiscussionLabel))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
+                                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
+                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(trainingDatasetLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(modelUriLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                                    .addGap(86, 86, 86)
+                                                    .addComponent(algorithmNameLabel)))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                                                .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))))
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                                    .addComponent(copyModelUriButton)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(modelUriDetailsButton))
+                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                                    .addComponent(copyDatasetButton)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(datasetDetailsButton))))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(copyAlgorithmName)
+                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                                    .addComponent(copyAlgorithmUriButton)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(algorithmDetailsButton))
+                                                .addComponent(copyPredFeatureNameButton)
+                                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                                    .addComponent(copyPredFeatureUriButton)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(predFeatureDetailsButton)))
+                                            .addGap(42, 42, 42)))))
+                            .addGap(12, 12, 12))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(trainingAlgorithmHeader)
+                            .addGap(545, 545, 545))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(predictedFeatureHeadline)
+                            .addGap(564, 564, 564))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(qmrfReportHeader)
+                            .addGap(540, 540, 540)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(modelVersionLabel)
+                        .addComponent(modelVersionHeader)
+                        .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modelVersionScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(11, 11, 11))
+                .addComponent(modelToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE))
+            .addContainerGap())
+    );
+    modelInfoPanelLayout.setVerticalGroup(
+        modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+            .addComponent(modelToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                    .addComponent(modelAndTrainingDSHeader)
+                    .addGap(27, 27, 27)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(copyModelUriButton)
+                                .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(modelUriLabel)
+                                    .addComponent(modelUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(trainingDatasetLabel)
+                                    .addComponent(datasetValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(copyDatasetButton)))
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(modelUriDetailsButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(datasetDetailsButton)))
+                    .addGap(18, 18, 18)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                                    .addComponent(trainingAlgorithmHeader)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(algorithmNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(algorithmNameLabel)))
+                                .addComponent(copyAlgorithmName))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(copyAlgorithmUriButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(algorithmUriLabel)
+                                    .addComponent(algorithmUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(algorithmDetailsButton))
+                    .addGap(18, 18, 18)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addComponent(predictedFeatureHeadline)
+                            .addGap(18, 18, 18)
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(predFeatureNameLabel)
+                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(copyPredFeatureNameButton))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(predFeatureDetailsButton)
+                        .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(predFeatureResourceLabel)
+                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(qmrfReportHeader)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(qmrfReportTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(qmrfReportLabel)))
+                        .addComponent(copyPredFeatureUriButton))
+                    .addGap(12, 12, 12)
+                    .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(qmrfReportDiscussionLabel)
+                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(27, 27, 27))
+                .addGroup(modelInfoPanelLayout.createSequentialGroup()
+                    .addComponent(modelVersionHeader)
+                    .addGap(18, 18, 18)
+                    .addComponent(modelVersionLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(modelVersionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addContainerGap())
+    );
+
+    javax.swing.GroupLayout modelPanelLayout = new javax.swing.GroupLayout(modelPanel);
+    modelPanel.setLayout(modelPanelLayout);
+    modelPanelLayout.setHorizontalGroup(
+        modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(modelInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    modelPanelLayout.setVerticalGroup(
+        modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(modelPanelLayout.createSequentialGroup()
+            .addComponent(modelInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(24, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab(resourceMap.getString("modelPanel.TabConstraints.tabTitle"), modelPanel); // NOI18N
+
+    predictionPanel.setName("predictionPanel"); // NOI18N
+
+    predictionInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("predictionInfoPanel.border.title"))); // NOI18N
+    predictionInfoPanel.setName("predictionInfoPanel"); // NOI18N
+
+    predictionValueLabel.setText(resourceMap.getString("predictionValueLabel.text")); // NOI18N
+    predictionValueLabel.setToolTipText(resourceMap.getString("predictionValueLabel.toolTipText")); // NOI18N
+    predictionValueLabel.setName("predictionValueLabel"); // NOI18N
+
+    predictionValueTextField.setForeground(resourceMap.getColor("predictionValueTextField.foreground")); // NOI18N
+    predictionValueTextField.setText(resourceMap.getString("predictionValueTextField.text")); // NOI18N
+    predictionValueTextField.setName("predictionValueTextField"); // NOI18N
+
+    predictionUnitsTextField.setForeground(resourceMap.getColor("predictionUnitsTextField.foreground")); // NOI18N
+    predictionUnitsTextField.setText(resourceMap.getString("predictionUnitsTextField.text")); // NOI18N
+    predictionUnitsTextField.setToolTipText(resourceMap.getString("predictionUnitsTextField.toolTipText")); // NOI18N
+    predictionUnitsTextField.setName("predictionUnitsTextField"); // NOI18N
+
+    predictionUncertaintyLabel.setLabelFor(predictionUncertaintyTextArea);
+    predictionUncertaintyLabel.setText(resourceMap.getString("predictionUncertaintyLabel.text")); // NOI18N
+    predictionUncertaintyLabel.setToolTipText(resourceMap.getString("predictionUncertaintyLabel.toolTipText")); // NOI18N
+    predictionUncertaintyLabel.setName("predictionUncertaintyLabel"); // NOI18N
+
+    predictionUncertaintyScrollable.setName("predictionUncertaintyScrollable"); // NOI18N
+
+    predictionUncertaintyTextArea.setColumns(20);
+    predictionUncertaintyTextArea.setLineWrap(true);
+    predictionUncertaintyTextArea.setRows(5);
+    predictionUncertaintyTextArea.setName("predictionUncertaintyTextArea"); // NOI18N
+    predictionUncertaintyScrollable.setViewportView(predictionUncertaintyTextArea);
+
+    predictionCommentLabel.setLabelFor(predictionCommentTextArea);
+    predictionCommentLabel.setText(resourceMap.getString("predictionCommentLabel.text")); // NOI18N
+    predictionCommentLabel.setToolTipText(resourceMap.getString("predictionCommentLabel.toolTipText")); // NOI18N
+    predictionCommentLabel.setName("predictionCommentLabel"); // NOI18N
+
+    predictionCommentScrollable.setName("predictionCommentScrollable"); // NOI18N
+
+    predictionCommentTextArea.setColumns(20);
+    predictionCommentTextArea.setLineWrap(true);
+    predictionCommentTextArea.setRows(5);
+    predictionCommentTextArea.setName("predictionCommentTextArea"); // NOI18N
+    predictionCommentScrollable.setViewportView(predictionCommentTextArea);
+
+    experimentalValueLabel.setText(resourceMap.getString("experimentalValueLabel.text")); // NOI18N
+    experimentalValueLabel.setToolTipText(resourceMap.getString("experimentalValueLabel.toolTipText")); // NOI18N
+    experimentalValueLabel.setName("experimentalValueLabel"); // NOI18N
+
+    exprerimentalValueTextField.setForeground(resourceMap.getColor("exprerimentalValueTextField.foreground")); // NOI18N
+    exprerimentalValueTextField.setText(resourceMap.getString("exprerimentalValueTextField.text")); // NOI18N
+    exprerimentalValueTextField.setName("exprerimentalValueTextField"); // NOI18N
+
+    experimentalValueUnitsTextField.setText(resourceMap.getString("experimentalValueUnitsTextField.text")); // NOI18N
+    experimentalValueUnitsTextField.setToolTipText(resourceMap.getString("experimentalValueUnitsTextField.toolTipText")); // NOI18N
+    experimentalValueUnitsTextField.setName("experimentalValueUnitsTextField"); // NOI18N
+
+    jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+    jLabel5.setName("jLabel5"); // NOI18N
+
+    jScrollPane5.setName("jScrollPane5"); // NOI18N
+
+    jTextArea1.setColumns(20);
+    jTextArea1.setRows(5);
+    jTextArea1.setName("jTextArea1"); // NOI18N
+    jScrollPane5.setViewportView(jTextArea1);
+
+    javax.swing.GroupLayout predictionInfoPanelLayout = new javax.swing.GroupLayout(predictionInfoPanel);
+    predictionInfoPanel.setLayout(predictionInfoPanelLayout);
+    predictionInfoPanelLayout.setHorizontalGroup(
+        predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(predictionInfoPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(predictionInfoPanelLayout.createSequentialGroup()
+                    .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(experimentalValueLabel)
+                        .addComponent(predictionValueLabel))
+                    .addGap(18, 18, 18)
+                    .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(exprerimentalValueTextField)
+                        .addComponent(predictionValueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(experimentalValueUnitsTextField)
+                        .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)))
+                .addGroup(predictionInfoPanelLayout.createSequentialGroup()
+                    .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(predictionCommentLabel)
+                        .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(predictionCommentScrollable, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(predictionUncertaintyLabel)
+                        .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGap(90, 90, 90))
+    );
+    predictionInfoPanelLayout.setVerticalGroup(
+        predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(predictionInfoPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(predictionValueLabel)
+                .addComponent(predictionValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(experimentalValueLabel)
+                .addComponent(exprerimentalValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(experimentalValueUnitsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(52, 52, 52)
+            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(predictionCommentLabel)
+                .addComponent(predictionUncertaintyLabel))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(predictionCommentScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+            .addGap(18, 18, 18)
+            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
+    );
+
+    javax.swing.GroupLayout predictionPanelLayout = new javax.swing.GroupLayout(predictionPanel);
+    predictionPanel.setLayout(predictionPanelLayout);
+    predictionPanelLayout.setHorizontalGroup(
+        predictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(predictionPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(predictionInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+    );
+    predictionPanelLayout.setVerticalGroup(
+        predictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(predictionPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(predictionInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(180, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab(resourceMap.getString("predictionPanel.TabConstraints.tabTitle"), predictionPanel); // NOI18N
+
+    applicabilityDomainPanel.setName("applicabilityDomainPanel"); // NOI18N
+
+    appDomainInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("appDomainInfoPanel.border.title"))); // NOI18N
+    appDomainInfoPanel.setName("appDomainInfoPanel"); // NOI18N
+
+    appDomAlgorithmNameLabel.setText(resourceMap.getString("appDomAlgorithmNameLabel.text")); // NOI18N
+    appDomAlgorithmNameLabel.setName("appDomAlgorithmNameLabel"); // NOI18N
+
+    addDomLinkLabel.setText(resourceMap.getString("addDomLinkLabel.text")); // NOI18N
+    addDomLinkLabel.setName("addDomLinkLabel"); // NOI18N
+
+    appDomainAlgorithmNameValue.setText(resourceMap.getString("appDomainAlgorithmNameValue.text")); // NOI18N
+    appDomainAlgorithmNameValue.setName("appDomainAlgorithmNameValue"); // NOI18N
+
+    appDomainURIValue.setForeground(resourceMap.getColor("appDomainURIValue.foreground")); // NOI18N
+    appDomainURIValue.setText(resourceMap.getString("appDomainURIValue.text")); // NOI18N
+    appDomainURIValue.setName("appDomainURIValue"); // NOI18N
+
+    javax.swing.GroupLayout appDomainInfoPanelLayout = new javax.swing.GroupLayout(appDomainInfoPanel);
+    appDomainInfoPanel.setLayout(appDomainInfoPanelLayout);
+    appDomainInfoPanelLayout.setHorizontalGroup(
+        appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(appDomainInfoPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(addDomLinkLabel)
+                .addComponent(appDomAlgorithmNameLabel))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(appDomainURIValue)
+                .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
+            .addContainerGap(211, Short.MAX_VALUE))
+    );
+    appDomainInfoPanelLayout.setVerticalGroup(
+        appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(appDomainInfoPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(appDomAlgorithmNameLabel)
+                .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(addDomLinkLabel)
+                .addComponent(appDomainURIValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    addDomainsDiscussionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("addDomainsDiscussionPanel.border.title"))); // NOI18N
+    addDomainsDiscussionPanel.setName("addDomainsDiscussionPanel"); // NOI18N
+
+    addDomainResultLabel.setText(resourceMap.getString("addDomainResultLabel.text")); // NOI18N
+    addDomainResultLabel.setName("addDomainResultLabel"); // NOI18N
+
+    applicabilityDomainValue.setIcon(resourceMap.getIcon("applicabilityDomainValue.icon")); // NOI18N
+    applicabilityDomainValue.setText(resourceMap.getString("applicabilityDomainValue.text")); // NOI18N
+    applicabilityDomainValue.setToolTipText(resourceMap.getString("applicabilityDomainValue.toolTipText")); // NOI18N
+    applicabilityDomainValue.setName("applicabilityDomainValue"); // NOI18N
+
+    domainChooserComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Metabolic Domain", "Structural Fragment Domain", "Descriptor Domain", "Mechanism Domain" }));
+    domainChooserComboBox.setName("domainChooserComboBox"); // NOI18N
+    domainChooserComboBox.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            domainChooserComboBoxItemStateChanged(evt);
+        }
+    });
+
+    chooseDomainLabel.setText(resourceMap.getString("chooseDomainLabel.text")); // NOI18N
+    chooseDomainLabel.setName("chooseDomainLabel"); // NOI18N
+
+    domainCardPanel.setName("domainCardPanel"); // NOI18N
+    domainCardPanel.setLayout(new java.awt.CardLayout());
+
+    jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+    metabolicDomainText.setBackground(resourceMap.getColor("metabolicDomainText.background")); // NOI18N
+    metabolicDomainText.setColumns(20);
+    metabolicDomainText.setLineWrap(true);
+    metabolicDomainText.setRows(5);
+    metabolicDomainText.setName("metabolicDomainText"); // NOI18N
+    jScrollPane1.setViewportView(metabolicDomainText);
+
+    domainCardPanel.add(jScrollPane1, "Metabolic Domain");
+
+    jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+    structuralFragmentDomainText.setBackground(resourceMap.getColor("structuralFragmentDomainText.background")); // NOI18N
+    structuralFragmentDomainText.setColumns(20);
+    structuralFragmentDomainText.setLineWrap(true);
+    structuralFragmentDomainText.setRows(5);
+    structuralFragmentDomainText.setName("structuralFragmentDomainText"); // NOI18N
+    jScrollPane2.setViewportView(structuralFragmentDomainText);
+
+    domainCardPanel.add(jScrollPane2, "Structural Fragment Domain");
+
+    jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+    descriptorDomainText.setBackground(resourceMap.getColor("descriptorDomainText.background")); // NOI18N
+    descriptorDomainText.setColumns(20);
+    descriptorDomainText.setLineWrap(true);
+    descriptorDomainText.setRows(5);
+    descriptorDomainText.setName("descriptorDomainText"); // NOI18N
+    jScrollPane3.setViewportView(descriptorDomainText);
+
+    domainCardPanel.add(jScrollPane3, "Descriptor Domain");
+
+    jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+    mechanismDomainText.setBackground(resourceMap.getColor("mechanismDomainText.background")); // NOI18N
+    mechanismDomainText.setColumns(20);
+    mechanismDomainText.setLineWrap(true);
+    mechanismDomainText.setRows(5);
+    mechanismDomainText.setName("mechanismDomainText"); // NOI18N
+    jScrollPane4.setViewportView(mechanismDomainText);
+
+    domainCardPanel.add(jScrollPane4, "Mechanism Domain");
+
+    javax.swing.GroupLayout addDomainsDiscussionPanelLayout = new javax.swing.GroupLayout(addDomainsDiscussionPanel);
+    addDomainsDiscussionPanel.setLayout(addDomainsDiscussionPanelLayout);
+    addDomainsDiscussionPanelLayout.setHorizontalGroup(
+        addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
+                    .addComponent(addDomainResultLabel)
+                    .addGap(18, 18, 18)
+                    .addComponent(applicabilityDomainValue))
+                .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
+                    .addComponent(chooseDomainLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(48, 48, 48)
+            .addComponent(domainCardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(198, Short.MAX_VALUE))
+    );
+    addDomainsDiscussionPanelLayout.setVerticalGroup(
+        addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(addDomainsDiscussionPanelLayout.createSequentialGroup()
+            .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(domainCardPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addDomainsDiscussionPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addDomainResultLabel)
+                        .addComponent(applicabilityDomainValue))
+                    .addGap(18, 18, 18)
+                    .addGroup(addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(chooseDomainLabel)
+                        .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addContainerGap())
+    );
+
+    structuralAnaloguesPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("structuralAnaloguesPanel.border.title"))); // NOI18N
+    structuralAnaloguesPanel.setName("structuralAnaloguesPanel"); // NOI18N
+
+    structuralAnaloguesToolbar.setFloatable(false);
+    structuralAnaloguesToolbar.setRollover(true);
+    structuralAnaloguesToolbar.setName("structuralAnaloguesToolbar"); // NOI18N
+
+    compoundWizardButton.setIcon(resourceMap.getIcon("compoundWizardButton.icon")); // NOI18N
+    compoundWizardButton.setText(resourceMap.getString("compoundWizardButton.text")); // NOI18N
+    compoundWizardButton.setFocusable(false);
+    compoundWizardButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    compoundWizardButton.setName("compoundWizardButton"); // NOI18N
+    compoundWizardButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    compoundWizardButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            compoundWizardButtonActionPerformed(evt);
+        }
+    });
+    structuralAnaloguesToolbar.add(compoundWizardButton);
+
+    structAnalToolbarSeparator.setName("structAnalToolbarSeparator"); // NOI18N
+    structuralAnaloguesToolbar.add(structAnalToolbarSeparator);
+
+    removeStructuralAnalogue.setIcon(resourceMap.getIcon("removeStructuralAnalogue.icon")); // NOI18N
+    removeStructuralAnalogue.setText(resourceMap.getString("removeStructuralAnalogue.text")); // NOI18N
+    removeStructuralAnalogue.setFocusable(false);
+    removeStructuralAnalogue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    removeStructuralAnalogue.setName("removeStructuralAnalogue"); // NOI18N
+    removeStructuralAnalogue.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    removeStructuralAnalogue.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            removeStructuralAnalogueActionPerformed(evt);
+        }
+    });
+    structuralAnaloguesToolbar.add(removeStructuralAnalogue);
+
+    clearAllStructuralAnalogues.setIcon(resourceMap.getIcon("clearAllStructuralAnalogues.icon")); // NOI18N
+    clearAllStructuralAnalogues.setText(resourceMap.getString("clearAllStructuralAnalogues.text")); // NOI18N
+    clearAllStructuralAnalogues.setFocusable(false);
+    clearAllStructuralAnalogues.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    clearAllStructuralAnalogues.setName("clearAllStructuralAnalogues"); // NOI18N
+    clearAllStructuralAnalogues.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    clearAllStructuralAnalogues.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            clearAllStructuralAnaloguesActionPerformed(evt);
+        }
+    });
+    structuralAnaloguesToolbar.add(clearAllStructuralAnalogues);
+
+    structuralAnaloguesSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
+    structuralAnaloguesSeparator.setName("structuralAnaloguesSeparator"); // NOI18N
+
+    jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
+    jLabel9.setName("jLabel9"); // NOI18N
+
+    jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+    jSeparator6.setName("jSeparator6"); // NOI18N
+
+    analoguesCommentsLabel.setText(resourceMap.getString("analoguesCommentsLabel.text")); // NOI18N
+    analoguesCommentsLabel.setToolTipText(resourceMap.getString("analoguesCommentsLabel.toolTipText")); // NOI18N
+    analoguesCommentsLabel.setName("analoguesCommentsLabel"); // NOI18N
+
+    analoguesPanel.setName("analoguesPanel"); // NOI18N
+
+    analoguesTableScrollable.setName("analoguesTableScrollable"); // NOI18N
+
+    analoguesTable.setAutoCreateRowSorter(true);
+    analoguesTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+
+        },
+        new String [] {
+            "Compound Name", "SMILES", "CAS-RN"
+        }
+    ));
+    analoguesTable.setName("analoguesTable"); // NOI18N
+    analoguesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+    analoguesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            analoguesTableMouseClicked(evt);
+        }
+    });
+    analoguesTableScrollable.setViewportView(analoguesTable);
+    analoguesTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title0")); // NOI18N
+    analoguesTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title1")); // NOI18N
+    analoguesTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("analoguesTable.columnModel.title2")); // NOI18N
+
+    javax.swing.GroupLayout analoguesPanelLayout = new javax.swing.GroupLayout(analoguesPanel);
+    analoguesPanel.setLayout(analoguesPanelLayout);
+    analoguesPanelLayout.setHorizontalGroup(
+        analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 314, Short.MAX_VALUE)
+        .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(analoguesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addContainerGap()))
+    );
+    analoguesPanelLayout.setVerticalGroup(
+        analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 226, Short.MAX_VALUE)
+        .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(analoguesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                .addContainerGap()))
+    );
+
+    analoguesCommentsScrollable.setName("analoguesCommentsScrollable"); // NOI18N
+
+    analoguesCommentsTextArea.setColumns(20);
+    analoguesCommentsTextArea.setLineWrap(true);
+    analoguesCommentsTextArea.setRows(5);
+    analoguesCommentsTextArea.setName("analoguesCommentsTextArea"); // NOI18N
+    analoguesCommentsScrollable.setViewportView(analoguesCommentsTextArea);
+
+    analoguesImageCards.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+    analoguesImageCards.setName("analoguesImageCards"); // NOI18N
+    analoguesImageCards.setLayout(new java.awt.CardLayout());
+
+    javax.swing.GroupLayout structuralAnaloguesPanelLayout = new javax.swing.GroupLayout(structuralAnaloguesPanel);
+    structuralAnaloguesPanel.setLayout(structuralAnaloguesPanelLayout);
+    structuralAnaloguesPanelLayout.setHorizontalGroup(
+        structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(analoguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addComponent(analoguesImageCards, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel9)))
+            .addGap(18, 18, 18)
+            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(analoguesCommentsLabel))
+            .addContainerGap())
+        .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+    );
+    structuralAnaloguesPanelLayout.setVerticalGroup(
+        structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+            .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(analoguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel9)
+                    .addGap(12, 12, 12)
+                    .addComponent(analoguesImageCards, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
+                    .addComponent(analoguesCommentsLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+            .addContainerGap())
+    );
+
+    javax.swing.GroupLayout applicabilityDomainPanelLayout = new javax.swing.GroupLayout(applicabilityDomainPanel);
+    applicabilityDomainPanel.setLayout(applicabilityDomainPanelLayout);
+    applicabilityDomainPanelLayout.setHorizontalGroup(
+        applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, applicabilityDomainPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(appDomainInfoPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap())
+    );
+    applicabilityDomainPanelLayout.setVerticalGroup(
+        applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(applicabilityDomainPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(appDomainInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(72, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab(resourceMap.getString("applicabilityDomainPanel.TabConstraints.tabTitle"), applicabilityDomainPanel); // NOI18N
+
+    javax.swing.GroupLayout reportPredictionPanelLayout = new javax.swing.GroupLayout(reportPredictionPanel);
+    reportPredictionPanel.setLayout(reportPredictionPanelLayout);
+    reportPredictionPanelLayout.setHorizontalGroup(
+        reportPredictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
+    );
+    reportPredictionPanelLayout.setVerticalGroup(
+        reportPredictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+    );
+
+    basicTabbedPanel.addTab(resourceMap.getString("reportPredictionPanel.TabConstraints.tabTitle"), reportPredictionPanel); // NOI18N
+
+    jPanel1.setName("jPanel1"); // NOI18N
+
+    adequacyInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("adequacyInfoPanel.border.title"))); // NOI18N
+    adequacyInfoPanel.setName("adequacyInfoPanel"); // NOI18N
+
+    regulatoryPurposeLabel.setText(resourceMap.getString("regulatoryPurposeLabel.text")); // NOI18N
+    regulatoryPurposeLabel.setName("regulatoryPurposeLabel"); // NOI18N
+
+    regulatoryPurposeHintLabel.setIcon(resourceMap.getIcon("regulatoryPurposeHintLabel.icon")); // NOI18N
+    regulatoryPurposeHintLabel.setText(resourceMap.getString("regulatoryPurposeHintLabel.text")); // NOI18N
+    regulatoryPurposeHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    regulatoryPurposeHintLabel.setName("regulatoryPurposeHintLabel"); // NOI18N
+    regulatoryPurposeHintLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            regulatoryPurposeHintLabelMouseClicked(evt);
+        }
+    });
+
+    regulatoryInterprLabel.setText(resourceMap.getString("regulatoryInterprLabel.text")); // NOI18N
+    regulatoryInterprLabel.setName("regulatoryInterprLabel"); // NOI18N
+
+    outcomeLabel.setText(resourceMap.getString("outcomeLabel.text")); // NOI18N
+    outcomeLabel.setName("outcomeLabel"); // NOI18N
+
+    conclusionLabel.setLabelFor(qprfReportConclusionTextArea);
+    conclusionLabel.setText(resourceMap.getString("conclusionLabel.text")); // NOI18N
+    conclusionLabel.setName("conclusionLabel"); // NOI18N
+
+    regulatoryPurposeScrollable.setName("regulatoryPurposeScrollable"); // NOI18N
+
+    regulatoryPurposeTextArea.setColumns(20);
+    regulatoryPurposeTextArea.setLineWrap(true);
+    regulatoryPurposeTextArea.setRows(5);
+    regulatoryPurposeTextArea.setName("regulatoryPurposeTextArea"); // NOI18N
+    regulatoryPurposeScrollable.setViewportView(regulatoryPurposeTextArea);
+
+    regulInterprScrollable.setName("regulInterprScrollable"); // NOI18N
+
+    regulInterprTextArea.setColumns(20);
+    regulInterprTextArea.setLineWrap(true);
+    regulInterprTextArea.setRows(5);
+    regulInterprTextArea.setName("regulInterprTextArea"); // NOI18N
+    regulInterprScrollable.setViewportView(regulInterprTextArea);
+
+    qprfOutcomeScrollable.setName("qprfOutcomeScrollable"); // NOI18N
+
+    qprfOutcomeTextArea.setColumns(20);
+    qprfOutcomeTextArea.setLineWrap(true);
+    qprfOutcomeTextArea.setRows(5);
+    qprfOutcomeTextArea.setName("qprfOutcomeTextArea"); // NOI18N
+    qprfOutcomeScrollable.setViewportView(qprfOutcomeTextArea);
+
+    qprfReportConclusionScollable.setName("qprfReportConclusionScollable"); // NOI18N
+
+    qprfReportConclusionTextArea.setColumns(20);
+    qprfReportConclusionTextArea.setLineWrap(true);
+    qprfReportConclusionTextArea.setRows(5);
+    qprfReportConclusionTextArea.setName("qprfReportConclusionTextArea"); // NOI18N
+    qprfReportConclusionScollable.setViewportView(qprfReportConclusionTextArea);
+
+    regulatoryInterprHintLabel.setIcon(resourceMap.getIcon("regulatoryInterprHintLabel.icon")); // NOI18N
+    regulatoryInterprHintLabel.setText(resourceMap.getString("regulatoryInterprHintLabel.text")); // NOI18N
+    regulatoryInterprHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    regulatoryInterprHintLabel.setName("regulatoryInterprHintLabel"); // NOI18N
+    regulatoryInterprHintLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            regulatoryInterprHintLabelMouseClicked(evt);
+        }
+    });
+
+    outcomeHintLabel.setIcon(resourceMap.getIcon("outcomeHintLabel.icon")); // NOI18N
+    outcomeHintLabel.setText(resourceMap.getString("outcomeHintLabel.text")); // NOI18N
+    outcomeHintLabel.setName("outcomeHintLabel"); // NOI18N
+
+    conclusionHintLabel.setIcon(resourceMap.getIcon("conclusionHintLabel.icon")); // NOI18N
+    conclusionHintLabel.setLabelFor(conclusionLabel);
+    conclusionHintLabel.setText(resourceMap.getString("conclusionHintLabel.text")); // NOI18N
+    conclusionHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    conclusionHintLabel.setName("conclusionHintLabel"); // NOI18N
+
+    adequacyInfoIndicatorLabel.setIcon(resourceMap.getIcon("adequacyInfoIndicatorLabel.icon")); // NOI18N
+    adequacyInfoIndicatorLabel.setText(resourceMap.getString("adequacyInfoIndicatorLabel.text")); // NOI18N
+    adequacyInfoIndicatorLabel.setName("adequacyInfoIndicatorLabel"); // NOI18N
+
+    adequacyBottomMessageLabel.setText(resourceMap.getString("adequacyBottomMessageLabel.text")); // NOI18N
+    adequacyBottomMessageLabel.setName("adequacyBottomMessageLabel"); // NOI18N
+
+    javax.swing.GroupLayout adequacyInfoPanelLayout = new javax.swing.GroupLayout(adequacyInfoPanel);
+    adequacyInfoPanel.setLayout(adequacyInfoPanelLayout);
+    adequacyInfoPanelLayout.setHorizontalGroup(
+        adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+                    .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+                            .addComponent(regulatoryPurposeLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(regulatoryPurposeHintLabel)
+                            .addGap(267, 267, 267))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyInfoPanelLayout.createSequentialGroup()
+                            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adequacyInfoPanelLayout.createSequentialGroup()
+                                    .addComponent(outcomeLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(outcomeHintLabel))
+                                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+                            .addGap(27, 27, 27)))
+                    .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(qprfReportConclusionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+                            .addComponent(conclusionLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(conclusionHintLabel))
+                        .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+                            .addComponent(regulatoryInterprLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(regulatoryInterprHintLabel))
+                        .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)))
+                .addGroup(adequacyInfoPanelLayout.createSequentialGroup()
+                    .addComponent(adequacyInfoIndicatorLabel)
+                    .addGap(18, 18, 18)
+                    .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)))
+            .addContainerGap())
+    );
+    adequacyInfoPanelLayout.setVerticalGroup(
+        adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyInfoPanelLayout.createSequentialGroup()
+            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(regulatoryPurposeHintLabel)
+                .addComponent(regulatoryInterprHintLabel)
+                .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regulatoryInterprLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regulatoryPurposeLabel)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+            .addGap(18, 18, 18)
+            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(outcomeLabel)
+                .addComponent(conclusionLabel)
+                .addComponent(outcomeHintLabel)
+                .addComponent(conclusionHintLabel))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(qprfReportConclusionScollable)
+                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+            .addGap(30, 30, 30)
+            .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(adequacyInfoIndicatorLabel)
+                .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
+    );
+
+    adequacyHintLabel.setIcon(resourceMap.getIcon("adequacyHintLabel.icon")); // NOI18N
+    adequacyHintLabel.setText(resourceMap.getString("adequacyHintLabel.text")); // NOI18N
+    adequacyHintLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    adequacyHintLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+    adequacyHintLabel.setName("adequacyHintLabel"); // NOI18N
+    adequacyHintLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            adequacyHintLabelMouseClicked(evt);
+        }
+    });
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(adequacyInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(18, 18, 18)
+            .addComponent(adequacyHintLabel)
+            .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(adequacyInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adequacyHintLabel))
+            .addContainerGap(91, Short.MAX_VALUE))
+    );
+
+    basicTabbedPanel.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
 
     javax.swing.GroupLayout basicContainerPanelLayout = new javax.swing.GroupLayout(basicContainerPanel);
     basicContainerPanel.setLayout(basicContainerPanelLayout);
     basicContainerPanelLayout.setHorizontalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(basicContainerPanelLayout.createSequentialGroup()
-            .addComponent(basicTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(25, Short.MAX_VALUE))
+        .addComponent(basicTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
     basicContainerPanelLayout.setVerticalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(basicTabbedPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+        .addComponent(basicTabbedPanel)
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(basicContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(basicContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(25, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2767,14 +2833,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             hint.setVisible(true);
         }
     }//GEN-LAST:event_qprfCommentsHintLabelMouseClicked
-
-    private void adequacyHintLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adequacyHintLabelMouseClicked
-        if (MouseEvent.BUTTON1 == evt.getButton()) { // left click
-            AdequacyHint hint = new AdequacyHint(QEditApp.getView().getFrame(), true);
-            hint.setBounds(new Rectangle(evt.getLocationOnScreen(), new Dimension(hint.getWidth(), hint.getHeight())));
-            hint.setVisible(true);
-        }
-    }//GEN-LAST:event_adequacyHintLabelMouseClicked
 
     private void regulatoryInterprHintLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regulatoryInterprHintLabelMouseClicked
         if (MouseEvent.BUTTON1 == evt.getButton()) { // left click
@@ -2931,17 +2989,18 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     private void algorithmInfoToolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algorithmInfoToolButtonActionPerformed
         JFrame jframe = QEditApp.getView().getFrame();
-        AlgorithmInfoDialog algorithmInfoDialog = new AlgorithmInfoDialog(jframe);
-        int frameWidth = jframe.getWidth();
-        int frameHeight = jframe.getHeight();
-        int dialogWidht = algorithmInfoDialog.getWidth();
-        int dialogHeight = algorithmInfoDialog.getHeight();
-        int dialog_x = (frameWidth - dialogWidht) / 2;
-        int dialog_y = (frameHeight - dialogHeight) / 2;
-        algorithmInfoDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
+        if (algorithmInfoDialog == null) {
+            algorithmInfoDialog = new AlgorithmInfoDialog(jframe);
+            int frameWidth = jframe.getWidth();
+            int frameHeight = jframe.getHeight();
+            int dialogWidht = algorithmInfoDialog.getWidth();
+            int dialogHeight = algorithmInfoDialog.getHeight();
+            int dialog_x = (frameWidth - dialogWidht) / 2;
+            int dialog_y = (frameHeight - dialogHeight) / 2;
+            algorithmInfoDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
+        }
         algorithmInfoDialog.setVisible(true);
         algorithmInfoDialog.getAlgorithmURIField().setText(algorithmUriValue.getText());
-        algorithmInfoDialog.getTitleField().setText("some title");
     }//GEN-LAST:event_algorithmInfoToolButtonActionPerformed
 
     private void predictedFeatureToolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_predictedFeatureToolButtonActionPerformed
@@ -3069,6 +3128,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             magnified.setVisible(true);
         }
     }//GEN-LAST:event_showMagnifiedImageActionPerformed
+
+    private void adequacyHintLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adequacyHintLabelMouseClicked
+        if (MouseEvent.BUTTON1 == evt.getButton()) { // left click
+            AdequacyHint hint = new AdequacyHint(QEditApp.getView().getFrame(), true);
+            hint.setBounds(new Rectangle(evt.getLocationOnScreen(), new Dimension(hint.getWidth(), hint.getHeight())));
+            hint.setVisible(true);
+        }
+}//GEN-LAST:event_adequacyHintLabelMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCompoundSynonym;
     private javax.swing.JButton addDescriptorValueButton;
@@ -3079,7 +3146,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel adequacyHintLabel;
     private javax.swing.JLabel adequacyInfoIndicatorLabel;
     private javax.swing.JPanel adequacyInfoPanel;
-    private javax.swing.JPanel adequacyPanel;
     private javax.swing.JButton algorithmDetailsButton;
     private javax.swing.JButton algorithmInfoToolButton;
     private javax.swing.JLabel algorithmNameLabel;
@@ -3166,11 +3232,16 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator2;
@@ -3180,6 +3251,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton loadStructureImgButton;
     private javax.swing.JTextArea mechanismDomainText;
     private javax.swing.JPanel metaInfoPanel;
@@ -3270,6 +3343,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton removeDescriptorValueButton;
     private javax.swing.JButton removeSelectedRowButton;
     private javax.swing.JButton removeStructuralAnalogue;
+    private javax.swing.JPanel reportPredictionPanel;
     private javax.swing.JButton showMagnifiedImage;
     private javax.swing.JTextArea stereoChemDiscussionTextArea;
     private javax.swing.JPanel stereoChemFeaturesDiscussionPanel;
@@ -3293,6 +3367,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private DescriptorValueWizard desriptorWizard;
     private StructuralAnalogueWizard_Step1 structuralAnalogueWizard;
     private DescriptorMetaDataDialog descriptorMetaDialog;
+    private AlgorithmInfoDialog algorithmInfoDialog;
 }
 
 

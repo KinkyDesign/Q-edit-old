@@ -24,7 +24,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="mainSplitPane" alignment="0" pref="486" max="32767" attributes="0"/>
+              <Component id="mainSplitPane" alignment="0" pref="484" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -62,7 +62,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="484" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="482" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -110,9 +110,9 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="484" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="482" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="desktopPane" alignment="0" pref="484" max="32767" attributes="0"/>
+                          <Component id="desktopPane" alignment="0" pref="482" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -120,6 +120,7 @@
               <SubComponents>
                 <Container class="javax.swing.JDesktopPane" name="desktopPane">
                   <Properties>
+                    <Property name="dragMode" type="int" value="1"/>
                     <Property name="name" type="java.lang.String" value="desktopPane" noResource="true"/>
                   </Properties>
 
@@ -153,7 +154,9 @@
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="newProjectSubMenu">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="newProjectSubMenu.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/document-new.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="newProjectSubMenu.text"/>
                 <Property name="name" type="java.lang.String" value="newProjectSubMenu" noResource="true"/>
               </Properties>
@@ -178,7 +181,9 @@
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                       <KeyStroke key="Ctrl+Alt+N"/>
                     </Property>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="newReport.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/document-import.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="newReport.text"/>
                     <Property name="toolTipText" type="java.lang.String" resourceKey="newReport.toolTipText"/>
                     <Property name="name" type="java.lang.String" value="newReport" noResource="true"/>
@@ -194,7 +199,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+O"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="openFileMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/open.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" resourceKey="openFileMenuItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="openFileMenuItem.toolTipText"/>
@@ -209,7 +216,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="saveMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/media-optical-blu-ray.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" resourceKey="saveMenuItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="saveMenuItem.toolTipText"/>
@@ -217,6 +226,36 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="closeMenuItem">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+W"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/document-close.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="closeMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="closeMenuItem" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="closeAllMenuItem">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+W"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/media-playback-stop.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="closeAllMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="closeAllMenuItem" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeAllMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="firstFileMenuSeparatorItem">
@@ -229,7 +268,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+I"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="qprfOptionsMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/preferences-other.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="69"/>
                 <Property name="text" type="java.lang.String" resourceKey="qprfOptionsMenuItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="qprfOptionsMenuItem.toolTipText"/>
@@ -249,7 +290,9 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="exitMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/media-eject.png"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="exitMenuItem" noResource="true"/>
               </Properties>
               <AuxValues>
@@ -268,7 +311,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="pdfReportMenuItem">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="pdfReportMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/pdf-annotations.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="80"/>
                 <Property name="text" type="java.lang.String" resourceKey="pdfReportMenuItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="pdfReportMenuItem.toolTipText"/>
@@ -277,7 +322,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="wordReportMenuItem">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="wordReportMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/application-msword.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="68"/>
                 <Property name="text" type="java.lang.String" resourceKey="wordReportMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="wordReportMenuItem" noResource="true"/>
@@ -294,7 +341,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="toolsOptionsMenuItem">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="toolsOptionsMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/run-build-configure.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="79"/>
                 <Property name="text" type="java.lang.String" resourceKey="toolsOptionsMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="toolsOptionsMenuItem" noResource="true"/>
@@ -305,7 +354,9 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="qedit.QEditView" id="statisticsDialogBox" methodName="statisticsDialogBox"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="statisticsMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/office-chart-pie.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="statisticsMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="statisticsMenuItem" noResource="true"/>
               </Properties>
@@ -317,21 +368,27 @@
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="compoundSubmenu">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="compoundSubmenu.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/draw-spiral.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="compoundSubmenu.text"/>
                 <Property name="name" type="java.lang.String" value="compoundSubmenu" noResource="true"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="compoundInfo">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="compoundInfo.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/draw-spiral.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="compoundInfo.text"/>
                     <Property name="name" type="java.lang.String" value="compoundInfo" noResource="true"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="saveCompoundRdfMenuItem">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="saveCompoundRdfMenuItem.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/rdf.gif"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="saveCompoundRdfMenuItem.text"/>
                     <Property name="name" type="java.lang.String" value="saveCompoundRdfMenuItem" noResource="true"/>
                   </Properties>
@@ -355,7 +412,9 @@
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                       <KeyStroke key="Ctrl+D"/>
                     </Property>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="updateImageMenuItem.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/view-preview.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="updateImageMenuItem.text"/>
                     <Property name="name" type="java.lang.String" value="updateImageMenuItem" noResource="true"/>
                   </Properties>
@@ -397,7 +456,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="addSynonymMenuItem">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="addSynonymMenuItem.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/edit-rename.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="addSynonymMenuItem.text"/>
                     <Property name="name" type="java.lang.String" value="addSynonymMenuItem" noResource="true"/>
                   </Properties>
@@ -407,7 +468,9 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem2.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/feature.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem2.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
                   </Properties>
@@ -419,31 +482,37 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="modelSubmenu">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="modelSubmenu.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/office-chart-area.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="modelSubmenu.text"/>
                 <Property name="name" type="java.lang.String" value="modelSubmenu" noResource="true"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem4.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem4.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem4" noResource="true"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem5.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem5.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem5" noResource="true"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem6.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem6.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem6" noResource="true"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem7.icon"/>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem7.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem7" noResource="true"/>
                   </Properties>
@@ -452,14 +521,18 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="madSubmenu">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="madSubmenu.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/media-playback-start.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="madSubmenu.text"/>
                 <Property name="name" type="java.lang.String" value="madSubmenu" noResource="true"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem8.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/list-add.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem8.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem8" noResource="true"/>
                   </Properties>
@@ -468,7 +541,9 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="reportSubmenu">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="reportSubmenu.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/irc-voice.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="reportSubmenu.text"/>
                 <Property name="name" type="java.lang.String" value="reportSubmenu" noResource="true"/>
               </Properties>
@@ -478,7 +553,9 @@
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                       <KeyStroke key="Ctrl+U"/>
                     </Property>
-                    <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem9.icon"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/qedit/resources/list-add-user.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" resourceKey="jMenuItem9.text"/>
                     <Property name="name" type="java.lang.String" value="jMenuItem9" noResource="true"/>
                   </Properties>
@@ -506,7 +583,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="F1"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="helpItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/help-hint.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="72"/>
                 <Property name="text" type="java.lang.String" resourceKey="helpItem.text"/>
                 <Property name="toolTipText" type="java.lang.String" resourceKey="helpItem.toolTipText"/>
@@ -521,13 +600,22 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="qedit.QEditView" id="showAboutBox" methodName="showAboutBox"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="aboutMenuItem.icon"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/qedit/resources/help-about.png"/>
+                </Property>
                 <Property name="name" type="java.lang.String" value="aboutMenuItem" noResource="true"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
               </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="licenseInfoMenuItem">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="licenseInfoMenuItem.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="licenseInfoMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="licenseInfoMenuItem" noResource="true"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -555,16 +643,16 @@
               <Component id="statusPanelSeparator" alignment="0" pref="868" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="statusFace" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="527" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
+                          <Component id="statusFace" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="527" max="32767" attributes="0"/>
                           <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
@@ -576,7 +664,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="statusPanelSeparator" min="-2" pref="2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -586,7 +674,7 @@
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="progressBar" min="-2" max="-2" attributes="0"/>
+                      <Component id="progressBar" alignment="1" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -617,8 +705,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="statusFace">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="statusFace.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="statusFace.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/face-smile.png"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="statusFace" noResource="true"/>
           </Properties>
         </Component>
@@ -639,8 +728,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/archive-insert.png"/>
+            </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
@@ -655,8 +745,9 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="createNewReport" methodName="createNewReport"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="newReportButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="newReportButton.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/document-import.png"/>
+            </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="newReportButton" noResource="true"/>
@@ -668,8 +759,9 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="openFileAction" methodName="openFileAction"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="openLocalResourceButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="openLocalResourceButton.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/open.png"/>
+            </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="openLocalResourceButton" noResource="true"/>
@@ -681,8 +773,9 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="saveDialogBox" methodName="saveDialogBox"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="saveButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="saveButton.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/media-optical-blu-ray.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" resourceKey="saveButton.toolTipText"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -697,8 +790,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="exportDocButton">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="exportDocButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="exportDocButton.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/application-msword.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" resourceKey="exportDocButton.toolTipText"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -708,8 +802,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="exportPdfButton">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="exportPdfButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="exportPdfButton.text"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/pdf-annotations.png"/>
+            </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="exportPdfButton" noResource="true"/>
@@ -729,7 +824,9 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="showAboutBox" methodName="showAboutBox"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="aboutToolButton.icon"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/help-about.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" resourceKey="aboutToolButton.text"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -742,7 +839,9 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="ejectButton.icon"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/media-eject.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" resourceKey="ejectButton.text"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -750,13 +849,42 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator6">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="jSeparator6" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="kindlyStopTaskButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/edit-bomb.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="kindlyStopTaskButton.toolTipText"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="name" type="java.lang.String" value="kindlyStopTaskButton" noResource="true"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kindlyStopTaskButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="cancelRunningTaskButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/qedit/resources/dialog-close.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="cancelRunningTaskButton.toolTipText"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="cancelRunningTaskButton" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelRunningTaskButtonActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jSpinner1" noResource="true"/>
-      </Properties>
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="component" type="javax.swing.JComponent" editor="org.netbeans.modules.form.ComponentChooserEditor">

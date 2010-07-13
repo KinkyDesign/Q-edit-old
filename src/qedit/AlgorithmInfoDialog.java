@@ -289,9 +289,17 @@ public class AlgorithmInfoDialog extends javax.swing.JDialog {
 }//GEN-LAST:event_algorithmURIFieldActionPerformed
 
     private void addAlgorithmTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAlgorithmTypeActionPerformed
+
         if (addAlgorithmTypeDialog == null) {
             JFrame jframe = QEditApp.getView().getFrame();
             addAlgorithmTypeDialog = new AddAlgorithmType(jframe);
+            int frameWidth = jframe.getWidth();
+            int frameHeight = jframe.getHeight();
+            int dialogWidht = addAlgorithmTypeDialog.getWidth();
+            int dialogHeight = addAlgorithmTypeDialog.getHeight();
+            int dialog_x = (frameWidth - dialogWidht) / 2;
+            int dialog_y = (frameHeight - dialogHeight) / 2;
+            addAlgorithmTypeDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
             addAlgorithmTypeDialog.setTypesListParent(typesList);
         }
         addAlgorithmTypeDialog.setVisible(true);

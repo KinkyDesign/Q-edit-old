@@ -19,12 +19,12 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
     private static Map<String, String> imageServiceComboOptions = new java.util.LinkedHashMap<String, String>();
     static {
-      imageServiceComboOptions.put("AMBIT Cactvs", QEditApp.ambit_cactvs_imageService);
-      imageServiceComboOptions.put("AMBIT CDK", QEditApp.ambit_cdk_imageService);
-      imageServiceComboOptions.put("AMBIT Daylight", QEditApp.ambit_daylight_imageService);
-      imageServiceComboOptions.put("Idea Cactvs", QEditApp.ideaconsult_cactvs_imageService);
-      imageServiceComboOptions.put("Idea CDK", QEditApp.ideaconsult_cdk_imageService);
-      imageServiceComboOptions.put("Idea Daylight", QEditApp.ideaconsult_daylight_imageService);
+      imageServiceComboOptions.put("AMBIT Cactvs", qedit.clients.ClientConstants.AMBIT_CACTVS_IMAGE_SERVICE);
+      imageServiceComboOptions.put("AMBIT CDK", qedit.clients.ClientConstants.AMBIT_CDK_IMAGE_SERVICE);
+      imageServiceComboOptions.put("AMBIT Daylight", qedit.clients.ClientConstants.AMBIT_DAYLIGHT_IMAGE_SERVICE);
+      imageServiceComboOptions.put("Idea Cactvs", qedit.clients.ClientConstants.IDEA_CACTVS_IMAGE_SERVICE);
+      imageServiceComboOptions.put("Idea CDK", qedit.clients.ClientConstants.IDEA_CDK_IMAGE_SERVICE);
+      imageServiceComboOptions.put("Idea Daylight", qedit.clients.ClientConstants.IDEA_DAYLIGHT_IMAGE_SERVICE);
     };
     private static Map<String, Integer> magnificationAlgorithm = new java.util.LinkedHashMap<String, Integer>();
     static {
@@ -58,8 +58,6 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
         imageServiceButtonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        cancelButton = new javax.swing.JButton();
-        okButton = new javax.swing.JButton();
         tabbedPanel = new javax.swing.JTabbedPane();
         imageServicePanel = new javax.swing.JPanel();
         imageServiceHeaderLabel = new javax.swing.JLabel();
@@ -75,11 +73,17 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         casToSmilesServiceTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        smilesToUriServiceTextField = new javax.swing.JTextField();
+        compoundLookupServiceTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         modelServicePanel = new javax.swing.JPanel();
         algorithmServicePanel = new javax.swing.JPanel();
         ontologyServicePanel = new javax.swing.JPanel();
         pdfOptionsPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        cancelButton = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(EditorOptionsDialog.class);
@@ -88,25 +92,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
 
         jPanel1.setName("jPanel1"); // NOI18N
 
-        cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
-        cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
-        cancelButton.setName("cancelButton"); // NOI18N
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-
-        okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
-        okButton.setText(resourceMap.getString("okButton.text")); // NOI18N
-        okButton.setToolTipText(resourceMap.getString("okButton.toolTipText")); // NOI18N
-        okButton.setName("okButton"); // NOI18N
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
-
+        tabbedPanel.setMinimumSize(new java.awt.Dimension(50, 50));
         tabbedPanel.setName("tabbedPanel"); // NOI18N
 
         imageServicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("imageServicePanel.border.title"))); // NOI18N
@@ -172,7 +158,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(imageServiceHintLamp))
                     .add(customImageServiceRadio)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, imageServiceField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, imageServiceField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                     .add(imageServicePanelLayout.createSequentialGroup()
                         .add(jLabel2)
                         .add(18, 18, 18)
@@ -194,11 +180,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                 .add(customImageServiceRadio)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(imageServiceField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 36, Short.MAX_VALUE)
+                .add(18, 18, 18)
                 .add(imageServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(magnificationModeSelectorCombbo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab(resourceMap.getString("imageServicePanel.TabConstraints.tabTitle"), imageServicePanel); // NOI18N
@@ -211,7 +197,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        casToSmilesServiceTextField.setForeground(resourceMap.getColor("jTextField1.foreground")); // NOI18N
+        casToSmilesServiceTextField.setForeground(resourceMap.getColor("casToSmilesServiceTextField.foreground")); // NOI18N
         casToSmilesServiceTextField.setText(resourceMap.getString("casToSmilesServiceTextField.text")); // NOI18N
         casToSmilesServiceTextField.setToolTipText(resourceMap.getString("casToSmilesServiceTextField.toolTipText")); // NOI18N
         casToSmilesServiceTextField.setName("casToSmilesServiceTextField"); // NOI18N
@@ -219,9 +205,15 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        smilesToUriServiceTextField.setForeground(resourceMap.getColor("smilesToUriServiceTextField.foreground")); // NOI18N
-        smilesToUriServiceTextField.setText(resourceMap.getString("smilesToUriServiceTextField.text")); // NOI18N
-        smilesToUriServiceTextField.setName("smilesToUriServiceTextField"); // NOI18N
+        compoundLookupServiceTextField.setForeground(resourceMap.getColor("compoundLookupServiceTextField.foreground")); // NOI18N
+        compoundLookupServiceTextField.setText(resourceMap.getString("compoundLookupServiceTextField.text")); // NOI18N
+        compoundLookupServiceTextField.setName("compoundLookupServiceTextField"); // NOI18N
+
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semicolon(;)", "Comma(,)", "Colon (:)", "Ampersand (&)" }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,13 +222,15 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
             .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jLabel4)
                     .add(jLabel3)
                     .add(jLabel1))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 70, Short.MAX_VALUE)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(smilesToUriServiceTextField)
-                    .add(casToSmilesServiceTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(compoundLookupServiceTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 139, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(casToSmilesServiceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 433, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -247,8 +241,12 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(smilesToUriServiceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .add(compoundLookupServiceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel4)
+                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout compoundServicePanelLayout = new org.jdesktop.layout.GroupLayout(compoundServicePanel);
@@ -265,7 +263,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
             .add(compoundServicePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab(resourceMap.getString("compoundServicePanel.TabConstraints.tabTitle"), compoundServicePanel); // NOI18N
@@ -276,11 +274,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         modelServicePanel.setLayout(modelServicePanelLayout);
         modelServicePanelLayout.setHorizontalGroup(
             modelServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 646, Short.MAX_VALUE)
+            .add(0, 748, Short.MAX_VALUE)
         );
         modelServicePanelLayout.setVerticalGroup(
             modelServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 283, Short.MAX_VALUE)
+            .add(0, 314, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab(resourceMap.getString("modelServicePanel.TabConstraints.tabTitle"), modelServicePanel); // NOI18N
@@ -291,11 +289,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         algorithmServicePanel.setLayout(algorithmServicePanelLayout);
         algorithmServicePanelLayout.setHorizontalGroup(
             algorithmServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 646, Short.MAX_VALUE)
+            .add(0, 748, Short.MAX_VALUE)
         );
         algorithmServicePanelLayout.setVerticalGroup(
             algorithmServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 283, Short.MAX_VALUE)
+            .add(0, 314, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab(resourceMap.getString("algorithmServicePanel.TabConstraints.tabTitle"), algorithmServicePanel); // NOI18N
@@ -306,11 +304,11 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         ontologyServicePanel.setLayout(ontologyServicePanelLayout);
         ontologyServicePanelLayout.setHorizontalGroup(
             ontologyServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 646, Short.MAX_VALUE)
+            .add(0, 748, Short.MAX_VALUE)
         );
         ontologyServicePanelLayout.setVerticalGroup(
             ontologyServicePanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 283, Short.MAX_VALUE)
+            .add(0, 314, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab(resourceMap.getString("ontologyServicePanel.TabConstraints.tabTitle"), ontologyServicePanel); // NOI18N
@@ -321,39 +319,84 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         pdfOptionsPanel.setLayout(pdfOptionsPanelLayout);
         pdfOptionsPanelLayout.setHorizontalGroup(
             pdfOptionsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 646, Short.MAX_VALUE)
+            .add(0, 748, Short.MAX_VALUE)
         );
         pdfOptionsPanelLayout.setVerticalGroup(
             pdfOptionsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 283, Short.MAX_VALUE)
+            .add(0, 314, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab(resourceMap.getString("pdfOptionsPanel.TabConstraints.tabTitle"), pdfOptionsPanel); // NOI18N
+
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setName("jLabel5"); // NOI18N
+
+        jPanel3.setName("jPanel3"); // NOI18N
+
+        cancelButton.setIcon(resourceMap.getIcon("cancelButton.icon")); // NOI18N
+        cancelButton.setText(resourceMap.getString("cancelButton.text")); // NOI18N
+        cancelButton.setName("cancelButton"); // NOI18N
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        okButton.setIcon(resourceMap.getIcon("okButton.icon")); // NOI18N
+        okButton.setText(resourceMap.getString("okButton.text")); // NOI18N
+        okButton.setToolTipText(resourceMap.getString("okButton.toolTipText")); // NOI18N
+        okButton.setName("okButton"); // NOI18N
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(134, Short.MAX_VALUE)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, cancelButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, okButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .add(okButton)
+                .add(4, 4, 4)
+                .add(cancelButton))
+        );
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(457, Short.MAX_VALUE)
-                .add(cancelButton)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(okButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 397, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 85, Short.MAX_VALUE)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, tabbedPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
+                .add(tabbedPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(374, Short.MAX_VALUE)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(okButton)
-                    .add(cancelButton)))
+                .addContainerGap(364, Short.MAX_VALUE)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                .add(18, 18, 18))
             .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jPanel1Layout.createSequentialGroup()
-                    .add(tabbedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 339, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(64, Short.MAX_VALUE)))
+                    .add(tabbedPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(117, Short.MAX_VALUE)))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -364,9 +407,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         bindingGroup.bind();
@@ -377,10 +418,10 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         casToSmilesServiceTextField.setBackground(Color.white);
         if (chooseImageServiceRadio.isSelected()) {
-                QEditApp.setImageService(imageServiceComboOptions.
+                qedit.clients.ClientConstants.setImageService(imageServiceComboOptions.
                         get(imageServiceCombo.getSelectedItem().toString()));
         } else {
-            QEditApp.setImageService(imageServiceField.getText());
+            qedit.clients.ClientConstants.setImageService(imageServiceField.getText());
         }
         if (casToSmilesServiceTextField.getText().isEmpty()) {
             tabbedPanel.setSelectedComponent(compoundServicePanel);
@@ -388,8 +429,8 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
             return;
         }
         QEditApp.setMagnificationMode(magnificationAlgorithm.get(magnificationModeSelectorCombbo.getSelectedItem().toString()));
-        QEditApp.setCasToSmilesService(casToSmilesServiceTextField.getText());
-        QEditApp.setSmilesToUriService(smilesToUriServiceTextField.getText());
+        qedit.clients.ClientConstants.setCasToSmilesService(casToSmilesServiceTextField.getText());
+        qedit.clients.ClientConstants.setCompoundLookupService(compoundLookupServiceTextField.getText());
         dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -434,6 +475,7 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField casToSmilesServiceTextField;
     private javax.swing.JRadioButton chooseImageServiceRadio;
+    private javax.swing.JTextField compoundLookupServiceTextField;
     private javax.swing.JPanel compoundServicePanel;
     private javax.swing.JRadioButton customImageServiceRadio;
     private javax.swing.ButtonGroup imageServiceButtonGroup;
@@ -442,17 +484,20 @@ public class EditorOptionsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel imageServiceHeaderLabel;
     private javax.swing.JLabel imageServiceHintLamp;
     private javax.swing.JPanel imageServicePanel;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JComboBox magnificationModeSelectorCombbo;
     private javax.swing.JPanel modelServicePanel;
     private javax.swing.JButton okButton;
     private javax.swing.JPanel ontologyServicePanel;
     private javax.swing.JPanel pdfOptionsPanel;
-    private javax.swing.JTextField smilesToUriServiceTextField;
     private javax.swing.JTabbedPane tabbedPanel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables

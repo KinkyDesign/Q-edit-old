@@ -114,7 +114,7 @@ public class GetClient {
     public static String smilesFromCasRn(String casRn) throws ClientException, java.io.IOException {
         GetClient getter = new GetClient();
         try {
-            getter.setUri(String.format(qedit.QEditApp.getCasToSmilesService(), casRn));
+            getter.setUri(String.format(qedit.clients.ClientConstants.getCasToSmilesService(), casRn));
             return getter.getRemoteMessage();
         } catch (java.net.URISyntaxException ex) {
             throw new RuntimeException("Unexpected bad-uri!");

@@ -33,10 +33,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -49,60 +46,43 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="457" max="32767" attributes="0"/>
-                  <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="okButton" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="jLabel5" min="-2" pref="397" max="-2" attributes="0"/>
+                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Component id="tabbedPanel" alignment="1" pref="650" max="32767" attributes="0"/>
+                  <Component id="tabbedPanel" alignment="0" pref="752" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="374" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="364" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel3" alignment="1" max="32767" attributes="1"/>
+                      <Component id="jLabel5" alignment="1" pref="80" max="32767" attributes="1"/>
                   </Group>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="tabbedPanel" min="-2" pref="339" max="-2" attributes="0"/>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                      <Component id="tabbedPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="117" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="cancelButton">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="cancelButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="cancelButton.text"/>
-            <Property name="name" type="java.lang.String" value="cancelButton" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="okButton">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="okButton.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="okButton.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="okButton.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="okButton" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okButtonActionPerformed"/>
-          </Events>
-        </Component>
         <Container class="javax.swing.JTabbedPane" name="tabbedPanel">
           <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[50, 50]"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="tabbedPanel" noResource="true"/>
           </Properties>
 
@@ -141,7 +121,7 @@
                                   <Component id="imageServiceHintLamp" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="customImageServiceRadio" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="imageServiceField" alignment="1" pref="610" max="32767" attributes="0"/>
+                              <Component id="imageServiceField" alignment="1" pref="712" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -168,12 +148,12 @@
                           <Component id="customImageServiceRadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="imageServiceField" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="magnificationModeSelectorCombbo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -287,7 +267,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="124" max="32767" attributes="0"/>
+                          <EmptySpace pref="145" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -311,15 +291,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="70" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="smilesToUriServiceTextField" max="32767" attributes="1"/>
-                                  <Component id="casToSmilesServiceTextField" alignment="0" pref="422" max="32767" attributes="1"/>
+                                  <Component id="compoundLookupServiceTextField" alignment="0" pref="283" max="32767" attributes="1"/>
+                                  <Component id="jComboBox1" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Component id="casToSmilesServiceTextField" alignment="0" min="-2" pref="433" max="-2" attributes="1"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -333,9 +315,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="smilesToUriServiceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="compoundLookupServiceTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="60" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -349,7 +336,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="casToSmilesServiceTextField">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" resourceKey="jTextField1.foreground"/>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="casToSmilesServiceTextField.foreground"/>
                         <Property name="text" type="java.lang.String" resourceKey="casToSmilesServiceTextField.text"/>
                         <Property name="toolTipText" type="java.lang.String" resourceKey="casToSmilesServiceTextField.toolTipText"/>
                         <Property name="name" type="java.lang.String" value="casToSmilesServiceTextField" noResource="true"/>
@@ -361,11 +348,25 @@
                         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="smilesToUriServiceTextField">
+                    <Component class="javax.swing.JTextField" name="compoundLookupServiceTextField">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" resourceKey="smilesToUriServiceTextField.foreground"/>
-                        <Property name="text" type="java.lang.String" resourceKey="smilesToUriServiceTextField.text"/>
-                        <Property name="name" type="java.lang.String" value="smilesToUriServiceTextField" noResource="true"/>
+                        <Property name="foreground" type="java.awt.Color" resourceKey="compoundLookupServiceTextField.foreground"/>
+                        <Property name="text" type="java.lang.String" resourceKey="compoundLookupServiceTextField.text"/>
+                        <Property name="name" type="java.lang.String" value="compoundLookupServiceTextField" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
+                        <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Semicolon(;)&quot;, &quot;Comma(,)&quot;, &quot;Colon (:)&quot;, &quot;Ampersand (&amp;)&quot; })" type="code"/>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="jComboBox1" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -387,12 +388,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="646" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="748" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="283" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -412,12 +413,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="646" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="748" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="283" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -437,12 +438,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="646" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="748" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="283" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -462,16 +463,75 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="646" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="748" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="283" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
             </Container>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
+            <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JPanel" name="jPanel3">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="134" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="cancelButton" alignment="1" max="32767" attributes="1"/>
+                          <Component id="okButton" alignment="1" min="-2" pref="100" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <Component id="okButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="cancelButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="cancelButton.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="cancelButton.text"/>
+                <Property name="name" type="java.lang.String" value="cancelButton" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="okButton">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="okButton.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="okButton.text"/>
+                <Property name="toolTipText" type="java.lang.String" resourceKey="okButton.toolTipText"/>
+                <Property name="name" type="java.lang.String" value="okButton" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okButtonActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
