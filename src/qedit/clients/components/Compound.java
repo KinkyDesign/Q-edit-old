@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import qedit.clients.ClientConstants;
 import qedit.clients.ClientException;
+import qedit.clients.ontol.DCMetaInfo;
+import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
 /**
  * A Chemical Compound.
@@ -27,6 +29,7 @@ public class Compound extends AbstractComponent {
     private String casRn;
     private String einecs;
     private String uri;
+    private DCMetaInfo meta;
 
     public Compound() {
     }
@@ -108,6 +111,15 @@ public class Compound extends AbstractComponent {
     public void setSmiles(String smiles) {
         this.smiles = smiles.split(SMILES_SEPARATOR)[0];
     }
+
+    public DCMetaInfo getMeta() {
+        return meta;
+    }
+
+    public void setMeta(DCMetaInfo meta) {
+        this.meta = meta;
+    }
+
     // </editor-fold>
 
     public java.util.List<String> getSynonyms() {

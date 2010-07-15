@@ -7,6 +7,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.OWL;
+import com.hp.hpl.jena.vocabulary.RDF;
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -18,6 +19,7 @@ import qedit.clients.GetClient;
 import qedit.clients.Media;
 import qedit.clients.ClientConstants;
 import qedit.clients.components.Compound;
+import qedit.clients.ontol.collections.OTClasses;
 import qedit.clients.ontol.collections.OTDatatypeProperties;
 import qedit.clients.ontol.collections.OTFeatures;
 import qedit.clients.ontol.collections.OTObjectProperties;
@@ -121,7 +123,17 @@ public class CompoundSpider implements Closeable {
         StmtIterator it = om.listStatements(
                 new SimpleSelector(om.getResource(uri),
                 OTObjectProperties.dataEntry().asObjectProperty(om), (RDFNode) null));
-        StmtIterator it2 = null, it3 = null;
+        StmtIterator it2 = null, it3 = null, itCompound = null;
+
+        itCompound = om.listStatements(
+                new SimpleSelector(null,
+                RDF.type,
+                OTClasses.Compound().inModel(om)));
+
+        if(itCompound.hasNext()){
+            DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(it.nextStatement().getSubject(), om);
+            compound.setMeta(metaSpider.parse());
+        }
 
         if (it.hasNext()) {
             Resource dataEntryNode = it.nextStatement().getObject().as(Resource.class);
@@ -213,8 +225,10 @@ public class CompoundSpider implements Closeable {
      * @throws ClientException
      */
     public static void main(String... args) throws ClientException {
-        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
+        CompoundSpider spider = new CompoundSpider(LookupMethod.ByUri, "http://ambit.uni-plovdiv.bg:8080/ambit2/compound/10");
         System.out.println(spider.parse());
+        spider.om.write(System.out);
         spider.close();
+
     }
 }
