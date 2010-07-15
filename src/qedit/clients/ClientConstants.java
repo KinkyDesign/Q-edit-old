@@ -16,6 +16,7 @@ public class ClientConstants {
     public static final String IDEA_CDK_IMAGE_SERVICE = "http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s";
     public static final String IDEA_DAYLIGHT_IMAGE_SERVICE = "http://apps.ideaconsult.net:8080/ambit2/depict/daylight?search=%s";
     public static final String IDEA_CACTVS_IMAGE_SERVICE = "http://apps.ideaconsult.net:8080/ambit2/depict/cactvs?search=%s";
+    public static final String ACCEPT_IMAGE_URL_PARAMETER = "%s?accept-header=image/png";
     /*
      * --- Compound Services ---
      */

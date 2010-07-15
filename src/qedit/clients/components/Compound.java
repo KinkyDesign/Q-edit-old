@@ -1,6 +1,13 @@
 package qedit.clients.components;
 
 import com.hp.hpl.jena.ontology.Individual;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import qedit.clients.ClientConstants;
+import qedit.clients.ClientException;
 
 /**
  * A Chemical Compound.
@@ -10,7 +17,7 @@ import com.hp.hpl.jena.ontology.Individual;
 public class Compound extends AbstractComponent {
 
     private static final String CHEMICAL_NAMES_SEPARATOR = ";";
-
+    private static final String SMILES_SEPARATOR = ",";
     private String iupacName;
     private String inChI;
     private String inChIKey;
@@ -28,6 +35,8 @@ public class Compound extends AbstractComponent {
         this.uri = uri;
     }
 
+    // DO NOT MODIFY!
+    // <editor-fold defaultstate="collapsed" desc="Getters and Settters">
     public String getREACHRegistrationDate() {
         return REACHRegistrationDate;
     }
@@ -44,7 +53,6 @@ public class Compound extends AbstractComponent {
         this.inChIKey = inChIKey;
     }
 
-    
     public String getEINECS() {
         return einecs;
     }
@@ -61,8 +69,6 @@ public class Compound extends AbstractComponent {
         this.chemicalName = chemicalName;
     }
 
-    // DO NOT MODIFY!
-    // <editor-fold defaultstate="collapsed" desc="Getters and Settters">
     public String getUri() {
         return uri;
     }
@@ -100,7 +106,7 @@ public class Compound extends AbstractComponent {
     }
 
     public void setSmiles(String smiles) {
-        this.smiles = smiles;
+        this.smiles = smiles.split(SMILES_SEPARATOR)[0];
     }
     // </editor-fold>
 
@@ -110,6 +116,37 @@ public class Compound extends AbstractComponent {
         }
         java.util.List<String> list = java.util.Arrays.asList(chemicalName.split(CHEMICAL_NAMES_SEPARATOR));
         return list;
+    }
+
+    public javax.swing.ImageIcon getDepiction() throws ClientException {
+        try {
+            if (smiles != null) {
+                String smilesUrlEncoded = java.net.URLEncoder.encode(getSmiles(), "UTF-8");
+                String url = String.format(ClientConstants.getImageService(), smilesUrlEncoded);
+                System.out.println(this);
+                try {
+                    return new javax.swing.ImageIcon(new URL(url));
+                } catch (MalformedURLException ex) {
+                    throw new ClientException("Depiction not possible", ex);
+                }
+            }
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Compound.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
+        }
+        return null;
+    }
+
+    public javax.swing.ImageIcon getImage() throws ClientException {
+        try {
+            if (getUri() != null) {
+                java.net.URL url = new java.net.URL(String.format(ClientConstants.ACCEPT_IMAGE_URL_PARAMETER, getUri()));
+                return new javax.swing.ImageIcon(url);
+            }
+        } catch (java.net.MalformedURLException ex) {
+            throw new ClientException("No Image Available", ex);
+        }
+        return null;
     }
 
     @Override
@@ -128,7 +165,7 @@ public class Compound extends AbstractComponent {
         // Display the Chemical Name only when it is different from the IUPAC Name
         if (getChemicalName() != null && !getChemicalName().equals(getIupacName())) {
             builder.append("Chemical Names... \n");
-            for (String synonym : getSynonyms()) {                
+            for (String synonym : getSynonyms()) {
                 builder.append("     - ");
                 builder.append(synonym.trim());
                 builder.append("\n");
