@@ -20,8 +20,6 @@ public class Parameter extends AbstractComponent{
         MANDATORY,
         INTERNAL;
     }
-
-    private String name;
     private String value;
     private ParameterScope scope;
     private DCMetaInfo meta;
@@ -32,14 +30,6 @@ public class Parameter extends AbstractComponent{
 
     public void setMeta(DCMetaInfo meta) {
         this.meta = meta;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ParameterScope getScope() {

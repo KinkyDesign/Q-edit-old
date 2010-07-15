@@ -23,19 +23,18 @@ import qedit.clients.ontol.impl.DCMetaInfoImpl;
  * @author Charalampos Chomenides
  * @author Pantelis Sopasakis
  */
-public class DCMetaInfoSpider {
+public class DCMetaInfoSpider extends Tarantula {
 
-    private Resource resource;
-    private OntModel model;
+    
 
     public DCMetaInfoSpider(OntModel model, String uri) {
+        super();
         this.model = model;
         resource = model.getResource(uri);
     }
 
-    public DCMetaInfoSpider(Resource node, OntModel model) {
-        this.resource = node;
-        this.model = model;
+    public DCMetaInfoSpider(Resource resource, OntModel model) {
+        super(resource, model);
     }
 
     public DCMetaInfo parse() {
@@ -55,41 +54,5 @@ public class DCMetaInfoSpider {
         return dcmeta;
     }
 
-    private String retrieveProp(Property prop) {
-        if (prop.equals(OTObjectProperties.hasSource().asObjectProperty(model))) {
-            StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (RDFNode) null));
-            if (it.hasNext()) {
-                try {
-                    return (it.nextStatement().getObject().as(Resource.class).getURI());
-                } finally {
-                    it.close();
-                }
-            }
-
-        } else {
-            StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (Literal) null));
-            if (it.hasNext()) {
-                try {
-                    return (it.nextStatement().getObject().as(Literal.class).getString());
-                } finally {
-                    it.close();
-                }
-            }
-        }
-        return null;
-    }
-
-    private ArrayList<String> retrieveProps(Property prop) {
-        ArrayList<String> props = new ArrayList<String>();
-
-        StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (Literal) null));
-        while (it.hasNext()) {
-            try {
-                props.add(it.nextStatement().getObject().as(Literal.class).getString());
-            } finally {
-                it.close();
-            }
-        }
-        return props;
-    }
+    
 }

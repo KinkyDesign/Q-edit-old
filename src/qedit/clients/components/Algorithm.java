@@ -16,7 +16,7 @@ public class Algorithm extends AbstractComponent{
 
     private String uri;
     private DCMetaInfo meta;
-    private ArrayList<Parameter> parameters;
+    private ArrayList<Parameter> parameters = new ArrayList<Parameter>();
     private Set<OntologicalClass> ontologies;
     
     @Override

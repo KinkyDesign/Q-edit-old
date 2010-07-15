@@ -33,7 +33,7 @@ import qedit.clients.ontol.collections.OTObjectProperties;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public class CompoundSpider implements Closeable {
+public class CompoundSpider extends Tarantula<Compound> {
 
     /**
      * Method according to which compounds are searched (e.g. by URI)
@@ -51,7 +51,6 @@ public class CompoundSpider implements Closeable {
         AutoDetect;
     }
     private static final String namesToken = "%s/all";// <--    ?feature_uris[]
-    private OntModel om;
     private String uri;
     private boolean doRetrieveSmiles = false;
 
@@ -104,7 +103,7 @@ public class CompoundSpider implements Closeable {
             Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
         }
         client.setMediaType(Media.rdf_xml);
-        om = client.getOntModel();
+        model = client.getOntModel();
     }
 
     /**
@@ -120,35 +119,39 @@ public class CompoundSpider implements Closeable {
      */
     public Compound parse() throws ClientException {
         Compound compound = new Compound(uri);
-        StmtIterator it = om.listStatements(
-                new SimpleSelector(om.getResource(uri),
-                OTObjectProperties.dataEntry().asObjectProperty(om), (RDFNode) null));
+        StmtIterator it = model.listStatements(
+                new SimpleSelector(model.getResource(uri),
+                OTObjectProperties.dataEntry().asObjectProperty(model), (RDFNode) null));
         StmtIterator it2 = null, it3 = null, itCompound = null;
 
-        itCompound = om.listStatements(
+        itCompound = model.listStatements(
                 new SimpleSelector(null,
                 RDF.type,
-                OTClasses.Compound().inModel(om)));
+                OTClasses.Compound().inModel(model)));
 
         if(itCompound.hasNext()){
-            DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(it.nextStatement().getSubject(), om);
+            DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(itCompound.nextStatement().getSubject(), model);
             compound.setMeta(metaSpider.parse());
+        }
+
+        if (itCompound!=null){
+            itCompound.close();
         }
 
         if (it.hasNext()) {
             Resource dataEntryNode = it.nextStatement().getObject().as(Resource.class);
-            it2 = om.listStatements(
-                    new SimpleSelector(dataEntryNode, OTObjectProperties.values().asObjectProperty(om), (RDFNode) null));
+            it2 = model.listStatements(
+                    new SimpleSelector(dataEntryNode, OTObjectProperties.values().asObjectProperty(model), (RDFNode) null));
             while (it2.hasNext()) {
                 Resource valuesResource = it2.nextStatement().getObject().as(Resource.class);
-                it3 = om.listStatements(
-                        new SimpleSelector(valuesResource, OTObjectProperties.feature().asObjectProperty(om), (RDFNode) null));
+                it3 = model.listStatements(
+                        new SimpleSelector(valuesResource, OTObjectProperties.feature().asObjectProperty(model), (RDFNode) null));
                 if (it3.hasNext()) {
                     Resource featureNode = it3.nextStatement().getObject().as(Resource.class);
-                    String featureSameAsURI = featureNode.getProperty(om.getProperty(
+                    String featureSameAsURI = featureNode.getProperty(model.getProperty(
                             OWL.sameAs.getURI())).getObject().as(Resource.class).getURI();
                     String val = valuesResource.getProperty(OTDatatypeProperties.value().
-                            asDatatypeProperty(om)).getObject().as(Literal.class).getString();
+                            asDatatypeProperty(model)).getObject().as(Literal.class).getString();
                     if (featureSameAsURI.equals(OTFeatures.IUPACName().getUri())) {
                         compound.setIupacName(val);
                     } else if (featureSameAsURI.equals(OTFeatures.EINECS().getUri())) {
@@ -194,23 +197,7 @@ public class CompoundSpider implements Closeable {
         return compound;
     }
 
-    /**
-     * Closes the ontological model used by the Spider (if any) and releases all
-     * resources it holds. Closing the Spider is considered good practise and prefered
-     * comparing to leaving it to the finalizer.
-     */
-    @Override
-    public void close() {
-        if (om != null) {
-            om.close();
-        }
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        close();
-        super.finalize();
-    }
+    
 
     /**
      * Outputs:
@@ -225,9 +212,9 @@ public class CompoundSpider implements Closeable {
      * @throws ClientException
      */
     public static void main(String... args) throws ClientException {
-        CompoundSpider spider = new CompoundSpider(LookupMethod.ByUri, "http://ambit.uni-plovdiv.bg:8080/ambit2/compound/10");
+        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
         System.out.println(spider.parse());
-        spider.om.write(System.out);
+//        spider.model.write(System.out);
         spider.close();
 
     }
