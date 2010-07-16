@@ -22,4 +22,30 @@ public class QPRFReport {
      */
     private Model model;
 
+    public QPRFReport() {
+    }
+
+    public Compound getCompound() {
+        return compound;
+    }
+
+    public void setCompound(Compound compound) {
+        this.compound = compound;
+    }
+
+    public DCMetaInfo getMetaInfo() {
+        return metaInfo;
+    }
+
+    public void setMetaInfo(DCMetaInfo metaInfo) {
+        this.metaInfo = metaInfo;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
 }

@@ -172,7 +172,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="basicTabbedPanel" alignment="0" pref="746" max="32767" attributes="0"/>
+              <Component id="basicTabbedPanel" alignment="0" pref="747" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -199,15 +199,15 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="compoundInfoPanel" alignment="0" pref="1011" max="32767" attributes="3"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="descriptorsPanel" min="-2" max="-2" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="stereoChemFeaturesDiscussionPanel" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="compoundInfoPanel" alignment="0" max="32767" attributes="3"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -217,7 +217,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="compoundInfoPanel" min="-2" pref="405" max="-2" attributes="0"/>
+                          <Component id="compoundInfoPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="stereoChemFeaturesDiscussionPanel" max="32767" attributes="3"/>
@@ -245,50 +245,17 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="compoundURILabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="compoundNamesScrollable" alignment="0" pref="395" max="32767" attributes="1"/>
-                                                  <Component id="compoundUriValue" alignment="0" pref="395" max="32767" attributes="1"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="identifierChooserCombo" min="-2" pref="190" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="identifierValueTextField" alignment="0" min="-2" pref="395" max="-2" attributes="1"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="clearAllCompoundSynonyms" max="32767" attributes="1"/>
-                                                      <Component id="addCompoundSynonym" max="32767" attributes="1"/>
-                                                      <Component id="removeCompoundSynonym" alignment="0" min="-2" max="-2" attributes="1"/>
-                                                  </Group>
-                                                  <Component id="copyClipboardCompoundURI" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="jSeparator1" min="-2" pref="6" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="structureImagePanel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="compoundsToolbar" alignment="0" pref="987" max="32767" attributes="1"/>
-                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="compoundDataInputPanel" min="-2" pref="530" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="structureImagePanel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="235" max="32767" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" pref="6" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="compoundsToolbar" min="-2" pref="997" max="-2" attributes="1"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -296,51 +263,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="compoundsToolbar" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="1">
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="identifierChooserCombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="identifierValueTextField" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="addCompoundSynonym" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="removeCompoundSynonym" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="clearAllCompoundSynonyms" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="compoundNamesScrollable" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="compoundURILabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="copyClipboardCompoundURI" min="-2" max="-2" attributes="0"/>
-                                          <Component id="compoundUriValue" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="structureImagePanel" alignment="0" min="-2" pref="310" max="-2" attributes="1"/>
-                                          <Component id="jSeparator1" alignment="0" min="-2" max="-2" attributes="1"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jSeparator1" alignment="0" min="-2" max="-2" attributes="1"/>
+                                  <Component id="compoundDataInputPanel" min="-2" max="32767" attributes="0"/>
+                                  <Component id="structureImagePanel" min="-2" pref="310" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -348,67 +275,10 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="compoundSynonymsLabel">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="compoundSynonymsLabel.font"/>
-                        <Property name="text" type="java.lang.String" resourceKey="compoundSynonymsLabel.text"/>
-                        <Property name="name" type="java.lang.String" value="compoundSynonymsLabel" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Container class="javax.swing.JScrollPane" name="compoundNamesScrollable">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="compoundNamesScrollable" noResource="true"/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="compoundSynonymsList">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                              <Connection code="new javax.swing.DefaultListModel() //{&#xa;//    String[] strings = { &quot;Benzen&quot;, &quot;HexaCarbonoCycloSomething&quot;, &quot;Benzol&quot;, &quot;Benzosomething&quot;, &quot;SomeOtherName&quot; };&#xa;//    public int getSize() { return strings.length; }&#xa;//    public Object getElementAt(int i) { return strings[i]; }&#xa;//}&#xa;" type="code"/>
-                            </Property>
-                            <Property name="name" type="java.lang.String" value="compoundSynonymsList" noResource="true"/>
-                          </Properties>
-                        </Component>
-                      </SubComponents>
-                    </Container>
-                    <Component class="javax.swing.JLabel" name="compoundURILabel">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="compoundURILabel.font"/>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="compoundURILabel.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="compoundURILabel.text"/>
-                        <Property name="name" type="java.lang.String" value="compoundURILabel" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="compoundUriValue">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" resourceKey="compoundUriValue.foreground"/>
-                        <Property name="text" type="java.lang.String" resourceKey="compoundUriValue.text"/>
-                        <Property name="name" type="java.lang.String" value="compoundUriValue" noResource="true"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JSeparator" name="jSeparator1">
                       <Properties>
                         <Property name="orientation" type="int" value="1"/>
                         <Property name="name" type="java.lang.String" value="jSeparator1" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="copyClipboardCompoundURI">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="copyClipboardCompoundURI.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="copyClipboardCompoundURI.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="copyClipboardCompoundURI.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="copyClipboardCompoundURI" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="compoundNameHint">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="compoundNameHint.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="compoundNameHint.text"/>
-                        <Property name="name" type="java.lang.String" value="compoundNameHint" noResource="true"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JToolBar" name="compoundsToolbar">
@@ -459,43 +329,6 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="compoundUriHint">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="compoundUriHint.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="compoundUriHint.text"/>
-                        <Property name="name" type="java.lang.String" value="compoundUriHint" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="addCompoundSynonym">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="addCompoundSynonym.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="addCompoundSynonym.text"/>
-                        <Property name="name" type="java.lang.String" value="addCompoundSynonym" noResource="true"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCompoundSynonymActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="removeCompoundSynonym">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="removeCompoundSynonym.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="removeCompoundSynonym.text"/>
-                        <Property name="name" type="java.lang.String" value="removeCompoundSynonym" noResource="true"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCompoundSynonymActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="clearAllCompoundSynonyms">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" resourceKey="clearAllCompoundSynonyms.icon"/>
-                        <Property name="text" type="java.lang.String" resourceKey="clearAllCompoundSynonyms.text"/>
-                        <Property name="name" type="java.lang.String" value="clearAllCompoundSynonyms" noResource="true"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllCompoundSynonymsActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Container class="javax.swing.JPanel" name="structureImagePanel">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -511,11 +344,11 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="structureImageToolbar" alignment="1" pref="365" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
+                              <Component id="structureImageToolbar" alignment="0" pref="413" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                                  <Component id="structureImage" min="-2" pref="341" max="-2" attributes="0"/>
-                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                                  <Component id="structureImage" pref="389" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -526,7 +359,7 @@
                                   <Component id="structureImageToolbar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="structureImage" min="-2" pref="214" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -606,32 +439,317 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel4">
+                    <Container class="javax.swing.JPanel" name="compoundDataInputPanel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="compoundDataInputPanel" noResource="true"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JComboBox" name="identifierChooserCombo">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="5">
-                            <StringItem index="0" value="SMILES"/>
-                            <StringItem index="1" value="CAS-RN"/>
-                            <StringItem index="2" value="InChI"/>
-                            <StringItem index="3" value="IUPAC Name"/>
-                            <StringItem index="4" value="URI"/>
-                          </StringArray>
-                        </Property>
-                        <Property name="name" type="java.lang.String" value="identifierChooserCombo" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="identifierValueTextField">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="identifierValueTextField.text"/>
-                        <Property name="name" type="java.lang.String" value="identifierValueTextField" noResource="true"/>
-                      </Properties>
-                    </Component>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="compoundSynonymsPanel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="compoundIdentifierPanel" alignment="0" max="32767" attributes="1"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="compoundIdentifierPanel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="compoundSynonymsPanel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JPanel" name="compoundIdentifierPanel">
+                          <Properties>
+                            <Property name="name" type="java.lang.String" value="compoundIdentifierPanel" noResource="true"/>
+                          </Properties>
+
+                          <Layout>
+                            <DimensionLayout dim="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="compoundIndentifiersLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="identifierChooserCombo" min="-2" pref="190" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="compoundURILabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="compoundUriValue" alignment="0" pref="378" max="32767" attributes="1"/>
+                                          <Component id="compoundIdentifiersCards" alignment="0" max="32767" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="reloadCompoundInfoOKButton" min="-2" pref="86" max="-2" attributes="1"/>
+                                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                            <DimensionLayout dim="1">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="compoundIndentifiersLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="identifierChooserCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="reloadCompoundInfoOKButton" alignment="1" max="32767" attributes="1"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="compoundIdentifiersCards" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="compoundURILabel" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="compoundUriValue" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JComboBox" name="identifierChooserCombo">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="5">
+                                    <StringItem index="0" value="SMILES"/>
+                                    <StringItem index="1" value="CAS-RN"/>
+                                    <StringItem index="2" value="InChI"/>
+                                    <StringItem index="3" value="IUPAC Name"/>
+                                    <StringItem index="4" value="URI"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="identifierChooserCombo" noResource="true"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="identifierChooserComboItemStateChanged"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="compoundURILabel">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" resourceKey="compoundURILabel.font"/>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="compoundURILabel.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="compoundURILabel.text"/>
+                                <Property name="name" type="java.lang.String" value="compoundURILabel" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="compoundUriValue">
+                              <Properties>
+                                <Property name="foreground" type="java.awt.Color" resourceKey="compoundUriValue.foreground"/>
+                                <Property name="text" type="java.lang.String" resourceKey="compoundUriValue.text"/>
+                                <Property name="name" type="java.lang.String" value="compoundUriValue" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="compoundUriHint">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="compoundUriHint.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="compoundUriHint.text"/>
+                                <Property name="name" type="java.lang.String" value="compoundUriHint" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="reloadCompoundInfoOKButton">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="reloadCompoundInfoOKButton.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="reloadCompoundInfoOKButton.text"/>
+                                <Property name="defaultCapable" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="reloadCompoundInfoOKButton" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="compoundIndentifiersLabel">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" resourceKey="compoundIndentifiersLabel.text"/>
+                                <Property name="name" type="java.lang.String" value="compoundIndentifiersLabel" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Container class="javax.swing.JPanel" name="compoundIdentifiersCards">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="compoundIdentifiersCards" noResource="true"/>
+                              </Properties>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTextField" name="identifierValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="identifierValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="identifierValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="identifierValueTextFieldFocusGained"/>
+                                  </Events>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="card2"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="smilesValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="smilesValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="smilesValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="SMILES"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="casRnValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="casRnValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="casRnValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="CAS-RN"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                          </SubComponents>
+                        </Container>
+                        <Container class="javax.swing.JPanel" name="compoundSynonymsPanel">
+                          <Properties>
+                            <Property name="name" type="java.lang.String" value="compoundSynonymsPanel" noResource="true"/>
+                          </Properties>
+
+                          <Layout>
+                            <DimensionLayout dim="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace pref="111" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="compoundNamesScrollable" pref="342" max="32767" attributes="1"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="clearAllCompoundSynonyms" pref="148" max="32767" attributes="1"/>
+                                          <Component id="removeCompoundSynonym" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="addCompoundSynonym" alignment="0" pref="148" max="32767" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                            <DimensionLayout dim="1">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="compoundSynonymsLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="compoundNameHint" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="1">
+                                              <Component id="addCompoundSynonym" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="removeCompoundSynonym" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="clearAllCompoundSynonyms" min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="compoundNamesScrollable" alignment="0" min="-2" pref="97" max="-2" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                            </DimensionLayout>
+                          </Layout>
+                          <SubComponents>
+                            <Container class="javax.swing.JScrollPane" name="compoundNamesScrollable">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="compoundNamesScrollable" noResource="true"/>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JList" name="compoundSynonymsList">
+                                  <Properties>
+                                    <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new javax.swing.DefaultListModel() //{&#xa;//    String[] strings = { &quot;Benzen&quot;, &quot;HexaCarbonoCycloSomething&quot;, &quot;Benzol&quot;, &quot;Benzosomething&quot;, &quot;SomeOtherName&quot; };&#xa;//    public int getSize() { return strings.length; }&#xa;//    public Object getElementAt(int i) { return strings[i]; }&#xa;//}&#xa;" type="code"/>
+                                    </Property>
+                                    <Property name="name" type="java.lang.String" value="compoundSynonymsList" noResource="true"/>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Component class="javax.swing.JButton" name="removeCompoundSynonym">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="removeCompoundSynonym.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="removeCompoundSynonym.text"/>
+                                <Property name="name" type="java.lang.String" value="removeCompoundSynonym" noResource="true"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCompoundSynonymActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="addCompoundSynonym">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="addCompoundSynonym.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="addCompoundSynonym.text"/>
+                                <Property name="name" type="java.lang.String" value="addCompoundSynonym" noResource="true"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCompoundSynonymActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="compoundNameHint">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="compoundNameHint.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="compoundNameHint.text"/>
+                                <Property name="name" type="java.lang.String" value="compoundNameHint" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="compoundSynonymsLabel">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" resourceKey="compoundSynonymsLabel.font"/>
+                                <Property name="text" type="java.lang.String" resourceKey="compoundSynonymsLabel.text"/>
+                                <Property name="name" type="java.lang.String" value="compoundSynonymsLabel" noResource="true"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="clearAllCompoundSynonyms">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="clearAllCompoundSynonyms.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="clearAllCompoundSynonyms.text"/>
+                                <Property name="name" type="java.lang.String" value="clearAllCompoundSynonyms" noResource="true"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearAllCompoundSynonymsActionPerformed"/>
+                              </Events>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="descriptorsPanel">
@@ -656,7 +774,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="descriptorsTableToolbar" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="descriptorsScrollable" pref="205" max="32767" attributes="0"/>
+                              <Component id="descriptorsScrollable" pref="199" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -828,7 +946,7 @@
                                   <Component id="stereoChemHintLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="stereoChemScollPane" pref="183" max="32767" attributes="0"/>
+                              <Component id="stereoChemScollPane" pref="177" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -875,14 +993,14 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="qprfReport">
+            <Container class="javax.swing.JPanel" name="reportGeneralInfoPanel">
               <Properties>
-                <Property name="name" type="java.lang.String" value="qprfReport" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="reportGeneralInfoPanel" noResource="true"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="2. General Information">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="qprfReport.TabConstraints.tabTitle"/>
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="reportGeneralInfoPanel.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -895,7 +1013,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="715" max="32767" attributes="0"/>
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="716" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -945,7 +1063,7 @@
                                   <Component id="authorsPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="datePanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="288" max="32767" attributes="0"/>
+                                  <EmptySpace pref="289" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1333,7 +1451,7 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="221" max="32767" attributes="0"/>
+                                  <EmptySpace pref="222" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1564,7 +1682,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" pref="715" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" alignment="0" pref="716" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1598,7 +1716,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                                  <EmptySpace pref="28" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2354,7 +2472,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="predictionInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="183" max="32767" attributes="0"/>
+                                  <EmptySpace pref="184" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2616,7 +2734,7 @@
                                   <Component id="structuralAnaloguesPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="addDomainsDiscussionPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                                  <EmptySpace pref="76" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3201,7 +3319,7 @@
                               <Component id="adequacyInfoPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="adequacyHintLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="94" max="32767" attributes="0"/>
+                          <EmptySpace pref="95" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
