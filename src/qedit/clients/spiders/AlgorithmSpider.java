@@ -1,14 +1,11 @@
 
 package qedit.clients.spiders;
 
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import qedit.clients.ClientException;
 import qedit.clients.GetClient;
 import qedit.clients.Media;
@@ -39,6 +36,7 @@ public class AlgorithmSpider extends Tarantula<Algorithm>{
         resource = model.getResource(uri);
     }
 
+    @Override
     public Algorithm parse(){
         Algorithm algorithm = new Algorithm();
 

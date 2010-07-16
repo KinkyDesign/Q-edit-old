@@ -3,8 +3,6 @@ package qedit.clients.spiders;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import java.util.ArrayList;
 import qedit.clients.components.Parameter;
 import qedit.clients.ontol.collections.OTDatatypeProperties;
 

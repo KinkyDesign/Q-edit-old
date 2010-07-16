@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import qedit.clients.ClientConstants;
 import qedit.clients.ClientException;
 import qedit.clients.ontol.DCMetaInfo;
-import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
 /**
  * A Chemical Compound.

@@ -9,7 +9,6 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFTest;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,9 +16,7 @@ import java.util.Set;
 import qedit.clients.ClientException;
 import qedit.clients.ontol.OntologicalClass;
 import qedit.clients.ontol.collections.OTAlgorithmTypes;
-import qedit.clients.ontol.collections.OTClasses;
 import qedit.clients.ontol.collections.OTObjectProperties;
-import qedit.clients.ontol.impl.OntologicalClassImpl;
 
 /**
  *

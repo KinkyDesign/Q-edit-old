@@ -1,20 +1,11 @@
 package qedit.clients.spiders;
 
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.SimpleSelector;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.DC;
-import com.hp.hpl.jena.vocabulary.DC_10;
-import com.hp.hpl.jena.vocabulary.DC_11;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDFS;
-import java.util.ArrayList;
 import qedit.clients.ontol.DCMetaInfo;
-import qedit.clients.ontol.collections.OTDatatypeProperties;
 import qedit.clients.ontol.collections.OTObjectProperties;
 import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
@@ -24,8 +15,6 @@ import qedit.clients.ontol.impl.DCMetaInfoImpl;
  * @author Pantelis Sopasakis
  */
 public class DCMetaInfoSpider extends Tarantula {
-
-    
 
     public DCMetaInfoSpider(OntModel model, String uri) {
         super();
@@ -37,6 +26,7 @@ public class DCMetaInfoSpider extends Tarantula {
         super(resource, model);
     }
 
+    @Override
     public DCMetaInfo parse() {
         DCMetaInfo dcmeta = new DCMetaInfoImpl();
         dcmeta.setTitle(retrieveProp(DC.title));
@@ -53,6 +43,4 @@ public class DCMetaInfoSpider extends Tarantula {
         //TODO: audiences
         return dcmeta;
     }
-
-    
 }

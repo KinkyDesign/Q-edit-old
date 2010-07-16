@@ -3,7 +3,6 @@ package qedit.clients.spiders;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Resource;
 import java.util.Set;
-import qedit.clients.ClientException;
 import qedit.clients.ontol.OntologicalClass;
 
 /**

@@ -2,11 +2,10 @@ package qedit.clients;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import java.io.IOException;
-import qedit.clients.components.Compound;
 import qedit.clients.ontol.impl.SimpleOntModelImpl;
 
 /**
- *
+ * A client that performs GET requests.
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */

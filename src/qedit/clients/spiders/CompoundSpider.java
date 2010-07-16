@@ -1,6 +1,5 @@
 package qedit.clients.spiders;
 
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -8,7 +7,7 @@ import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
-import java.io.Closeable;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
@@ -45,6 +44,10 @@ public class CompoundSpider extends Tarantula<Compound> {
          * the URI of the compound
          */
         ByUri,
+        /**
+         * Get a compound from a local resource
+         */
+        FromFile,
         /**
          * Autodetect the search keyword
          */
@@ -91,13 +94,15 @@ public class CompoundSpider extends Tarantula<Compound> {
      */
     public CompoundSpider(LookupMethod lookup, String keyword) throws ClientException {
         if (lookup.equals(LookupMethod.ByUri)) {
-            this.uri = keyword;
-        } else {
+            uri = keyword; // Directly provide the URI
+        } else if (lookup.equals(LookupMethod.FromFile)) {
+            uri = "file://" + keyword;
+        } else if (lookup.equals(LookupMethod.AutoDetect)){
             uri = String.format(ClientConstants.getCompoundLookupService(), keyword);
+            uri = String.format(namesToken, uri);
         }
         GetClient client = new GetClient();
-        try {
-            uri = String.format(namesToken, uri);
+        try {            
             client.setUri(uri);
         } catch (URISyntaxException ex) {
             Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,10 +122,11 @@ public class CompoundSpider extends Tarantula<Compound> {
      *      retireve the SMILES string from the remote service. In case you have disabled
      *      SMILES retrieval, this exception will not be thrown.
      */
+    @Override
     public Compound parse() throws ClientException {
         Compound compound = new Compound(uri);
         StmtIterator it = model.listStatements(
-                new SimpleSelector(model.getResource(uri),
+                new SimpleSelector(null,
                 OTObjectProperties.dataEntry().asObjectProperty(model), (RDFNode) null));
         StmtIterator it2 = null, it3 = null, itCompound = null;
 
@@ -129,12 +135,12 @@ public class CompoundSpider extends Tarantula<Compound> {
                 RDF.type,
                 OTClasses.Compound().inModel(model)));
 
-        if(itCompound.hasNext()){
+        if (itCompound.hasNext()) {
             DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(itCompound.nextStatement().getSubject(), model);
             compound.setMeta(metaSpider.parse());
         }
 
-        if (itCompound!=null){
+        if (itCompound != null) {
             itCompound.close();
         }
 
@@ -162,11 +168,11 @@ public class CompoundSpider extends Tarantula<Compound> {
                         compound.setCasRn(val);
                     } else if (featureSameAsURI.equals(OTFeatures.SMILES().getUri())) {
                         compound.setSmiles(val);
-                    }else if (featureSameAsURI.equals(OTFeatures.InChI_std().getUri())) {
+                    } else if (featureSameAsURI.equals(OTFeatures.InChI_std().getUri())) {
                         compound.setInChI(val);
-                    }else if (featureSameAsURI.equals(OTFeatures.InChIKey_std().getUri())) {
+                    } else if (featureSameAsURI.equals(OTFeatures.InChIKey_std().getUri())) {
                         compound.setInChIKey(val);
-                    }else if (featureSameAsURI.equals(OTFeatures.REACHRegistrationDate().getUri())) {
+                    } else if (featureSameAsURI.equals(OTFeatures.REACHRegistrationDate().getUri())) {
                         compound.setREACHRegistrationDate(val);
                     }
                 }
@@ -197,8 +203,6 @@ public class CompoundSpider extends Tarantula<Compound> {
         return compound;
     }
 
-    
-
     /**
      * Outputs:
      * <pre>
@@ -211,10 +215,9 @@ public class CompoundSpider extends Tarantula<Compound> {
      * @param args - Not used
      * @throws ClientException
      */
-    public static void main(String... args) throws ClientException {
+    public static void main(String... args) throws ClientException, FileNotFoundException {
         CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
         System.out.println(spider.parse());
-//        spider.model.write(System.out);
         spider.close();
 
     }
