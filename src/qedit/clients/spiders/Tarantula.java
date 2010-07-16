@@ -151,9 +151,5 @@ public abstract class Tarantula<Result> implements Closeable {
         }
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        close();
-        super.finalize();
-    }
+ 
 }

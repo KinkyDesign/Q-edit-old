@@ -8,7 +8,6 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.vocabulary.RDF;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +17,6 @@ import qedit.clients.Media;
 import qedit.clients.components.Dataset;
 import qedit.clients.components.Feature;
 import qedit.clients.components.FeatureValue;
-import qedit.clients.ontol.collections.OTClasses;
 import qedit.clients.ontol.collections.OTDatatypeProperties;
 import qedit.clients.ontol.collections.OTObjectProperties;
 
@@ -79,6 +77,11 @@ public class DatasetSpider extends Tarantula<Dataset>{
                 }
             }
         }
+
+        if (entryResource==null){
+            return dataset;
+        }
+
         StmtIterator valuesIt = model.listStatements(
                 new SimpleSelector(entryResource,
                 OTObjectProperties.values().asObjectProperty(model),

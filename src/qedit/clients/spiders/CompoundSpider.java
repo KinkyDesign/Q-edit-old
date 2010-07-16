@@ -4,6 +4,7 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
+import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
@@ -56,6 +57,7 @@ public class CompoundSpider extends Tarantula<Compound> {
     private static final String namesToken = "%s/all";// <--    ?feature_uris[]
     private String uri;
     private boolean doRetrieveSmiles = false;
+    private LookupMethod lookupMethod;
 
     public boolean isDoRetrieveSmiles() {
         return doRetrieveSmiles;
@@ -93,6 +95,7 @@ public class CompoundSpider extends Tarantula<Compound> {
      *      service has encountered some error.
      */
     public CompoundSpider(LookupMethod lookup, String keyword) throws ClientException {
+        this.lookupMethod = lookup;
         if (lookup.equals(LookupMethod.ByUri)) {
             uri = keyword; // Directly provide the URI
         } else if (lookup.equals(LookupMethod.FromFile)) {
@@ -148,7 +151,8 @@ public class CompoundSpider extends Tarantula<Compound> {
                 OTClasses.Compound().inModel(model)));
 
         if (itCompound.hasNext()) {
-            DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(itCompound.nextStatement().getSubject(), model);
+            Statement stmt = itCompound.nextStatement();
+            DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(stmt.getSubject(), model);
             compound.setMeta(metaSpider.parse());
         }
 
@@ -158,8 +162,19 @@ public class CompoundSpider extends Tarantula<Compound> {
 
         if (it.hasNext()) {
             Resource dataEntryNode = it.nextStatement().getObject().as(Resource.class);
+
+            if (lookupMethod.equals(LookupMethod.AutoDetect)) {
+                StmtIterator compoundResourceIter =
+                        model.listStatements(new SimpleSelector(dataEntryNode, OTObjectProperties.compound().asObjectProperty(model), (RDFNode) null));
+
+                if (compoundResourceIter.hasNext()) {
+                    compound.setUri(compoundResourceIter.nextStatement().getObject().as(Resource.class).getURI());
+                }
+            }
+
             it2 = model.listStatements(
                     new SimpleSelector(dataEntryNode, OTObjectProperties.values().asObjectProperty(model), (RDFNode) null));
+
             while (it2.hasNext()) {
                 Resource valuesResource = it2.nextStatement().getObject().as(Resource.class);
                 it3 = model.listStatements(

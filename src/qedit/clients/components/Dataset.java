@@ -2,6 +2,7 @@
 package qedit.clients.components;
 
 import com.hp.hpl.jena.ontology.Individual;
+import java.util.HashMap;
 import java.util.Map;
 import qedit.clients.ontol.DCMetaInfo;
 
@@ -14,7 +15,7 @@ public class Dataset extends AbstractComponent{
 
     String datasetUri;
     String compoundUri;
-    Map<Feature, FeatureValue> features;
+    Map<Feature, FeatureValue> features = new HashMap<Feature, FeatureValue>();
     DCMetaInfo meta;
 
     public Dataset() {

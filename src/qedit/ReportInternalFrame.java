@@ -27,7 +27,9 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -44,8 +46,12 @@ import org.jdesktop.application.TaskMonitor;
 import org.jdesktop.application.TaskService;
 import qedit.clients.ClientException;
 import qedit.clients.components.Compound;
+import qedit.clients.components.Dataset;
+import qedit.clients.components.Feature;
+import qedit.clients.components.FeatureValue;
 import qedit.clients.components.QPRFReport;
 import qedit.clients.spiders.CompoundSpider;
+import qedit.clients.spiders.DatasetSpider;
 import qedit.hints.AdequacyHint;
 import qedit.hints.QPRFCommentsHint;
 import qedit.hints.RegulInterpretationHint;
@@ -155,6 +161,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
+                try{
+                clearAllRows(descriptorsTable);
+                structureImage.setText("");
+                compoundSynonymsList.setModel(new DefaultListModel());
                 setProgress(0);
                 basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 ImageIcon icon = null;
@@ -224,6 +234,12 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 compoundIdentifiersCards.revalidate();
                 compoundIdentifiersCards.repaint();
 
+                if (compound == null) {
+                    QEditApp.getView().getStatusLabel().setText("No Compound could be loaded...");
+                    return new Object();
+                }
+
+
                 structureImage.setText("");
                 if (icon == null || icon.getIconWidth() == -1) {
                     structureImage.setIcon(new ImageIcon());
@@ -233,8 +249,38 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     return new Object();
                 }
                 structureImage.setIcon(icon);
+
+                /*
+                 * Load from Dataset
+                 */
+                try {
+                    String compoundUri = compound.getUri();
+                    String datasetUri = datasetUriValueTextField.getText();
+                    if (datasetUri != null && !datasetUri.isEmpty()) {
+                        DatasetSpider dsSpider = new DatasetSpider(datasetUri, compoundUri);
+                        Dataset dataset = dsSpider.parse();
+                        Iterator<Entry<Feature, FeatureValue>> datasetValues = dataset.getFeatures().entrySet().iterator();
+                        DefaultTableModel descriptorsContent = (DefaultTableModel) descriptorsTable.getModel();
+                        String descriptorName;
+                        while (datasetValues.hasNext()) {
+                            Entry<Feature, FeatureValue> datasetEntry = datasetValues.next();
+                            descriptorName = datasetEntry.getKey().getMeta().getTitle() != null
+                                    ? datasetEntry.getKey().getMeta().getTitle() : datasetEntry.getKey().getUri();
+                            descriptorsContent.addRow(new String[]{descriptorName, datasetEntry.getValue().getValue().toString(), datasetEntry.getKey().getUnits()});
+                        }
+                    }
+                } catch (final ClientException ex) {
+                    QEditApp.getView().getStatusLabel().setText("Dataset could be loaded...");
+                }
+
                 basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                 return new Object();
+                } catch (Exception exx){
+                    structureImage.setIcon(new ImageIcon());
+                    structureImage.setText("Depiction not possible...");
+                    exx.printStackTrace();
+                    throw exx;
+                }
             }
         };
 
@@ -829,11 +875,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
         anyKeywordValueTextField.setText(resourceMap.getString("anyKeywordValueTextField.text")); // NOI18N
         anyKeywordValueTextField.setName("anyKeywordValueTextField"); // NOI18N
-        anyKeywordValueTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                anyKeywordValueTextFieldFocusGained(evt);
-            }
-        });
         compoundIdentifiersCards.add(anyKeywordValueTextField, "Any Keyword");
 
         casRnValueTextField.setText(resourceMap.getString("casRnValueTextField.text")); // NOI18N
@@ -862,17 +903,18 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
-                        .addComponent(compoundIndentifiersLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(identifierChooserCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
-                        .addComponent(compoundURILabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(compoundUriHint))
-                    .addComponent(compoundIdentifiersCards, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datasetUriValueTextField))
+                .addGroup(compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
+                            .addComponent(compoundIndentifiersLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(identifierChooserCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(compoundIdentifiersCards, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                        .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
+                            .addComponent(compoundURILabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(compoundUriHint)))
+                    .addComponent(datasetUriValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(reloadCompoundInfoOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -3297,10 +3339,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             hint.setVisible(true);
         }
 }//GEN-LAST:event_adequacyHintLabelMouseClicked
-
-    private void anyKeywordValueTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_anyKeywordValueTextFieldFocusGained
-        datasetUriValueTextField.setEnabled(false);
-}//GEN-LAST:event_anyKeywordValueTextFieldFocusGained
 
     private void identifierChooserComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_identifierChooserComboItemStateChanged
         CardLayout cl = (CardLayout) (compoundIdentifiersCards.getLayout());
