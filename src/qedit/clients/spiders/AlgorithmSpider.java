@@ -39,7 +39,7 @@ public class AlgorithmSpider extends Tarantula<Algorithm>{
     @Override
     public Algorithm parse(){
         Algorithm algorithm = new Algorithm();
-
+        algorithm.setUri(uri);
         algorithm.setOntologies(getOTATypes(resource));
 
         DCMetaInfoSpider metaSpider = new DCMetaInfoSpider(model, uri);
