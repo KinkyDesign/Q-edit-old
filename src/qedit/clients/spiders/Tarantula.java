@@ -8,6 +8,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import java.io.Closeable;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Set;
 import qedit.clients.ClientException;
 import qedit.clients.ontol.OntologicalClass;
 import qedit.clients.ontol.collections.OTAlgorithmTypes;
+import qedit.clients.ontol.collections.OTClasses;
 import qedit.clients.ontol.collections.OTObjectProperties;
 
 /**
@@ -39,26 +41,34 @@ public abstract class Tarantula<Result> implements Closeable {
     public abstract Result parse() throws ClientException;
 
     protected String retrieveProp(Property prop) {
-        if (prop.equals(OTObjectProperties.hasSource().asObjectProperty(model))) {
+//        if (prop.equals(OTObjectProperties.hasSource().asObjectProperty(model))) {
+//
+//            StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (RDFNode) null));
+//            if (it.hasNext()) {
+//                try {
+//                    return (it.nextStatement().getObject().as(Resource.class).getURI());
+//                } finally {
+//                    it.close();
+//                }
+//            }
+//
+//        } else if (prop.equals(OWL.sameAs)) {
+//
+//        } else {
             StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (RDFNode) null));
             if (it.hasNext()) {
                 try {
-                    return (it.nextStatement().getObject().as(Resource.class).getURI());
+                    RDFNode node = it.nextStatement().getObject();
+                    if(node.isLiteral()){
+                        return (node.as(Literal.class).getString());
+                    }else if(node.isResource()){
+                        return (node.as(Resource.class).getURI());
+                    }
                 } finally {
                     it.close();
                 }
             }
-
-        } else {
-            StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (Literal) null));
-            if (it.hasNext()) {
-                try {
-                    return (it.nextStatement().getObject().as(Literal.class).getString());
-                } finally {
-                    it.close();
-                }
-            }
-        }
+        //}
         return null;
     }
 
@@ -93,6 +103,26 @@ public abstract class Tarantula<Result> implements Closeable {
         }
         for (OntClass oc : ontClassSet) {
             ontClasses.add(OTAlgorithmTypes.forName(oc.getLocalName()));
+        }
+        return ontClasses;
+    }
+
+    protected Set<OntologicalClass> getFeatureTypes(Resource currentResource) {
+        Set<OntologicalClass> ontClasses = new HashSet<OntologicalClass>();
+
+        StmtIterator classIt = model.listStatements(
+                new SimpleSelector(currentResource, RDF.type,
+                (RDFNode) null));
+        Set<OntClass> ontClassSet = new HashSet<OntClass>();
+        while (classIt.hasNext()) {
+            OntClass tempClass = classIt.nextStatement().getObject().as(OntClass.class);
+            if (tempClass.getNameSpace().equals(OTClasses.NS)) {
+                ontClassSet.add(tempClass);
+                ontClassSet = getSuperTypes(ontClassSet);
+            }
+        }
+        for (OntClass oc : ontClassSet) {
+            ontClasses.add(OTClasses.forName(oc.getLocalName()));
         }
         return ontClasses;
     }
