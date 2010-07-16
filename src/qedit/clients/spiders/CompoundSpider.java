@@ -97,18 +97,30 @@ public class CompoundSpider extends Tarantula<Compound> {
             uri = keyword; // Directly provide the URI
         } else if (lookup.equals(LookupMethod.FromFile)) {
             uri = "file://" + keyword;
-        } else if (lookup.equals(LookupMethod.AutoDetect)){
+        } else if (lookup.equals(LookupMethod.AutoDetect)) {
             uri = String.format(ClientConstants.getCompoundLookupService(), keyword);
             uri = String.format(namesToken, uri);
         }
         GetClient client = new GetClient();
-        try {            
+        try {
             client.setUri(uri);
         } catch (URISyntaxException ex) {
             Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
         }
         client.setMediaType(Media.rdf_xml);
         model = client.getOntModel();
+    }
+
+    public CompoundSpider(String anyKeyword) throws ClientException {
+        this(LookupMethod.AutoDetect, anyKeyword);
+    }
+
+    public CompoundSpider(java.net.URI uri) throws ClientException {
+        this(LookupMethod.ByUri, uri.toString());
+    }
+
+    public CompoundSpider(java.io.File file) throws ClientException {
+        this(LookupMethod.FromFile, file.getAbsolutePath());
     }
 
     /**
