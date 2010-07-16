@@ -525,7 +525,7 @@ public class QEditView extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getActionMap(QEditView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/media-eject.png"))); // NOI18N
+        exitMenuItem.setIcon(resourceMap.getIcon("exitMenuItem.icon")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
 
@@ -561,7 +561,6 @@ public class QEditView extends FrameView {
         toolsMenu.add(toolsOptionsMenuItem);
 
         statisticsMenuItem.setAction(actionMap.get("statisticsDialogBox")); // NOI18N
-        statisticsMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/office-chart-pie.png"))); // NOI18N
         statisticsMenuItem.setText(resourceMap.getString("statisticsMenuItem.text")); // NOI18N
         statisticsMenuItem.setName("statisticsMenuItem"); // NOI18N
         toolsMenu.add(statisticsMenuItem);
@@ -591,7 +590,7 @@ public class QEditView extends FrameView {
         jSeparator5.setName("jSeparator5"); // NOI18N
         compoundSubmenu.add(jSeparator5);
 
-        updateImageMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        updateImageMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         updateImageMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/view-preview.png"))); // NOI18N
         updateImageMenuItem.setText(resourceMap.getString("updateImageMenuItem.text")); // NOI18N
         updateImageMenuItem.setName("updateImageMenuItem"); // NOI18N
@@ -602,7 +601,6 @@ public class QEditView extends FrameView {
         });
         compoundSubmenu.add(updateImageMenuItem);
 
-        clearCompoundImage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         clearCompoundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/news-unsubscribe.png"))); // NOI18N
         clearCompoundImage.setText(resourceMap.getString("clearCompoundImage.text")); // NOI18N
         clearCompoundImage.setName("clearCompoundImage"); // NOI18N
@@ -718,7 +716,7 @@ public class QEditView extends FrameView {
         helpMenu.add(helpItem);
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
-        aboutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/help-about.png"))); // NOI18N
+        aboutMenuItem.setIcon(resourceMap.getIcon("aboutMenuItem.icon")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
 
@@ -800,7 +798,7 @@ public class QEditView extends FrameView {
         basicToolbar.add(jButton1);
 
         newReportButton.setAction(actionMap.get("createNewReport")); // NOI18N
-        newReportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/document-import.png"))); // NOI18N
+        newReportButton.setIcon(resourceMap.getIcon("newReportButton.icon")); // NOI18N
         newReportButton.setFocusable(false);
         newReportButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         newReportButton.setName("newReportButton"); // NOI18N
@@ -808,7 +806,6 @@ public class QEditView extends FrameView {
         basicToolbar.add(newReportButton);
 
         openLocalResourceButton.setAction(actionMap.get("openFileAction")); // NOI18N
-        openLocalResourceButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/open.png"))); // NOI18N
         openLocalResourceButton.setFocusable(false);
         openLocalResourceButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         openLocalResourceButton.setName("openLocalResourceButton"); // NOI18N
@@ -816,7 +813,7 @@ public class QEditView extends FrameView {
         basicToolbar.add(openLocalResourceButton);
 
         saveButton.setAction(actionMap.get("saveDialogBox")); // NOI18N
-        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/media-optical-blu-ray.png"))); // NOI18N
+        saveButton.setIcon(resourceMap.getIcon("saveButton.icon")); // NOI18N
         saveButton.setToolTipText(resourceMap.getString("saveButton.toolTipText")); // NOI18N
         saveButton.setFocusable(false);
         saveButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -851,7 +848,7 @@ public class QEditView extends FrameView {
         basicToolbar.add(jSeparator1);
 
         aboutToolButton.setAction(actionMap.get("showAboutBox")); // NOI18N
-        aboutToolButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/help-about.png"))); // NOI18N
+        aboutToolButton.setIcon(resourceMap.getIcon("aboutToolButton.icon")); // NOI18N
         aboutToolButton.setText(resourceMap.getString("aboutToolButton.text")); // NOI18N
         aboutToolButton.setFocusable(false);
         aboutToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -860,7 +857,7 @@ public class QEditView extends FrameView {
         basicToolbar.add(aboutToolButton);
 
         ejectButton.setAction(actionMap.get("quit")); // NOI18N
-        ejectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/media-eject.png"))); // NOI18N
+        ejectButton.setIcon(resourceMap.getIcon("ejectButton.icon")); // NOI18N
         ejectButton.setText(resourceMap.getString("ejectButton.text")); // NOI18N
         ejectButton.setFocusable(false);
         ejectButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -936,7 +933,7 @@ public class QEditView extends FrameView {
     private void updateImageMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateImageMenuItemActionPerformed
         ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
         if (selectedFrame != null) {
-            selectedFrame.updateImage();
+            selectedFrame.updateCompoundFromUserInput();
         } else {
             getStatusLabel().setText("No document is selected");
         }

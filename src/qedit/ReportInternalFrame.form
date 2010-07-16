@@ -172,7 +172,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="basicTabbedPanel" alignment="0" pref="747" max="32767" attributes="0"/>
+              <Component id="basicTabbedPanel" alignment="0" pref="748" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -385,20 +385,6 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadStructureImgButtonActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JButton" name="downloadImageButton">
-                              <Properties>
-                                <Property name="icon" type="javax.swing.Icon" resourceKey="downloadImageButton.icon"/>
-                                <Property name="text" type="java.lang.String" resourceKey="downloadImageButton.text"/>
-                                <Property name="toolTipText" type="java.lang.String" resourceKey="downloadImageButton.toolTipText"/>
-                                <Property name="focusable" type="boolean" value="false"/>
-                                <Property name="horizontalTextPosition" type="int" value="0"/>
-                                <Property name="name" type="java.lang.String" value="downloadImageButton" noResource="true"/>
-                                <Property name="verticalTextPosition" type="int" value="3"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="downloadImageButtonActionPerformed"/>
-                              </Events>
-                            </Component>
                             <Component class="javax.swing.JButton" name="clearStructureImgButton">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" resourceKey="clearStructureImgButton.icon"/>
@@ -489,12 +475,12 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="compoundUriValue" alignment="0" pref="378" max="32767" attributes="1"/>
-                                          <Component id="compoundIdentifiersCards" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="compoundIdentifiersCards" alignment="0" min="-2" pref="366" max="-2" attributes="1"/>
+                                          <Component id="datasetUriValueTextField" alignment="0" max="32767" attributes="1"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="reloadCompoundInfoOKButton" min="-2" pref="112" max="-2" attributes="1"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="reloadCompoundInfoOKButton" min="-2" pref="86" max="-2" attributes="1"/>
-                                      <EmptySpace pref="38" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -507,8 +493,8 @@
                                           <Component id="identifierChooserCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="reloadCompoundInfoOKButton" alignment="1" max="32767" attributes="1"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="reloadCompoundInfoOKButton" alignment="1" pref="95" max="32767" attributes="1"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="compoundIdentifiersCards" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -517,7 +503,7 @@
                                                   <Component id="compoundUriHint" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="compoundUriValue" min="-2" max="-2" attributes="0"/>
+                                              <Component id="datasetUriValueTextField" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -529,12 +515,14 @@
                             <Component class="javax.swing.JComboBox" name="identifierChooserCombo">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="5">
+                                  <StringArray count="7">
                                     <StringItem index="0" value="SMILES"/>
                                     <StringItem index="1" value="CAS-RN"/>
                                     <StringItem index="2" value="InChI"/>
-                                    <StringItem index="3" value="IUPAC Name"/>
-                                    <StringItem index="4" value="URI"/>
+                                    <StringItem index="3" value="InChI Key"/>
+                                    <StringItem index="4" value="IUPAC Name"/>
+                                    <StringItem index="5" value="Any Keyword"/>
+                                    <StringItem index="6" value="URI"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="identifierChooserCombo" noResource="true"/>
@@ -551,11 +539,11 @@
                                 <Property name="name" type="java.lang.String" value="compoundURILabel" noResource="true"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="compoundUriValue">
+                            <Component class="javax.swing.JTextField" name="datasetUriValueTextField">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" resourceKey="compoundUriValue.foreground"/>
-                                <Property name="text" type="java.lang.String" resourceKey="compoundUriValue.text"/>
-                                <Property name="name" type="java.lang.String" value="compoundUriValue" noResource="true"/>
+                                <Property name="foreground" type="java.awt.Color" resourceKey="datasetUriValueTextField.foreground"/>
+                                <Property name="text" type="java.lang.String" resourceKey="datasetUriValueTextField.text"/>
+                                <Property name="name" type="java.lang.String" value="datasetUriValueTextField" noResource="true"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="compoundUriHint">
@@ -572,6 +560,9 @@
                                 <Property name="defaultCapable" type="boolean" value="false"/>
                                 <Property name="name" type="java.lang.String" value="reloadCompoundInfoOKButton" noResource="true"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reloadCompoundInfoOKButtonActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="compoundIndentifiersLabel">
                               <Properties>
@@ -586,20 +577,6 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JTextField" name="identifierValueTextField">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" resourceKey="identifierValueTextField.text"/>
-                                    <Property name="name" type="java.lang.String" value="identifierValueTextField" noResource="true"/>
-                                  </Properties>
-                                  <Events>
-                                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="identifierValueTextFieldFocusGained"/>
-                                  </Events>
-                                  <Constraints>
-                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                                      <CardConstraints cardName="card2"/>
-                                    </Constraint>
-                                  </Constraints>
-                                </Component>
                                 <Component class="javax.swing.JTextField" name="smilesValueTextField">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" resourceKey="smilesValueTextField.text"/>
@@ -611,6 +588,20 @@
                                     </Constraint>
                                   </Constraints>
                                 </Component>
+                                <Component class="javax.swing.JTextField" name="anyKeywordValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="anyKeywordValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="anyKeywordValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="anyKeywordValueTextFieldFocusGained"/>
+                                  </Events>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="Any Keyword"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
                                 <Component class="javax.swing.JTextField" name="casRnValueTextField">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" resourceKey="casRnValueTextField.text"/>
@@ -619,6 +610,50 @@
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                                       <CardConstraints cardName="CAS-RN"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="inchiValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="inchiValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="inchiValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="InChI"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="compoundUriValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="compoundUriValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="compoundUriValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="URI"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="iupacNameValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="iupacNameValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="iupacNameValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="IUPAC Name"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="inchiKeyValueTextField">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" resourceKey="inchiKeyValueTextField.text"/>
+                                    <Property name="name" type="java.lang.String" value="inchiKeyValueTextField" noResource="true"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                      <CardConstraints cardName="InChI Key"/>
                                     </Constraint>
                                   </Constraints>
                                 </Component>
@@ -774,7 +809,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="descriptorsTableToolbar" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="descriptorsScrollable" pref="199" max="32767" attributes="0"/>
+                              <Component id="descriptorsScrollable" pref="200" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -946,7 +981,7 @@
                                   <Component id="stereoChemHintLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="stereoChemScollPane" pref="177" max="32767" attributes="0"/>
+                              <Component id="stereoChemScollPane" pref="178" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1013,7 +1048,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="716" max="32767" attributes="0"/>
+                      <Component id="qprfInfoTabbedSubPanel" alignment="0" pref="717" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1063,7 +1098,7 @@
                                   <Component id="authorsPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="datePanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="289" max="32767" attributes="0"/>
+                                  <EmptySpace pref="290" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1451,7 +1486,7 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="222" max="32767" attributes="0"/>
+                                  <EmptySpace pref="223" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1682,7 +1717,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" pref="716" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" alignment="0" pref="717" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1716,7 +1751,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                                  <EmptySpace pref="29" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2472,7 +2507,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="predictionInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="184" max="32767" attributes="0"/>
+                                  <EmptySpace pref="185" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2734,7 +2769,7 @@
                                   <Component id="structuralAnaloguesPanel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="addDomainsDiscussionPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="76" max="32767" attributes="0"/>
+                                  <EmptySpace pref="77" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3287,14 +3322,14 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel1">
+            <Container class="javax.swing.JPanel" name="adequacyInfoPanel">
               <Properties>
-                <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="adequacyInfoPanel" noResource="true"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="4. Adequacy Info">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="jPanel1.TabConstraints.tabTitle"/>
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="adequacyInfoPanel.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -3304,7 +3339,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="adequacyInfoPanel" max="32767" attributes="0"/>
+                          <Component id="adequacyInfoSubPanel" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="adequacyHintLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -3316,25 +3351,25 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="adequacyInfoPanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="adequacyInfoSubPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="adequacyHintLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="95" max="32767" attributes="0"/>
+                          <EmptySpace pref="96" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="adequacyInfoPanel">
+                <Container class="javax.swing.JPanel" name="adequacyInfoSubPanel">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Adequacy Info.">
-                          <Property name="titleX" resourceKey="adequacyInfoPanel.border.title"/>
+                          <Property name="titleX" resourceKey="adequacyInfoSubPanel.border.title"/>
                         </TitledBorder>
                       </Border>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="adequacyInfoPanel" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="adequacyInfoSubPanel" noResource="true"/>
                   </Properties>
 
                   <Layout>

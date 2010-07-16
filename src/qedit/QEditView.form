@@ -290,9 +290,7 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/qedit/resources/media-eject.png"/>
-                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="exitMenuItem.icon"/>
                 <Property name="name" type="java.lang.String" value="exitMenuItem" noResource="true"/>
               </Properties>
               <AuxValues>
@@ -354,9 +352,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="qedit.QEditView" id="statisticsDialogBox" methodName="statisticsDialogBox"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/qedit/resources/office-chart-pie.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" resourceKey="statisticsMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="statisticsMenuItem" noResource="true"/>
               </Properties>
@@ -410,7 +405,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="updateImageMenuItem">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="Ctrl+D"/>
+                      <KeyStroke key="F5"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/qedit/resources/view-preview.png"/>
@@ -424,9 +419,6 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="clearCompoundImage">
                   <Properties>
-                    <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="Shift+Ctrl+D"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/qedit/resources/news-unsubscribe.png"/>
                     </Property>
@@ -600,9 +592,7 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="qedit.QEditView" id="showAboutBox" methodName="showAboutBox"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/qedit/resources/help-about.png"/>
-                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="aboutMenuItem.icon"/>
                 <Property name="name" type="java.lang.String" value="aboutMenuItem" noResource="true"/>
               </Properties>
               <AuxValues>
@@ -745,9 +735,7 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="createNewReport" methodName="createNewReport"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/qedit/resources/document-import.png"/>
-            </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="newReportButton.icon"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="newReportButton" noResource="true"/>
@@ -758,9 +746,6 @@
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="openFileAction" methodName="openFileAction"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/qedit/resources/open.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -773,9 +758,7 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="saveDialogBox" methodName="saveDialogBox"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/qedit/resources/media-optical-blu-ray.png"/>
-            </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="saveButton.icon"/>
             <Property name="toolTipText" type="java.lang.String" resourceKey="saveButton.toolTipText"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -824,9 +807,7 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="qedit.QEditView" id="showAboutBox" methodName="showAboutBox"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/qedit/resources/help-about.png"/>
-            </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="aboutToolButton.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="aboutToolButton.text"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -839,9 +820,7 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/qedit/resources/media-eject.png"/>
-            </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="ejectButton.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="ejectButton.text"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
