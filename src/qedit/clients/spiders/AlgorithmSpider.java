@@ -68,6 +68,7 @@ public class AlgorithmSpider extends Tarantula<Algorithm>{
         for(OntologicalClass oc : a.getOntologies()){
             System.out.println(oc.getName());
         }
+
     }
 
 

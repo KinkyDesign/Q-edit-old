@@ -8,6 +8,7 @@ import qedit.clients.GetClient;
 import qedit.clients.Media;
 import qedit.clients.components.Feature;
 import qedit.clients.ontol.OntologicalClass;
+import qedit.clients.ontol.collections.OTDatatypeProperties;
 
 /**
  *
@@ -53,6 +54,10 @@ public class FeatureSpider extends Tarantula<Feature> {
 
         feature.setOntologies(getFeatureTypes(resource));
 
+        feature.setUnits(resource.getProperty(
+                OTDatatypeProperties.units().asDatatypeProperty(model)
+                ).getString());
+
         return feature;
     }
 
@@ -77,5 +82,9 @@ public class FeatureSpider extends Tarantula<Feature> {
         for (OntologicalClass oc : f.getOntologies()) {
             System.out.println(oc.getName());
         }
+
     }
+
+
+
 }

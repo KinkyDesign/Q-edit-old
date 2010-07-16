@@ -17,8 +17,17 @@ public class Feature extends AbstractComponent{
     private String uri;
     private DCMetaInfo meta;
     private Set<OntologicalClass> ontologies;
+    private String units;
 
     public Feature() {
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 
     public Set<OntologicalClass> getOntologies() {
