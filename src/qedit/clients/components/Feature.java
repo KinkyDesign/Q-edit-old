@@ -3,7 +3,9 @@
 package qedit.clients.components;
 
 import com.hp.hpl.jena.ontology.Individual;
+import java.util.Set;
 import qedit.clients.ontol.DCMetaInfo;
+import qedit.clients.ontol.OntologicalClass;
 
 /**
  *
@@ -14,8 +16,17 @@ public class Feature extends AbstractComponent{
 
     private String uri;
     private DCMetaInfo meta;
+    private Set<OntologicalClass> ontologies;
 
     public Feature() {
+    }
+
+    public Set<OntologicalClass> getOntologies() {
+        return ontologies;
+    }
+
+    public void setOntologies(Set<OntologicalClass> ontologies) {
+        this.ontologies = ontologies;
     }
 
     public DCMetaInfo getMeta() {
