@@ -27,6 +27,7 @@ import org.jdesktop.application.TaskService;
 import qedit.hints.TooManyOpenDocsWarning;
 import qedit.task.AbstractTask;
 import qedit.task.EmptyReportTask;
+import qedit.task.ExportAsPDFTask;
 import qedit.task.OpenDocumentTask;
 import qedit.task.SaveDocumentTask;
 
@@ -172,6 +173,27 @@ public class QEditView extends FrameView {
             }
         };
         optionsTask.runInBackground();
+
+    }
+
+    @Action
+    public void exportDocumentAsPDF(){
+        final ReportInternalFrame rif = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (rif == null) {
+            getStatusLabel().setText("No document selected to be saved!");
+            return;
+        }
+        QEditApp.getView().getStatusLabel().setText("Saving Document");
+        saveFileChooserWindow = new JFileChooser();
+        saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("PDF Reports", "pdf"));
+        saveFileChooserWindow.setMultiSelectionEnabled(false);
+        saveFileChooserWindow.setDialogTitle("Save " + rif.getTitle());
+        saveFileChooserWindow.showSaveDialog(mainPanel);
+        ExportAsPDFTask task = new ExportAsPDFTask();
+        task.setDesktopPane(desktopPane);
+        task.setRif(rif);
+        task.setSaveFileChooserWindow(saveFileChooserWindow);
+        task.runInBackground();
 
     }
 
@@ -522,7 +544,8 @@ public class QEditView extends FrameView {
         reportMenu.setText(resourceMap.getString("reportMenu.text")); // NOI18N
         reportMenu.setName("reportMenu"); // NOI18N
 
-        pdfReportMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/pdf-annotations.png"))); // NOI18N
+        pdfReportMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
+        pdfReportMenuItem.setIcon(resourceMap.getIcon("pdfReportMenuItem.icon")); // NOI18N
         pdfReportMenuItem.setMnemonic('P');
         pdfReportMenuItem.setText(resourceMap.getString("pdfReportMenuItem.text")); // NOI18N
         pdfReportMenuItem.setToolTipText(resourceMap.getString("pdfReportMenuItem.toolTipText")); // NOI18N
@@ -819,16 +842,12 @@ public class QEditView extends FrameView {
         exportDocButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         basicToolbar.add(exportDocButton);
 
-        exportPdfButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/pdf-annotations.png"))); // NOI18N
+        exportPdfButton.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
+        exportPdfButton.setIcon(resourceMap.getIcon("exportPdfButton.icon")); // NOI18N
         exportPdfButton.setFocusable(false);
         exportPdfButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         exportPdfButton.setName("exportPdfButton"); // NOI18N
         exportPdfButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        exportPdfButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exportPdfButtonActionPerformed(evt);
-            }
-        });
         basicToolbar.add(exportPdfButton);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
@@ -893,9 +912,6 @@ public class QEditView extends FrameView {
     private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_helpItemActionPerformed
-
-    private void exportPdfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportPdfButtonActionPerformed
-    }//GEN-LAST:event_exportPdfButtonActionPerformed
 
     private void newReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReportActionPerformed
         createNewReport();
