@@ -545,6 +545,7 @@ public class QEditView extends FrameView {
         reportMenu.setName("reportMenu"); // NOI18N
 
         pdfReportMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
+        pdfReportMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         pdfReportMenuItem.setIcon(resourceMap.getIcon("pdfReportMenuItem.icon")); // NOI18N
         pdfReportMenuItem.setMnemonic('P');
         pdfReportMenuItem.setText(resourceMap.getString("pdfReportMenuItem.text")); // NOI18N
@@ -844,6 +845,7 @@ public class QEditView extends FrameView {
 
         exportPdfButton.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
         exportPdfButton.setIcon(resourceMap.getIcon("exportPdfButton.icon")); // NOI18N
+        exportPdfButton.setToolTipText(resourceMap.getString("exportPdfButton.toolTipText")); // NOI18N
         exportPdfButton.setFocusable(false);
         exportPdfButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         exportPdfButton.setName("exportPdfButton"); // NOI18N
