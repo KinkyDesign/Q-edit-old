@@ -75,7 +75,6 @@ public class PDFObject {
             doc.addTitle(pdfTitle);
             doc.addKeywords(pdfKeywords);
             doc.addHeader("License", "GNU GPL v3");
-
             doc.add(new Paragraph("\n\n\n"));
             for (Element e : elements) {
                 doc.add(e);
