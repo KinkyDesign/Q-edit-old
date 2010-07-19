@@ -89,10 +89,11 @@ public class PDFReporter {
         pdf.addElement(new MyParagraph(new Chunk(substance.getCasRn() != null && !substance.getCasRn().isEmpty()
                 ? substance.getCasRn() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk("1.2. EC number:", BOLD_FONT)).applyIndent(10));
-        pdf.addElement(new MyParagraph(new Chunk(NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
+        pdf.addElement(new MyParagraph(new Chunk(substance.getEinecs() != null ?
+            substance.getEinecs().isEmpty() ? NOT_AVAILABLE : substance.getEinecs() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk("1.3. Chemical Name:", BOLD_FONT)).applyIndent(10));
         pdf.addElement(new MyParagraph(new Chunk(substance.getIupacName() != null && !substance.getIupacName().isEmpty()
-                ? "    " + substance.getIupacName() : "    " + NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
+                ? substance.getIupacName() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk("1.4. Structural Formula:", BOLD_FONT)).applyIndent(10));
         pdf.addElement(new MyParagraph(new Chunk(NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk("1.5. Structure Codes:", BOLD_FONT)).applyIndent(10));

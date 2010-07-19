@@ -4,15 +4,12 @@
  *
  * Created on 1 Ιουλ 2010, 2:54:58 μμ
  */
-
 package qedit;
 
 import java.awt.Frame;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
-
 
 /**
  *
@@ -34,8 +31,6 @@ public class ModelInfoDialog extends javax.swing.JDialog {
     public JTextField getModelTitleTextField() {
         return modelTitleTextField;
     }
-
-    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -374,13 +369,15 @@ public class ModelInfoDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 ModelInfoDialog dialog = new ModelInfoDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -389,7 +386,6 @@ public class ModelInfoDialog extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearAllIndependentFeaturesButton;
     private javax.swing.JButton clearModelParametersButton;
@@ -449,6 +445,4 @@ public class ModelInfoDialog extends javax.swing.JDialog {
     public JTextField getTrainingDatasetField() {
         return trainingDatasetField;
     }
-
-    
 }

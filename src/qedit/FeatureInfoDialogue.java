@@ -8,16 +8,18 @@
  *
  * Created on 7 Ιουλ 2010, 2:51:56 μμ
  */
-
 package qedit;
 
 import java.awt.Frame;
+import qedit.clients.components.Feature;
 
 /**
  *
  * @author hampos
  */
 public class FeatureInfoDialogue extends javax.swing.JDialog {
+
+    private Feature feature;
 
     /** Creates new form FeatureInfoDialogue */
     public FeatureInfoDialogue(java.awt.Frame parent, boolean modal) {
@@ -28,6 +30,23 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
     public FeatureInfoDialogue(Frame owner) {
         super(owner);
         initComponents();
+    }
+
+    public FeatureInfoDialogue(Frame owner, Feature feature) {
+        super(owner);
+        initComponents();
+        if (feature != null) {
+            this.feature = feature;
+            featureURIField.setText(feature.getUri());
+            nameField.setText(feature.getMeta().getTitle());
+            sameAsField.setText(feature.getMeta().getSameAs());
+            originField.setText(feature.getMeta().getHasSource());
+            descriptionTextArea.setText(feature.getMeta().getDescription());
+        }
+    }
+
+    public Feature getFeature() {
+        return feature;
     }
 
     /** This method is called from within the constructor to
@@ -67,33 +86,26 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
         featureURILabel.setText(resourceMap.getString("featureURILabel.text")); // NOI18N
         featureURILabel.setName("featureURILabel"); // NOI18N
 
-        featureURIField.setEditable(false);
+        featureURIField.setForeground(resourceMap.getColor("featureURIField.foreground")); // NOI18N
         featureURIField.setText(resourceMap.getString("featureURIField.text")); // NOI18N
-        featureURIField.setFocusable(false);
         featureURIField.setName("featureURIField"); // NOI18N
 
         nameLabel.setText(resourceMap.getString("nameLabel.text")); // NOI18N
         nameLabel.setName("nameLabel"); // NOI18N
 
-        nameField.setEditable(false);
         nameField.setText(resourceMap.getString("nameField.text")); // NOI18N
-        nameField.setFocusable(false);
         nameField.setName("nameField"); // NOI18N
 
         sameAsLabel.setText(resourceMap.getString("sameAsLabel.text")); // NOI18N
         sameAsLabel.setName("sameAsLabel"); // NOI18N
 
-        sameAsField.setEditable(false);
         sameAsField.setText(resourceMap.getString("sameAsField.text")); // NOI18N
-        sameAsField.setFocusable(false);
         sameAsField.setName("sameAsField"); // NOI18N
 
         originLabel.setText(resourceMap.getString("originLabel.text")); // NOI18N
         originLabel.setName("originLabel"); // NOI18N
 
-        originField.setEditable(false);
         originField.setText(resourceMap.getString("originField.text")); // NOI18N
-        originField.setFocusable(false);
         originField.setName("originField"); // NOI18N
 
         descriptionLabel.setText(resourceMap.getString("descriptionLabel.text")); // NOI18N
@@ -102,9 +114,7 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         descriptionTextArea.setColumns(20);
-        descriptionTextArea.setEditable(false);
         descriptionTextArea.setRows(5);
-        descriptionTextArea.setFocusable(false);
         descriptionTextArea.setName("descriptionTextArea"); // NOI18N
         jScrollPane2.setViewportView(descriptionTextArea);
 
@@ -124,13 +134,12 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
                             .add(originLabel))
                         .add(18, 18, 18)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(originField)
-                            .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(featureURIField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                                .add(nameField)
-                                .add(sameAsField))))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, featureURIField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                            .add(nameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 245, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(sameAsField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 245, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(originField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 245, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, descriptionLabel))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -174,13 +183,13 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
             .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 15, Short.MAX_VALUE)
@@ -191,9 +200,7 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -210,13 +217,15 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 FeatureInfoDialogue dialog = new FeatureInfoDialogue(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -225,7 +234,6 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextArea descriptionTextArea;
@@ -242,5 +250,4 @@ public class FeatureInfoDialogue extends javax.swing.JDialog {
     private javax.swing.JTextField sameAsField;
     private javax.swing.JLabel sameAsLabel;
     // End of variables declaration//GEN-END:variables
-
 }

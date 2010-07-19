@@ -112,6 +112,8 @@ public class ModelSpider extends Tarantula<Model> {
             parameters.add(paramSpider.parse());
         }
         m.setParameters(parameters);
+        
+
 
         return m;
     }
@@ -119,8 +121,8 @@ public class ModelSpider extends Tarantula<Model> {
     public static void main(String... args) throws ClientException {
         ModelSpider mSpider = new ModelSpider("http://opentox.ntua.gr:3000/model/f9a97443-6baf-4361-a55c-b08cf12c3e39");
         Model m = mSpider.parse();
-        System.out.println(m.getUri());
-        System.out.println(m.getAlgorithm().getUri());
+        System.out.println(m.getParameters().get(0).getValue());
+        System.out.println(m.getAlgorithm().getMeta().getTitle());
         System.out.println(m.getDataset());
         System.out.println(m.getPredictedFeature().getUri());
     }
