@@ -3,9 +3,7 @@
  */
 package qedit;
 
-import com.thoughtworks.xstream.XStream;
 import java.awt.Point;
-import java.io.IOException;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -14,9 +12,6 @@ import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
@@ -28,10 +23,12 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jdesktop.application.ApplicationContext;
-import org.jdesktop.application.Task;
 import org.jdesktop.application.TaskService;
-import qedit.clients.components.QPRFReport;
 import qedit.hints.TooManyOpenDocsWarning;
+import qedit.task.AbstractTask;
+import qedit.task.EmptyReportTask;
+import qedit.task.OpenDocumentTask;
+import qedit.task.SaveDocumentTask;
 
 /**
  * The application's main frame.
@@ -139,57 +136,10 @@ public class QEditView extends FrameView {
             getStatusLabel().setText("No report loaded!");
             return;
         }
-        Task internalFrameCreationTask = new Task(QEditApp.getApplication()) {
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                try {
-                    setProgress(5);
-                    getStatusLabel().setText("Reading Report from XML file...");
-                    final QPRFReport report = (QPRFReport) new XStream().fromXML(new FileInputStream(localFileChooserWindow.getSelectedFile()));
-                    setProgress(15);
-                    desktopPane.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
-                    setProgress(20);
-                    QEditApp.getView().getStatusLabel().setText("Loading Report... Please Wait!");
-                    setProgress(30);
-                    ReportInternalFrame nd = new ReportInternalFrame();
-                    setProgress(40);
-                    nd.setQprfreport(report);
-                    nd.synchronizeFieldsWRTReport();
-                    nd.setVisible(true);
-                    QEditApp.getView().getDesktopPane().add(nd);
-                    setProgress(50);
-                    nd.revalidate();
-                    nd.setLocation(new Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
-                    setProgress(60);
-                    nd.setTitle(localFileChooserWindow.getSelectedFile().getName().replaceAll(".xml", ""));
-                    setProgress(70);
-                    QEditView.increaseNumOpenDocuments();
-                    setProgress(80);
-                    try {
-                        nd.setSelected(true);
-                    } catch (PropertyVetoException ex) {
-                        Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
-                    } finally {
-                        desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
-                    }
-                    setProgress(90);
-                    QEditApp.getView().getStatusLabel().setText("Report loaded successfully");
-                    setProgress(100);
-                    return new Object();
-                } catch (Exception exx) {
-                    desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
-                    QEditApp.getView().getStatusLabel().setText("Report could not be loaded!!!");
-                    throw exx;
-                }
-            }
-        };
-        ApplicationContext appC = QEditApp.getInstance().getContext();
-        TaskMonitor taskMonitor = appC.getTaskMonitor();
-        TaskService taskService = appC.getTaskService();
-        taskService.execute(internalFrameCreationTask);
-        taskMonitor.setForegroundTask(internalFrameCreationTask);
-
+        OpenDocumentTask internalFrameCreationTask = new OpenDocumentTask();
+        internalFrameCreationTask.setDesktopPane(desktopPane);
+        internalFrameCreationTask.setLocalFileChooserWindow(localFileChooserWindow);
+        internalFrameCreationTask.runInBackground();
 
 
     }
@@ -207,7 +157,7 @@ public class QEditView extends FrameView {
 
     @Action
     public void editorOptionsDialogBox() {
-        org.jdesktop.application.Task optionsTask = new org.jdesktop.application.Task(QEditApp.getApplication()) {
+        AbstractTask optionsTask = new AbstractTask() {
 
             @Override
             protected Object doInBackground() throws Exception {
@@ -221,11 +171,7 @@ public class QEditView extends FrameView {
                 return new Object();
             }
         };
-        ApplicationContext appC = QEditApp.getInstance().getContext();
-        TaskMonitor taskMonitor = appC.getTaskMonitor();
-        TaskService taskService = appC.getTaskService();
-        taskService.execute(optionsTask);
-        taskMonitor.setForegroundTask(optionsTask);
+        optionsTask.runInBackground();
 
     }
 
@@ -242,11 +188,13 @@ public class QEditView extends FrameView {
     @Action
     public void saveDialogBox() {
 
+
         final ReportInternalFrame rif = (ReportInternalFrame) desktopPane.getSelectedFrame();
         if (rif == null) {
             getStatusLabel().setText("No document selected to be saved!");
             return;
         }
+        QEditApp.getView().getStatusLabel().setText("Saving Document");
         saveFileChooserWindow = new JFileChooser();
         saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("RDF Reports", "report"));
         saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("XML Reports", "xml"));
@@ -254,45 +202,16 @@ public class QEditView extends FrameView {
         saveFileChooserWindow.setDialogTitle("Save " + rif.getTitle());
         saveFileChooserWindow.showSaveDialog(mainPanel);
 
-
-        Task saveTask = new Task(QEditApp.getApplication()) {
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                getStatusLabel().setText("Saving Document");
-                File selectedFile = saveFileChooserWindow.getSelectedFile();
-                if (selectedFile == null) {
-                    getStatusLabel().setText("Info: Report is not saved");
-                    return null;
-                }
-                String filePath = selectedFile.getAbsolutePath();
-                if (!filePath.contains(".xml")) {
-                    filePath += ".xml";
-                }
-                File f = new File(filePath);
-                rif.updateReport();
-                try {
-                    XStream xs = new XStream();
-                    xs.toXML(rif.getQprfreport(), new FileOutputStream(f));
-                } catch (IOException ex) {
-                    Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                rif.setTitle(selectedFile.getName().replaceAll(".xml", ""));
-                getStatusLabel().setText("Document Saved");
-                return null;
-            }
-        };
-        ApplicationContext appC = QEditApp.getInstance().getContext();
-        TaskMonitor taskMonitor = appC.getTaskMonitor();
-        TaskService taskService = appC.getTaskService();
-        taskService.execute(saveTask);
-        taskMonitor.setForegroundTask(saveTask);
+        SaveDocumentTask saveTask = new SaveDocumentTask();
+        saveTask.setDesktopPane(desktopPane);
+        saveTask.setRif(rif);
+        saveTask.setSaveFileChooserWindow(saveFileChooserWindow);       
+        saveTask.runInBackground();
     }
 
     @Action
     public void createNewReport() {
         enterUriDialogBox();
-
     }
 
     @Action
@@ -309,46 +228,9 @@ public class QEditView extends FrameView {
             }
         }
 
-        Task internalFrameCreationTask = new Task(QEditApp.getApplication()) {
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                setProgress(15);
-                desktopPane.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
-                setProgress(20);
-                QEditApp.getView().getStatusLabel().setText("Loading new Report... Please Wait!");
-                setProgress(30);
-                ReportInternalFrame nd = new ReportInternalFrame();
-                setProgress(40);
-                nd.setVisible(true);
-                QEditApp.getView().getDesktopPane().add(nd);
-                setProgress(50);
-                nd.revalidate();
-                nd.setLocation(new Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
-                setProgress(60);
-                nd.setTitle("Document " + (QEditView.getNumOpenDocuments() + 1));
-                nd.setName(nd.getTitle());
-                setProgress(70);
-                QEditView.increaseNumOpenDocuments();
-                setProgress(80);
-                try {
-                    nd.setSelected(true);
-                } catch (PropertyVetoException ex) {
-                    Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
-                }
-                setProgress(90);
-                QEditApp.getView().getStatusLabel().setText("A new Report has been created");
-                setProgress(100);
-                return new Object();
-            }
-        };
-        ApplicationContext appC = QEditApp.getInstance().getContext();
-        TaskMonitor taskMonitor = appC.getTaskMonitor();
-        TaskService taskService = appC.getTaskService();
-        taskService.execute(internalFrameCreationTask);
-        taskMonitor.setForegroundTask(internalFrameCreationTask);
+        EmptyReportTask internalFrameCreationTask = new EmptyReportTask();
+        internalFrameCreationTask.setDesktopPane(desktopPane);      
+        internalFrameCreationTask.runInBackground();
 
     }
 
