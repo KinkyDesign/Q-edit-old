@@ -77,7 +77,9 @@ public class DatasetSpider extends Tarantula<Dataset>{
                     (RDFNode)null));
             if(compoundIt.hasNext()){
                 if(compound.getConformers().contains(compoundIt.nextStatement().getObject().as(Resource.class).getURI())){
-                    System.out.println("-----------TRUE---------");
+                    entryResource = entry;
+                }
+                if(compoundIt.nextStatement().getObject().as(Resource.class).getURI().equals(compoundUri)){
                     entryResource = entry;
                     break;
                 }
