@@ -15,6 +15,13 @@ public class AdequacyInfo {
     public AdequacyInfo() {
     }
 
+    public boolean isEmpty(){
+        return (regulatoryPurpose==null||(regulatoryPurpose!=null&& regulatoryPurpose.isEmpty()))&&
+                (regulatoryInterpretation==null||(regulatoryInterpretation!=null&& regulatoryInterpretation.isEmpty()))&&
+                (outcome==null||(outcome!=null&& outcome.isEmpty()))&&
+                (conclusion==null||(conclusion!=null&& conclusion.isEmpty()));
+    }
+
     public String getConclusion() {
         return conclusion;
     }

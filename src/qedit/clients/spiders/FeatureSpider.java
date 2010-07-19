@@ -1,7 +1,9 @@
 package qedit.clients.spiders;
 
+import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
 import java.net.URISyntaxException;
 import qedit.clients.ClientException;
 import qedit.clients.GetClient;
@@ -54,19 +56,19 @@ public class FeatureSpider extends Tarantula<Feature> {
 
         feature.setOntologies(getFeatureTypes(resource));
 
-        feature.setUnits(resource.getProperty(
-                OTDatatypeProperties.units().asDatatypeProperty(model)
-                ).getString());
+        Statement unitsStatement = resource.getProperty(
+                OTDatatypeProperties.units().asDatatypeProperty(model));
+        if (unitsStatement != null) {
+            feature.setUnits(unitsStatement.getString());
+        }
+
+
 
         return feature;
     }
 
     public static void main(String... args) throws ClientException {
-//        FeatureSpider fSpider = new FeatureSpider("http://apps.ideaconsult.net:8080/ambit2/feature/1");
-//        Feature f = fSpider.parse();
-//        for(OntologicalClass oc : f.getOntologies()){
-//            System.out.println(oc.getName());
-//        }
+
         GetClient client = new GetClient();
         client.setMediaType(Media.rdf_xml);
         try {
@@ -84,7 +86,4 @@ public class FeatureSpider extends Tarantula<Feature> {
         }
 
     }
-
-
-
 }

@@ -11,6 +11,8 @@ import com.itextpdf.text.Paragraph;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import qedit.clients.components.AdequacyInfo;
+import qedit.clients.components.Author;
 import qedit.clients.components.Compound;
 import qedit.clients.components.QPRFReport;
 
@@ -110,6 +112,7 @@ public class PDFReporter {
         pdf.addElement(new MyParagraph(new Chunk("d. Stereochemical Features:", BOLD_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk(qprfReport.getStereoFeatures(), NORMAL_FONT)).applyIndent(40));
         pdf.addElement(new Paragraph(Chunk.NEWLINE));
+        pdf.addElement(new Paragraph(Chunk.NEWLINE));
         /*
          * Section 2: General Info
          */
@@ -118,6 +121,45 @@ public class PDFReporter {
         pdf.addElement(new MyParagraph(qprfReport.getYear() + ", " + "" + qprfReport.getMonth()
                 + " " + qprfReport.getDay(), NORMAL_FONT).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk("2.1. QPRF Author and Contact Details:", BOLD_FONT)).applyIndent(10));
+        // Authors:
+        for (Author author : qprfReport.getAuthors()) {
+            pdf.addElement(new MyParagraph(new Chunk(author.getName(), NORMAL_FONT)).applyIndent(20));
+        }
+        pdf.addElement(new Paragraph(Chunk.NEWLINE));
+        pdf.addElement(new Paragraph(Chunk.NEWLINE));
+
+        /*
+         * Section 3: Prediction
+         */
+        pdf.addElement(new MyParagraph(new Chunk("3. Prediction", BOLD_FONT)));
+
+        /*
+         * Section 4: Adequacy Information
+         */
+        AdequacyInfo adequacy = qprfReport.getAdequacyInfo();
+        if (!adequacy.isEmpty()) {
+            pdf.addElement(new MyParagraph(new Chunk("4. Adequacy", BOLD_FONT)));
+            pdf.addElement(new MyParagraph(new Chunk("The information provided in this section might be useful, "
+                    + "depending on the reporting needs and formats of the regulatory framework of interest.",
+                    NORMAL_FONT)).justify());
+            pdf.addElement(new MyParagraph(new Chunk("This information aims to facilitate "
+                    + "considerations about the adequacy of the (Q)SAR prediction (result) estimate. "
+                    + "A (Q)SAR prediction may or may not be considered adequate (“fit-for-purpose”),"
+                    + " depending on whether the prediction is sufficiently reliable and relevant in relation "
+                    + "to the particular regulatory purpose. The adequacy of the prediction also depends on the "
+                    + "availability of other information, and is determined in a weight-of-evidence assessment.",
+                    NORMAL_FONT)).justify());
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
+            pdf.addElement(new MyParagraph(new Chunk("4.1. Regulatory Purpose:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(adequacy.getRegulatoryPurpose(), NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("4.2. Approach for regulatory interpretation of the model result:",
+                    BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(adequacy.getRegulatoryInterpretation(), NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("4.3. Outcome:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(adequacy.getOutcome(), NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("4.4. Conclusion:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(adequacy.getConclusion(), NORMAL_FONT)).applyIndent(20));
+        }
         return pdf;
     }
 
@@ -137,6 +179,11 @@ public class PDFReporter {
 
         public MyParagraph(String string, Font font) {
             super(string, font);
+        }
+
+        public MyParagraph justify() {
+            this.setAlignment(Element.ALIGN_JUSTIFIED);
+            return this;
         }
 
         public MyParagraph applyIndent(float ind) {

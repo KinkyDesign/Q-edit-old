@@ -1,4 +1,3 @@
-
 package qedit.clients.spiders;
 
 import com.hp.hpl.jena.ontology.OntModel;
@@ -21,7 +20,7 @@ import qedit.clients.ontol.collections.OTObjectProperties;
  * @author Charalampos Chomenides
  * @author Pantelis Sopasakis
  */
-public class ModelSpider extends Tarantula<Model>{
+public class ModelSpider extends Tarantula<Model> {
 
     String uri;
 
@@ -33,7 +32,7 @@ public class ModelSpider extends Tarantula<Model>{
     public ModelSpider(String uri) throws ClientException {
         super();
         this.uri = uri;
-        GetClient client =  new GetClient();
+        GetClient client = new GetClient();
         client.setMediaType(Media.rdf_xml);
         try {
             client.setUri(uri);
@@ -54,16 +53,17 @@ public class ModelSpider extends Tarantula<Model>{
         StmtIterator itDataset = model.listStatements(
                 new SimpleSelector(resource,
                 OTObjectProperties.trainingDataset().asObjectProperty(model),
-                (RDFNode)null));
-        if(itDataset.hasNext()){
+                (RDFNode) null));
+        if (itDataset.hasNext()) {
             m.setDataset(itDataset.nextStatement().getObject().as(Resource.class).getURI());
         }
 
         StmtIterator itFeature = model.listStatements(
                 new SimpleSelector(resource,
                 OTObjectProperties.predictedVariables().asObjectProperty(model),
-                (RDFNode)null));
-        if(itFeature.hasNext()){
+                (RDFNode) null));
+
+        if (itFeature.hasNext()) {
             FeatureSpider fspider = new FeatureSpider(model,
                     itFeature.nextStatement().getObject().as(Resource.class).getURI());
             m.setPredictedFeature(fspider.parse());
@@ -72,8 +72,8 @@ public class ModelSpider extends Tarantula<Model>{
         itFeature = model.listStatements(
                 new SimpleSelector(resource,
                 OTObjectProperties.dependentVariables().asObjectProperty(model),
-                (RDFNode)null));
-        if(itFeature.hasNext()){
+                (RDFNode) null));
+        if (itFeature.hasNext()) {
             FeatureSpider fspider = new FeatureSpider(model,
                     itFeature.nextStatement().getObject().as(Resource.class).getURI());
             m.setDependentFeature(fspider.parse());
@@ -82,9 +82,9 @@ public class ModelSpider extends Tarantula<Model>{
         itFeature = model.listStatements(
                 new SimpleSelector(resource,
                 OTObjectProperties.independentVariables().asObjectProperty(model),
-                (RDFNode)null));
+                (RDFNode) null));
         ArrayList<Feature> indepFeatures = new ArrayList<Feature>();
-        while(itFeature.hasNext()){
+        while (itFeature.hasNext()) {
             FeatureSpider fspider = new FeatureSpider(model,
                     itFeature.nextStatement().getObject().as(Resource.class).getURI());
             indepFeatures.add(fspider.parse());
@@ -94,8 +94,8 @@ public class ModelSpider extends Tarantula<Model>{
         StmtIterator itAlgorithm = model.listStatements(
                 new SimpleSelector(resource,
                 OTObjectProperties.algorithm().asObjectProperty(model),
-                (RDFNode)null));
-        if(itAlgorithm.hasNext()){
+                (RDFNode) null));
+        if (itAlgorithm.hasNext()) {
             AlgorithmSpider aspider = new AlgorithmSpider(
                     itAlgorithm.nextStatement().getObject().as(Resource.class).getURI());
             m.setAlgorithm(aspider.parse());
@@ -104,10 +104,10 @@ public class ModelSpider extends Tarantula<Model>{
         StmtIterator itParam = model.listStatements(
                 new SimpleSelector(resource,
                 OTObjectProperties.parameters().asObjectProperty(model),
-                (RDFNode)null));
+                (RDFNode) null));
 
         ArrayList<Parameter> parameters = new ArrayList<Parameter>();
-        while(itParam.hasNext()){
+        while (itParam.hasNext()) {
             ParameterSpider paramSpider = new ParameterSpider(model, itParam.nextStatement().getObject().as(Resource.class));
             parameters.add(paramSpider.parse());
         }
@@ -116,8 +116,7 @@ public class ModelSpider extends Tarantula<Model>{
         return m;
     }
 
-
-    public static void main(String... args) throws ClientException{
+    public static void main(String... args) throws ClientException {
         ModelSpider mSpider = new ModelSpider("http://opentox.ntua.gr:3000/model/f9a97443-6baf-4361-a55c-b08cf12c3e39");
         Model m = mSpider.parse();
         System.out.println(m.getUri());
@@ -125,7 +124,4 @@ public class ModelSpider extends Tarantula<Model>{
         System.out.println(m.getDataset());
         System.out.println(m.getPredictedFeature().getUri());
     }
-
-
-
 }
