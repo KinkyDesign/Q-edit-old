@@ -1,6 +1,7 @@
 package qedit.clients.components;
 
 import com.hp.hpl.jena.ontology.Individual;
+import java.util.ArrayList;
 import qedit.clients.ontol.DCMetaInfo;
 import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
@@ -20,6 +21,7 @@ public class QPRFReport extends AbstractComponent {
      * The compound for which the report is made for.
      */
     private Compound compound = new Compound();
+    private ArrayList<Author> authors;
     /**
      * The model used to make the prediction for which this report is about
      */
@@ -32,6 +34,14 @@ public class QPRFReport extends AbstractComponent {
     private String day;
 
     public QPRFReport() {
+    }
+
+    public ArrayList<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(ArrayList<Author> authors) {
+        this.authors = authors;
     }
 
     public String getDay() {
