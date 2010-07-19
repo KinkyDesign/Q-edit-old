@@ -3,13 +3,14 @@ package qedit.clients.components;
 import com.hp.hpl.jena.ontology.Individual;
 import java.util.ArrayList;
 import qedit.clients.ontol.DCMetaInfo;
+import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
 /**
  *
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public class Model extends AbstractComponent{
+public class Model extends AbstractComponent {
 
     private String uri;
     private String dataset;
@@ -18,9 +19,54 @@ public class Model extends AbstractComponent{
     private Feature dependentFeature;
     private ArrayList<Feature> independentFeatures;
     private ArrayList<Parameter> parameters;
-    private DCMetaInfo meta;
+    private String qmrfReportUri;
+    private DCMetaInfo qmrfReportMeta = new DCMetaInfoImpl();
+    private DCMetaInfo meta = new DCMetaInfoImpl();
+    private String year;
+    private String month;
+    private String day;
 
     public Model() {
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public DCMetaInfo getQmrfReportMeta() {
+        return qmrfReportMeta;
+    }
+
+    public void setQmrfReportMeta(DCMetaInfo qmrfReportMeta) {
+        this.qmrfReportMeta = qmrfReportMeta;
+    }
+
+    public String getQmrfReportUri() {
+        return qmrfReportUri;
+    }
+
+    public void setQmrfReportUri(String qmrfReportUri) {
+        this.qmrfReportUri = qmrfReportUri;
     }
 
     public Algorithm getAlgorithm() {
@@ -91,5 +137,4 @@ public class Model extends AbstractComponent{
     public Individual asIndividual() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

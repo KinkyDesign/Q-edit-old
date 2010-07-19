@@ -75,6 +75,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         return compoundInputMethodMap;
     }
 
+    public QPRFReport getQprfreport() {
+        return qprfreport;
+    }
+
+    public void setQprfreport(QPRFReport qprfreport) {
+        this.qprfreport = qprfreport;
+    }
+
     /** Creates new form ReportInternalFrame */
     public ReportInternalFrame() {
         initComponents();
@@ -143,6 +151,92 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }
 
     @Action
+    public void synchronizeFieldsWRTReport() {
+        /*
+         * Synchronize compound information:
+         */
+        stereoChemDiscussionTextArea.setText(qprfreport.getStereoFeatures());
+        structureImage.setIcon(qprfreport.getCompound().getUserIcon());
+        structureImage.setText("");
+        DefaultListModel compoundSynonymsSyncronized = new DefaultListModel();
+        for (String synonym : qprfreport.getCompound().getSynonyms()) {
+            compoundSynonymsSyncronized.addElement(synonym);
+        }
+        compoundSynonymsList.setModel(compoundSynonymsSyncronized);
+        smilesValueTextField.setText(qprfreport.getCompound().getSmiles());
+        casRnValueTextField.setText(qprfreport.getCompound().getCasRn());
+        inchiValueTextField.setText(qprfreport.getCompound().getInChI());
+        inchiKeyValueTextField.setText(qprfreport.getCompound().getInChIKey());
+        iupacNameValueTextField.setText(qprfreport.getCompound().getIupacName());
+        compoundUriValueTextField.setText(qprfreport.getCompound().getUri());
+        /**
+         * Synchronize MODEL information
+         */
+        modelVersionInfoTextArea.setText(qprfreport.getModel().getMeta().getVersionInfo());
+        modelUriValue.setText(qprfreport.getModel().getUri());
+        modelInfoDialog.getModelTitleTextField().setText(qprfreport.getModel().getMeta().getTitle());
+        trainingDatasetValueTextField.setText(qprfreport.getModel().getDataset());
+        qmrfReportDiscussionTextArea.setText(qprfreport.getModel().getQmrfReportMeta().getComment());
+
+        /**
+         * Synchronize adequacy information
+         */
+        regulatoryPurposeTextArea.setText(qprfreport.getAdequacyInfo().getRegulatoryPurpose());
+        regulInterprTextArea.setText(qprfreport.getAdequacyInfo().getRegulatoryInterpretation());
+        qprfOutcomeTextArea.setText(qprfreport.getAdequacyInfo().getOutcome());
+        qprfReportConclusionTextArea.setText(qprfreport.getAdequacyInfo().getConclusion());
+        /**
+         * Synchronize General Info
+         */
+        qprfReportDescriptionTextArea.setText(qprfreport.getMetaInfo().getDescription());
+        qprfReportCommentsTextArea.setText(qprfreport.getMetaInfo().getComment());
+    }
+
+    @Action
+    public void updateReport() {
+        qprfreport.setChemBioMechanisms(chemBioMechanismsTextArea.getText());
+        qprfreport.setStereoFeatures(stereoChemDiscussionTextArea.getText());
+        qprfreport.getAdequacyInfo().setRegulatoryPurpose(regulatoryPurposeTextArea.getText());
+        qprfreport.getAdequacyInfo().setRegulatoryInterpretation(regulInterprTextArea.getText());
+        qprfreport.getAdequacyInfo().setConclusion(qprfReportConclusionTextArea.getText());
+        qprfreport.getAdequacyInfo().setOutcome(qprfOutcomeTextArea.getText());
+        qprfreport.getMetaInfo().setTitle(qprfReportTitleTextArea.getText());
+        qprfreport.getMetaInfo().setDescription(qprfReportDescriptionTextArea.getText());
+        qprfreport.getMetaInfo().setComment(qprfReportCommentsTextArea.getText());
+        qprfreport.getModel().setUri(modelUriValue.getText());
+        qprfreport.getModel().setDataset(trainingDatasetValueTextField.getText());
+        qprfreport.getModel().getMeta().setTitle(modelInfoDialog.getModelTitleTextField().getText());
+        qprfreport.getModel().setQmrfReportUri(qmrfReportTextField.getText());
+        qprfreport.getModel().getQmrfReportMeta().setComment(qmrfReportDiscussionTextArea.getText());
+        qprfreport.getModel().setYear(modelYearCombo.getSelectedItem().toString());
+        qprfreport.getModel().setMonth(modelMonthCombo.getSelectedItem().toString());
+        qprfreport.getModel().setDay(modelDayCombo.getSelectedItem().toString());
+        qprfreport.getModel().getMeta().setVersionInfo(modelVersionInfoTextArea.getText());
+        qprfreport.setYear(qprfYearCombo.getSelectedItem().toString());
+        qprfreport.setMonth(qprfMonthCombo.getSelectedItem().toString());
+        qprfreport.setDay(qprfDayCombo.getSelectedItem().toString());
+
+        DefaultListModel synonyms = ((DefaultListModel) compoundSynonymsList.getModel());
+        java.util.List<String> synonymsList = new java.util.ArrayList<String>();
+        for (int synIndex = 0; synIndex < synonyms.size(); synIndex++) {
+            synonymsList.add(synonyms.get(synIndex).toString());
+        }
+        qprfreport.getCompound().setSynonyms(synonymsList);
+        qprfreport.getCompound().setSmiles(smilesValueTextField.getText());
+        qprfreport.getCompound().setCasRn(casRnValueTextField.getText());
+        qprfreport.getCompound().setInChI(inchiValueTextField.getText());
+        qprfreport.getCompound().setInChIKey(inchiKeyValueTextField.getText());
+        qprfreport.getCompound().setIupacName(iupacNameValueTextField.getText());
+        qprfreport.getCompound().setUri(compoundUriValueTextField.getText());
+        qprfreport.getCompound().setUserIcon((ImageIcon) structureImage.getIcon());
+
+    }
+
+
+    /**
+     * According to the user input, updates the object {@link ReportInternalFrame#qprfreport }
+     */
+    @Action
     public void updateCompoundFromUserInput() {
         Task downloadImageTask = new Task(QEditApp.getApplication()) {
 
@@ -161,121 +255,123 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
-                try{
-                clearAllRows(descriptorsTable);
-                structureImage.setText("");
-                compoundSynonymsList.setModel(new DefaultListModel());
-                setProgress(0);
-                basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                ImageIcon icon = null;
-
-                qedit.clients.components.Compound compound = null;
-                QEditApp.getView().getStatusLabel().setText("Downloading Compound from remote server...");
                 try {
+                    clearAllRows(descriptorsTable);
+                    structureImage.setText("");
+                    compoundSynonymsList.setModel(new DefaultListModel());
+                    setProgress(0);
+                    basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    ImageIcon icon = null;
 
-                    String selectedInputMethod = identifierChooserCombo.getSelectedItem().toString();
-                    String keyWord = getCompoundInputMethodMap().get(identifierChooserCombo.getSelectedItem().toString()).getText();
-                    if (keyWord == null) {
+                    qedit.clients.components.Compound compound = null;
+                    QEditApp.getView().getStatusLabel().setText("Downloading Compound from remote server...");
+                    try {
+                        String selectedInputMethod = identifierChooserCombo.getSelectedItem().toString();
+                        String keyWord = getCompoundInputMethodMap().get(identifierChooserCombo.getSelectedItem().toString()).getText();
+                        if (keyWord == null) {
+                            return new Object();
+                        }
+                        CompoundSpider.LookupMethod lookupMethod = selectedInputMethod.equals("URI") ? CompoundSpider.LookupMethod.ByUri : CompoundSpider.LookupMethod.AutoDetect;
+                        CompoundSpider spider = new CompoundSpider(lookupMethod, keyWord);
+                        compound = spider.parse();
+                        icon = lookupMethod.equals(CompoundSpider.LookupMethod.AutoDetect) ? compound.getDepiction() : compound.getImage();
+                    } catch (ClientException ex) {
+                        // Continue....
+                        // It has failed, but it will be handled right afterwards
+                    }
+                    /*
+                     * ---------- SET THE COMPONENT ----------
+                     */
+                    // qprfreport.setCompound(compound);
+                    if (compound != null) {
+                        QEditApp.getView().getStatusLabel().setText("Setting compound synonyms...");
+                        getCompoundSynonymsList().setModel(new DefaultListModel());
+                        for (String synonym : compound.getSynonyms()) {
+                            System.out.println(synonym);
+                            ((DefaultListModel) compoundSynonymsList.getModel()).addElement(synonym.trim());
+                        }
+
+
+
+                        String value;
+                        value = compound.getCasRn();
+                        if (value != null) {
+                            casRnValueTextField.setText(value);
+                        }
+
+                        value = compound.getUri();
+                        if (value != null) {
+                            compoundUriValueTextField.setText(value);
+                        }
+                        value = compound.getIupacName();
+                        if (value != null) {
+                            iupacNameValueTextField.setText(value);
+                        }
+                        value = compound.getSmiles();
+                        if (value != null) {
+                            smilesValueTextField.setText(value);
+                        }
+                        value = compound.getInChI();
+                        if (value != null) {
+                            inchiValueTextField.setText(value);
+                        }
+                        value = compound.getInChIKey();
+                        if (value != null) {
+                            inchiKeyValueTextField.setText(value);
+                        }
+                    } else { // FAILURE!
+                        QEditApp.getView().getStatusLabel().setText("Failed to load synonyms...");
+                        getCompoundSynonymsList().setModel(new DefaultListModel());
+                    }
+
+                    compoundIdentifiersCards.revalidate();
+                    compoundIdentifiersCards.repaint();
+
+                    if (compound == null) {
+                        QEditApp.getView().getStatusLabel().setText("No Compound could be loaded...");
+                        structureImage.setIcon(new ImageIcon());
+                        structureImage.setText("Depiction not possible...");
                         return new Object();
                     }
-                    CompoundSpider.LookupMethod lookupMethod = selectedInputMethod.equals("URI") ? CompoundSpider.LookupMethod.ByUri : CompoundSpider.LookupMethod.AutoDetect;
-                    CompoundSpider spider = new CompoundSpider(lookupMethod, keyWord);
-                    compound = spider.parse();
-                    icon = lookupMethod.equals(CompoundSpider.LookupMethod.AutoDetect) ? compound.getDepiction() : compound.getImage();
-                } catch (ClientException ex) {
-                    // Continue....
-                    // It has failed, but it will be handled right afterwards
-                }
-                /*
-                 * ---------- SET THE COMPONENT ----------
-                 */
-                // qprfreport.setCompound(compound);
-                if (compound != null) {
-                    QEditApp.getView().getStatusLabel().setText("Setting compound synonyms...");
-                    getCompoundSynonymsList().setModel(new DefaultListModel());
-                    for (String synonym : compound.getSynonyms()) {
-                        System.out.println(synonym);
-                        ((DefaultListModel) compoundSynonymsList.getModel()).addElement(synonym.trim());
+
+
+                    structureImage.setText("");
+                    if (icon == null || icon.getIconWidth() == -1) {
+                        structureImage.setIcon(new ImageIcon());
+                        structureImage.setText("Depiction not possible...");
+                        QEditApp.getView().getStatusLabel().setText("Depiction not possible...");
+                        basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        return new Object();
+                    }
+                    structureImage.setIcon(icon);
+
+                    /*
+                     * Load from Dataset
+                     */
+                    try {
+                        QEditApp.getView().getStatusLabel().setText("Loading descriptor values from dataset...");
+                        String compoundUri = compound.getUri();
+                        String datasetUri = datasetUriValueTextField.getText();
+                        if (datasetUri != null && !datasetUri.isEmpty()) {
+                            DatasetSpider dsSpider = new DatasetSpider(datasetUri, compoundUri);
+                            Dataset dataset = dsSpider.parse();
+                            Iterator<Entry<Feature, FeatureValue>> datasetValues = dataset.getFeatures().entrySet().iterator();
+                            DefaultTableModel descriptorsContent = (DefaultTableModel) descriptorsTable.getModel();
+                            String descriptorName;
+                            while (datasetValues.hasNext()) {
+                                Entry<Feature, FeatureValue> datasetEntry = datasetValues.next();
+                                descriptorName = datasetEntry.getKey().getMeta().getTitle() != null
+                                        ? datasetEntry.getKey().getMeta().getTitle() : datasetEntry.getKey().getUri();
+                                descriptorsContent.addRow(new String[]{descriptorName, datasetEntry.getValue().getValue().toString(), datasetEntry.getKey().getUnits()});
+                            }
+                        }
+                    } catch (final ClientException ex) {
+                        QEditApp.getView().getStatusLabel().setText("Dataset could not be loaded...");
                     }
 
-
-
-                    String value;
-                    value = compound.getCasRn();
-                    if (value != null) {
-                        casRnValueTextField.setText(value);
-                    }
-
-                    value = compound.getUri();
-                    if (value != null) {
-                        compoundUriValueTextField.setText(value);
-                    }
-                    value = compound.getIupacName();
-                    if (value != null) {
-                        iupacNameValueTextField.setText(value);
-                    }
-                    value = compound.getSmiles();
-                    if (value != null) {
-                        smilesValueTextField.setText(value);
-                    }
-                    value = compound.getInChI();
-                    if (value != null) {
-                        inchiValueTextField.setText(value);
-                    }
-                    value = compound.getInChIKey();
-                    if (value != null) {
-                        inchiKeyValueTextField.setText(value);
-                    }
-                } else { // FAILURE!
-                    QEditApp.getView().getStatusLabel().setText("Failed to load synonyms...");
-                    getCompoundSynonymsList().setModel(new DefaultListModel());
-                }
-
-                compoundIdentifiersCards.revalidate();
-                compoundIdentifiersCards.repaint();
-
-                if (compound == null) {
-                    QEditApp.getView().getStatusLabel().setText("No Compound could be loaded...");
-                    return new Object();
-                }
-
-
-                structureImage.setText("");
-                if (icon == null || icon.getIconWidth() == -1) {
-                    structureImage.setIcon(new ImageIcon());
-                    structureImage.setText("Depiction not possible...");
-                    QEditApp.getView().getStatusLabel().setText("Depiction not possible...");
                     basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                     return new Object();
-                }
-                structureImage.setIcon(icon);
-
-                /*
-                 * Load from Dataset
-                 */
-                try {
-                    String compoundUri = compound.getUri();
-                    String datasetUri = datasetUriValueTextField.getText();
-                    if (datasetUri != null && !datasetUri.isEmpty()) {
-                        DatasetSpider dsSpider = new DatasetSpider(datasetUri, compoundUri);
-                        Dataset dataset = dsSpider.parse();
-                        Iterator<Entry<Feature, FeatureValue>> datasetValues = dataset.getFeatures().entrySet().iterator();
-                        DefaultTableModel descriptorsContent = (DefaultTableModel) descriptorsTable.getModel();
-                        String descriptorName;
-                        while (datasetValues.hasNext()) {
-                            Entry<Feature, FeatureValue> datasetEntry = datasetValues.next();
-                            descriptorName = datasetEntry.getKey().getMeta().getTitle() != null
-                                    ? datasetEntry.getKey().getMeta().getTitle() : datasetEntry.getKey().getUri();
-                            descriptorsContent.addRow(new String[]{descriptorName, datasetEntry.getValue().getValue().toString(), datasetEntry.getKey().getUnits()});
-                        }
-                    }
-                } catch (final ClientException ex) {
-                    QEditApp.getView().getStatusLabel().setText("Dataset could be loaded...");
-                }
-
-                basicContainerPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                return new Object();
-                } catch (Exception exx){
+                } catch (Exception exx) {
                     structureImage.setIcon(new ImageIcon());
                     structureImage.setText("Depiction not possible...");
                     exx.printStackTrace();
@@ -382,7 +478,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         cmlCompoundButton = new javax.swing.JButton();
         rdfCompoundButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
-        jButton1 = new javax.swing.JButton();
+        showCompoundDetailsButton = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JToolBar.Separator();
+        updateAllCompoundInfoButton = new javax.swing.JButton();
         structureImagePanel = new javax.swing.JPanel();
         structureImageToolbar = new javax.swing.JToolBar();
         loadStructureImgButton = new javax.swing.JButton();
@@ -395,7 +493,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         compoundURILabel = new javax.swing.JLabel();
         datasetUriValueTextField = new javax.swing.JTextField();
         compoundUriHint = new javax.swing.JLabel();
-        reloadCompoundInfoOKButton = new javax.swing.JButton();
         compoundIndentifiersLabel = new javax.swing.JLabel();
         compoundIdentifiersCards = new javax.swing.JPanel();
         smilesValueTextField = new javax.swing.JTextField();
@@ -486,7 +583,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelUriValue = new javax.swing.JTextField();
         copyModelUriButton = new javax.swing.JButton();
         trainingDatasetLabel = new javax.swing.JLabel();
-        datasetValue = new javax.swing.JTextField();
+        trainingDatasetValueTextField = new javax.swing.JTextField();
         copyDatasetButton = new javax.swing.JButton();
         modelAndTrainingDSHeader = new javax.swing.JLabel();
         trainingAlgorithmHeader = new javax.swing.JLabel();
@@ -512,6 +609,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         algorithmInfoToolButton = new javax.swing.JButton();
         predictedFeatureToolButton = new javax.swing.JButton();
         dependentFeatureToolButton = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JToolBar.Separator();
+        jButton3 = new javax.swing.JButton();
         qmrfReportHeader = new javax.swing.JLabel();
         qmrfReportLabel = new javax.swing.JLabel();
         qmrfReportTextField = new javax.swing.JTextField();
@@ -545,9 +644,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         experimentalValueLabel = new javax.swing.JLabel();
         exprerimentalValueTextField = new javax.swing.JTextField();
         experimentalValueUnitsTextField = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        chemBioMechanismsLabel = new javax.swing.JLabel();
+        chemBioMechanismsScrollable = new javax.swing.JScrollPane();
+        chemBioMechanismsTextArea = new javax.swing.JTextArea();
         applicabilityDomainPanel = new javax.swing.JPanel();
         appDomainInfoPanel = new javax.swing.JPanel();
         appDomAlgorithmNameLabel = new javax.swing.JLabel();
@@ -750,13 +849,29 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         jSeparator2.setName("jSeparator2"); // NOI18N
         compoundsToolbar.add(jSeparator2);
 
-        jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        compoundsToolbar.add(jButton1);
+        showCompoundDetailsButton.setIcon(resourceMap.getIcon("showCompoundDetailsButton.icon")); // NOI18N
+        showCompoundDetailsButton.setText(resourceMap.getString("showCompoundDetailsButton.text")); // NOI18N
+        showCompoundDetailsButton.setFocusable(false);
+        showCompoundDetailsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        showCompoundDetailsButton.setName("showCompoundDetailsButton"); // NOI18N
+        showCompoundDetailsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        compoundsToolbar.add(showCompoundDetailsButton);
+
+        jSeparator11.setName("jSeparator11"); // NOI18N
+        compoundsToolbar.add(jSeparator11);
+
+        updateAllCompoundInfoButton.setIcon(resourceMap.getIcon("updateAllCompoundInfoButton.icon")); // NOI18N
+        updateAllCompoundInfoButton.setText(resourceMap.getString("updateAllCompoundInfoButton.text")); // NOI18N
+        updateAllCompoundInfoButton.setFocusable(false);
+        updateAllCompoundInfoButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        updateAllCompoundInfoButton.setName("updateAllCompoundInfoButton"); // NOI18N
+        updateAllCompoundInfoButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        updateAllCompoundInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateAllCompoundInfoButtonActionPerformed(evt);
+            }
+        });
+        compoundsToolbar.add(updateAllCompoundInfoButton);
 
         structureImagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("structureImagePanel.border.title"))); // NOI18N
         structureImagePanel.setName("structureImagePanel"); // NOI18N
@@ -810,10 +925,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         structureImagePanel.setLayout(structureImagePanelLayout);
         structureImagePanelLayout.setHorizontalGroup(
             structureImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(structureImageToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addComponent(structureImageToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
             .addGroup(structureImagePanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(structureImage, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(structureImage, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addContainerGap())
         );
         structureImagePanelLayout.setVerticalGroup(
@@ -852,16 +967,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         compoundUriHint.setIcon(resourceMap.getIcon("compoundUriHint.icon")); // NOI18N
         compoundUriHint.setText(resourceMap.getString("compoundUriHint.text")); // NOI18N
         compoundUriHint.setName("compoundUriHint"); // NOI18N
-
-        reloadCompoundInfoOKButton.setIcon(resourceMap.getIcon("reloadCompoundInfoOKButton.icon")); // NOI18N
-        reloadCompoundInfoOKButton.setText(resourceMap.getString("reloadCompoundInfoOKButton.text")); // NOI18N
-        reloadCompoundInfoOKButton.setDefaultCapable(false);
-        reloadCompoundInfoOKButton.setName("reloadCompoundInfoOKButton"); // NOI18N
-        reloadCompoundInfoOKButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reloadCompoundInfoOKButtonActionPerformed(evt);
-            }
-        });
 
         compoundIndentifiersLabel.setText(resourceMap.getString("compoundIndentifiersLabel.text")); // NOI18N
         compoundIndentifiersLabel.setName("compoundIndentifiersLabel"); // NOI18N
@@ -909,15 +1014,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(compoundIndentifiersLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(identifierChooserCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(compoundIdentifiersCards, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                        .addComponent(compoundIdentifiersCards, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
                             .addComponent(compoundURILabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(compoundUriHint)))
                     .addComponent(datasetUriValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(reloadCompoundInfoOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(142, 142, 142))
         );
         compoundIdentifierPanelLayout.setVerticalGroup(
             compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -927,16 +1030,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(compoundIndentifiersLabel)
                     .addComponent(identifierChooserCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reloadCompoundInfoOKButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                    .addGroup(compoundIdentifierPanelLayout.createSequentialGroup()
-                        .addComponent(compoundIdentifiersCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(compoundURILabel)
-                            .addComponent(compoundUriHint))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(datasetUriValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(compoundIdentifiersCards, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(compoundIdentifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(compoundURILabel)
+                    .addComponent(compoundUriHint))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(datasetUriValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -998,11 +1098,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(compoundSynonymsPanelLayout.createSequentialGroup()
                     .addComponent(compoundSynonymsLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(compoundNameHint)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE))
-                .addGroup(compoundSynonymsPanelLayout.createSequentialGroup()
-                    .addComponent(compoundNamesScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(compoundNameHint))
+                .addComponent(compoundNamesScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(compoundSynonymsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(clearAllCompoundSynonyms, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addComponent(removeCompoundSynonym, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1035,7 +1133,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(compoundDataInputPanelLayout.createSequentialGroup()
             .addGroup(compoundDataInputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(compoundSynonymsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
             .addContainerGap())
     );
     compoundDataInputPanelLayout.setVerticalGroup(
@@ -1052,16 +1150,16 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     compoundInfoPanelLayout.setHorizontalGroup(
         compoundInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(compoundInfoPanelLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(compoundDataInputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(structureImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+            .addGroup(compoundInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, compoundInfoPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(compoundDataInputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(structureImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(compoundsToolbar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 997, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(395, 395, 395))
-        .addGroup(compoundInfoPanelLayout.createSequentialGroup()
-            .addComponent(compoundsToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 997, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     compoundInfoPanelLayout.setVerticalGroup(
         compoundInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1176,7 +1274,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(descriptorsPanelLayout.createSequentialGroup()
             .addComponent(descriptorsTableToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(descriptorsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -1221,7 +1319,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(stereoChemHintLamp)
                 .addComponent(stereoChemHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+            .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -1231,13 +1329,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(compoundPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(compoundInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1011, Short.MAX_VALUE)
-                .addGroup(compoundPanelLayout.createSequentialGroup()
+            .addGroup(compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(compoundInfoPanel, javax.swing.GroupLayout.Alignment.LEADING, 0, 1011, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, compoundPanelLayout.createSequentialGroup()
                     .addComponent(descriptorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addContainerGap())
+                    .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(44, Short.MAX_VALUE))
     );
     compoundPanelLayout.setVerticalGroup(
         compoundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1407,8 +1505,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     authorsPanel.setLayout(authorsPanelLayout);
     authorsPanelLayout.setHorizontalGroup(
         authorsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(authorsTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-        .addComponent(authorsToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+        .addComponent(authorsTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
+        .addComponent(authorsToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
     );
     authorsPanelLayout.setVerticalGroup(
         authorsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1480,7 +1578,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(qprfDayCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(qprfMonthCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(qprfYearCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(606, Short.MAX_VALUE))
+            .addContainerGap(638, Short.MAX_VALUE))
     );
     datePanelLayout.setVerticalGroup(
         datePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1530,7 +1628,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(authorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(datePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(290, Short.MAX_VALUE))
+            .addContainerGap(253, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab(resourceMap.getString("generalInfoPanel.TabConstraints.tabTitle"), generalInfoPanel); // NOI18N
@@ -1611,7 +1709,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(metaInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(metaInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(qprfReportTitleScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
+                .addComponent(qprfReportTitleScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
                 .addGroup(metaInfoPanelLayout.createSequentialGroup()
                     .addComponent(titleLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1625,8 +1723,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(qprfCommentsLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(qprfCommentsHintLabel))
-                .addComponent(qprfReportDescriptionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
-                .addComponent(qprfReportCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE))
+                .addComponent(qprfReportDescriptionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
+                .addComponent(qprfReportCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE))
             .addContainerGap())
     );
     metaInfoPanelLayout.setVerticalGroup(
@@ -1675,7 +1773,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(jLabel7)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(metaInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(223, Short.MAX_VALUE))
+            .addContainerGap(186, Short.MAX_VALUE))
     );
 
     qprfInfoTabbedSubPanel.addTab("Other", otherInfoPanel);
@@ -1684,11 +1782,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     reportGeneralInfoPanel.setLayout(reportGeneralInfoPanelLayout);
     reportGeneralInfoPanelLayout.setHorizontalGroup(
         reportGeneralInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
+        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1067, Short.MAX_VALUE)
     );
     reportGeneralInfoPanelLayout.setVerticalGroup(
         reportGeneralInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+        .addComponent(qprfInfoTabbedSubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("reportGeneralInfoPanel.TabConstraints.tabTitle"), reportGeneralInfoPanel); // NOI18N
@@ -1720,9 +1818,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     trainingDatasetLabel.setText(resourceMap.getString("trainingDatasetLabel.text")); // NOI18N
     trainingDatasetLabel.setName("trainingDatasetLabel"); // NOI18N
 
-    datasetValue.setForeground(resourceMap.getColor("datasetValue.foreground")); // NOI18N
-    datasetValue.setText(resourceMap.getString("datasetValue.text")); // NOI18N
-    datasetValue.setName("datasetValue"); // NOI18N
+    trainingDatasetValueTextField.setForeground(resourceMap.getColor("trainingDatasetValueTextField.foreground")); // NOI18N
+    trainingDatasetValueTextField.setText(resourceMap.getString("trainingDatasetValueTextField.text")); // NOI18N
+    trainingDatasetValueTextField.setName("trainingDatasetValueTextField"); // NOI18N
 
     copyDatasetButton.setIcon(resourceMap.getIcon("copyDatasetButton.icon")); // NOI18N
     copyDatasetButton.setText(resourceMap.getString("copyDatasetButton.text")); // NOI18N
@@ -1885,6 +1983,17 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     });
     modelToolbar.add(dependentFeatureToolButton);
 
+    jSeparator9.setName("jSeparator9"); // NOI18N
+    modelToolbar.add(jSeparator9);
+
+    jButton3.setIcon(resourceMap.getIcon("jButton3.icon")); // NOI18N
+    jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+    jButton3.setFocusable(false);
+    jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton3.setName("jButton3"); // NOI18N
+    jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    modelToolbar.add(jButton3);
+
     qmrfReportHeader.setFont(resourceMap.getFont("qmrfReportHeader.font")); // NOI18N
     qmrfReportHeader.setText(resourceMap.getString("qmrfReportHeader.text")); // NOI18N
     qmrfReportHeader.setName("qmrfReportHeader"); // NOI18N
@@ -2044,13 +2153,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                                 .addComponent(qmrfReportDiscussionLabel))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                                                .addComponent(predFeatureUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                                                .addComponent(predictedFeatureNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                                                .addComponent(algorithmUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modelInfoPanelLayout.createSequentialGroup()
                                                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
+                                                        .addComponent(qmrfReportTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                                                        .addComponent(qmrfReportDiscussionScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modelInfoPanelLayout.createSequentialGroup()
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2062,9 +2171,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                                                     .addComponent(algorithmNameLabel)))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                                                .addComponent(datasetValue, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))))
+                                                .addComponent(algorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                                                .addComponent(modelUriValue, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                                                .addComponent(trainingDatasetValueTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))))
                                     .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(modelInfoPanelLayout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2108,7 +2217,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(modelDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(modelVersionScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(11, 11, 11))
-                .addComponent(modelToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE))
+                .addComponent(modelToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE))
             .addContainerGap())
     );
     modelInfoPanelLayout.setVerticalGroup(
@@ -2131,7 +2240,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(modelInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(trainingDatasetLabel)
-                                    .addComponent(datasetValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(trainingDatasetValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(copyDatasetButton)))
                         .addGroup(modelInfoPanelLayout.createSequentialGroup()
                             .addComponent(modelUriDetailsButton)
@@ -2204,7 +2313,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(modelPanelLayout.createSequentialGroup()
             .addComponent(modelInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(29, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab(resourceMap.getString("modelPanel.TabConstraints.tabTitle"), modelPanel); // NOI18N
@@ -2265,15 +2374,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     experimentalValueUnitsTextField.setToolTipText(resourceMap.getString("experimentalValueUnitsTextField.toolTipText")); // NOI18N
     experimentalValueUnitsTextField.setName("experimentalValueUnitsTextField"); // NOI18N
 
-    jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
-    jLabel5.setName("jLabel5"); // NOI18N
+    chemBioMechanismsLabel.setText(resourceMap.getString("chemBioMechanismsLabel.text")); // NOI18N
+    chemBioMechanismsLabel.setName("chemBioMechanismsLabel"); // NOI18N
 
-    jScrollPane5.setName("jScrollPane5"); // NOI18N
+    chemBioMechanismsScrollable.setName("chemBioMechanismsScrollable"); // NOI18N
 
-    jTextArea1.setColumns(20);
-    jTextArea1.setRows(5);
-    jTextArea1.setName("jTextArea1"); // NOI18N
-    jScrollPane5.setViewportView(jTextArea1);
+    chemBioMechanismsTextArea.setColumns(20);
+    chemBioMechanismsTextArea.setRows(5);
+    chemBioMechanismsTextArea.setName("chemBioMechanismsTextArea"); // NOI18N
+    chemBioMechanismsScrollable.setViewportView(chemBioMechanismsTextArea);
 
     javax.swing.GroupLayout predictionInfoPanelLayout = new javax.swing.GroupLayout(predictionInfoPanel);
     predictionInfoPanel.setLayout(predictionInfoPanelLayout);
@@ -2299,13 +2408,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                         .addComponent(predictionCommentLabel)
                         .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(predictionCommentScrollable, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
+                            .addComponent(chemBioMechanismsLabel, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(chemBioMechanismsScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                     .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(predictionUncertaintyLabel)
                         .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGap(90, 90, 90))
+            .addGap(122, 122, 122))
     );
     predictionInfoPanelLayout.setVerticalGroup(
         predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2329,9 +2438,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(predictionUncertaintyScrollable, javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(predictionCommentScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
             .addGap(18, 18, 18)
-            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(chemBioMechanismsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(chemBioMechanismsScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -2349,7 +2458,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(predictionPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(predictionInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(185, Short.MAX_VALUE))
+            .addContainerGap(168, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab(resourceMap.getString("predictionPanel.TabConstraints.tabTitle"), predictionPanel); // NOI18N
@@ -2385,7 +2494,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(appDomainURIValue)
                 .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
-            .addContainerGap(211, Short.MAX_VALUE))
+            .addContainerGap(243, Short.MAX_VALUE))
     );
     appDomainInfoPanelLayout.setVerticalGroup(
         appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2487,7 +2596,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(48, 48, 48)
             .addComponent(domainCardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(198, Short.MAX_VALUE))
+            .addContainerGap(230, Short.MAX_VALUE))
     );
     addDomainsDiscussionPanelLayout.setVerticalGroup(
         addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2646,10 +2755,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addComponent(analoguesCommentsLabel))
             .addContainerGap())
-        .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+        .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
     );
     structuralAnaloguesPanelLayout.setVerticalGroup(
         structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2692,7 +2801,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(77, Short.MAX_VALUE))
+            .addContainerGap(60, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab(resourceMap.getString("applicabilityDomainPanel.TabConstraints.tabTitle"), applicabilityDomainPanel); // NOI18N
@@ -2701,11 +2810,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     reportPredictionPanel.setLayout(reportPredictionPanelLayout);
     reportPredictionPanelLayout.setHorizontalGroup(
         reportPredictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1035, Short.MAX_VALUE)
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1067, Short.MAX_VALUE)
     );
     reportPredictionPanelLayout.setVerticalGroup(
         reportPredictionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("reportPredictionPanel.TabConstraints.tabTitle"), reportPredictionPanel); // NOI18N
@@ -2813,15 +2922,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addGap(267, 267, 267))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adequacyInfoSubPanelLayout.createSequentialGroup()
                             .addGroup(adequacyInfoSubPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                                .addComponent(qprfOutcomeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adequacyInfoSubPanelLayout.createSequentialGroup()
                                     .addComponent(outcomeLabel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(outcomeHintLabel))
-                                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+                                .addComponent(regulatoryPurposeScrollable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
                             .addGap(27, 27, 27)))
                     .addGroup(adequacyInfoSubPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(qprfReportConclusionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                        .addComponent(qprfReportConclusionScollable, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                         .addGroup(adequacyInfoSubPanelLayout.createSequentialGroup()
                             .addComponent(conclusionLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2830,11 +2939,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(regulatoryInterprLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(regulatoryInterprHintLabel))
-                        .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)))
+                        .addComponent(regulInterprScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)))
                 .addGroup(adequacyInfoSubPanelLayout.createSequentialGroup()
                     .addComponent(adequacyInfoIndicatorLabel)
                     .addGap(18, 18, 18)
-                    .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)))
+                    .addComponent(adequacyBottomMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 909, Short.MAX_VALUE)))
             .addContainerGap())
     );
     adequacyInfoSubPanelLayout.setVerticalGroup(
@@ -2896,7 +3005,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(adequacyInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(adequacyInfoSubPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(adequacyHintLabel))
-            .addContainerGap(96, Short.MAX_VALUE))
+            .addContainerGap(59, Short.MAX_VALUE))
     );
 
     basicTabbedPanel.addTab(resourceMap.getString("adequacyInfoPanel.TabConstraints.tabTitle"), adequacyInfoPanel); // NOI18N
@@ -2905,11 +3014,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     basicContainerPanel.setLayout(basicContainerPanelLayout);
     basicContainerPanelLayout.setHorizontalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(basicTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(basicContainerPanelLayout.createSequentialGroup()
+            .addComponent(basicTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1071, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     basicContainerPanelLayout.setVerticalGroup(
         basicContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(basicTabbedPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+        .addGroup(basicContainerPanelLayout.createSequentialGroup()
+            .addComponent(basicTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -2918,11 +3031,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addComponent(basicContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(25, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(basicContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(basicContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
 
     pack();
@@ -3178,7 +3291,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     private void modelInfoToolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelInfoToolButtonActionPerformed
         JFrame jframe = QEditApp.getView().getFrame();
-        ModelInfoDialog modelInfoDialog = new ModelInfoDialog(jframe);
         int frameWidth = jframe.getWidth();
         int frameHeight = jframe.getHeight();
         int dialogWidht = modelInfoDialog.getWidth();
@@ -3188,7 +3300,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelInfoDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
         modelInfoDialog.setVisible(true);
         modelInfoDialog.getTrainingAlgorithmField().setText(algorithmUriValue.getText());
-        modelInfoDialog.getTrainingDatasetField().setText(datasetValue.getText());
+        modelInfoDialog.getTrainingDatasetField().setText(trainingDatasetValueTextField.getText());
         modelInfoDialog.getPredictionFeatureField().setText(predFeatureUriValue.getText());
         modelInfoDialog.getModelUriField().setText(modelUriValue.getText());
 
@@ -3345,10 +3457,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         cl.show(compoundIdentifiersCards, (String) evt.getItem());
     }//GEN-LAST:event_identifierChooserComboItemStateChanged
 
-    private void reloadCompoundInfoOKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadCompoundInfoOKButtonActionPerformed
+    private void updateAllCompoundInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAllCompoundInfoButtonActionPerformed
         updateCompoundFromUserInput();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reloadCompoundInfoOKButtonActionPerformed
+    }//GEN-LAST:event_updateAllCompoundInfoButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCompoundSynonym;
     private javax.swing.JButton addDescriptorValueButton;
@@ -3391,6 +3502,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane basicTabbedPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField casRnValueTextField;
+    private javax.swing.JLabel chemBioMechanismsLabel;
+    private javax.swing.JScrollPane chemBioMechanismsScrollable;
+    private javax.swing.JTextArea chemBioMechanismsTextArea;
     private javax.swing.JLabel chooseDomainLabel;
     private javax.swing.JButton clearAllAuthorsButton;
     private javax.swing.JButton clearAllCompoundSynonyms;
@@ -3427,7 +3541,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JButton datasetDetailsButton;
     private javax.swing.JTextField datasetUriValueTextField;
-    private javax.swing.JTextField datasetValue;
     private javax.swing.JPanel datePanel;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JButton dependentFeatureToolButton;
@@ -3448,12 +3561,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField inchiKeyValueTextField;
     private javax.swing.JTextField inchiValueTextField;
     private javax.swing.JTextField iupacNameValueTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -3461,9 +3573,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
@@ -3471,8 +3583,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar.Separator jSeparator8;
+    private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton loadStructureImgButton;
     private javax.swing.JTextArea mechanismDomainText;
     private javax.swing.JPanel metaInfoPanel;
@@ -3556,7 +3668,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel regulatoryPurposeLabel;
     private javax.swing.JScrollPane regulatoryPurposeScrollable;
     private javax.swing.JTextArea regulatoryPurposeTextArea;
-    private javax.swing.JButton reloadCompoundInfoOKButton;
     private javax.swing.JMenuItem removeAuthorMenuItem;
     private javax.swing.JButton removeCompoundSynonym;
     private javax.swing.JMenuItem removeDescriptorLineMenuItem;
@@ -3565,6 +3676,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton removeStructuralAnalogue;
     private javax.swing.JPanel reportGeneralInfoPanel;
     private javax.swing.JPanel reportPredictionPanel;
+    private javax.swing.JButton showCompoundDetailsButton;
     private javax.swing.JButton showMagnifiedImage;
     private javax.swing.JTextField smilesValueTextField;
     private javax.swing.JTextArea stereoChemDiscussionTextArea;
@@ -3583,6 +3695,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel trainingAlgorithmHeader;
     private javax.swing.JLabel trainingDatasetLabel;
+    private javax.swing.JTextField trainingDatasetValueTextField;
+    private javax.swing.JButton updateAllCompoundInfoButton;
     private javax.swing.JCheckBox useCurrentDateForReport;
     // End of variables declaration//GEN-END:variables
     private AuthorWizard authorsWizard;
@@ -3590,7 +3704,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private StructuralAnalogueWizard_Step1 structuralAnalogueWizard;
     private DescriptorMetaDataDialog descriptorMetaDialog;
     private AlgorithmInfoDialog algorithmInfoDialog;
-    private QPRFReport qprfreport;
+    private QPRFReport qprfreport = new QPRFReport();
+    private ModelInfoDialog modelInfoDialog = new ModelInfoDialog(QEditApp.getView().getFrame());
 }
 
 

@@ -4,8 +4,11 @@ import com.hp.hpl.jena.ontology.Individual;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import qedit.clients.ClientConstants;
 import qedit.clients.ClientException;
 import qedit.clients.ontol.DCMetaInfo;
@@ -29,6 +32,8 @@ public class Compound extends AbstractComponent {
     private String einecs;
     private String uri;
     private DCMetaInfo meta;
+    private ImageIcon userIcon = new ImageIcon();
+    private java.util.List<String> synonyms = new java.util.ArrayList<String>();
 
     public Compound() {
     }
@@ -36,6 +41,24 @@ public class Compound extends AbstractComponent {
     public Compound(String uri) {
         this.uri = uri;
     }
+
+    public String getEinecs() {
+        return einecs;
+    }
+
+    public void setEinecs(String einecs) {
+        this.einecs = einecs;
+    }
+
+    public ImageIcon getUserIcon() {
+        return userIcon;
+    }
+
+    public void setUserIcon(ImageIcon userIcon) {
+        this.userIcon = userIcon;
+    }
+
+    
 
     // DO NOT MODIFY!
     // <editor-fold defaultstate="collapsed" desc="Getters and Settters">
@@ -120,14 +143,20 @@ public class Compound extends AbstractComponent {
     }
 
     // </editor-fold>
-
     public java.util.List<String> getSynonyms() {
-        if (chemicalName == null) {
-            return new java.util.ArrayList<String>();
-        }
-        java.util.List<String> list = java.util.Arrays.asList(chemicalName.split(CHEMICAL_NAMES_SEPARATOR));
-        return list;
+        if (synonyms == null || synonyms.isEmpty()) {
+            if (chemicalName == null) {
+                return new java.util.ArrayList<String>();
+            }
+            synonyms = java.util.Arrays.asList(chemicalName.split(CHEMICAL_NAMES_SEPARATOR));
+        }        
+        return synonyms;
     }
+
+    public void setSynonyms(List<String> synonyms) {
+        this.synonyms = synonyms;
+    }
+    
 
     public javax.swing.ImageIcon getDepiction() throws ClientException {
         try {

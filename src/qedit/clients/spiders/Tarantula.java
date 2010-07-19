@@ -41,20 +41,6 @@ public abstract class Tarantula<Result> implements Closeable {
     public abstract Result parse() throws ClientException;
 
     protected String retrieveProp(Property prop) {
-//        if (prop.equals(OTObjectProperties.hasSource().asObjectProperty(model))) {
-//
-//            StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (RDFNode) null));
-//            if (it.hasNext()) {
-//                try {
-//                    return (it.nextStatement().getObject().as(Resource.class).getURI());
-//                } finally {
-//                    it.close();
-//                }
-//            }
-//
-//        } else if (prop.equals(OWL.sameAs)) {
-//
-//        } else {
             StmtIterator it = model.listStatements(new SimpleSelector(resource, prop, (RDFNode) null));
             if (it.hasNext()) {
                 try {
@@ -68,7 +54,6 @@ public abstract class Tarantula<Result> implements Closeable {
                     it.close();
                 }
             }
-        //}
         return null;
     }
 
