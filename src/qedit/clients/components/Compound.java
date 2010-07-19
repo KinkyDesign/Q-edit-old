@@ -5,10 +5,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import qedit.ReportInternalFrame;
 import qedit.clients.ClientConstants;
 import qedit.clients.ClientException;
 import qedit.clients.ontol.DCMetaInfo;
@@ -32,8 +35,9 @@ public class Compound extends AbstractComponent {
     private String einecs;
     private String uri;
     private DCMetaInfo meta;
-    private ImageIcon userIcon = new ImageIcon();
+    private ImageIcon userIcon = null;
     private java.util.List<String> synonyms = new java.util.ArrayList<String>();
+    private Set<String> conformers = new HashSet<String>();
 
     public Compound() {
     }
@@ -51,6 +55,13 @@ public class Compound extends AbstractComponent {
     }
 
     public ImageIcon getUserIcon() {
+        if(userIcon == null){
+            ImageIcon icon =  org.jdesktop.application.Application
+                    .getInstance(qedit.QEditApp.class).getContext()
+                    .getResourceMap(ReportInternalFrame.class)
+                    .getImageIcon("structureImage.icon");            
+            return icon;
+        }
         return userIcon;
     }
 
@@ -151,6 +162,14 @@ public class Compound extends AbstractComponent {
             synonyms = java.util.Arrays.asList(chemicalName.split(CHEMICAL_NAMES_SEPARATOR));
         }        
         return synonyms;
+    }
+
+    public Set<String> getConformers() {
+        return conformers;
+    }
+
+    public void setConformers(Set<String> conformers) {
+        this.conformers = conformers;
     }
 
     public void setSynonyms(List<String> synonyms) {
