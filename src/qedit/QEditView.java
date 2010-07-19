@@ -187,7 +187,7 @@ public class QEditView extends FrameView {
         saveFileChooserWindow = new JFileChooser();
         saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("PDF Reports", "pdf"));
         saveFileChooserWindow.setMultiSelectionEnabled(false);
-        saveFileChooserWindow.setDialogTitle("Save " + rif.getTitle());
+        saveFileChooserWindow.setDialogTitle("Export " + rif.getTitle() + " as PDF");
         saveFileChooserWindow.showSaveDialog(mainPanel);
         ExportAsPDFTask task = new ExportAsPDFTask();
         task.setDesktopPane(desktopPane);

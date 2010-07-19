@@ -7,10 +7,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.ImgJBIG2;
-import com.itextpdf.text.Jpeg;
 import com.itextpdf.text.Paragraph;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -98,7 +95,7 @@ public class PDFReporter {
         pdf.addElement(new MyParagraph(new Chunk(NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk("1.5. Structure Codes:", BOLD_FONT)).applyIndent(10));
         try {
-            Image image = Image.getInstance(substance.getUserIcon().getImage(), Color.CYAN);
+            Image image = Image.getInstance(substance.getUserIcon().getImage(), java.awt.Color.CYAN);
             image.scalePercent((float) 50.00);
             pdf.addElement(image);
         } catch (BadElementException ex) {
@@ -112,6 +109,15 @@ public class PDFReporter {
         pdf.addElement(new MyParagraph(new Chunk(substance.getInChI(), NORMAL_FONT)).applyIndent(40));
         pdf.addElement(new MyParagraph(new Chunk("d. Stereochemical Features:", BOLD_FONT)).applyIndent(20));
         pdf.addElement(new MyParagraph(new Chunk(qprfReport.getStereoFeatures(), NORMAL_FONT)).applyIndent(40));
+        pdf.addElement(new Paragraph(Chunk.NEWLINE));
+        /*
+         * Section 2: General Info
+         */
+        pdf.addElement(new MyParagraph(new Chunk("2. General Information", BOLD_FONT)));
+        pdf.addElement(new MyParagraph(new Chunk("Date of QPRF Report:", BOLD_FONT)).applyIndent(10));
+        pdf.addElement(new MyParagraph(qprfReport.getYear() + ", " + "" + qprfReport.getMonth()
+                + " " + qprfReport.getDay(), NORMAL_FONT).applyIndent(20));
+        pdf.addElement(new MyParagraph(new Chunk("2.1. QPRF Author and Contact Details:", BOLD_FONT)).applyIndent(10));
         return pdf;
     }
 
@@ -126,6 +132,11 @@ public class PDFReporter {
         }
 
         public MyParagraph() {
+            super();
+        }
+
+        public MyParagraph(String string, Font font) {
+            super(string, font);
         }
 
         public MyParagraph applyIndent(float ind) {
