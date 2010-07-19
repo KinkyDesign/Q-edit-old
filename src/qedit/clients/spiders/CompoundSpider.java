@@ -56,7 +56,7 @@ public class CompoundSpider extends Tarantula<Compound> {
         AutoDetect;
     }
     private static final String namesToken = "%s/all";// <--    ?feature_uris[]
-    private String uri;
+    private String uri,keyword;
     private boolean doRetrieveSmiles = false;
     private LookupMethod lookupMethod;
 
@@ -98,15 +98,17 @@ public class CompoundSpider extends Tarantula<Compound> {
     public CompoundSpider(LookupMethod lookup, String keyword) throws ClientException {
         this.lookupMethod = lookup;
         if (lookup.equals(LookupMethod.ByUri)) {
-            keyword = keyword.split("conformer")[0];
-            System.out.println(keyword);
-            String[] temp = keyword.split("/");
-            keyword = temp[temp.length-1];
-            System.out.println(keyword);
-            uri = String.format(ClientConstants.getCompoundLookupService(), keyword); // Directly provide the URI
+            String tmp = keyword;
+            tmp = tmp.split("conformer")[0];
+            System.out.println("SPLIT CONFORMER-----"+tmp);
+            String[] temp = tmp.split("/");
+            tmp = temp[temp.length-1];
+            System.out.println(tmp);
+            uri = String.format(ClientConstants.getCompoundLookupService(), tmp); // Directly provide the URI
             System.out.println(uri);
             uri = String.format(namesToken, uri);
             System.out.println(uri);
+            this.keyword = keyword;
         } else if (lookup.equals(LookupMethod.FromFile)) {
             uri = "file://" + keyword;
         } else if (lookup.equals(LookupMethod.AutoDetect)) {
@@ -173,13 +175,15 @@ public class CompoundSpider extends Tarantula<Compound> {
         if (it.hasNext()) {
             Resource dataEntryNode = it.nextStatement().getObject().as(Resource.class);
 
-            if (lookupMethod.equals(LookupMethod.AutoDetect) || lookupMethod.equals(LookupMethod.ByUri)) {
+            if (lookupMethod.equals(LookupMethod.AutoDetect) ) {
                 StmtIterator compoundResourceIter =
                         model.listStatements(new SimpleSelector(dataEntryNode, OTObjectProperties.compound().asObjectProperty(model), (RDFNode) null));
 
                 if (compoundResourceIter.hasNext()) {
                     compound.setUri(compoundResourceIter.nextStatement().getObject().as(Resource.class).getURI());
                 }
+            }else if(lookupMethod.equals(LookupMethod.ByUri)){
+                compound.setUri(keyword);
             }
 
             it2 = model.listStatements(
