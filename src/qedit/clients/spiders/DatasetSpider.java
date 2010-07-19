@@ -14,6 +14,7 @@ import java.util.Map;
 import qedit.clients.ClientException;
 import qedit.clients.GetClient;
 import qedit.clients.Media;
+import qedit.clients.components.Compound;
 import qedit.clients.components.Dataset;
 import qedit.clients.components.Feature;
 import qedit.clients.components.FeatureValue;
@@ -54,6 +55,10 @@ public class DatasetSpider extends Tarantula<Dataset>{
     @Override
     public Dataset parse() throws ClientException {
         Dataset dataset = new Dataset();
+        Compound compound = new Compound();
+        System.out.println(compoundUri);
+        CompoundSpider cSpider = new CompoundSpider(CompoundSpider.LookupMethod.ByUri,compoundUri);
+        compound = cSpider.parse();
 
         dataset.setUri(datasetUri);
         dataset.setCompoundUri(compoundUri);
@@ -71,6 +76,9 @@ public class DatasetSpider extends Tarantula<Dataset>{
                     OTObjectProperties.compound().asObjectProperty(model),
                     (RDFNode)null));
             if(compoundIt.hasNext()){
+                if(compound.getConformers().contains(compoundIt.nextStatement().getObject().as(Resource.class).getURI())){
+                    entryResource = entry;
+                }
                 if(compoundIt.nextStatement().getObject().as(Resource.class).getURI().equals(compoundUri)){
                     entryResource = entry;
                     break;
