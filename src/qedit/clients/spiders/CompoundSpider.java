@@ -230,37 +230,39 @@ public class CompoundSpider extends Tarantula<Compound> {
         }
 
         // GET CONFORMERS:
-        if (uri.contains("conformer")) {
-            compound.getConformers().add(uri);
-        } else {
-            String conformerUri = uri.endsWith("/")?uri+"conformer/":uri+"/conformer/";
-            GetClient client = new GetClient();
-            try {
-                client.setUri(conformerUri);
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            client.setMediaType(Media.rdf_xml);
-            OntModel conformerModel = client.getOntModel();
-            Resource conformerResource = conformerModel.getResource(conformerUri);
-            StmtIterator conformerIt = conformerModel.listStatements(
-                    new SimpleSelector(conformerResource,
-                    OTObjectProperties.dataEntry().asObjectProperty(conformerModel),
-                    (RDFNode)null)
-                    );
-            while(conformerIt.hasNext()){
-                String cUri = conformerIt.nextStatement()
-                        .getResource().getProperty(
-                        OTObjectProperties.compound().asObjectProperty(conformerModel)
-                        ).getResource()
-                        .getURI();
-                compound.getConformers().add(cUri);
+        //String conformerUri;
+//        if (uri.contains("conformer")) {
+//            compound.getConformers().add(uri);
+//        } else {
+        // String conformerUri = uri.endsWith("/")?uri+"conformer/":uri+"/conformer/";
+
+        String conformerUri = compound.getUri().split("conformer")[0];
+        conformerUri = conformerUri.endsWith("/")?conformerUri+"conformer/":conformerUri+"/conformer/";
+
+        System.out.println("Conformer URI="+conformerUri);
+        GetClient client = new GetClient();
+        try {
+            client.setUri(conformerUri);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        client.setMediaType(Media.rdf_xml);
+        OntModel conformerModel = client.getOntModel();
+        Resource conformerResource = conformerModel.getResource(conformerUri);
+        StmtIterator conformerIt = conformerModel.listStatements(
+                new SimpleSelector(conformerResource,
+                OTObjectProperties.dataEntry().asObjectProperty(conformerModel),
+                (RDFNode) null));
+        while (conformerIt.hasNext()) {
+            String cUri = conformerIt.nextStatement().getResource().getProperty(
+                    OTObjectProperties.compound().asObjectProperty(conformerModel)).getResource().getURI();
+            compound.getConformers().add(cUri);
 //               if(cUri.contains("conformer")){
 //                   compound.getConformers().add(cUri);
 //               }
-            }
         }
-        for(String s : compound.getConformers()){
+        //}
+        for (String s : compound.getConformers()) {
             System.out.println(s);
         }
         return compound;
