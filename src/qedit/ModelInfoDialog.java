@@ -7,9 +7,13 @@
 package qedit;
 
 import java.awt.Frame;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import qedit.clients.components.Feature;
+import qedit.clients.components.Model;
+import qedit.clients.spiders.FeatureSpider;
 
 /**
  *
@@ -17,15 +21,62 @@ import javax.swing.JTextField;
  */
 public class ModelInfoDialog extends javax.swing.JDialog {
 
+    private Model model;
+
     /** Creates new form ModelInfoDialog */
     public ModelInfoDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public ModelInfoDialog(Frame owner) {
+    public ModelInfoDialog(Frame owner, Model model) {
         super(owner);
         initComponents();
+        this.model = model;
+        modelUriField.setText(model.getUri());
+        if (model.getMeta() != null) {
+            modelTitleTextField.setText(model.getMeta().getTitle());
+
+        }
+        trainingDatasetField.setText(model.getDataset());
+        if (model.getPredictedFeature() != null) {
+            String predictionFeatureTitle = null;
+            if (model.getPredictedFeature().getMeta() != null) {
+                predictionFeatureTitle = model.getPredictedFeature().getMeta().getTitle();
+            }
+            if (predictionFeatureTitle==null ||
+                    (predictionFeatureTitle!=null&&predictionFeatureTitle.isEmpty())){
+                predictionFeatureTitle=model.getPredictedFeature().getUri();
+            }
+            predictionFeatureField.setText(predictionFeatureTitle);
+        }
+        if (model.getDependentFeature() != null) {
+            String depFeatTitle = null;
+            if (model.getDependentFeature().getMeta() != null) {
+                depFeatTitle = model.getDependentFeature().getMeta().getTitle();
+            }
+            if (depFeatTitle==null ||
+                    (depFeatTitle!=null&&depFeatTitle.isEmpty())){
+                depFeatTitle=model.getDependentFeature().getUri();
+            }            
+            dependentFeatureField.setText(depFeatTitle);
+        }
+        
+        DefaultListModel indepFeaturesDataModel = new DefaultListModel();
+        for (Feature indepFeat : model.getIndependentFeatures()){
+            indepFeaturesDataModel.addElement(indepFeat.getMeta().getTitle());
+        }
+        independentFeaturesList.setModel(indepFeaturesDataModel);
+
+        trainingAlgorithmField.setText(model.getAlgorithm().getMeta().getTitle());
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public JTextField getModelTitleTextField() {
@@ -130,7 +181,7 @@ public class ModelInfoDialog extends javax.swing.JDialog {
         independentFeaturesScrollable.setName("independentFeaturesScrollable"); // NOI18N
 
         independentFeaturesList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2" };
+            String[] strings = { };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -180,31 +231,34 @@ public class ModelInfoDialog extends javax.swing.JDialog {
         modelInfoPanelLayout.setHorizontalGroup(
             modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(modelInfoPanelLayout.createSequentialGroup()
-                .add(24, 24, 24)
-                .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(modelInfoPanelLayout.createSequentialGroup()
-                        .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(independentFeaturesLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(predictionFeatureLabel)
-                            .add(trainingDatasetLabel)
-                            .add(modelUriLabel)
-                            .add(dependentFeatureLabel)
-                            .add(modelTitleLabel))
-                        .add(18, 18, 18))
-                    .add(modelInfoPanelLayout.createSequentialGroup()
-                        .add(trainingAlgorithmLabel)
-                        .add(18, 18, 18))
-                    .add(modelInfoPanelLayout.createSequentialGroup()
-                        .add(independentFeaturesListToolbar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
                 .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(independentFeaturesScrollable, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .add(modelUriField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .add(trainingDatasetField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .add(predictionFeatureField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .add(dependentFeatureField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, trainingAlgorithmField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .add(modelTitleTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+                    .add(modelInfoPanelLayout.createSequentialGroup()
+                        .add(24, 24, 24)
+                        .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(modelInfoPanelLayout.createSequentialGroup()
+                                .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(independentFeaturesLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(predictionFeatureLabel)
+                                    .add(trainingDatasetLabel)
+                                    .add(modelUriLabel)
+                                    .add(dependentFeatureLabel)
+                                    .add(modelTitleLabel))
+                                .add(18, 18, 18))
+                            .add(modelInfoPanelLayout.createSequentialGroup()
+                                .add(independentFeaturesListToolbar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                        .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(modelUriField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .add(trainingDatasetField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .add(predictionFeatureField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .add(dependentFeatureField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .add(modelTitleTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                            .add(independentFeaturesScrollable, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, modelInfoPanelLayout.createSequentialGroup()
+                        .add(52, 52, 52)
+                        .add(trainingAlgorithmLabel)
+                        .add(18, 18, 18)
+                        .add(trainingAlgorithmField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         modelInfoPanelLayout.setVerticalGroup(
@@ -231,17 +285,17 @@ public class ModelInfoDialog extends javax.swing.JDialog {
                     .add(dependentFeatureField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(dependentFeatureLabel))
                 .add(18, 18, 18)
-                .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(modelInfoPanelLayout.createSequentialGroup()
                         .add(independentFeaturesLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(independentFeaturesListToolbar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(independentFeaturesScrollable, 0, 0, Short.MAX_VALUE))
+                    .add(independentFeaturesScrollable, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
                 .add(18, 18, 18)
                 .add(modelInfoPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(trainingAlgorithmField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(trainingAlgorithmLabel))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         modelParametersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("modelParametersPanel.border.title"))); // NOI18N
@@ -332,19 +386,19 @@ public class ModelInfoDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .add(containerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, modelInfoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, modelParametersPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(closeButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(closeButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, modelParametersPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         containerPanelLayout.setVerticalGroup(
             containerPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(containerPanelLayout.createSequentialGroup()
-                .add(modelInfoPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, containerPanelLayout.createSequentialGroup()
+                .add(modelInfoPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(modelParametersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(closeButton)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -356,9 +410,8 @@ public class ModelInfoDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(1, 1, 1)
-                .add(containerPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(12, 12, 12)
+                .add(containerPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

@@ -154,6 +154,7 @@ public class AlgorithmInfoDialog extends javax.swing.JDialog {
         algorithmDescriptionScrollable.setName("algorithmDescriptionScrollable"); // NOI18N
 
         descriptionTextArea.setColumns(20);
+        descriptionTextArea.setLineWrap(true);
         descriptionTextArea.setRows(5);
         descriptionTextArea.setName("descriptionTextArea"); // NOI18N
         algorithmDescriptionScrollable.setViewportView(descriptionTextArea);

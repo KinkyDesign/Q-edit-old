@@ -31,9 +31,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="containerPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Component id="containerPanel" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,8 +50,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="modelInfoPanel" alignment="0" max="32767" attributes="1"/>
-                      <Component id="modelParametersPanel" alignment="0" max="32767" attributes="1"/>
                       <Component id="closeButton" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                      <Component id="modelParametersPanel" alignment="0" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -60,13 +59,13 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="modelInfoPanel" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="modelInfoPanel" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="modelParametersPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="closeButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,37 +86,42 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="independentFeaturesLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="predictionFeatureLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="trainingDatasetLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="modelUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dependentFeatureLabel" alignment="1" min="-2" max="-2" attributes="1"/>
-                                  <Component id="modelTitleLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="independentFeaturesLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="predictionFeatureLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="trainingDatasetLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="modelUriLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="dependentFeatureLabel" alignment="1" min="-2" max="-2" attributes="1"/>
+                                          <Component id="modelTitleLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="independentFeaturesListToolbar" min="-2" pref="99" max="-2" attributes="1"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="modelUriField" alignment="0" pref="315" max="32767" attributes="1"/>
+                                  <Component id="trainingDatasetField" alignment="0" pref="315" max="32767" attributes="1"/>
+                                  <Component id="predictionFeatureField" alignment="0" pref="315" max="32767" attributes="1"/>
+                                  <Component id="dependentFeatureField" alignment="0" pref="315" max="32767" attributes="1"/>
+                                  <Component id="modelTitleTextField" alignment="0" pref="315" max="32767" attributes="0"/>
+                                  <Component id="independentFeaturesScrollable" pref="315" max="32767" attributes="1"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               <Component id="trainingAlgorithmLabel" min="-2" max="-2" attributes="1"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="trainingAlgorithmField" pref="315" max="32767" attributes="1"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="independentFeaturesListToolbar" min="-2" pref="99" max="-2" attributes="1"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="independentFeaturesScrollable" pref="315" max="32767" attributes="1"/>
-                          <Component id="modelUriField" alignment="0" pref="315" max="32767" attributes="1"/>
-                          <Component id="trainingDatasetField" alignment="0" pref="315" max="32767" attributes="1"/>
-                          <Component id="predictionFeatureField" alignment="0" pref="315" max="32767" attributes="1"/>
-                          <Component id="dependentFeatureField" alignment="0" pref="315" max="32767" attributes="1"/>
-                          <Component id="trainingAlgorithmField" alignment="1" pref="315" max="32767" attributes="1"/>
-                          <Component id="modelTitleTextField" alignment="0" pref="315" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -152,20 +156,20 @@
                           <Component id="dependentFeatureLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="independentFeaturesLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="independentFeaturesListToolbar" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="independentFeaturesScrollable" min="0" pref="0" max="32767" attributes="1"/>
+                          <Component id="independentFeaturesScrollable" pref="78" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="trainingAlgorithmField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="trainingAlgorithmLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -261,7 +265,7 @@
                 <Component class="javax.swing.JList" name="independentFeaturesList">
                   <Properties>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.AbstractListModel() {&#xa;    String[] strings = { &quot;Item 1&quot;, &quot;Item 2&quot; };&#xa;    public int getSize() { return strings.length; }&#xa;    public Object getElementAt(int i) { return strings[i]; }&#xa;}" type="code"/>
+                      <Connection code="new javax.swing.AbstractListModel() {&#xa;    String[] strings = { };&#xa;    public int getSize() { return strings.length; }&#xa;    public Object getElementAt(int i) { return strings[i]; }&#xa;}" type="code"/>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Hand Cursor"/>

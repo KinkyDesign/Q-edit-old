@@ -69,21 +69,10 @@ public class FeatureSpider extends Tarantula<Feature> {
 
     public static void main(String... args) throws ClientException {
 
-        GetClient client = new GetClient();
-        client.setMediaType(Media.rdf_xml);
-        try {
-            client.setUri("http://ambit.uni-plovdiv.bg:8080/ambit2/dataset/6");
-        } catch (URISyntaxException ex) {
-            throw new ClientException(ex);
-        }
-        OntModel model = client.getOntModel();
-        //resource = model.getResource(uri);
-        Resource resource = model.getResource("http://ambit.uni-plovdiv.bg:8080/ambit2/feature/11954");
-        FeatureSpider fSpider = new FeatureSpider(resource, model);
+        FeatureSpider fSpider = new FeatureSpider("http://apps.ideaconsult.net:8080/ambit2/feature/22202");
         Feature f = fSpider.parse();
-        for (OntologicalClass oc : f.getOntologies()) {
-            System.out.println(oc.getName());
-        }
+        fSpider.model.write(System.out);
+       System.out.println(f.getMeta().getTitle());
 
     }
 }

@@ -167,9 +167,13 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
          */
         modelVersionInfoTextArea.setText(qprfreport.getModel().getMeta().getVersionInfo());
         modelUriValue.setText(qprfreport.getModel().getUri());
-        modelInfoDialog.getModelTitleTextField().setText(qprfreport.getModel().getMeta().getTitle());
         trainingDatasetValueTextField.setText(qprfreport.getModel().getDataset());
         qmrfReportDiscussionTextArea.setText(qprfreport.getModel().getQmrfReportMeta().getComment());
+        algorithmUriValue.setText(qprfreport.getModel().getAlgorithm().getUri());
+        algorithmNameValue.setText(qprfreport.getModel().getAlgorithm().getMeta().getTitle());
+        String predFeatureName = qprfreport.getModel().getPredictedFeature().getMeta().getTitle();        
+        predictedFeatureNameValue.setText(predFeatureName);
+        predFeatureUriValue.setText(qprfreport.getModel().getPredictedFeature().getUri());
     }
 
     @Action
@@ -276,16 +280,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         if (keyWord == null || keyWord.isEmpty()) {
             return null;
         }
-
-
         CompoundSpider spider = new CompoundSpider(keyWord);
         compound = spider.parse();
 
         ImageIcon icon = null;
-
-        icon = compound.getImage();
-
-
+        icon = compound.getDepiction();
         compound.setUserIcon(icon);
 
         return compound;
@@ -943,7 +942,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         structureImagePanel.setLayout(structureImagePanelLayout);
         structureImagePanelLayout.setHorizontalGroup(
             structureImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(structureImageToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+            .addComponent(structureImageToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
             .addGroup(structureImagePanelLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(structureImage, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1113,7 +1112,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(compoundDataInputPanelLayout.createSequentialGroup()
             .addGroup(compoundDataInputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(compoundSynonymsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
             .addContainerGap())
     );
     compoundDataInputPanelLayout.setVerticalGroup(
@@ -1784,6 +1783,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     modelUriLabel.setText(resourceMap.getString("modelUriLabel.text")); // NOI18N
     modelUriLabel.setName("modelUriLabel"); // NOI18N
 
+    modelUriValue.setBackground(resourceMap.getColor("modelUriValue.background")); // NOI18N
     modelUriValue.setForeground(resourceMap.getColor("modelUriValue.foreground")); // NOI18N
     modelUriValue.setText(resourceMap.getString("modelUriValue.text")); // NOI18N
     modelUriValue.setName("modelUriValue"); // NOI18N
@@ -1911,11 +1911,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     modelInfoToolButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     modelInfoToolButton.setName("modelInfoToolButton"); // NOI18N
     modelInfoToolButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    modelInfoToolButton.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            modelInfoToolButtonMouseClicked(evt);
-        }
-    });
     modelInfoToolButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             modelInfoToolButtonActionPerformed(evt);
@@ -2690,20 +2685,20 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     analoguesPanel.setLayout(analoguesPanelLayout);
     analoguesPanelLayout.setHorizontalGroup(
         analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 346, Short.MAX_VALUE)
+        .addGap(0, 362, Short.MAX_VALUE)
         .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analoguesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addContainerGap()))
     );
     analoguesPanelLayout.setVerticalGroup(
         analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 258, Short.MAX_VALUE)
+        .addGap(0, 274, Short.MAX_VALUE)
         .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(analoguesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addComponent(analoguesTableScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addContainerGap()))
     );
 
@@ -2739,7 +2734,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addComponent(analoguesCommentsLabel))
             .addContainerGap())
         .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
@@ -2758,9 +2753,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
                     .addComponent(analoguesCommentsLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
-                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                    .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
             .addContainerGap())
     );
 
@@ -2785,7 +2780,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(28, Short.MAX_VALUE))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab(resourceMap.getString("applicabilityDomainPanel.TabConstraints.tabTitle"), applicabilityDomainPanel); // NOI18N
@@ -3269,31 +3264,25 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         removeSelectedRows(descriptorsTable);
     }//GEN-LAST:event_removeDescriptorLineMenuItemActionPerformed
 
-    private void modelInfoToolButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modelInfoToolButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modelInfoToolButtonMouseClicked
-
     private void modelInfoToolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelInfoToolButtonActionPerformed
         JFrame jframe = QEditApp.getView().getFrame();
+        modelInfoDialog = new ModelInfoDialog(QEditApp.getView().getFrame(), qprfreport.getModel());
         int frameWidth = jframe.getWidth();
         int frameHeight = jframe.getHeight();
         int dialogWidht = modelInfoDialog.getWidth();
         int dialogHeight = modelInfoDialog.getHeight();
         int dialog_x = (frameWidth - dialogWidht) / 2;
-        int dialog_y = (frameHeight - dialogHeight) / 2;
+        int dialog_y = (frameHeight - dialogHeight) / 2;        
         modelInfoDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
-        modelInfoDialog.setVisible(true);
-        modelInfoDialog.getTrainingAlgorithmField().setText(algorithmUriValue.getText());
-        modelInfoDialog.getTrainingDatasetField().setText(trainingDatasetValueTextField.getText());
-        modelInfoDialog.getPredictionFeatureField().setText(predFeatureUriValue.getText());
-        modelInfoDialog.getModelUriField().setText(modelUriValue.getText());
+        modelInfoDialog.setVisible(true);        
 
     }//GEN-LAST:event_modelInfoToolButtonActionPerformed
 
     private void algorithmInfoToolButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algorithmInfoToolButtonActionPerformed
         JFrame jframe = QEditApp.getView().getFrame();
+
         if (algorithmInfoDialog == null) {
-            algorithmInfoDialog = new AlgorithmInfoDialog(jframe);
+            algorithmInfoDialog = new AlgorithmInfoDialog(jframe, qprfreport.getModel().getAlgorithm());
             int frameWidth = jframe.getWidth();
             int frameHeight = jframe.getHeight();
             int dialogWidht = algorithmInfoDialog.getWidth();
@@ -3463,7 +3452,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     private void downloadModelInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadModelInfoButtonActionPerformed
 
-        modelUriValue.setBackground(Color.white);
+        modelUriValue.setBackground(new Color(228, 237, 237));
 
         if (modelUriValue.getText() == null || modelUriValue.getText().isEmpty()) {
             QEditApp.getView().getStatusLabel().setText("You have to provide a model URI first");
@@ -3483,23 +3472,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 ModelSpider mSpider = new ModelSpider(modelUriValue.getText());
                 Model modelFromRemote = mSpider.parse();
                 qprfreport.setModel(modelFromRemote);
-                trainingDatasetValueTextField.setText(modelFromRemote.getDataset());
-                modelInfoDialog.getModelTitleTextField().setText(modelFromRemote.getMeta().getTitle());
-                algorithmNameValue.setText(modelFromRemote.getAlgorithm().getMeta().getTitle());
-                algorithmUriValue.setText(modelFromRemote.getAlgorithm().getUri());
-                predFeatureUriValue.setText(modelFromRemote.getPredictedFeature().getUri());
-                String predictedFeatureName = modelFromRemote.getPredictedFeature().getMeta().getTitle();
-                if (predictedFeatureName == null) {
-                    FeatureSpider fSpider = new FeatureSpider(modelFromRemote.getPredictedFeature().getUri());
-                    Feature predF = fSpider.parse();
-                    predictedFeatureName = predF.getMeta().getTitle();
-                }
-                predictedFeatureNameValue.setText(predictedFeatureName);
-                String depFeatureName = modelFromRemote.getDependentFeature().getMeta().getTitle();
-                if (depFeatureName == null) {
-                    FeatureSpider fSpider = new FeatureSpider(modelFromRemote.getDependentFeature().getUri());
-                    Feature depF = fSpider.parse();
-                    qprfreport.getModel().setDependentFeature(depF);
+                if (modelFromRemote!=null){
+                    synchronizeModelFieldsWRTReport();
                 }
                 return null;
             }
@@ -3745,7 +3719,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private DescriptorMetaDataDialog descriptorMetaDialog;
     private AlgorithmInfoDialog algorithmInfoDialog;
     private QPRFReport qprfreport = new QPRFReport();
-    private ModelInfoDialog modelInfoDialog = new ModelInfoDialog(QEditApp.getView().getFrame());
+    private ModelInfoDialog modelInfoDialog;
     private CompoundDetailsDialog compoundDetailsDialog;
 }
 

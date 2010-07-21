@@ -112,10 +112,28 @@ public class ModelSpider extends Tarantula<Model> {
             parameters.add(paramSpider.parse());
         }
         m.setParameters(parameters);
-        
-
-
+        getFeatureMetaFromRemote(m.getDependentFeature());
+        getFeatureMetaFromRemote(m.getPredictedFeature());
+        for (Feature indFeat : m.getIndependentFeatures()) {
+            getFeatureMetaFromRemote(indFeat);
+        }
         return m;
+    }
+
+    private void getFeatureMetaFromRemote(Feature feature) throws ClientException {
+        String featTitle = feature.getMeta().getTitle();
+        if (featTitle == null
+                || (featTitle != null && featTitle.isEmpty())) {
+            FeatureSpider featureSpider = new FeatureSpider(feature.getUri());
+            Feature featureFromRemote = featureSpider.parse();
+            feature.setMeta(featureFromRemote.getMeta());
+        }
+
+        featTitle = feature.getMeta().getTitle();
+        if (featTitle == null
+                || (featTitle != null && featTitle.isEmpty())) {
+            feature.getMeta().setTitle(feature.getUri());
+        }
     }
 
     public static void main(String... args) throws ClientException {
