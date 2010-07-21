@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Set;
 import qedit.clients.ontol.DCMetaInfo;
 import qedit.clients.ontol.OntologicalClass;
+import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
 /**
  *
@@ -15,7 +16,7 @@ import qedit.clients.ontol.OntologicalClass;
 public class Algorithm extends AbstractComponent{
 
     private String uri;
-    private DCMetaInfo meta;
+    private DCMetaInfo meta = new DCMetaInfoImpl();
     private ArrayList<Parameter> parameters = new ArrayList<Parameter>();
     private Set<OntologicalClass> ontologies;
     

@@ -54,6 +54,7 @@ import qedit.clients.components.Feature;
 import qedit.clients.components.FeatureValue;
 import qedit.clients.components.Model;
 import qedit.clients.components.QPRFReport;
+import qedit.clients.ontol.impl.DCMetaInfoImpl;
 import qedit.clients.spiders.CompoundSpider;
 import qedit.clients.spiders.DatasetSpider;
 import qedit.clients.spiders.FeatureSpider;
@@ -169,11 +170,21 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         modelUriValue.setText(qprfreport.getModel().getUri());
         trainingDatasetValueTextField.setText(qprfreport.getModel().getDataset());
         qmrfReportDiscussionTextArea.setText(qprfreport.getModel().getQmrfReportMeta().getComment());
-        algorithmUriValue.setText(qprfreport.getModel().getAlgorithm().getUri());
-        algorithmNameValue.setText(qprfreport.getModel().getAlgorithm().getMeta().getTitle());
-        String predFeatureName = qprfreport.getModel().getPredictedFeature().getMeta().getTitle();        
-        predictedFeatureNameValue.setText(predFeatureName);
-        predFeatureUriValue.setText(qprfreport.getModel().getPredictedFeature().getUri());
+
+        if (qprfreport.getModel().getAlgorithm() != null) {
+            algorithmUriValue.setText(qprfreport.getModel().getAlgorithm().getUri());
+            if (qprfreport.getModel().getAlgorithm().getMeta() != null) {
+                algorithmNameValue.setText(qprfreport.getModel().getAlgorithm().getMeta().getTitle());
+            }
+        }
+
+        if (qprfreport.getModel().getPredictedFeature() != null) {
+            if (qprfreport.getModel().getPredictedFeature().getMeta() != null) {
+                String predFeatureName = qprfreport.getModel().getPredictedFeature().getMeta().getTitle();
+                predictedFeatureNameValue.setText(predFeatureName);
+            }
+            predFeatureUriValue.setText(qprfreport.getModel().getPredictedFeature().getUri());
+        }
     }
 
     @Action
@@ -231,7 +242,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         qprfreport.getMetaInfo().setComment(qprfReportCommentsTextArea.getText());
         qprfreport.getModel().setUri(modelUriValue.getText());
         qprfreport.getModel().setDataset(trainingDatasetValueTextField.getText());
-        qprfreport.getModel().getMeta().setTitle(modelInfoDialog.getModelTitleTextField().getText());
+        if (modelInfoDialog != null) {
+            qprfreport.getModel().getMeta().setTitle(modelInfoDialog.getModelTitleTextField().getText());
+        }
         qprfreport.getModel().setQmrfReportUri(qmrfReportTextField.getText());
         qprfreport.getModel().getQmrfReportMeta().setComment(qmrfReportDiscussionTextArea.getText());
         qprfreport.getModel().setYear(modelYearCombo.getSelectedItem().toString());
@@ -464,6 +477,37 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
         structureImage.setIcon(compound.getUserIcon());
 
+    }
+
+    @Action
+    public void downloadModelInfoAction(){
+        modelUriValue.setBackground(new Color(228, 237, 237));
+
+        if (modelUriValue.getText() == null || modelUriValue.getText().isEmpty()) {
+            QEditApp.getView().getStatusLabel().setText("You have to provide a model URI first");
+            modelUriValue.setBackground(Color.yellow);
+        }
+
+        AbstractTask task = new AbstractTask() {
+
+            @Override
+            protected void failed(Throwable cause) {
+                super.failed(cause);
+                QEditApp.getView().getStatusLabel().setText("Could not load model info from " + modelUriValue.getText());
+            }
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                ModelSpider mSpider = new ModelSpider(modelUriValue.getText());
+                Model modelFromRemote = mSpider.parse();
+                qprfreport.setModel(modelFromRemote);
+                if (modelFromRemote != null) {
+                    synchronizeModelFieldsWRTReport();
+                }
+                return null;
+            }
+        };
+        task.runInBackground();
     }
 
     public JList getCompoundSynonymsList() {
@@ -3272,9 +3316,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         int dialogWidht = modelInfoDialog.getWidth();
         int dialogHeight = modelInfoDialog.getHeight();
         int dialog_x = (frameWidth - dialogWidht) / 2;
-        int dialog_y = (frameHeight - dialogHeight) / 2;        
+        int dialog_y = (frameHeight - dialogHeight) / 2;
         modelInfoDialog.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
-        modelInfoDialog.setVisible(true);        
+        modelInfoDialog.setVisible(true);
 
     }//GEN-LAST:event_modelInfoToolButtonActionPerformed
 
@@ -3452,33 +3496,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     private void downloadModelInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadModelInfoButtonActionPerformed
 
-        modelUriValue.setBackground(new Color(228, 237, 237));
-
-        if (modelUriValue.getText() == null || modelUriValue.getText().isEmpty()) {
-            QEditApp.getView().getStatusLabel().setText("You have to provide a model URI first");
-            modelUriValue.setBackground(Color.yellow);
-        }
-
-        AbstractTask task = new AbstractTask() {
-
-            @Override
-            protected void failed(Throwable cause) {
-                super.failed(cause);
-                QEditApp.getView().getStatusLabel().setText("Could not load model info from " + modelUriValue.getText());
-            }
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                ModelSpider mSpider = new ModelSpider(modelUriValue.getText());
-                Model modelFromRemote = mSpider.parse();
-                qprfreport.setModel(modelFromRemote);
-                if (modelFromRemote!=null){
-                    synchronizeModelFieldsWRTReport();
-                }
-                return null;
-            }
-        };
-        task.runInBackground();
+        downloadModelInfoAction();
 
     }//GEN-LAST:event_downloadModelInfoButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

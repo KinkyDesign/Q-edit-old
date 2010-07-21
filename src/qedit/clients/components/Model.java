@@ -14,11 +14,11 @@ public class Model extends AbstractComponent {
 
     private String uri;
     private String dataset;
-    private Algorithm algorithm;
-    private Feature predictedFeature;
-    private Feature dependentFeature;
-    private ArrayList<Feature> independentFeatures;
-    private ArrayList<Parameter> parameters;
+    private Algorithm algorithm = new Algorithm();
+    private Feature predictedFeature = new Feature();
+    private Feature dependentFeature= new Feature();
+    private ArrayList<Feature> independentFeatures = new ArrayList<Feature>();
+    private ArrayList<Parameter> parameters = new ArrayList<Parameter>();
     private String qmrfReportUri;
     private DCMetaInfo qmrfReportMeta = new DCMetaInfoImpl();
     private DCMetaInfo meta = new DCMetaInfoImpl();

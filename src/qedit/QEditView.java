@@ -352,6 +352,7 @@ public class QEditView extends FrameView {
         addSynonymMenuItem = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         modelSubmenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -453,29 +454,29 @@ public class QEditView extends FrameView {
         );
         leftSplittedPanelLayout.setVerticalGroup(
             leftSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
         );
 
         mainSplitPane.setLeftComponent(leftSplittedPanel);
 
         rightSplittedPanel.setName("rightSplittedPanel"); // NOI18N
 
-        desktopPane.setDragMode(1);
+        desktopPane.setDragMode(javax.swing.JDesktopPane.OUTLINE_DRAG_MODE);
         desktopPane.setName("desktopPane"); // NOI18N
 
         javax.swing.GroupLayout rightSplittedPanelLayout = new javax.swing.GroupLayout(rightSplittedPanel);
         rightSplittedPanel.setLayout(rightSplittedPanelLayout);
         rightSplittedPanelLayout.setHorizontalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 751, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane))
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE))
         );
         rightSplittedPanelLayout.setVerticalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 482, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane))
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
         );
 
         mainSplitPane.setRightComponent(rightSplittedPanel);
@@ -488,7 +489,7 @@ public class QEditView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -606,7 +607,6 @@ public class QEditView extends FrameView {
         reportMenu.setName("reportMenu"); // NOI18N
 
         pdfReportMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
-        pdfReportMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         pdfReportMenuItem.setIcon(resourceMap.getIcon("pdfReportMenuItem.icon")); // NOI18N
         pdfReportMenuItem.setText(resourceMap.getString("pdfReportMenuItem.text")); // NOI18N
         pdfReportMenuItem.setToolTipText(resourceMap.getString("pdfReportMenuItem.toolTipText")); // NOI18N
@@ -716,6 +716,17 @@ public class QEditView extends FrameView {
         modelSubmenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qedit/resources/office-chart-area.png"))); // NOI18N
         modelSubmenu.setText(resourceMap.getString("modelSubmenu.text")); // NOI18N
         modelSubmenu.setName("modelSubmenu"); // NOI18N
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(resourceMap.getIcon("jMenuItem1.icon")); // NOI18N
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        modelSubmenu.add(jMenuItem1);
 
         jMenuItem4.setIcon(resourceMap.getIcon("jMenuItem4.icon")); // NOI18N
         jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
@@ -833,7 +844,7 @@ public class QEditView extends FrameView {
                         .addComponent(statusFace)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(statusMessageLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
                         .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))))
         );
@@ -1118,6 +1129,16 @@ public class QEditView extends FrameView {
         AbstractTask task = new LoadSessionTask(filename);
         task.runInBackground();
     }//GEN-LAST:event_openSessionItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ReportInternalFrame selectedFrame = (ReportInternalFrame) desktopPane.getSelectedFrame();
+        if (selectedFrame != null) {
+            selectedFrame.downloadModelInfoAction();
+        } else {
+            getStatusLabel().setText("No document is selected");
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JMenuItem addSynonymMenuItem;
@@ -1136,6 +1157,7 @@ public class QEditView extends FrameView {
     private javax.swing.JPopupMenu.Separator firstFileMenuSeparatorItem;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
