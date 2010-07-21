@@ -11,17 +11,26 @@
 package qedit;
 
 import java.awt.Frame;
+import java.util.HashSet;
+import java.util.Set;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import qedit.clients.components.Algorithm;
+import qedit.clients.ontol.DCMetaInfo;
+import qedit.clients.ontol.OntologicalClass;
+import qedit.clients.ontol.collections.OTAlgorithmTypes;
+import qedit.clients.ontol.impl.DCMetaInfoImpl;
 
 /**
  *
  * @author hampos
  */
 public class AlgorithmInfoDialog extends javax.swing.JDialog {
-    
+
+    private qedit.clients.components.Algorithm algorithm;
 
     /** Creates new form AlgorithmInfoDialog */
     public AlgorithmInfoDialog(java.awt.Frame parent, boolean modal) {
@@ -32,6 +41,35 @@ public class AlgorithmInfoDialog extends javax.swing.JDialog {
     public AlgorithmInfoDialog(Frame owner) {
         super(owner);
         initComponents();
+    }
+
+    public AlgorithmInfoDialog(Frame owner, qedit.clients.components.Algorithm algorithm) {
+        super(owner);
+        initComponents();
+        algorithmURIField.setText(algorithm.getUri());
+        if (algorithm.getMeta() != null) {
+            titleField.setText(algorithm.getMeta().getTitle());
+            descriptionTextArea.setText(algorithm.getMeta().getDescription());
+            commentField.setText(algorithm.getMeta().getComment());
+        }
+
+        Set<OntologicalClass> algorithmTypes = algorithm.getOntologies();
+        DefaultListModel listData = new DefaultListModel();
+        for (OntologicalClass ocType : algorithmTypes) {
+            listData.addElement(ocType.getName());
+        }
+        typesList.setModel(listData);
+
+
+
+    }
+
+    public Algorithm getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(Algorithm algorithm) {
+        this.algorithm = algorithm;
     }
 
     /** This method is called from within the constructor to
@@ -314,7 +352,19 @@ public class AlgorithmInfoDialog extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                AlgorithmInfoDialog dialog = new AlgorithmInfoDialog(new javax.swing.JFrame(), true);
+                Algorithm a = new Algorithm();
+                Set<OntologicalClass> types = new HashSet<OntologicalClass>();
+                types.add(OTAlgorithmTypes.AlgorithmType());
+                types.add(OTAlgorithmTypes.Classification());
+                a.setOntologies(types);
+                a.setUri("http://myalgorithm.com");
+                DCMetaInfo mi = new DCMetaInfoImpl();
+                mi.setTitle("My Algorithm");
+                mi.setComment("Comment");
+                mi.setDescription("About");
+                mi.setPublisher("me");
+                a.setMeta(mi);
+                AlgorithmInfoDialog dialog = new AlgorithmInfoDialog(new javax.swing.JFrame(), a);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
