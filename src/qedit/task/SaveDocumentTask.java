@@ -2,6 +2,7 @@ package qedit.task;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
 import qedit.QEditApp;
 import qedit.QEditView;
@@ -14,6 +15,7 @@ import qedit.ReportInternalFrame;
  */
 public class SaveDocumentTask extends AbstractTask {
 
+    public static final String preferenceSeperator = ";";
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JFileChooser saveFileChooserWindow;
     private ReportInternalFrame rif;
@@ -21,7 +23,6 @@ public class SaveDocumentTask extends AbstractTask {
     public SaveDocumentTask() {
         super();
     }
-    
 
     public javax.swing.JDesktopPane getDesktopPane() {
         return desktopPane;
@@ -70,6 +71,17 @@ public class SaveDocumentTask extends AbstractTask {
         }
         rif.setTitle(selectedFile.getName().replaceAll(".xml", ""));
         QEditApp.getView().getStatusLabel().setText("Document Saved");
+
+        Preferences prefs = Preferences.userRoot();
+        int recyclePosition = prefs.getInt("recyclePosition", 0);
+        prefs.put("qedit-report" + recyclePosition,                
+                 rif.getTitle() + preferenceSeperator
+                +"Model URI: "+ rif.getQprfreport().getModel().getUri() + preferenceSeperator
+                +"Compound URI: "+ rif.getQprfreport().getCompound().getUri() + preferenceSeperator
+                +"Filepath: "+ filePath + preferenceSeperator);
+        prefs.putInt("recyclePosition", recyclePosition < 4 ? recyclePosition + 1 : 0);
+
+        QEditApp.getView().refreshSessions();
         return null;
     }
 }

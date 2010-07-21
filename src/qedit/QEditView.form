@@ -24,7 +24,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="mainSplitPane" alignment="0" pref="484" max="32767" attributes="0"/>
+              <Component id="mainSplitPane" alignment="0" pref="486" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -57,12 +57,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="106" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="105" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="482" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="484" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -77,13 +77,16 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTree" name="jTree1">
+                    <Component class="javax.swing.JTree" name="recentSessionsTree">
                       <Properties>
-                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                          <TreeModel code="Recent Sessions&#xa; Session 1&#xa;  Report id : 1439254&#xa;  Model : http://someserver.com/model/12345&#xa;  Compound : http://someserver.com/compound/200&#xa; Session 2&#xa;  Report id : 1032492&#xa;  Model : http://someserver.com/model/12345&#xa;  Compound : http://someserver.com/compound/200"/>
+                        <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor" postCode="Preferences prefs = Preferences.userRoot();&#xa;&#xa;for(int i=0; i&lt;5; i++){&#xa;    String reportInfo = prefs.get(&quot;qedit-report&quot;+i, null);&#xa;    System.out.println(reportInfo);&#xa;    if(reportInfo != null){&#xa;        String[] stringPrefs = reportInfo.split(SaveDocumentTask.preferenceSeperator);        &#xa;&#xa;        for(String s : stringPrefs){&#xa;            System.out.println(s);&#xa;        }&#xa;        javax.swing.tree.DefaultMutableTreeNode subNode = &#xa;            new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[0]);&#xa;&#xa;            javax.swing.tree.DefaultMutableTreeNode node = &#xa;            new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[1]);&#xa;            subNode.add(node);&#xa;            node = &#xa;            new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[2]);&#xa;            subNode.add(node);&#xa;            node = &#xa;            new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[3]);&#xa;            subNode.add(node);&#xa;&#xa;            treeNode1.add(subNode);&#xa;            &#xa;            &#xa;    }&#xa;    &#xa;&#xa;}">
+                          <TreeModel code="Recent Sessions"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="jTree1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="recentSessionsTree" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="recentSessionsTreeMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -102,17 +105,17 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="750" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="748" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="desktopPane" alignment="0" pref="750" max="32767" attributes="0"/>
+                          <Component id="desktopPane" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="482" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="484" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="desktopPane" alignment="0" pref="482" max="32767" attributes="0"/>
+                          <Component id="desktopPane" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -311,6 +314,9 @@
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="qedit.QEditView" id="exportDocumentAsPDF" methodName="exportDocumentAsPDF"/>
+                </Property>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F7"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="pdfReportMenuItem.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="pdfReportMenuItem.text"/>
@@ -642,7 +648,7 @@
                           <Component id="statusFace" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="statusMessageLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="527" max="32767" attributes="0"/>
+                          <EmptySpace pref="516" max="32767" attributes="0"/>
                           <Component id="progressBar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
@@ -861,6 +867,34 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelRunningTaskButtonActionPerformed"/>
           </Events>
         </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPopupMenu" name="sessionPopupMenu">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="sessionPopupMenu" noResource="true"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="openSessionItem">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="openSessionItem.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="openSessionItem.text"/>
+            <Property name="name" type="java.lang.String" value="openSessionItem" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openSessionItemActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="clearSessionItem">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="clearSessionItem.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="clearSessionItem.text"/>
+            <Property name="name" type="java.lang.String" value="clearSessionItem" noResource="true"/>
+          </Properties>
+        </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>
