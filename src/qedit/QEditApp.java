@@ -5,6 +5,8 @@ package qedit;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -58,7 +60,10 @@ public class QEditApp extends SingleFrameApplication {
     /**
      * Main method launching the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BackingStoreException {
+//        Preferences prefs = Preferences.userRoot();
+//        prefs.clear();
+        
         splash = new qedit.SplashScreen("resources/splash.png", null, 5000);
         try {
             Thread.sleep(1000);

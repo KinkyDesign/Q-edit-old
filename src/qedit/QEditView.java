@@ -11,9 +11,11 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDesktopPane;
@@ -22,12 +24,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import org.jdesktop.application.ApplicationContext;
 import org.jdesktop.application.TaskService;
 import qedit.hints.TooManyOpenDocsWarning;
 import qedit.task.AbstractTask;
 import qedit.task.EmptyReportTask;
 import qedit.task.ExportAsPDFTask;
+import qedit.task.LoadSessionTask;
 import qedit.task.OpenDocumentTask;
 import qedit.task.SaveDocumentTask;
 
@@ -177,7 +183,7 @@ public class QEditView extends FrameView {
     }
 
     @Action
-    public void exportDocumentAsPDF(){
+    public void exportDocumentAsPDF() {
         final ReportInternalFrame rif = (ReportInternalFrame) desktopPane.getSelectedFrame();
         if (rif == null) {
             getStatusLabel().setText("No document selected to be saved!");
@@ -227,8 +233,9 @@ public class QEditView extends FrameView {
         SaveDocumentTask saveTask = new SaveDocumentTask();
         saveTask.setDesktopPane(desktopPane);
         saveTask.setRif(rif);
-        saveTask.setSaveFileChooserWindow(saveFileChooserWindow);       
+        saveTask.setSaveFileChooserWindow(saveFileChooserWindow);
         saveTask.runInBackground();
+        
     }
 
     @Action
@@ -251,7 +258,7 @@ public class QEditView extends FrameView {
         }
 
         EmptyReportTask internalFrameCreationTask = new EmptyReportTask();
-        internalFrameCreationTask.setDesktopPane(desktopPane);      
+        internalFrameCreationTask.setDesktopPane(desktopPane);
         internalFrameCreationTask.runInBackground();
 
     }
@@ -262,6 +269,39 @@ public class QEditView extends FrameView {
 
     public javax.swing.JLabel getStatusLabel() {
         return statusMessageLabel;
+    }
+
+    public void refreshSessions() {
+        Preferences prefs = Preferences.userRoot();
+
+        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Recent Sessions");
+
+        for (int i = 0; i < 5; i++) {
+            String reportInfo = prefs.get("qedit-report" + i, null);
+            System.out.println(reportInfo);
+            if (reportInfo != null) {
+                String[] stringPrefs = reportInfo.split(SaveDocumentTask.preferenceSeperator);
+
+                for (String s : stringPrefs) {
+                    System.out.println(s);
+                }
+                javax.swing.tree.DefaultMutableTreeNode subNode =
+                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[0]);
+
+                javax.swing.tree.DefaultMutableTreeNode node =
+                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[1]);
+                subNode.add(node);
+                node =
+                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[2]);
+                subNode.add(node);
+                node =
+                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[3]);
+                subNode.add(node);
+
+                rootNode.add(subNode);
+            }
+        }
+        recentSessionsTree.setModel(new DefaultTreeModel(rootNode));
     }
 
     /** This method is called from within the constructor to
@@ -277,7 +317,7 @@ public class QEditView extends FrameView {
         mainSplitPane = new javax.swing.JSplitPane();
         leftSplittedPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        recentSessionsTree = new javax.swing.JTree();
         rightSplittedPanel = new javax.swing.JPanel();
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
@@ -346,6 +386,9 @@ public class QEditView extends FrameView {
         jSeparator6 = new javax.swing.JToolBar.Separator();
         kindlyStopTaskButton = new javax.swing.JButton();
         cancelRunningTaskButton = new javax.swing.JButton();
+        sessionPopupMenu = new javax.swing.JPopupMenu();
+        openSessionItem = new javax.swing.JMenuItem();
+        clearSessionItem = new javax.swing.JMenuItem();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(QEditView.class);
         mainPanel.setBackground(resourceMap.getColor("mainPanel.background")); // NOI18N
@@ -364,57 +407,75 @@ public class QEditView extends FrameView {
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Recent Sessions");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Session 1");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Report id : 1439254");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Model : http://someserver.com/model/12345");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Compound : http://someserver.com/compound/200");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Session 2");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Report id : 1032492");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Model : http://someserver.com/model/12345");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Compound : http://someserver.com/compound/200");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree1.setName("jTree1"); // NOI18N
-        jScrollPane2.setViewportView(jTree1);
+        recentSessionsTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        Preferences prefs = Preferences.userRoot();
+
+        for(int i=0; i<5; i++){
+            String reportInfo = prefs.get("qedit-report"+i, null);
+            System.out.println(reportInfo);
+            if(reportInfo != null){
+                String[] stringPrefs = reportInfo.split(SaveDocumentTask.preferenceSeperator);
+
+                for(String s : stringPrefs){
+                    System.out.println(s);
+                }
+                javax.swing.tree.DefaultMutableTreeNode subNode =
+                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[0]);
+
+                javax.swing.tree.DefaultMutableTreeNode node =
+                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[1]);
+                subNode.add(node);
+                node =
+                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[2]);
+                subNode.add(node);
+                node =
+                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[3]);
+                subNode.add(node);
+
+                treeNode1.add(subNode);
+
+            }
+
+        }
+        recentSessionsTree.setName("recentSessionsTree"); // NOI18N
+        recentSessionsTree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recentSessionsTreeMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(recentSessionsTree);
 
         javax.swing.GroupLayout leftSplittedPanelLayout = new javax.swing.GroupLayout(leftSplittedPanel);
         leftSplittedPanel.setLayout(leftSplittedPanelLayout);
         leftSplittedPanelLayout.setHorizontalGroup(
             leftSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
         );
         leftSplittedPanelLayout.setVerticalGroup(
             leftSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
         );
 
         mainSplitPane.setLeftComponent(leftSplittedPanel);
 
         rightSplittedPanel.setName("rightSplittedPanel"); // NOI18N
 
-        desktopPane.setDragMode(javax.swing.JDesktopPane.OUTLINE_DRAG_MODE);
+        desktopPane.setDragMode(1);
         desktopPane.setName("desktopPane"); // NOI18N
 
         javax.swing.GroupLayout rightSplittedPanelLayout = new javax.swing.GroupLayout(rightSplittedPanel);
         rightSplittedPanel.setLayout(rightSplittedPanelLayout);
         rightSplittedPanelLayout.setHorizontalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 748, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
+                .addComponent(desktopPane))
         );
         rightSplittedPanelLayout.setVerticalGroup(
             rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
             .addGroup(rightSplittedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
+                .addComponent(desktopPane))
         );
 
         mainSplitPane.setRightComponent(rightSplittedPanel);
@@ -427,7 +488,7 @@ public class QEditView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+            .addComponent(mainSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -547,7 +608,6 @@ public class QEditView extends FrameView {
         pdfReportMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
         pdfReportMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         pdfReportMenuItem.setIcon(resourceMap.getIcon("pdfReportMenuItem.icon")); // NOI18N
-        pdfReportMenuItem.setMnemonic('P');
         pdfReportMenuItem.setText(resourceMap.getString("pdfReportMenuItem.text")); // NOI18N
         pdfReportMenuItem.setToolTipText(resourceMap.getString("pdfReportMenuItem.toolTipText")); // NOI18N
         pdfReportMenuItem.setName("pdfReportMenuItem"); // NOI18N
@@ -773,7 +833,7 @@ public class QEditView extends FrameView {
                         .addComponent(statusFace)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(statusMessageLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
                         .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))))
         );
@@ -901,6 +961,23 @@ public class QEditView extends FrameView {
         });
         basicToolbar.add(cancelRunningTaskButton);
 
+        sessionPopupMenu.setName("sessionPopupMenu"); // NOI18N
+
+        openSessionItem.setIcon(resourceMap.getIcon("openSessionItem.icon")); // NOI18N
+        openSessionItem.setText(resourceMap.getString("openSessionItem.text")); // NOI18N
+        openSessionItem.setName("openSessionItem"); // NOI18N
+        openSessionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openSessionItemActionPerformed(evt);
+            }
+        });
+        sessionPopupMenu.add(openSessionItem);
+
+        clearSessionItem.setIcon(resourceMap.getIcon("clearSessionItem.icon")); // NOI18N
+        clearSessionItem.setText(resourceMap.getString("clearSessionItem.text")); // NOI18N
+        clearSessionItem.setName("clearSessionItem"); // NOI18N
+        sessionPopupMenu.add(clearSessionItem);
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -1022,12 +1099,32 @@ public class QEditView extends FrameView {
             getStatusLabel().setText("No document selected");
         }
     }//GEN-LAST:event_closeMenuItemActionPerformed
+
+    private void recentSessionsTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recentSessionsTreeMouseClicked
+        if (evt.getButton() == MouseEvent.BUTTON3) {
+            Point point = evt.getPoint();
+            TreePath path = recentSessionsTree.getClosestPathForLocation(point.x, point.y);
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+            if (((DefaultMutableTreeNode) recentSessionsTree.getModel().getRoot()).isNodeChild(node)) {
+                sessionPopupChoice = node;
+                sessionPopupMenu.show(recentSessionsTree, evt.getX(), evt.getY());
+
+            }
+        }
+    }//GEN-LAST:event_recentSessionsTreeMouseClicked
+
+    private void openSessionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSessionItemActionPerformed
+        String filename = sessionPopupChoice.getLastChild().toString().replaceAll("Filepath: ", "");
+        AbstractTask task = new LoadSessionTask(filename);
+        task.runInBackground();
+    }//GEN-LAST:event_openSessionItemActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JMenuItem addSynonymMenuItem;
     private javax.swing.JToolBar basicToolbar;
     private javax.swing.JButton cancelRunningTaskButton;
     private javax.swing.JMenuItem clearCompoundImage;
+    private javax.swing.JMenuItem clearSessionItem;
     private javax.swing.JMenuItem closeAllMenuItem;
     private javax.swing.JMenuItem closeMenuItem;
     private javax.swing.JMenuItem compoundInfo;
@@ -1054,7 +1151,6 @@ public class QEditView extends FrameView {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;
-    private javax.swing.JTree jTree1;
     private javax.swing.JButton kindlyStopTaskButton;
     private javax.swing.JPanel leftSplittedPanel;
     private javax.swing.JMenuItem licenseInfoMenuItem;
@@ -1070,9 +1166,11 @@ public class QEditView extends FrameView {
     private javax.swing.JButton newReportButton;
     private javax.swing.JMenuItem openFileMenuItem;
     private javax.swing.JButton openLocalResourceButton;
+    private javax.swing.JMenuItem openSessionItem;
     private javax.swing.JMenuItem pdfReportMenuItem;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenuItem qprfOptionsMenuItem;
+    private javax.swing.JTree recentSessionsTree;
     private javax.swing.JMenu reportMenu;
     private javax.swing.JMenu reportSubmenu;
     private javax.swing.JPanel rightSplittedPanel;
@@ -1082,6 +1180,7 @@ public class QEditView extends FrameView {
     private javax.swing.JFileChooser saveFileChooserWindow;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JPopupMenu.Separator secondFileMenuSeparatorItem;
+    private javax.swing.JPopupMenu sessionPopupMenu;
     private javax.swing.JMenuItem statisticsMenuItem;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusFace;
@@ -1103,4 +1202,5 @@ public class QEditView extends FrameView {
     private JDialog editorOptionsBox;
     private static int numOpenInternalFrames = 0;
     private static TooManyOpenDocsWarning warningDialog;
+    private static DefaultMutableTreeNode sessionPopupChoice;
 }
