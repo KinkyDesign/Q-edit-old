@@ -7,6 +7,7 @@ import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
+import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -76,10 +77,11 @@ public class DatasetSpider extends Tarantula<Dataset>{
                     OTObjectProperties.compound().asObjectProperty(model),
                     (RDFNode)null));
             if(compoundIt.hasNext()){
-                if(compound.getConformers().contains(compoundIt.nextStatement().getObject().as(Resource.class).getURI())){
+                Statement compStmt = compoundIt.nextStatement();
+                if(compound.getConformers().contains(compStmt.getObject().as(Resource.class).getURI())){
                     entryResource = entry;
                 }
-                if(compoundIt.nextStatement().getObject().as(Resource.class).getURI().equals(compoundUri)){
+                if(compStmt.getObject().as(Resource.class).getURI().equals(compoundUri)){
                     entryResource = entry;
                     break;
                 }

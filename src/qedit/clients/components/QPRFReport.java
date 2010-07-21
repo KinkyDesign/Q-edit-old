@@ -32,8 +32,17 @@ public class QPRFReport extends AbstractComponent {
     private String year;
     private String month;
     private String day;
+    private Dataset descriptors;
 
     public QPRFReport() {
+    }
+
+    public Dataset getDescriptors() {
+        return descriptors;
+    }
+
+    public void setDescriptors(Dataset descriptors) {
+        this.descriptors = descriptors;
     }
 
     public ArrayList<Author> getAuthors() {

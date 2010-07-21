@@ -203,6 +203,25 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             authorsData.addRow(new String[]{author.getName(), "", "", "", "", ""});
         }
 
+        Dataset dataset = qprfreport.getDescriptors();
+        if (dataset != null) {
+            Iterator<Entry<Feature, FeatureValue>> datasetValues = dataset.getFeatures().entrySet().iterator();
+            DefaultTableModel descriptorsContent = (DefaultTableModel) descriptorsTable.getModel();
+            String descriptorName;
+            while (datasetValues.hasNext()) {
+                Entry<Feature, FeatureValue> datasetEntry = datasetValues.next();
+                descriptorName = datasetEntry.getKey().getMeta().getTitle() != null
+                        ? datasetEntry.getKey().getMeta().getTitle() : datasetEntry.getKey().getUri();
+                descriptorsContent.addRow(new String[]{
+                            descriptorName,
+                            datasetEntry.getValue().getValue().toString(),
+                            datasetEntry.getKey().getUnits()
+                        });
+            }
+        }
+
+        datasetUriValueTextField.setText(qprfreport.getDescriptors().getUri());
+
     }
 
     @Action
@@ -330,6 +349,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             if (datasetUri != null && !datasetUri.isEmpty()) {
                 DatasetSpider dsSpider = new DatasetSpider(datasetUri, compoundUri);
                 Dataset dataset = dsSpider.parse();
+                qprfreport.setDescriptors(dataset);// Descriptors updated!
                 Iterator<Entry<Feature, FeatureValue>> datasetValues = dataset.getFeatures().entrySet().iterator();
                 DefaultTableModel descriptorsContent = (DefaultTableModel) descriptorsTable.getModel();
                 String descriptorName;
