@@ -138,7 +138,7 @@ public class QEditAboutBox extends javax.swing.JDialog {
                 .addGroup(aboutGeneralInfoPanelLayout.createSequentialGroup()
                     .addGap(38, 38, 38)
                     .addComponent(appDescLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(151, Short.MAX_VALUE)))
+                    .addContainerGap(185, Short.MAX_VALUE)))
         );
 
         licenseInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("licenseInfoPanel.border.title"))); // NOI18N
