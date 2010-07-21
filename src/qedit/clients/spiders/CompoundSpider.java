@@ -13,8 +13,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import qedit.QEditApp;
 import qedit.clients.ClientException;
 import qedit.clients.GetClient;
@@ -129,8 +131,7 @@ public class CompoundSpider extends Tarantula<Compound> {
                 compoundId = compoundId.split("/")[compoundId.split("/").length - 1];
                 try {
                     queryUri = new URI(scheme, null, host, port,
-                           String.format(namesToken, "/ambit2/query/compound/" + compoundId)
-                           , null, null);
+                            String.format(namesToken, "/ambit2/query/compound/" + compoundId), null, null);
                     System.out.println(queryUri.toString());
                 } catch (URISyntaxException ex) {
                     Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
@@ -274,6 +275,19 @@ public class CompoundSpider extends Tarantula<Compound> {
                     OTObjectProperties.compound().asObjectProperty(conformerModel)).getResource().getURI();
             compound.getConformers().add(cUri);
         }
+
+        ImageIcon icon = null;
+        try {
+            icon = compound.getDepiction();
+        } catch (ClientException ex) {
+            icon = compound.getImage();
+        }
+        if (icon!=null){
+            if (icon.getIconHeight()>0 && icon.getIconWidth()>0){
+                compound.setUserIcon(icon);
+            }
+        }
+
         return compound;
     }
 
@@ -290,15 +304,12 @@ public class CompoundSpider extends Tarantula<Compound> {
      * @throws ClientException
      */
     public static void main(String... args) throws ClientException, FileNotFoundException, URISyntaxException {
-        //    CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
-        //    System.out.println(spider.parse());
-        //     spider.close();
+        CompoundSpider spider = new CompoundSpider("Phenol");
+        for (Compound c : spider.parse().updateSimilar(0.9)) {
+            System.out.println(c.getUri());
+            System.out.println(c.getSmiles());
+        }
+        spider.close();
 
-
-        URI myUri = new URI("http://apps.ideaconsult.net:8080/ambit2/query/compound/3302/conformer/234234");
-        //   URI myUri = new URI("Phe nol");
-        System.out.println(myUri.getHost());
-        System.out.println(myUri.getScheme());
-        System.out.println(myUri.getPath());
     }
 }

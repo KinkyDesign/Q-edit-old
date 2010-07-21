@@ -231,37 +231,37 @@ public class StructuralAnalogueWizard_Step2 extends javax.swing.JDialog {
     }//GEN-LAST:event_previousButtonActionPerformed
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishButtonActionPerformed
-        JTable table = previousDialog.getReportInternalFrame().getAnaloguesTable();
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        String name = previousDialog.getNamesField().getText();
-        model.addRow(new String[]{name, "asdf", "qwerty"});
-        JPanel cards = previousDialog.getReportInternalFrame().getAnaloguesImageCards();
-
-        JPanel newCard = new JPanel();
-        newCard.setSize(cards.getSize());
-        JLabel label = null;
-        try {
-            if (previousDialog.getAnalogueImageFile() != null) {
-                ImageIcon ii = new ImageIcon(previousDialog.getAnalogueImageFile().getCanonicalPath());
-                Image image = ii.getImage().getScaledInstance(-1, previousDialog.getReportInternalFrame().getAnaloguesImageCards().getHeight(), Image.SCALE_SMOOTH);
-                if (image.getWidth(null) > cards.getWidth()) {
-                    image = image.getScaledInstance(cards.getWidth(), -1, 0);
-                }
-
-                label = new JLabel(new ImageIcon(image));
-            } else {
-                label = new JLabel();                
-                label.setSize(cards.getSize());
-                label.setVerticalTextPosition(SwingConstants.CENTER);
-                label.setVerticalAlignment(SwingConstants.CENTER);
-                label.setText("No Image");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(StructuralAnalogueWizard_Step2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        newCard.add(label);
-        cards.add(newCard, name);
-        previousDialog.dispose();
+//        JTable table = previousDialog.getReportInternalFrame().getAnaloguesTable();
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//        String name = previousDialog.getNamesField().getText();
+//        model.addRow(new String[]{name, "asdf", "qwerty"});
+//        JPanel cards = previousDialog.getReportInternalFrame().getAnaloguesImageCards();
+//
+//        JPanel newCard = new JPanel();
+//        newCard.setSize(cards.getSize());
+//        JLabel label = null;
+//        try {
+//            if (previousDialog.getAnalogueImageFile() != null) {
+//                ImageIcon ii = new ImageIcon(previousDialog.getAnalogueImageFile().getCanonicalPath());
+//                Image image = ii.getImage().getScaledInstance(-1, previousDialog.getReportInternalFrame().getAnaloguesImageCards().getHeight(), Image.SCALE_SMOOTH);
+//                if (image.getWidth(null) > cards.getWidth()) {
+//                    image = image.getScaledInstance(cards.getWidth(), -1, 0);
+//                }
+//
+//                label = new JLabel(new ImageIcon(image));
+//            } else {
+//                label = new JLabel();
+//                label.setSize(cards.getSize());
+//                label.setVerticalTextPosition(SwingConstants.CENTER);
+//                label.setVerticalAlignment(SwingConstants.CENTER);
+//                label.setText("No Image");
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(StructuralAnalogueWizard_Step2.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        newCard.add(label);
+//        cards.add(newCard, name);
+//        previousDialog.dispose();
         dispose();
     }//GEN-LAST:event_finishButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

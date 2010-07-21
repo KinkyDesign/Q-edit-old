@@ -8,7 +8,8 @@ package qedit.clients;
 public enum Media {
 
     rdf_xml("application/rdf+xml"),
-    smiles("chemical/x-daylight-smiles");
+    smiles("chemical/x-daylight-smiles"),
+    uriList("text/uri-list");
     private String name;
 
     private Media() {

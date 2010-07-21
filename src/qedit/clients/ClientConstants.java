@@ -22,6 +22,10 @@ public class ClientConstants {
      */
     public static final String AMBIT_SMILES_SERVICE = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/csls/%s/smiles";
     public static final String AMBIT_COMPOUND_LOOKUP_SERVICE = "http://apps.ideaconsult.net:8080/ambit2/query/compound/%s";
+    /*
+     * --- Similarity Search ---
+     */
+    public static final String AMBIT_SIMILARITY = "http://ambit.uni-plovdiv.bg:8080/ambit2/query/similarity?search=%s&threshold=%s";
     /**
      * --- Configurable Parameters ---
      */

@@ -1,9 +1,12 @@
 package qedit.clients.components;
 
 import com.hp.hpl.jena.ontology.Individual;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +17,10 @@ import javax.swing.ImageIcon;
 import qedit.ReportInternalFrame;
 import qedit.clients.ClientConstants;
 import qedit.clients.ClientException;
+import qedit.clients.GetClient;
+import qedit.clients.Media;
 import qedit.clients.ontol.DCMetaInfo;
+import qedit.clients.spiders.CompoundSpider;
 
 /**
  * A Chemical Compound.
@@ -38,6 +44,7 @@ public class Compound extends AbstractComponent {
     private ImageIcon userIcon = null;
     private java.util.List<String> synonyms = new java.util.ArrayList<String>();
     private Set<String> conformers = new HashSet<String>();
+    private List<Compound> structuralAnalogues = new ArrayList<Compound>();
 
     public Compound() {
     }
@@ -263,4 +270,44 @@ public class Compound extends AbstractComponent {
         }
         return new String(builder);
     }
+
+    public List<Compound> updateSimilar(double similarity) throws ClientException{
+        structuralAnalogues.clear();
+        try {
+            String similarityUri = String.format(ClientConstants.AMBIT_SIMILARITY, URLEncoder.encode(getSmiles(), "UTF-8"), Double.toString(similarity));
+            GetClient client = new GetClient();
+            client.setUri(similarityUri);
+            client.setMediaType(Media.uriList);
+            try {
+                List<String> similarCompounds = client.getUriList();
+                for (String compUri : similarCompounds){
+                    CompoundSpider cSpider = new CompoundSpider(compUri);
+                    structuralAnalogues.add(cSpider.parse());
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Compound.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex);
+        }
+        return structuralAnalogues;
+    }
+
+    public List<Compound> getStructuralAnalogues() {
+        return structuralAnalogues;
+    }
+
+    public void setStructuralAnalogues(List<Compound> structuralAnalogues) {
+        this.structuralAnalogues = structuralAnalogues;
+    }
+
+    public boolean addStructuralAnalogue(Compound e) {
+        return structuralAnalogues.add(e);
+    }
+
+
 }
+
