@@ -30,6 +30,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import org.jdesktop.application.ApplicationContext;
 import org.jdesktop.application.TaskService;
+import qedit.hints.ExitQuestion;
 import qedit.hints.TooManyOpenDocsWarning;
 import qedit.task.AbstractTask;
 import qedit.task.EmptyReportTask;
@@ -124,6 +125,17 @@ public class QEditView extends FrameView {
     }
 
     @Action
+    public void quit(){
+        ExitQuestion eq = new ExitQuestion(getFrame());
+        eq.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
+        eq.setVisible(true);        
+        int RS = eq.getReturnStatus();
+        if (RS==ExitQuestion.BUTTON_YES){
+            System.exit(0);
+        }
+    }
+
+    @Action
     public void showAboutBox() {
 
         if (aboutBox == null) {
@@ -214,6 +226,7 @@ public class QEditView extends FrameView {
         QEditApp.getApplication().show(statisticsBox);
     }
 
+    
     @Action
     public void saveDialogBox() {
 
@@ -236,13 +249,14 @@ public class QEditView extends FrameView {
         saveTask.setRif(rif);
         saveTask.setSaveFileChooserWindow(saveFileChooserWindow);
         saveTask.runInBackground();
-        
+
     }
 
     @Action
     public void createNewReport() {
         enterUriDialogBox();
     }
+    
 
     @Action
     public void createNewEmptyReport() {
@@ -1125,7 +1139,17 @@ public class QEditView extends FrameView {
             if (((DefaultMutableTreeNode) recentSessionsTree.getModel().getRoot()).isNodeChild(node)) {
                 sessionPopupChoice = node;
                 sessionPopupMenu.show(recentSessionsTree, evt.getX(), evt.getY());
-
+            }
+        }
+        if (evt.getClickCount() == 2) {
+            Point point = evt.getPoint();
+            TreePath path = recentSessionsTree.getClosestPathForLocation(point.x, point.y);
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+            if (((DefaultMutableTreeNode) recentSessionsTree.getModel().getRoot()).isNodeChild(node)) {
+                sessionPopupChoice = node;
+                String filename = sessionPopupChoice.getLastChild().toString().replaceAll("Filepath: ", "");
+                AbstractTask task = new LoadSessionTask(filename);
+                task.runInBackground();
             }
         }
     }//GEN-LAST:event_recentSessionsTreeMouseClicked
@@ -1156,7 +1180,6 @@ public class QEditView extends FrameView {
             }
         }
     }//GEN-LAST:event_recentSessionsTreeKeyPressed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JMenuItem addSynonymMenuItem;
