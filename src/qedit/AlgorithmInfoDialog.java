@@ -21,6 +21,7 @@ import javax.swing.JTextField;
  * @author hampos
  */
 public class AlgorithmInfoDialog extends javax.swing.JDialog {
+    
 
     /** Creates new form AlgorithmInfoDialog */
     public AlgorithmInfoDialog(java.awt.Frame parent, boolean modal) {

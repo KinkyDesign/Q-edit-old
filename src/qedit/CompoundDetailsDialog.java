@@ -8,7 +8,6 @@
  *
  * Created on 19 Ιουλ 2010, 6:42:54 μμ
  */
-
 package qedit;
 
 import java.awt.Frame;
@@ -21,7 +20,27 @@ import qedit.clients.components.Compound;
  */
 public class CompoundDetailsDialog extends javax.swing.JDialog {
 
+    public static final int SGN_CLOSE = 0;
+    public static final int SGN_APPLY_AND_CLOSE = 1;
+    private int outputSignal = SGN_CLOSE;
     private Compound compound;
+    private ReportInternalFrame rif;
+
+    public ReportInternalFrame getRif() {
+        return rif;
+    }
+
+    public void setRif(ReportInternalFrame rif) {
+        this.rif = rif;
+    }
+
+    public int getCloseSignal() {
+        return outputSignal;
+    }
+
+    protected void sendCloseSignal(int closeSignal) {
+        this.outputSignal = closeSignal;
+    }
 
     /** Creates new form CompoundDetailsDialog */
     public CompoundDetailsDialog(java.awt.Frame parent, boolean modal) {
@@ -35,7 +54,13 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
         initComponents();
     }
 
+    public Compound getCompound() {
+        return compound;
+    }
 
+    public void setCompound(Compound compound) {
+        this.compound = compound;
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -67,11 +92,13 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
         closeButton = new javax.swing.JButton();
         inchiKeyField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        updateCompoundAndCloseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(CompoundDetailsDialog.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(CompoundDetailsDialog.class);
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel1.border.title"))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
 
@@ -154,6 +181,15 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
         jLabel9.setText(resourceMap.getString("jLabel9.text")); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
 
+        updateCompoundAndCloseButton.setIcon(resourceMap.getIcon("updateCompoundAndCloseButton.icon")); // NOI18N
+        updateCompoundAndCloseButton.setText(resourceMap.getString("updateCompoundAndCloseButton.text")); // NOI18N
+        updateCompoundAndCloseButton.setName("updateCompoundAndCloseButton"); // NOI18N
+        updateCompoundAndCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCompoundAndCloseButtonActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -162,7 +198,10 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, closeButton)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .add(closeButton)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(updateCompoundAndCloseButton))
                     .add(jLabel8)
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -229,7 +268,9 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
-                .add(closeButton)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(updateCompoundAndCloseButton)
+                    .add(closeButton))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -248,17 +289,36 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        sendCloseSignal(SGN_CLOSE);
+        setVisible(false);
         dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
+    private void updateCompoundAndCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCompoundAndCloseButtonActionPerformed
+        sendCloseSignal(SGN_APPLY_AND_CLOSE);
+        compound.setCasRn(casRnField.getText());
+        compound.setChemicalName(chemicalNameField.getText());
+        compound.setEINECS(einecsField.getText());
+        compound.setInChI(inChlField.getText());
+        compound.setInChIKey(inchiKeyField.getText());
+        compound.setREACHRegistrationDate(reachRegDateField.getText());
+        compound.setUri(uriField.getText());
+        compound.setSmiles(smilesField.getText());
+        setVisible(false);
+        dispose();
+        rif.synchronizeCompoundFieldsWRTReport();
+    }//GEN-LAST:event_updateCompoundAndCloseButtonActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 CompoundDetailsDialog dialog = new CompoundDetailsDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -267,7 +327,6 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField casRnField;
     private javax.swing.JTextField chemicalNameField;
@@ -289,7 +348,7 @@ public class CompoundDetailsDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField reachRegDateField;
     private javax.swing.JTextField smilesField;
+    private javax.swing.JButton updateCompoundAndCloseButton;
     private javax.swing.JTextField uriField;
     // End of variables declaration//GEN-END:variables
-
 }
