@@ -11,6 +11,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -442,6 +443,11 @@ public class QEditView extends FrameView {
         recentSessionsTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 recentSessionsTreeMouseClicked(evt);
+            }
+        });
+        recentSessionsTree.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                recentSessionsTreeKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(recentSessionsTree);
@@ -1138,6 +1144,18 @@ public class QEditView extends FrameView {
             getStatusLabel().setText("No document is selected");
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void recentSessionsTreeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_recentSessionsTreeKeyPressed
+
+        if (evt.getKeyCode() == 525) {
+            TreePath path = recentSessionsTree.getSelectionPath();
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+            if (((DefaultMutableTreeNode) recentSessionsTree.getModel().getRoot()).isNodeChild(node)) {
+                sessionPopupChoice = node;
+                sessionPopupMenu.show(recentSessionsTree, 100, 100);
+            }
+        }
+    }//GEN-LAST:event_recentSessionsTreeKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;

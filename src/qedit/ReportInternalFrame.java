@@ -986,10 +986,12 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         structureImagePanel.setLayout(structureImagePanelLayout);
         structureImagePanelLayout.setHorizontalGroup(
             structureImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(structureImageToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
             .addGroup(structureImagePanelLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(structureImage, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(structureImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(structureImagePanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(structureImage, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(structureImageToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
                 .addContainerGap())
         );
         structureImagePanelLayout.setVerticalGroup(
@@ -1156,7 +1158,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(compoundDataInputPanelLayout.createSequentialGroup()
             .addGroup(compoundDataInputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(compoundSynonymsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
     compoundDataInputPanelLayout.setVerticalGroup(
@@ -1180,7 +1182,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addGap(18, 18, 18)
                     .addComponent(structureImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addComponent(compoundsToolbar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 997, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(22, 22, 22)
+            .addGap(30, 30, 30)
             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(395, 395, 395))
     );
@@ -1201,6 +1203,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     descriptorsScrollable.setName("descriptorsScrollable"); // NOI18N
 
+    descriptorsTable.setAutoCreateRowSorter(true);
     descriptorsTable.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
 
@@ -1209,7 +1212,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             "Descriptor", "Value", "Units"
         }
     ));
-    descriptorsTable.setAutoCreateRowSorter(true);
     descriptorsTable.setCellSelectionEnabled(true);
     descriptorsTable.setName("descriptorsTable"); // NOI18N
     descriptorsTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1327,10 +1329,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(stereoChemFeaturesDiscussionPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(stereoChemFeaturesDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(stereoChemScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
                 .addGroup(stereoChemFeaturesDiscussionPanelLayout.createSequentialGroup()
                     .addComponent(stereoChemHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                     .addComponent(stereoChemHintLamp)))
             .addContainerGap())
     );
@@ -1357,7 +1359,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, compoundPanelLayout.createSequentialGroup()
                     .addComponent(descriptorsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(stereoChemFeaturesDiscussionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addContainerGap(34, Short.MAX_VALUE))
     );
     compoundPanelLayout.setVerticalGroup(

@@ -209,10 +209,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="compoundInfoPanel" alignment="0" min="0" pref="1021" max="32767" attributes="3"/>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="1">
                                   <Component id="descriptorsPanel" min="-2" max="-2" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="stereoChemFeaturesDiscussionPanel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stereoChemFeaturesDiscussionPanel" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
@@ -260,7 +260,7 @@
                                   </Group>
                                   <Component id="compoundsToolbar" alignment="0" min="-2" pref="997" max="-2" attributes="1"/>
                               </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jSeparator1" min="-2" pref="6" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="395" max="-2" attributes="0"/>
                           </Group>
@@ -274,7 +274,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jSeparator1" alignment="0" min="-2" max="-2" attributes="1"/>
                                   <Component id="compoundDataInputPanel" min="-2" max="32767" attributes="0"/>
-                                  <Component id="structureImagePanel" min="-2" max="-2" attributes="1"/>
+                                  <Component id="structureImagePanel" min="-2" pref="310" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -372,10 +372,14 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="structureImageToolbar" alignment="0" pref="433" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="12" pref="12" max="12" attributes="0"/>
-                                  <Component id="structureImage" min="-2" pref="401" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                                          <Component id="structureImage" min="-2" pref="401" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="structureImageToolbar" alignment="0" pref="413" max="32767" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -462,7 +466,7 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="compoundSynonymsPanel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="compoundIdentifierPanel" alignment="0" pref="520" max="32767" attributes="1"/>
+                                      <Component id="compoundIdentifierPanel" alignment="0" max="32767" attributes="1"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -873,10 +877,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="stereoChemScollPane" alignment="0" pref="404" max="32767" attributes="1"/>
+                                  <Component id="stereoChemScollPane" alignment="0" pref="414" max="32767" attributes="1"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="stereoChemHintLabel" min="-2" pref="332" max="-2" attributes="1"/>
-                                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                                      <EmptySpace pref="66" max="32767" attributes="0"/>
                                       <Component id="stereoChemHintLamp" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -893,7 +897,7 @@
                                   <Component id="stereoChemHintLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="stereoChemScollPane" pref="145" max="32767" attributes="0"/>
+                              <Component id="stereoChemScollPane" pref="128" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1397,7 +1401,7 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="165" max="32767" attributes="0"/>
+                                  <EmptySpace pref="186" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3283,7 +3287,7 @@
                               <Component id="adequacyInfoSubPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="adequacyHintLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="127" max="32767" attributes="0"/>
+                          <EmptySpace pref="59" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
