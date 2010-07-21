@@ -11,6 +11,7 @@ import com.hp.hpl.jena.vocabulary.OWL;
 import com.hp.hpl.jena.vocabulary.RDF;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,16 +48,16 @@ public class CompoundSpider extends Tarantula<Compound> {
          */
         ByUri,
         /**
-         * Get a compound from a local resource
-         */
-        FromFile,
-        /**
          * Autodetect the search keyword
          */
         AutoDetect;
     }
     private static final String namesToken = "%s/all";// <--    ?feature_uris[]
-    private String uri,keyword;
+    //   private String uri,keyword;
+    private URI compoundUri, queryUri;
+    private String compoundId;
+    private String scheme, host, path;
+    private int port;
     private boolean doRetrieveSmiles = false;
     private LookupMethod lookupMethod;
 
@@ -95,47 +96,55 @@ public class CompoundSpider extends Tarantula<Compound> {
      *      QEditApp#getCasToSmilesService() } returns an invalid service, or the
      *      service has encountered some error.
      */
-    public CompoundSpider(LookupMethod lookup, String keyword) throws ClientException {
-        this.lookupMethod = lookup;
-        if (lookup.equals(LookupMethod.ByUri)) {
-            String tmp = keyword;
-            tmp = tmp.split("conformer")[0];
-            System.out.println("SPLIT CONFORMER-----"+tmp);
-            String[] temp = tmp.split("/");
-            tmp = temp[temp.length-1];
-            System.out.println(tmp);
-            uri = String.format(ClientConstants.getCompoundLookupService(), tmp); // Directly provide the URI
-            System.out.println(uri);
-            uri = String.format(namesToken, uri);
-            System.out.println(uri);
-            this.keyword = keyword;
-        } else if (lookup.equals(LookupMethod.FromFile)) {
-            uri = "file://" + keyword;
-        } else if (lookup.equals(LookupMethod.AutoDetect)) {
-            uri = String.format(ClientConstants.getCompoundLookupService(), keyword);
-            uri = String.format(namesToken, uri);
-        }
-        GetClient client = new GetClient();
+    public CompoundSpider(String keyword) throws ClientException {
         try {
-            System.out.println(uri);
-            client.setUri(uri);
+            compoundUri = new URI(keyword);
+            if (compoundUri.getScheme() != null) {
+                scheme = compoundUri.getScheme();
+                host = compoundUri.getHost();
+                path = compoundUri.getPath();
+                port = compoundUri.getPort();
+                lookupMethod = LookupMethod.ByUri;
+            } else {
+                lookupMethod = LookupMethod.AutoDetect;
+            }
         } catch (URISyntaxException ex) {
-            Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
+            lookupMethod = LookupMethod.AutoDetect;
         }
+
+        switch (lookupMethod) {
+
+            case AutoDetect:
+                try {
+                    String uriString = String.format(ClientConstants.getCompoundLookupService(), keyword);
+                    uriString = String.format(namesToken, uriString);
+                    queryUri = new URI(uriString);
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+            case ByUri:
+                compoundId = keyword.split("conformer")[0];
+                compoundId = compoundId.split("/")[compoundId.split("/").length - 1];
+                try {
+                    queryUri = new URI(scheme, null, host, port,
+                           String.format(namesToken, "/ambit2/query/compound/" + compoundId)
+                           , null, null);
+                    System.out.println(queryUri.toString());
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //queryUri = new URI
+                break;
+
+        }
+
+        GetClient client = new GetClient();
+        client.setUri(queryUri);
         client.setMediaType(Media.rdf_xml);
         model = client.getOntModel();
-    }
 
-    public CompoundSpider(String anyKeyword) throws ClientException {
-        this(LookupMethod.AutoDetect, anyKeyword);
-    }
-
-    public CompoundSpider(java.net.URI uri) throws ClientException {
-        this(LookupMethod.ByUri, uri.toString());
-    }
-
-    public CompoundSpider(java.io.File file) throws ClientException {
-        this(LookupMethod.FromFile, file.getAbsolutePath());
     }
 
     /**
@@ -151,7 +160,7 @@ public class CompoundSpider extends Tarantula<Compound> {
      */
     @Override
     public Compound parse() throws ClientException {
-        Compound compound = new Compound(uri);
+        Compound compound = new Compound();
         StmtIterator it = model.listStatements(
                 new SimpleSelector(null,
                 OTObjectProperties.dataEntry().asObjectProperty(model), (RDFNode) null));
@@ -175,15 +184,15 @@ public class CompoundSpider extends Tarantula<Compound> {
         if (it.hasNext()) {
             Resource dataEntryNode = it.nextStatement().getObject().as(Resource.class);
 
-            if (lookupMethod.equals(LookupMethod.AutoDetect) ) {
+            if (lookupMethod.equals(LookupMethod.AutoDetect)) {
                 StmtIterator compoundResourceIter =
                         model.listStatements(new SimpleSelector(dataEntryNode, OTObjectProperties.compound().asObjectProperty(model), (RDFNode) null));
 
                 if (compoundResourceIter.hasNext()) {
                     compound.setUri(compoundResourceIter.nextStatement().getObject().as(Resource.class).getURI());
                 }
-            }else if(lookupMethod.equals(LookupMethod.ByUri)){
-                compound.setUri(keyword);
+            } else if (lookupMethod.equals(LookupMethod.ByUri)) {
+                compound.setUri(compoundUri.toString());
             }
 
             it2 = model.listStatements(
@@ -243,28 +252,10 @@ public class CompoundSpider extends Tarantula<Compound> {
         }
 
 
-//        //GET SYNONYMS:
-//        String synonymUri = compound.getUri().split("conformer")[0];
-//        String[] temp = synonymUri.split("/");
-//        synonymUri = temp[temp.length-1];
-//        synonymUri = "http://apps.ideaconsult.net:8080/ambit2/query/compound/"+synonymUri+"/";
-//        GetClient client = new GetClient();
-//        try {
-//            client.setUri(synonymUri);
-//        } catch (URISyntaxException ex) {
-//            Logger.getLogger(CompoundSpider.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        client.setMediaType(Media.rdf_xml);
-//        OntModel synonymModel = client.getOntModel();
-//
-//
-
-
         // GET CONFORMERS:
         String conformerUri = compound.getUri().split("conformer")[0];
-        conformerUri = conformerUri.endsWith("/")?conformerUri+"conformer/":conformerUri+"/conformer/";
+        conformerUri = conformerUri.endsWith("/") ? conformerUri + "conformer/" : conformerUri + "/conformer/";
 
-        System.out.println("Conformer URI="+conformerUri);
         GetClient client = new GetClient();
         try {
             client.setUri(conformerUri);
@@ -282,13 +273,6 @@ public class CompoundSpider extends Tarantula<Compound> {
             String cUri = conformerIt.nextStatement().getResource().getProperty(
                     OTObjectProperties.compound().asObjectProperty(conformerModel)).getResource().getURI();
             compound.getConformers().add(cUri);
-//               if(cUri.contains("conformer")){
-//                   compound.getConformers().add(cUri);
-//               }
-        }
-        //}
-        for (String s : compound.getConformers()) {
-            System.out.println(s);
         }
         return compound;
     }
@@ -305,10 +289,16 @@ public class CompoundSpider extends Tarantula<Compound> {
      * @param args - Not used
      * @throws ClientException
      */
-    public static void main(String... args) throws ClientException, FileNotFoundException {
-        CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
-        System.out.println(spider.parse());
-        spider.close();
+    public static void main(String... args) throws ClientException, FileNotFoundException, URISyntaxException {
+        //    CompoundSpider spider = new CompoundSpider(LookupMethod.AutoDetect, "Phenol");
+        //    System.out.println(spider.parse());
+        //     spider.close();
 
+
+        URI myUri = new URI("http://apps.ideaconsult.net:8080/ambit2/query/compound/3302/conformer/234234");
+        //   URI myUri = new URI("Phe nol");
+        System.out.println(myUri.getHost());
+        System.out.println(myUri.getScheme());
+        System.out.println(myUri.getPath());
     }
 }

@@ -278,7 +278,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         }
 
 
-        CompoundSpider spider = new CompoundSpider(CompoundSpider.LookupMethod.AutoDetect, keyWord);
+        CompoundSpider spider = new CompoundSpider(keyWord);
         compound = spider.parse();
 
         ImageIcon icon = null;

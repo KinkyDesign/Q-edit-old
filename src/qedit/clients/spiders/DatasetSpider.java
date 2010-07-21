@@ -58,7 +58,7 @@ public class DatasetSpider extends Tarantula<Dataset>{
         Dataset dataset = new Dataset();
         Compound compound = new Compound();
         System.out.println(compoundUri);
-        CompoundSpider cSpider = new CompoundSpider(CompoundSpider.LookupMethod.ByUri,compoundUri);
+        CompoundSpider cSpider = new CompoundSpider(compoundUri);
         compound = cSpider.parse();
 
         dataset.setUri(datasetUri);
