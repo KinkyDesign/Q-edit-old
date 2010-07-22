@@ -29,12 +29,57 @@ public class QPRFReport extends AbstractComponent {
     private AdequacyInfo adequacyInfo = new AdequacyInfo();
     private String stereoFeatures;
     private String chemBioMechanisms;
+    private String considerationsOnAnalogues;
     private String year;
     private String month;
     private String day;
+    private String metabolicDomain;
+    private String structuralDomain;
+    private String descriptorDomain;
+    private String mechanismDomain;
     private Dataset descriptors;
 
     public QPRFReport() {
+    }
+
+    public String getDescriptorDomain() {
+        return descriptorDomain;
+    }
+
+    public void setDescriptorDomain(String descriptorDomain) {
+        this.descriptorDomain = descriptorDomain;
+    }
+
+    public String getMechanismDomain() {
+        return mechanismDomain;
+    }
+
+    public void setMechanismDomain(String mechanismDomain) {
+        this.mechanismDomain = mechanismDomain;
+    }
+
+    public String getMetabolicDomain() {
+        return metabolicDomain;
+    }
+
+    public void setMetabolicDomain(String metabolicDomain) {
+        this.metabolicDomain = metabolicDomain;
+    }
+
+    public String getStructuralDomain() {
+        return structuralDomain;
+    }
+
+    public void setStructuralDomain(String structuralDomain) {
+        this.structuralDomain = structuralDomain;
+    }
+
+    public String getConsiderationsOnAnalogues() {
+        return considerationsOnAnalogues;
+    }
+
+    public void setConsiderationsOnAnalogues(String considerationsOnAnalogues) {
+        this.considerationsOnAnalogues = considerationsOnAnalogues;
     }
 
     public Dataset getDescriptors() {

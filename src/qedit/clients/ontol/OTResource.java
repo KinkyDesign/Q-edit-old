@@ -6,7 +6,7 @@ import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 
-public interface OTResource {
+public interface OTResource extends java.io.Serializable {
 
     String getUri();
 

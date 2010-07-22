@@ -28,17 +28,14 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -55,10 +52,8 @@ import qedit.clients.components.Feature;
 import qedit.clients.components.FeatureValue;
 import qedit.clients.components.Model;
 import qedit.clients.components.QPRFReport;
-import qedit.clients.ontol.impl.DCMetaInfoImpl;
 import qedit.clients.spiders.CompoundSpider;
 import qedit.clients.spiders.DatasetSpider;
-import qedit.clients.spiders.FeatureSpider;
 import qedit.clients.spiders.ModelSpider;
 import qedit.hints.AdequacyHint;
 import qedit.hints.QPRFCommentsHint;
@@ -71,6 +66,16 @@ import qedit.task.AbstractTask;
  * @author Sopasakis Pantelis
  */
 public class ReportInternalFrame extends javax.swing.JInternalFrame {
+
+    private java.io.File relatedFile;
+
+    public File getRelatedFile() {
+        return relatedFile;
+    }
+
+    public void setRelatedFile(File relatedFile) {
+        this.relatedFile = relatedFile;
+    }
 
     public QPRFReport getQprfreport() {
         return qprfreport;
@@ -218,6 +223,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }
 
     @Action
+    public void synchronizeDomainsWRTReport() {
+        structuralFragmentDomainText.setText(qprfreport.getStructuralDomain());
+        descriptorDomainText.setText(qprfreport.getDescriptorDomain());
+        metabolicDomainText.setText(qprfreport.getMetabolicDomain());
+        mechanismDomainText.setText(qprfreport.getMechanismDomain());
+    }
+
+    @Action
     public void synchronizeFieldsWRTReport() {
         synchronizeCompoundFieldsWRTReport();
         synchronizeModelFieldsWRTReport();
@@ -234,7 +247,12 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         for (Author author : qprfreport.getAuthors()) {
             authorsData.addRow(new String[]{author.getName(), "", "", "", "", ""});
         }
+        analoguesCommentsTextArea.setText(qprfreport.getConsiderationsOnAnalogues());
+        chemBioMechanismsTextArea.setText(qprfreport.getChemBioMechanisms());
+        qmrfReportTextField.setText(qprfreport.getModel().getQmrfReportUri());
         synchronizeDesccriptorsWRTReport();
+        synchronizeAnaloguesWRTReport();
+        synchronizeDomainsWRTReport();
 
     }
 
@@ -281,7 +299,11 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             currentAuthor.setName(authorsData.getValueAt(authorIndx, 0).toString());
             qprfreport.getAuthors().add(currentAuthor);
         }
-
+        qprfreport.setConsiderationsOnAnalogues(analoguesCommentsTextArea.getText());
+        qprfreport.setStructuralDomain(structuralFragmentDomainText.getText());
+        qprfreport.setMechanismDomain(mechanismDomainText.getText());
+        qprfreport.setMetabolicDomain(metabolicDomainText.getText());
+        qprfreport.setDescriptorDomain(descriptorDomainText.getText());
     }
 
     private void clearCompound() {
@@ -2061,6 +2083,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     modelVersionScrollPane.setName("modelVersionScrollPane"); // NOI18N
 
     modelVersionInfoTextArea.setColumns(20);
+    modelVersionInfoTextArea.setLineWrap(true);
     modelVersionInfoTextArea.setRows(5);
     modelVersionInfoTextArea.setName("modelVersionInfoTextArea"); // NOI18N
     modelVersionScrollPane.setViewportView(modelVersionInfoTextArea);
@@ -2427,6 +2450,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     chemBioMechanismsScrollable.setName("chemBioMechanismsScrollable"); // NOI18N
 
     chemBioMechanismsTextArea.setColumns(20);
+    chemBioMechanismsTextArea.setLineWrap(true);
     chemBioMechanismsTextArea.setRows(5);
     chemBioMechanismsTextArea.setName("chemBioMechanismsTextArea"); // NOI18N
     chemBioMechanismsScrollable.setViewportView(chemBioMechanismsTextArea);
@@ -2749,6 +2773,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     analogueInfo.setIcon(resourceMap.getIcon("analogueInfo.icon")); // NOI18N
     analogueInfo.setText(resourceMap.getString("analogueInfo.text")); // NOI18N
+    analogueInfo.setEnabled(false);
     analogueInfo.setFocusable(false);
     analogueInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     analogueInfo.setName("analogueInfo"); // NOI18N
@@ -3576,11 +3601,21 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_applicabilityDomainValueMouseClicked
 
     private void acquireListAnaloguesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acquireListAnaloguesButtonActionPerformed
+        if (qprfreport.getCompound() == null) {
+            QEditApp.getView().getStatusLabel().setText("No compound found! Cannot load structural analogues!");
+            return;
+        }
         AbstractTask task = new AbstractTask() {
 
             @Override
             protected Object doInBackground() throws Exception {
                 try {
+                    analogueInfo.setEnabled(false);
+                    compoundWizardButton.setEnabled(false);
+                    removeStructuralAnalogue.setEnabled(false);
+                    clearAllStructuralAnalogues.setEnabled(false);
+                    structuralAnaloguesList.setModel(new DefaultListModel());
+                    analogueImageLabel.setIcon(new ImageIcon());
                     double similarityLevelValue = Double.parseDouble(similarityLevel.getText());
                     try {
                         qprfreport.getCompound().updateSimilar(similarityLevelValue);
@@ -3589,10 +3624,24 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                         Logger.getLogger(ReportInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (NumberFormatException ex) {
-                    // TODO: .....
-                    return null;
+                    throw new RuntimeException(ex);
                 }
                 return null;
+            }
+
+            @Override
+            protected void finished() {
+                super.finished();
+                compoundWizardButton.setEnabled(true);
+                removeStructuralAnalogue.setEnabled(true);
+                clearAllStructuralAnalogues.setEnabled(true);
+            }
+
+            @Override
+            protected void succeeded(Object result) {
+                super.succeeded(result);
+                QEditApp.getView().getStatusLabel().setText(qprfreport.getCompound().getStructuralAnalogues().size()
+                        + " Structural Analogues Loaded Successfully!");
             }
         };
         task.runInBackground();
@@ -3609,6 +3658,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     ImageIcon icon = qprfreport.getCompound().
                             getStructuralAnalogues().get(selectionIndex).getUserIcon();
                     analogueImageLabel.setIcon(icon);
+                    analogueInfo.setEnabled(true);
                 }
                 return null;
             }

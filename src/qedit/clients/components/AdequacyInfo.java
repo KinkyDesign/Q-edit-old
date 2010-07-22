@@ -5,7 +5,7 @@ package qedit.clients.components;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public class AdequacyInfo {
+public class AdequacyInfo implements java.io.Serializable{
 
     private String regulatoryPurpose;
     private String regulatoryInterpretation;

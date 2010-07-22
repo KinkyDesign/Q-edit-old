@@ -13,7 +13,7 @@ import qedit.clients.ontol.impl.DCMetaInfoImpl;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public class Algorithm extends AbstractComponent{
+public class Algorithm extends AbstractComponent {
 
     private String uri;
     private DCMetaInfo meta = new DCMetaInfoImpl();

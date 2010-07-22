@@ -30,6 +30,7 @@ public class PDFReporter {
     private static final Font HEADING_FONT = FontFactory.getFont(FontFactory.TIMES_ROMAN, HEADING_SIZE, Font.BOLD, new BaseColor(java.awt.Color.BLUE));
     private static final Font BOLD_FONT = FontFactory.getFont(FontFactory.TIMES_ROMAN, TEXT_SIZE, Font.BOLD);
     private static final Font NORMAL_FONT = FontFactory.getFont(FontFactory.TIMES_ROMAN, TEXT_SIZE, Font.NORMAL);
+    private static final Font ITALICS_FONT = FontFactory.getFont(FontFactory.TIMES_ROMAN, TEXT_SIZE, Font.ITALIC);
 
     public PDFReporter() {
     }
@@ -84,36 +85,42 @@ public class PDFReporter {
          * Section 1: Substance
          */
         Compound substance = qprfReport.getCompound();
-        pdf.addElement(new MyParagraph(new Chunk("1. Substance", BOLD_FONT)));
-        pdf.addElement(new MyParagraph(new Chunk("1.1. CAS number:", BOLD_FONT)).applyIndent(10));
-        pdf.addElement(new MyParagraph(new Chunk(substance.getCasRn() != null && !substance.getCasRn().isEmpty()
-                ? substance.getCasRn() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk("1.2. EC number:", BOLD_FONT)).applyIndent(10));
-        pdf.addElement(new MyParagraph(new Chunk(substance.getEinecs() != null ?
-            substance.getEinecs().isEmpty() ? NOT_AVAILABLE : substance.getEinecs() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk("1.3. Chemical Name:", BOLD_FONT)).applyIndent(10));
-        pdf.addElement(new MyParagraph(new Chunk(substance.getIupacName() != null && !substance.getIupacName().isEmpty()
-                ? substance.getIupacName() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk("1.4. Structural Formula:", BOLD_FONT)).applyIndent(10));
-        pdf.addElement(new MyParagraph(new Chunk(NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk("1.5. Structure Codes:", BOLD_FONT)).applyIndent(10));
-        try {
-            Image image = Image.getInstance(substance.getUserIcon().getImage(), java.awt.Color.CYAN);
-            image.scalePercent((float) 50.00);
-            pdf.addElement(image);
-        } catch (BadElementException ex) {
-            Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+        if (substance != null) {
+            pdf.addElement(new MyParagraph(new Chunk("1. Substance", BOLD_FONT)));
+            pdf.addElement(new MyParagraph(new Chunk("1.1. CAS number:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(substance.getCasRn() != null && !substance.getCasRn().isEmpty()
+                    ? substance.getCasRn() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("1.2. EC number:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(substance.getEinecs() != null
+                    ? substance.getEinecs().isEmpty() ? NOT_AVAILABLE : substance.getEinecs() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("1.3. Chemical Name:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(substance.getIupacName() != null && !substance.getIupacName().isEmpty()
+                    ? substance.getIupacName() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("1.4. Structural Formula:", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk(NOT_AVAILABLE, NORMAL_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk("1.5. Structure Codes:", BOLD_FONT)).applyIndent(10));
+            try {
+                Image image = Image.getInstance(substance.getUserIcon().getImage(), java.awt.Color.CYAN);
+                image.scalePercent((float) 50.00);
+                pdf.addElement(image);
+            } catch (BadElementException ex) {
+                Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pdf.addElement(new MyParagraph(new Chunk("a. SMILES:", BOLD_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk(substance.getSmiles() != null ? substance.getSmiles() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(40));
+            pdf.addElement(new MyParagraph(new Chunk("b. InChI:", BOLD_FONT)).applyIndent(20));
+            pdf.addElement(new MyParagraph(new Chunk(substance.getInChI() != null ? substance.getInChI() : NOT_AVAILABLE, NORMAL_FONT)).applyIndent(40));
+            if (qprfReport.getStereoFeatures() != null) {
+                if (!qprfReport.getStereoFeatures().isEmpty()) {
+                    pdf.addElement(new MyParagraph(new Chunk("d. Stereochemical Features:", BOLD_FONT)).applyIndent(20));
+                    pdf.addElement(new MyParagraph(new Chunk(qprfReport.getStereoFeatures(), NORMAL_FONT)).applyIndent(40));
+                }
+            }
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
         }
-        pdf.addElement(new MyParagraph(new Chunk("a. SMILES:", BOLD_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk(substance.getSmiles(), NORMAL_FONT)).applyIndent(40));
-        pdf.addElement(new MyParagraph(new Chunk("b. InChI:", BOLD_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk(substance.getInChI(), NORMAL_FONT)).applyIndent(40));
-        pdf.addElement(new MyParagraph(new Chunk("d. Stereochemical Features:", BOLD_FONT)).applyIndent(20));
-        pdf.addElement(new MyParagraph(new Chunk(qprfReport.getStereoFeatures(), NORMAL_FONT)).applyIndent(40));
-        pdf.addElement(new Paragraph(Chunk.NEWLINE));
-        pdf.addElement(new Paragraph(Chunk.NEWLINE));
         /*
          * Section 2: General Info
          */
@@ -132,8 +139,44 @@ public class PDFReporter {
         /*
          * Section 3: Prediction
          */
-        pdf.addElement(new MyParagraph(new Chunk("3. Prediction", BOLD_FONT)));
+        if (qprfReport.getModel() != null) {
+            pdf.addElement(new MyParagraph(new Chunk("3. Prediction", BOLD_FONT)));
+            pdf.addElement(new MyParagraph(new Chunk("3.1. EndPoint (OECD Principle 1)", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk("a. Endpoint", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("b. Dependent Variable:", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getDependentFeature().getMeta().getTitle() != null
+                    ? qprfReport.getModel().getDependentFeature().getMeta().getTitle() : NOT_AVAILABLE,
+                    NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
+            pdf.addElement(new MyParagraph(new Chunk("3.2. Algorithm (OECD Principle 2)", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk("a. Model or Submodel Name", BOLD_FONT)).applyIndent(30));
 
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getMeta().getTitle() != null
+                    ? qprfReport.getModel().getMeta().getTitle() : qprfReport.getModel().getUri(), NORMAL_FONT)).applyIndent(30));
+
+            pdf.addElement(new MyParagraph(new Chunk("b. Model Version", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("Date : " + qprfReport.getModel().getYear() + "," + qprfReport.getModel().getMonth() + " " + qprfReport.getModel().getDay(), NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("Version Info : " + qprfReport.getModel().getMeta().getVersionInfo(), NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("c. Reference to QMRF", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getQmrfReportMeta().getComment(), NORMAL_FONT)).applyIndent(30));
+
+            pdf.addElement(new MyParagraph(new Chunk("3.3. Applicability Domain (OECD Principle 3)", BOLD_FONT)).applyIndent(10));
+            pdf.addElement(new MyParagraph(new Chunk("a. Domains", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("i. descriptor domain", ITALICS_FONT)).applyIndent(40));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getDescriptorDomain(), NORMAL_FONT)).applyIndent(40));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
+            pdf.addElement(new MyParagraph(new Chunk("ii. structural fragment domain", ITALICS_FONT)).applyIndent(40));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getStructuralDomain(), NORMAL_FONT)).applyIndent(40));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
+            pdf.addElement(new MyParagraph(new Chunk("iii. mechanism domain", ITALICS_FONT)).applyIndent(40));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getMechanismDomain(), NORMAL_FONT)).applyIndent(40));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
+            pdf.addElement(new MyParagraph(new Chunk("iv. metabolic domain, if relevant", ITALICS_FONT)).applyIndent(40));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getMetabolicDomain(), NORMAL_FONT)).applyIndent(40));
+        }
+
+        pdf.addElement(new Paragraph(Chunk.NEWLINE));
+        pdf.addElement(new Paragraph(Chunk.NEWLINE));
         /*
          * Section 4: Adequacy Information
          */

@@ -1,6 +1,9 @@
 package qedit.task;
 
 import java.beans.PropertyVetoException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -17,7 +20,7 @@ public class OpenDocumentTask extends AbstractTask {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JFileChooser localFileChooserWindow;
 
-     public OpenDocumentTask() {
+    public OpenDocumentTask() {
         super();
     }
 
@@ -36,15 +39,17 @@ public class OpenDocumentTask extends AbstractTask {
     public void setLocalFileChooserWindow(JFileChooser localFileChooserWindow) {
         this.localFileChooserWindow = localFileChooserWindow;
     }
-    
 
     @Override
     protected Object doInBackground() throws Exception {
+        InputStream is = null;
+        ObjectInputStream ois = null;
         try {
             setProgress(5);
             qedit.QEditApp.getView().getStatusLabel().setText("Reading Report from XML file...");
-            final QPRFReport report = (QPRFReport) new com.thoughtworks.xstream.XStream().fromXML(
-                    new java.io.FileInputStream(localFileChooserWindow.getSelectedFile()));
+            is = new FileInputStream(localFileChooserWindow.getSelectedFile());
+            ois = new ObjectInputStream(is);
+            final QPRFReport report = (QPRFReport) ois.readObject();
             setProgress(15);
             desktopPane.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
             setProgress(20);
@@ -60,7 +65,7 @@ public class OpenDocumentTask extends AbstractTask {
             nd.revalidate();
             nd.setLocation(new java.awt.Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
             setProgress(60);
-            nd.setTitle(localFileChooserWindow.getSelectedFile().getName().replaceAll(".xml", ""));
+            nd.setTitle(localFileChooserWindow.getSelectedFile().getName().replaceAll(".report", ""));
             setProgress(70);
             QEditView.increaseNumOpenDocuments();
             setProgress(80);
@@ -71,6 +76,7 @@ public class OpenDocumentTask extends AbstractTask {
             } finally {
                 desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
             }
+            nd.setRelatedFile(localFileChooserWindow.getSelectedFile());
             setProgress(90);
             qedit.QEditApp.getView().getStatusLabel().setText("Report loaded successfully");
             setProgress(100);
@@ -79,6 +85,13 @@ public class OpenDocumentTask extends AbstractTask {
             desktopPane.setCursor(java.awt.Cursor.getDefaultCursor());
             qedit.QEditApp.getView().getStatusLabel().setText("Report could not be loaded!!!");
             throw exx;
+        } finally {
+            if (is != null) {
+                is.close();
+            }
+            if (ois != null) {
+                ois.close();
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ package qedit.clients;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public enum Media {
+public enum Media implements java.io.Serializable {
 
     rdf_xml("application/rdf+xml"),
     smiles("chemical/x-daylight-smiles"),

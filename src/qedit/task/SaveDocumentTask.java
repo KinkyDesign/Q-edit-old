@@ -1,12 +1,16 @@
 package qedit.task;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import qedit.QEditApp;
 import qedit.QEditView;
 import qedit.ReportInternalFrame;
+import qedit.clients.components.QPRFReport;
 
 /**
  *
@@ -51,34 +55,34 @@ public class SaveDocumentTask extends AbstractTask {
     @Override
     protected Object doInBackground() throws Exception {
 
-        java.io.File selectedFile = saveFileChooserWindow.getSelectedFile();
+        java.io.File selectedFile = rif.getRelatedFile() == null
+                ? saveFileChooserWindow.getSelectedFile() : rif.getRelatedFile();
 
         if (selectedFile == null) {
             QEditApp.getView().getStatusLabel().setText("Info: Report is not saved");
             return null;
         }
+
         String filePath = selectedFile.getAbsolutePath();
-        if (!filePath.contains(".xml")) {
-            filePath += ".xml";
+        if (!filePath.contains(".report")) {
+            filePath += ".report";
         }
+
         java.io.File f = new java.io.File(filePath);
         rif.updateReport();
-        try {
-            com.thoughtworks.xstream.XStream xs = new com.thoughtworks.xstream.XStream();
-            xs.toXML(rif.getQprfreport(), new java.io.FileOutputStream(f));
-        } catch (java.io.IOException ex) {
-            Logger.getLogger(QEditView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        rif.setTitle(selectedFile.getName().replaceAll(".xml", ""));
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+        oos.writeObject((QPRFReport) rif.getQprfreport());
+
+        rif.setTitle(selectedFile.getName().replaceAll(".report", ""));
         QEditApp.getView().getStatusLabel().setText("Document Saved");
 
         Preferences prefs = Preferences.userRoot();
         int recyclePosition = prefs.getInt("recyclePosition", 0);
-        prefs.put("qedit-report" + recyclePosition,                
-                 rif.getTitle() + preferenceSeperator
-                +"Model URI: "+ rif.getQprfreport().getModel().getUri() + preferenceSeperator
-                +"Compound URI: "+ rif.getQprfreport().getCompound().getUri() + preferenceSeperator
-                +"Filepath: "+ filePath + preferenceSeperator);
+        prefs.put("qedit-report" + recyclePosition,
+                rif.getTitle() + preferenceSeperator
+                + "Model URI: " + rif.getQprfreport().getModel().getUri() + preferenceSeperator
+                + "Compound URI: " + rif.getQprfreport().getCompound().getUri() + preferenceSeperator
+                + "Filepath: " + filePath + preferenceSeperator);
         prefs.putInt("recyclePosition", recyclePosition < 4 ? recyclePosition + 1 : 0);
 
         QEditApp.getView().refreshSessions();

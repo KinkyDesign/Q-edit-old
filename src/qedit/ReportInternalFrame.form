@@ -274,7 +274,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jSeparator1" alignment="0" min="-2" max="-2" attributes="1"/>
                                   <Component id="compoundDataInputPanel" min="-2" max="32767" attributes="0"/>
-                                  <Component id="structureImagePanel" min="-2" pref="310" max="-2" attributes="1"/>
+                                  <Component id="structureImagePanel" min="-2" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -897,7 +897,7 @@
                                   <Component id="stereoChemHintLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="stereoChemScollPane" pref="128" max="32767" attributes="0"/>
+                              <Component id="stereoChemScollPane" pref="145" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1401,7 +1401,7 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="186" max="32767" attributes="0"/>
+                                  <EmptySpace pref="165" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2245,6 +2245,7 @@
                                 <Component class="javax.swing.JTextArea" name="modelVersionInfoTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
+                                    <Property name="lineWrap" type="boolean" value="true"/>
                                     <Property name="rows" type="int" value="5"/>
                                     <Property name="name" type="java.lang.String" value="modelVersionInfoTextArea" noResource="true"/>
                                   </Properties>
@@ -2663,6 +2664,7 @@
                                 <Component class="javax.swing.JTextArea" name="chemBioMechanismsTextArea">
                                   <Properties>
                                     <Property name="columns" type="int" value="20"/>
+                                    <Property name="lineWrap" type="boolean" value="true"/>
                                     <Property name="rows" type="int" value="5"/>
                                     <Property name="name" type="java.lang.String" value="chemBioMechanismsTextArea" noResource="true"/>
                                   </Properties>
@@ -3152,6 +3154,7 @@
                                   <Properties>
                                     <Property name="icon" type="javax.swing.Icon" resourceKey="analogueInfo.icon"/>
                                     <Property name="text" type="java.lang.String" resourceKey="analogueInfo.text"/>
+                                    <Property name="enabled" type="boolean" value="false"/>
                                     <Property name="focusable" type="boolean" value="false"/>
                                     <Property name="horizontalTextPosition" type="int" value="0"/>
                                     <Property name="name" type="java.lang.String" value="analogueInfo" noResource="true"/>
@@ -3347,7 +3350,7 @@
                               <Component id="adequacyInfoSubPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="adequacyHintLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="59" max="32767" attributes="0"/>
+                          <EmptySpace pref="127" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

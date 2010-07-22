@@ -16,11 +16,11 @@ import java.util.ArrayList;
 public class PDFObject {
 
     private ArrayList<Element> elements = new ArrayList<Element>();
-    private String subject = "OpenTox Entity Representation";
-    private String pdfAuthor = "OpenTox NTUA WebServices";
-    private String pdfCreator = "OpenTox NTUA Serivces";
-    private String pdfTitle = "OpenTox Entity Representation";
-    private String pdfKeywords = "";
+    private String subject = "QPRF Report";
+    private String pdfAuthor = "Q-Edit QPRF Report Editor";
+    private String pdfCreator = "Q-Edit QPRF Report Editor";
+    private String pdfTitle = "QPRF Report";
+    private String pdfKeywords = "QPRF Report, QSAR, Prediction";
 
     public PDFObject() {
     }

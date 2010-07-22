@@ -11,7 +11,6 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
@@ -29,6 +28,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import org.jdesktop.application.ApplicationContext;
+import org.jdesktop.application.Task;
 import org.jdesktop.application.TaskService;
 import qedit.hints.ExitQuestion;
 import qedit.hints.TooManyOpenDocsWarning;
@@ -125,12 +125,12 @@ public class QEditView extends FrameView {
     }
 
     @Action
-    public void quit(){
+    public void quit() {
         ExitQuestion eq = new ExitQuestion(getFrame());
         eq.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
-        eq.setVisible(true);        
+        eq.setVisible(true);
         int RS = eq.getReturnStatus();
-        if (RS==ExitQuestion.BUTTON_YES){
+        if (RS == ExitQuestion.BUTTON_YES) {
             System.exit(0);
         }
     }
@@ -149,7 +149,7 @@ public class QEditView extends FrameView {
     @Action
     public void openFileAction() {
         localFileChooserWindow = new JFileChooser();
-        localFileChooserWindow.setFileFilter(new FileNameExtensionFilter("XML Reports", "xml"));
+        localFileChooserWindow.setFileFilter(new FileNameExtensionFilter("Reports", "report"));
         localFileChooserWindow.setMultiSelectionEnabled(false);
         localFileChooserWindow.showOpenDialog(mainPanel);
         if (localFileChooserWindow.getSelectedFile() == null || !localFileChooserWindow.getSelectedFile().exists()) {
@@ -226,7 +226,6 @@ public class QEditView extends FrameView {
         QEditApp.getApplication().show(statisticsBox);
     }
 
-    
     @Action
     public void saveDialogBox() {
 
@@ -237,18 +236,23 @@ public class QEditView extends FrameView {
             return;
         }
         QEditApp.getView().getStatusLabel().setText("Saving Document");
-        saveFileChooserWindow = new JFileChooser();
-        saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("RDF Reports", "report"));
-        saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("XML Reports", "xml"));
-        saveFileChooserWindow.setMultiSelectionEnabled(false);
-        saveFileChooserWindow.setDialogTitle("Save " + rif.getTitle());
-        saveFileChooserWindow.showSaveDialog(mainPanel);
-
+        if (rif.getRelatedFile() == null) {
+            saveFileChooserWindow = new JFileChooser();
+            saveFileChooserWindow.setFileFilter(new FileNameExtensionFilter("QPRF Reports", "report"));
+            saveFileChooserWindow.setMultiSelectionEnabled(false);
+            saveFileChooserWindow.setDialogTitle("Save " + rif.getTitle());
+            saveFileChooserWindow.showSaveDialog(mainPanel);
+        } else {
+            saveFileChooserWindow = null;
+        }
         SaveDocumentTask saveTask = new SaveDocumentTask();
         saveTask.setDesktopPane(desktopPane);
         saveTask.setRif(rif);
         saveTask.setSaveFileChooserWindow(saveFileChooserWindow);
         saveTask.runInBackground();
+        if (saveFileChooserWindow != null) {
+            rif.setRelatedFile(saveFileChooserWindow.getSelectedFile());
+        }
 
     }
 
@@ -256,7 +260,6 @@ public class QEditView extends FrameView {
     public void createNewReport() {
         enterUriDialogBox();
     }
-    
 
     @Action
     public void createNewEmptyReport() {
@@ -627,6 +630,7 @@ public class QEditView extends FrameView {
         reportMenu.setName("reportMenu"); // NOI18N
 
         pdfReportMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
+        pdfReportMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         pdfReportMenuItem.setIcon(resourceMap.getIcon("pdfReportMenuItem.icon")); // NOI18N
         pdfReportMenuItem.setText(resourceMap.getString("pdfReportMenuItem.text")); // NOI18N
         pdfReportMenuItem.setToolTipText(resourceMap.getString("pdfReportMenuItem.toolTipText")); // NOI18N

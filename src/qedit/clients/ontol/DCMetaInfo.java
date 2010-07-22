@@ -1,8 +1,9 @@
 package qedit.clients.ontol;
 
+import java.io.Serializable;
 import java.util.Collection;
 
-public interface DCMetaInfo {
+public interface DCMetaInfo extends java.io.Serializable {
 
     String getComment();
 

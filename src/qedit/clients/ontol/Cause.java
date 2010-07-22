@@ -36,7 +36,7 @@ package qedit.clients.ontol;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public enum Cause {
+public enum Cause implements java.io.Serializable{
 
     AlgorithmNotFoundInCache,
     AuthenticationFailed,

@@ -4,7 +4,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Property;
 import java.util.Collection;
 
-public interface OTProperty extends OTResource {
+public interface OTProperty extends OTResource, java.io.Serializable {
 
     String getNameSpace();
 

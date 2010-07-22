@@ -8,7 +8,7 @@ import com.hp.hpl.jena.ontology.OntModel;
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */
-public abstract class AbstractComponent {
+public abstract class AbstractComponent implements java.io.Serializable{
 
     public AbstractComponent() {
     }
