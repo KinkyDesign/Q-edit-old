@@ -1,5 +1,6 @@
 package qedit.task;
 
+import com.thoughtworks.xstream.XStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
@@ -10,6 +11,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import qedit.QEditApp;
 import qedit.QEditView;
 import qedit.ReportInternalFrame;
+import qedit.Session;
+import qedit.SessionHistory;
 import qedit.clients.components.QPRFReport;
 
 /**
@@ -76,16 +79,22 @@ public class SaveDocumentTask extends AbstractTask {
         rif.setTitle(selectedFile.getName().replaceAll(".report", ""));
         QEditApp.getView().getStatusLabel().setText("Document Saved");
 
-        Preferences prefs = Preferences.userRoot();
-        int recyclePosition = prefs.getInt("recyclePosition", 0);
-        prefs.put("qedit-report" + recyclePosition,
-                rif.getTitle() + preferenceSeperator
-                + "Model URI: " + rif.getQprfreport().getModel().getUri() + preferenceSeperator
-                + "Compound URI: " + rif.getQprfreport().getCompound().getUri() + preferenceSeperator
-                + "Filepath: " + filePath + preferenceSeperator);
-        prefs.putInt("recyclePosition", recyclePosition < 4 ? recyclePosition + 1 : 0);
 
-        QEditApp.getView().refreshSessions();
+        Preferences prefs = Preferences.userRoot();
+        String sessionHistoryFromPrefsXML = prefs.get("qedit_session_hitory", null);
+        SessionHistory sh = null;
+
+        if (sessionHistoryFromPrefsXML == null) {
+            sh = new SessionHistory();
+        } else {
+            sh = (SessionHistory) new XStream().fromXML(sessionHistoryFromPrefsXML);
+        }
+        Session session = new Session(filePath, rif.getQprfreport().getCompound().getUri(), rif.getQprfreport().getModel().getUri());
+        session.setName(rif.getTitle());
+        sh.push(session);
+        prefs.put("qedit_session_hitory", new XStream().toXML(sh));
+        QEditView.setSessionHistory(sh);
+        QEditApp.getView().refreshSessionsFromPreferences();
         return null;
     }
 }

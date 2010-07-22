@@ -3,6 +3,7 @@
  */
 package qedit;
 
+import com.thoughtworks.xstream.XStream;
 import java.awt.Point;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
@@ -45,6 +46,7 @@ import qedit.task.SaveDocumentTask;
 public class QEditView extends FrameView {
 
     private static boolean doShowTooManyDocsWarning = true;
+    public static SessionHistory sessionHistory = null;
 
     public QEditView(SingleFrameApplication app) {
         super(app);
@@ -289,36 +291,44 @@ public class QEditView extends FrameView {
         return statusMessageLabel;
     }
 
-    public void refreshSessions() {
+    public static SessionHistory getSessionHistory() {
+        return sessionHistory;
+    }
+
+    public static void setSessionHistory(SessionHistory sessionHistory) {
+        QEditView.sessionHistory = sessionHistory;
+    }
+
+    public void refreshSessionsFromPreferences() {
+        /*
+         * Get Session History from User Preferences:
+         */
         Preferences prefs = Preferences.userRoot();
+        String sessionHistoryXml = prefs.get("qedit_session_hitory", null);
+        if (sessionHistoryXml != null) {
+            sessionHistory = (SessionHistory) new XStream().fromXML(sessionHistoryXml);
+        }
 
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Recent Sessions");
 
-        for (int i = 0; i < 5; i++) {
-            String reportInfo = prefs.get("qedit-report" + i, null);
-            System.out.println(reportInfo);
-            if (reportInfo != null) {
-                String[] stringPrefs = reportInfo.split(SaveDocumentTask.preferenceSeperator);
-
-                for (String s : stringPrefs) {
-                    System.out.println(s);
-                }
-                javax.swing.tree.DefaultMutableTreeNode subNode =
-                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[0]);
-
-                javax.swing.tree.DefaultMutableTreeNode node =
-                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[1]);
-                subNode.add(node);
-                node =
-                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[2]);
-                subNode.add(node);
-                node =
-                        new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[3]);
-                subNode.add(node);
-
-                rootNode.add(subNode);
-            }
+        for (int stack = sessionHistory.stack.size() - 1; stack >= 0; stack--) {
+            Session s = sessionHistory.stack.get(stack);
+            javax.swing.tree.DefaultMutableTreeNode subNode =
+                    new javax.swing.tree.DefaultMutableTreeNode(s.getName() != null ? s.getName() : "Anonymous");
+            String compoundURI = (s.getCompoundUri() == null || (s.getCompoundUri() != null && s.getCompoundUri().isEmpty())) ? "N/A" : s.getCompoundUri();
+            javax.swing.tree.DefaultMutableTreeNode node =
+                    new javax.swing.tree.DefaultMutableTreeNode("Compound URI : " + compoundURI);
+            subNode.add(node);
+            String modelURI = (s.getModelUri() == null || (s.getModelUri() != null && s.getModelUri().isEmpty())) ? "N/A" : s.getModelUri();
+            node = new javax.swing.tree.DefaultMutableTreeNode("Model URI : " + s.getModelUri() != null ? s.getModelUri() : "N/A");
+            subNode.add(node);
+            node = new javax.swing.tree.DefaultMutableTreeNode("Location : " + s.getFile());
+            subNode.add(node);
+            rootNode.add(subNode);
         }
+
+
+
         recentSessionsTree.setModel(new DefaultTreeModel(rootNode));
     }
 
@@ -428,34 +438,30 @@ public class QEditView extends FrameView {
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Recent Sessions");
         recentSessionsTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         Preferences prefs = Preferences.userRoot();
-
-        for(int i=0; i<5; i++){
-            String reportInfo = prefs.get("qedit-report"+i, null);
-            System.out.println(reportInfo);
-            if(reportInfo != null){
-                String[] stringPrefs = reportInfo.split(SaveDocumentTask.preferenceSeperator);
-
-                for(String s : stringPrefs){
-                    System.out.println(s);
-                }
-                javax.swing.tree.DefaultMutableTreeNode subNode =
-                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[0]);
-
-                javax.swing.tree.DefaultMutableTreeNode node =
-                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[1]);
-                subNode.add(node);
-                node =
-                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[2]);
-                subNode.add(node);
-                node =
-                new javax.swing.tree.DefaultMutableTreeNode(stringPrefs[3]);
-                subNode.add(node);
-
-                treeNode1.add(subNode);
-
-            }
-
+        String sessionHistoryXML = prefs.get("qedit_session_hitory", null);
+        if (sessionHistoryXML!=null){
+            sessionHistory = (SessionHistory) new XStream().fromXML(sessionHistoryXML);
         }
+        if (sessionHistory==null){
+            sessionHistory = new SessionHistory();// Empty Session History
+        }
+        for (int stack = sessionHistory.stack.size() - 1; stack >= 0; stack--) {
+            Session s = sessionHistory.stack.get(stack);
+            javax.swing.tree.DefaultMutableTreeNode subNode =
+            new javax.swing.tree.DefaultMutableTreeNode(s.getName() != null ? s.getName() : "Anonymous");
+            String compoundURI = (s.getCompoundUri() == null || (s.getCompoundUri() != null && s.getCompoundUri().isEmpty())) ? "N/A" : s.getCompoundUri();
+            javax.swing.tree.DefaultMutableTreeNode node =
+            new javax.swing.tree.DefaultMutableTreeNode("Compound URI : " + compoundURI);
+            subNode.add(node);
+            String modelURI = (s.getModelUri() == null || (s.getModelUri() != null && s.getModelUri().isEmpty())) ? "N/A" : s.getModelUri();
+            node = new javax.swing.tree.DefaultMutableTreeNode("Model URI : " + s.getModelUri() != null ? s.getModelUri() : "N/A");
+            subNode.add(node);
+            node = new javax.swing.tree.DefaultMutableTreeNode("Location : " + s.getFile());
+            subNode.add(node);
+            treeNode1.add(subNode);
+        }
+
+        recentSessionsTree.setModel(new DefaultTreeModel(treeNode1));
         recentSessionsTree.setName("recentSessionsTree"); // NOI18N
         recentSessionsTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -630,7 +636,6 @@ public class QEditView extends FrameView {
         reportMenu.setName("reportMenu"); // NOI18N
 
         pdfReportMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
-        pdfReportMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         pdfReportMenuItem.setIcon(resourceMap.getIcon("pdfReportMenuItem.icon")); // NOI18N
         pdfReportMenuItem.setText(resourceMap.getString("pdfReportMenuItem.text")); // NOI18N
         pdfReportMenuItem.setToolTipText(resourceMap.getString("pdfReportMenuItem.toolTipText")); // NOI18N
@@ -1151,7 +1156,7 @@ public class QEditView extends FrameView {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
             if (((DefaultMutableTreeNode) recentSessionsTree.getModel().getRoot()).isNodeChild(node)) {
                 sessionPopupChoice = node;
-                String filename = sessionPopupChoice.getLastChild().toString().replaceAll("Filepath: ", "");
+                String filename = sessionPopupChoice.getLastChild().toString().replaceAll("Location : ", "");
                 AbstractTask task = new LoadSessionTask(filename);
                 task.runInBackground();
             }
@@ -1159,7 +1164,7 @@ public class QEditView extends FrameView {
     }//GEN-LAST:event_recentSessionsTreeMouseClicked
 
     private void openSessionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSessionItemActionPerformed
-        String filename = sessionPopupChoice.getLastChild().toString().replaceAll("Filepath: ", "");
+        String filename = sessionPopupChoice.getLastChild().toString().replaceAll("Location : ", "");
         AbstractTask task = new LoadSessionTask(filename);
         task.runInBackground();
     }//GEN-LAST:event_openSessionItemActionPerformed
