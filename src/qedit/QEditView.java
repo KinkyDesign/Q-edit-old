@@ -446,6 +446,9 @@ public class QEditView extends FrameView {
         }
         for (int stack = sessionHistory.size() - 1; stack >= 0; stack--) {
             Session s = sessionHistory.get(stack);
+            if (! new java.io.File(s.getFile()).exists()){
+                continue;
+            }
             javax.swing.tree.DefaultMutableTreeNode subNode =
             new javax.swing.tree.DefaultMutableTreeNode(s.getName() != null ? s.getName() : "Anonymous");
             String compoundURI = (s.getCompoundUri() == null || (s.getCompoundUri() != null && s.getCompoundUri().isEmpty())) ? "N/A" : s.getCompoundUri();
@@ -642,7 +645,6 @@ public class QEditView extends FrameView {
         reportMenu.add(wordReportMenuItem);
 
         exportAsPdfMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
-        exportAsPdfMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_MASK));
         exportAsPdfMenuItem.setIcon(resourceMap.getIcon("exportAsPdfMenuItem.icon")); // NOI18N
         exportAsPdfMenuItem.setText(resourceMap.getString("exportAsPdfMenuItem.text")); // NOI18N
         exportAsPdfMenuItem.setName("exportAsPdfMenuItem"); // NOI18N
