@@ -81,18 +81,38 @@ public class GetClient {
         return con.getResponseCode();
     }
 
-
-    public java.util.List<String> getUriList() throws ClientException, IOException{
+    public java.util.List<String> getUriList() throws ClientException, IOException {
         java.util.List<String> list = new java.util.ArrayList<String>();
-        if (con == null) {
-            con = initializeConnection(uri);
+        java.io.InputStreamReader isr = null;
+        java.io.InputStream is = null;
+        java.io.BufferedReader reader = null;
+        try {
+            if (con == null) {
+                con = initializeConnection(uri);
+            }
+            is = getRemoteStream();
+            isr = new java.io.InputStreamReader(is);
+            reader = new java.io.BufferedReader(isr);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                list.add(line);
+            }
+        } catch (ClientException cl) {
+            throw cl;
+        } catch (IOException io) {
+            throw io;
+        } finally {
+            if (reader!=null){
+                reader.close();
+            }
+            if (isr!=null){
+                isr.close();
+            }
+            if (is!=null) {
+                is.close();
+            }
         }
-        java.io.InputStream is = getRemoteStream();
-        java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(is));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            list.add(line);
-        }
+
         return list;
     }
 
@@ -100,14 +120,35 @@ public class GetClient {
         if (con == null) {
             con = initializeConnection(uri);
         }
-        java.io.InputStream is = getRemoteStream();
-        java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(is));
-        String line;
-        StringBuilder sb = new StringBuilder();
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
+        java.io.InputStream is = null;
+        java.io.BufferedReader reader = null;
+        java.io.InputStreamReader isr = null;
+        try {
+            is = getRemoteStream();
+            isr = new java.io.InputStreamReader(is);
+            reader = new java.io.BufferedReader(isr);
+            String line;
+            StringBuilder sb = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            return new String(sb);
+        } catch (ClientException cl) {
+            throw cl;
+        } catch (IOException io) {
+            throw io;
+        } finally {
+            if (reader!=null){
+                reader.close();
+            }
+            if (isr!=null){
+                isr.close();
+            }
+            if (is!=null) {
+                is.close();
+            }
         }
-        return new String(sb);
+
     }
 
     public static String smilesFromCasRn(String casRn) throws ClientException, java.io.IOException {
@@ -128,8 +169,6 @@ public class GetClient {
         } catch (final Exception ex) {
             throw new ClientException("Cannot read OntModel from " + uri.toString(), ex);
         }
-    }    
-
-    
+    }
 }
 

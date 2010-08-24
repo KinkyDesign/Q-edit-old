@@ -1,13 +1,18 @@
 package qedit.task;
 
+import com.thoughtworks.xstream.XStream;
 import java.beans.PropertyVetoException;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
+import qedit.QEditApp;
 import qedit.QEditView;
+import qedit.Session;
+import qedit.SessionHistory;
 import qedit.clients.components.QPRFReport;
 
 /**
@@ -79,6 +84,22 @@ public class OpenDocumentTask extends AbstractTask {
             nd.setRelatedFile(localFileChooserWindow.getSelectedFile());
             setProgress(90);
             qedit.QEditApp.getView().getStatusLabel().setText("Report loaded successfully");
+            Preferences prefs = Preferences.userRoot();
+            String sessionHistoryFromPrefsXML = prefs.get(QEditView.QEDIT_SESSION_HISTORY, null);
+            SessionHistory sh = null;
+
+            if (sessionHistoryFromPrefsXML == null) {
+                sh = new SessionHistory();
+            } else {
+                sh = (SessionHistory) new XStream().fromXML(sessionHistoryFromPrefsXML);
+            }
+            Session session = new Session(localFileChooserWindow.getSelectedFile().getAbsolutePath(),
+                    nd.getQprfreport().getCompound().getUri(), nd.getQprfreport().getModel().getUri());
+            session.setName(nd.getTitle());
+            sh.push(session);
+            prefs.put(QEditView.QEDIT_SESSION_HISTORY, new XStream().toXML(sh));
+            QEditView.setSessionHistory(sh);
+            QEditApp.getView().refreshSessionsFromPreferences();
             setProgress(100);
             return new Object();
         } catch (Exception exx) {
@@ -92,6 +113,7 @@ public class OpenDocumentTask extends AbstractTask {
             if (ois != null) {
                 ois.close();
             }
+
         }
     }
 }

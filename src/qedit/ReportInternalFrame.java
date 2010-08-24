@@ -3697,6 +3697,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         int dialog_x = (frameWidth - dialogWidht) / 2;
         int dialog_y = (frameHeight - dialogHeight) / 2;
         myDialogThatWillBePresentedToTheAboevementionedGreatUser.setBounds(dialog_x, dialog_y, dialogWidht, dialogHeight);
+        myDialogThatWillBePresentedToTheAboevementionedGreatUser.setRif(this);
         myDialogThatWillBePresentedToTheAboevementionedGreatUser.setVisible(true);
 
     }//GEN-LAST:event_analogueInfoActionPerformed

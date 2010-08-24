@@ -3,11 +3,8 @@ package qedit.task;
 import com.thoughtworks.xstream.XStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import qedit.QEditApp;
 import qedit.QEditView;
 import qedit.ReportInternalFrame;
@@ -81,7 +78,7 @@ public class SaveDocumentTask extends AbstractTask {
 
 
         Preferences prefs = Preferences.userRoot();
-        String sessionHistoryFromPrefsXML = prefs.get("qedit_session_hitory", null);
+        String sessionHistoryFromPrefsXML = prefs.get(QEditView.QEDIT_SESSION_HISTORY, null);
         SessionHistory sh = null;
 
         if (sessionHistoryFromPrefsXML == null) {
@@ -92,7 +89,7 @@ public class SaveDocumentTask extends AbstractTask {
         Session session = new Session(filePath, rif.getQprfreport().getCompound().getUri(), rif.getQprfreport().getModel().getUri());
         session.setName(rif.getTitle());
         sh.push(session);
-        prefs.put("qedit_session_hitory", new XStream().toXML(sh));
+        prefs.put(QEditView.QEDIT_SESSION_HISTORY, new XStream().toXML(sh));
         QEditView.setSessionHistory(sh);
         QEditApp.getView().refreshSessionsFromPreferences();
         return null;
