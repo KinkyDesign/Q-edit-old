@@ -8,7 +8,13 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.html.simpleparser.IncTable;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import java.awt.Graphics;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import qedit.clients.components.AdequacyInfo;
@@ -176,6 +182,7 @@ public class PDFReporter {
             pdf.addElement(new MyParagraph(new Chunk("Version Info : " + qprfReport.getModel().getMeta().getVersionInfo(), NORMAL_FONT)).applyIndent(30));
             pdf.addElement(new MyParagraph(new Chunk("c. Reference to QMRF", BOLD_FONT)).applyIndent(30));
             pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getQmrfReportMeta().getComment(), NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
 
             pdf.addElement(new MyParagraph(new Chunk("3.3. Applicability Domain (OECD Principle 3)", BOLD_FONT)).applyIndent(10));
             pdf.addElement(new MyParagraph(new Chunk("a. Domains", BOLD_FONT)).applyIndent(30));
@@ -190,6 +197,33 @@ public class PDFReporter {
             pdf.addElement(new Paragraph(Chunk.NEWLINE));
             pdf.addElement(new MyParagraph(new Chunk("iv. metabolic domain, if relevant", ITALICS_FONT)).applyIndent(40));
             pdf.addElement(new MyParagraph(new Chunk(qprfReport.getMetabolicDomain(), NORMAL_FONT)).applyIndent(40));
+
+            pdf.addElement(new MyParagraph(new Chunk("b. Structural Analogues", BOLD_FONT)).applyIndent(30));
+            PdfPTable structuralAnalogues = new PdfPTable(5);
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("CAS", BOLD_FONT)));
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("Structure", BOLD_FONT)));
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("SMILES", BOLD_FONT)));
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("Source", BOLD_FONT)));
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("Exp. Value", BOLD_FONT)));
+            List<Compound> analogues = qprfReport.getCompound().getStructuralAnalogues();
+
+            for (Compound anal : analogues) {
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn(), NORMAL_FONT)));
+                try {
+                    structuralAnalogues.addCell(new PdfPCell(
+                            Image.getInstance(anal.getUserIcon().getImage().getScaledInstance(60, -1, java.awt.Image.SCALE_AREA_AVERAGING),
+                            java.awt.Color.BLACK)));
+                } catch (BadElementException ex) {
+                    Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getSmiles(), NORMAL_FONT)));
+                structuralAnalogues.addCell(new PdfPCell(new Phrase("Unknown", NORMAL_FONT)));
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getExperimentalValue() != null ? anal.getExperimentalValue().getValue() : "", NORMAL_FONT)));
+            }
+
+            pdf.addElement(structuralAnalogues);
         }
 
         pdf.addElement(new Paragraph(Chunk.NEWLINE));

@@ -5,6 +5,7 @@
  */
 package qedit;
 
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -156,7 +157,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         DefaultTableModel analoguesData = (DefaultTableModel) structuralAnaloguesTable.getModel();
         for (Compound c : analogues) {
             System.out.println(c.getChemicalName() + "*");
-            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], ""});
+            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], c.getExperimentalValue().getValue()});
         }
         structuralAnaloguesTable.setModel(analoguesData);
     }
@@ -333,6 +334,16 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         qprfreport.setMechanismDomain(mechanismDomainText.getText());
         qprfreport.setMetabolicDomain(metabolicDomainText.getText());
         qprfreport.setDescriptorDomain(descriptorDomainText.getText());
+
+        /* Update experimental values of structural analogues */
+        DefaultTableModel structuralAnaloguesData = (DefaultTableModel) structuralAnaloguesTable.getModel();
+        for (int sa = 0; sa < structuralAnaloguesTable.getRowCount(); sa++) {
+            qprfreport.getCompound().getStructuralAnalogues().get(sa).setExperimentalValue(
+                    new FeatureValue<String>(
+                    structuralAnaloguesData.getValueAt(sa, 1).toString(),
+                    XSDDatatype.XSDstring));
+        }
+
     }
 
     private void clearCompound() {
@@ -3759,7 +3770,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             displayImageStructAnalogue();
         }
     }//GEN-LAST:event_structuralAnaloguesTableKeyReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acquireListAnaloguesButton;
     private javax.swing.JButton addCompoundSynonym;

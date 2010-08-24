@@ -43,6 +43,8 @@ public class Compound extends AbstractComponent {
     private String uri;
     private DCMetaInfo meta;
     private ImageIcon userIcon = null;
+    private FeatureValue<String> experimentalValue;
+    private FeatureValue<String> predictedValue;
     private java.util.List<String> synonyms = new java.util.ArrayList<String>();
     private Set<String> conformers = new HashSet<String>();
     private List<Compound> structuralAnalogues = new ArrayList<Compound>();
@@ -308,6 +310,16 @@ public class Compound extends AbstractComponent {
     public boolean addStructuralAnalogue(Compound e) {
         return structuralAnalogues.add(e);
     }
+
+    public FeatureValue<String> getExperimentalValue() {
+        return experimentalValue;
+    }
+
+    public void setExperimentalValue(FeatureValue<String> experimentalValue) {
+        this.experimentalValue = experimentalValue;
+    }
+
+    
 
 
 }
