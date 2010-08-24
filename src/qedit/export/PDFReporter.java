@@ -3,6 +3,7 @@ package qedit.export;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
@@ -210,23 +211,27 @@ public class PDFReporter {
             pdf.addElement(new MyParagraph(new Chunk(qprfReport.getMetabolicDomain(), NORMAL_FONT)).applyIndent(40));
 
             pdf.addElement(new MyParagraph(new Chunk("b. Structural Analogues", BOLD_FONT)).applyIndent(30));
-            PdfPTable structuralAnalogues = new PdfPTable(5);
+            PdfPTable structuralAnalogues = new PdfPTable(4);
+            structuralAnalogues.setHorizontalAlignment(Element.ALIGN_CENTER);
+            try { 
+                structuralAnalogues.setWidths(new int[]{100, 250, 100, 100});
+            } catch (DocumentException ex) {
+                Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+            }
             structuralAnalogues.addCell(new PdfPCell(new Phrase("CAS", BOLD_FONT)));
-            structuralAnalogues.addCell(new PdfPCell(new Phrase("Structure", BOLD_FONT)));
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("Structure...........................", BOLD_FONT)));
             structuralAnalogues.addCell(new PdfPCell(new Phrase("SMILES", BOLD_FONT)));
-            structuralAnalogues.addCell(new PdfPCell(new Phrase("Source", BOLD_FONT)));
             structuralAnalogues.addCell(new PdfPCell(new Phrase("Exp. Value", BOLD_FONT)));
             List<Compound> analogues = qprfReport.getCompound().getStructuralAnalogues();
 
             for (Compound anal : analogues) {
-                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn()+"\n\n\n\n\n\n\n\n\n", NORMAL_FONT)));
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn()+"\n\n\n\n\n\n\n\n", NORMAL_FONT)));
                 try {
-                    final float scale = 0.3f;
+                    final float scale = 1f;
                     Image my = Image.getInstance(anal.getUserIcon().getImage(), java.awt.Color.BLACK);
                     my.scaleAbsolute((int) (anal.getUserIcon().getIconWidth() * scale), (int) (anal.getUserIcon().getIconHeight() * scale));
-                    PdfPCell imageCell = new PdfPCell(my);
-                    imageCell.setPadding(1);
-                    imageCell.setUseVariableBorders(true);
+                    PdfPCell imageCell = new PdfPCell(my,true);
+                    imageCell.setPadding(15);
                     structuralAnalogues.addCell(imageCell);
                 } catch (BadElementException ex) {
                     Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,7 +239,6 @@ public class PDFReporter {
                     Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getSmiles(), NORMAL_FONT)));
-                structuralAnalogues.addCell(new PdfPCell(new Phrase("Unknown", NORMAL_FONT)));
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getExperimentalValue() != null ? anal.getExperimentalValue().getValue() : "", NORMAL_FONT)));
             }
 
