@@ -13,6 +13,7 @@ import com.itextpdf.text.html.simpleparser.IncTable;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.awt.Graphics;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -209,7 +210,7 @@ public class PDFReporter {
 
             for (Compound anal : analogues) {
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn(), NORMAL_FONT)));
-                try {
+                try {   
                     structuralAnalogues.addCell(new PdfPCell(
                             Image.getInstance(anal.getUserIcon().getImage().getScaledInstance(60, -1, java.awt.Image.SCALE_AREA_AVERAGING),
                             java.awt.Color.BLACK)));
