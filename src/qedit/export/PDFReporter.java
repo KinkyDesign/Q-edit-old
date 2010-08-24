@@ -219,12 +219,15 @@ public class PDFReporter {
             List<Compound> analogues = qprfReport.getCompound().getStructuralAnalogues();
 
             for (Compound anal : analogues) {
-                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn(), NORMAL_FONT)));
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn()+"\n\n\n\n\n\n\n\n\n", NORMAL_FONT)));
                 try {
-                    ResampleOp resampleOp = new ResampleOp(60, 60);
-                    BufferedImage im = resampleOp.filter(toBufferedImage(anal.getUserIcon().getImage()), null);
-
-                    structuralAnalogues.addCell(new PdfPCell(Image.getInstance(im, java.awt.Color.BLACK)));
+                    final float scale = 0.3f;
+                    Image my = Image.getInstance(anal.getUserIcon().getImage(), java.awt.Color.BLACK);
+                    my.scaleAbsolute((int) (anal.getUserIcon().getIconWidth() * scale), (int) (anal.getUserIcon().getIconHeight() * scale));
+                    PdfPCell imageCell = new PdfPCell(my);
+                    imageCell.setPadding(1);
+                    imageCell.setUseVariableBorders(true);
+                    structuralAnalogues.addCell(imageCell);
                 } catch (BadElementException ex) {
                     Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
