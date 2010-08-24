@@ -153,11 +153,12 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     @Action
     public void synchronizeAnaloguesWRTReport() {
         List<Compound> analogues = qprfreport.getCompound().getStructuralAnalogues();
-        DefaultListModel analoguesData = new DefaultListModel();
+        DefaultTableModel analoguesData = (DefaultTableModel) structuralAnaloguesTable.getModel();
         for (Compound c : analogues) {
-            analoguesData.addElement(c.getChemicalName().split(";")[0]);
+            System.out.println(c.getChemicalName() + "*");
+            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], ""});
         }
-        structuralAnaloguesList.setModel(analoguesData);
+        structuralAnaloguesTable.setModel(analoguesData);
     }
 
     @Action
@@ -245,7 +246,15 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         clearAllRows(authorsTable);
         DefaultTableModel authorsData = (DefaultTableModel) authorsTable.getModel();
         for (Author author : qprfreport.getAuthors()) {
-            authorsData.addRow(new String[]{author.getName(), "", "", "", "", ""});
+            authorsData.addRow(
+                    new String[]{
+                        author.getName() != null ? author.getName() : "",
+                        author.getAffiliation() != null ? author.getAffiliation() : "",
+                        author.getContact() != null ? author.getContact() : "",
+                        author.getUrl() != null ? author.getUrl() : "",
+                        author.getEmail() != null ? author.getEmail() : "",
+                        author.getAddress() != null ? author.getAddress() : ""
+                    });
         }
         analoguesCommentsTextArea.setText(qprfreport.getConsiderationsOnAnalogues());
         chemBioMechanismsTextArea.setText(qprfreport.getChemBioMechanisms());
@@ -296,7 +305,27 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         qprfreport.setAuthors(new ArrayList<Author>(numAuthors));
         for (int authorIndx = 0; authorIndx < numAuthors; authorIndx++) {
             currentAuthor = new Author();
-            currentAuthor.setName(authorsData.getValueAt(authorIndx, 0).toString());
+
+            String tempString = "";
+            int index = 0;
+            tempString = authorsData.getValueAt(authorIndx, index) != null
+                    ? authorsData.getValueAt(authorIndx, index++).toString() : "";
+            currentAuthor.setName(tempString);
+            tempString = authorsData.getValueAt(authorIndx, index) != null
+                    ? authorsData.getValueAt(authorIndx, index++).toString() : "";
+            currentAuthor.setAffiliation(tempString);
+            tempString = authorsData.getValueAt(authorIndx, index) != null
+                    ? authorsData.getValueAt(authorIndx, index++).toString() : "";
+            currentAuthor.setContact(tempString);
+            tempString = authorsData.getValueAt(authorIndx, index) != null
+                    ? authorsData.getValueAt(authorIndx, index++).toString() : "";
+            currentAuthor.setUrl(tempString);
+            tempString = authorsData.getValueAt(authorIndx, index) != null
+                    ? authorsData.getValueAt(authorIndx, index++).toString() : "";
+            currentAuthor.setEmail(tempString);
+            tempString = authorsData.getValueAt(authorIndx, index) != null
+                    ? authorsData.getValueAt(authorIndx, index++).toString() : "";
+            currentAuthor.setAddress(tempString);
             qprfreport.getAuthors().add(currentAuthor);
         }
         qprfreport.setConsiderationsOnAnalogues(analoguesCommentsTextArea.getText());
@@ -773,9 +802,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         jSeparator6 = new javax.swing.JSeparator();
         analoguesCommentsLabel = new javax.swing.JLabel();
         analoguesPanel = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        structuralAnaloguesList = new javax.swing.JList();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        structuralAnaloguesTable = new javax.swing.JTable();
         analoguesCommentsScrollable = new javax.swing.JScrollPane();
         analoguesCommentsTextArea = new javax.swing.JTextArea();
         analoguesImagePanel = new javax.swing.JPanel();
@@ -2565,7 +2594,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(appDomainURIValue)
                 .addComponent(appDomainAlgorithmNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
-            .addContainerGap(251, Short.MAX_VALUE))
+            .addContainerGap(248, Short.MAX_VALUE))
     );
     appDomainInfoPanelLayout.setVerticalGroup(
         appDomainInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2672,7 +2701,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(domainChooserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(48, 48, 48)
             .addComponent(domainCardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(238, Short.MAX_VALUE))
+            .addContainerGap(235, Short.MAX_VALUE))
     );
     addDomainsDiscussionPanelLayout.setVerticalGroup(
         addDomainsDiscussionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2800,30 +2829,43 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     analoguesPanel.setName("analoguesPanel"); // NOI18N
 
-    jScrollPane5.setName("jScrollPane5"); // NOI18N
-
-    structuralAnaloguesList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-    structuralAnaloguesList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-    structuralAnaloguesList.setName("structuralAnaloguesList"); // NOI18N
-    structuralAnaloguesList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-        public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-            structuralAnaloguesListValueChanged(evt);
-        }
-    });
-    jScrollPane5.setViewportView(structuralAnaloguesList);
-
     jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
     jLabel5.setName("jLabel5"); // NOI18N
+
+    jScrollPane5.setName("jScrollPane5"); // NOI18N
+
+    structuralAnaloguesTable.setAutoCreateRowSorter(true);
+    structuralAnaloguesTable.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+
+        },
+        new String [] {
+            "Chemical Name", "Experimental Value"
+        }
+    ));
+    structuralAnaloguesTable.setName("structuralAnaloguesTable"); // NOI18N
+    structuralAnaloguesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            structuralAnaloguesTableMouseClicked(evt);
+        }
+    });
+    structuralAnaloguesTable.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            structuralAnaloguesTableKeyPressed(evt);
+        }
+    });
+    jScrollPane5.setViewportView(structuralAnaloguesTable);
+    structuralAnaloguesTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("structuralAnaloguesTable.columnModel.title0")); // NOI18N
+    structuralAnaloguesTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("structuralAnaloguesTable.columnModel.title1")); // NOI18N
 
     javax.swing.GroupLayout analoguesPanelLayout = new javax.swing.GroupLayout(analoguesPanel);
     analoguesPanel.setLayout(analoguesPanelLayout);
     analoguesPanelLayout.setHorizontalGroup(
         analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(analoguesPanelLayout.createSequentialGroup()
-            .addGroup(analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel5)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel5)
+            .addContainerGap(83, Short.MAX_VALUE))
+        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
     );
     analoguesPanelLayout.setVerticalGroup(
         analoguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2866,44 +2908,44 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     structuralAnaloguesPanelLayout.setHorizontalGroup(
         structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(analoguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(analoguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(analoguesImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(12, 12, 12)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(analoguesCommentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1023, Short.MAX_VALUE))
-            .addContainerGap())
+                .addComponent(analoguesImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel9))
+            .addGap(18, 18, 18)
+            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(analoguesCommentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(21, Short.MAX_VALUE))
+        .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 1032, Short.MAX_VALUE)
     );
     structuralAnaloguesPanelLayout.setVerticalGroup(
         structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
             .addComponent(structuralAnaloguesToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                .addComponent(analoguesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+            .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(structuralAnaloguesSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addComponent(analoguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
                     .addGap(6, 6, 6)
                     .addComponent(jLabel9)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(analoguesImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, structuralAnaloguesPanelLayout.createSequentialGroup()
                     .addGap(6, 6, 6)
-                    .addComponent(analoguesCommentsLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addGroup(structuralAnaloguesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                        .addGroup(structuralAnaloguesPanelLayout.createSequentialGroup()
+                            .addComponent(analoguesCommentsLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                            .addComponent(analoguesCommentsScrollable, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))))
             .addContainerGap())
     );
 
@@ -2917,14 +2959,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(appDomainInfoPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap(19, Short.MAX_VALUE))
+            .addContainerGap(22, Short.MAX_VALUE))
     );
     applicabilityDomainPanelLayout.setVerticalGroup(
         applicabilityDomainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(applicabilityDomainPanelLayout.createSequentialGroup()
-            .addContainerGap()
+            .addGap(6, 6, 6)
             .addComponent(appDomainInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(structuralAnaloguesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(addDomainsDiscussionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3614,7 +3656,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     compoundWizardButton.setEnabled(false);
                     removeStructuralAnalogue.setEnabled(false);
                     clearAllStructuralAnalogues.setEnabled(false);
-                    structuralAnaloguesList.setModel(new DefaultListModel());
+                    structuralAnaloguesTable.setModel(new DefaultTableModel(new Object[][]{},
+                            new Object[]{"Chemical Name", "Experimental Value"}));
                     analogueImageLabel.setIcon(new ImageIcon());
                     double similarityLevelValue = Double.parseDouble(similarityLevel.getText());
                     try {
@@ -3648,25 +3691,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_acquireListAnaloguesButtonActionPerformed
 
-    private void structuralAnaloguesListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_structuralAnaloguesListValueChanged
-        AbstractTask task = new AbstractTask() {
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                int selectionIndex = structuralAnaloguesList.getSelectedIndex();
-                if (selectionIndex != -1) {
-                    ImageIcon icon = qprfreport.getCompound().
-                            getStructuralAnalogues().get(selectionIndex).getUserIcon();
-                    analogueImageLabel.setIcon(icon);
-                    analogueInfo.setEnabled(true);
-                }
-                return null;
-            }
-        };
-        task.runInBackground();
-
-    }//GEN-LAST:event_structuralAnaloguesListValueChanged
-
     private void similarityLevelCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_similarityLevelCaretUpdate
         try {
             Double similarityLevelValue = Double.parseDouble(similarityLevel.getText());
@@ -3687,7 +3711,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
         JFrame jframe = QEditApp.getView().getFrame();
         Compound structuralAnalogueSelectedByOurBelovedUserThankYouForYourChoiseGodBleesYou_IfAny =
-                qprfreport.getCompound().getStructuralAnalogues().get(structuralAnaloguesList.getSelectedIndex());
+                qprfreport.getCompound().getStructuralAnalogues().get(structuralAnaloguesTable.getSelectedRow());
         CompoundDetailsDialog myDialogThatWillBePresentedToTheAboevementionedGreatUser =
                 new CompoundDetailsDialog(jframe, structuralAnalogueSelectedByOurBelovedUserThankYouForYourChoiseGodBleesYou_IfAny);
         int frameWidth = jframe.getWidth();
@@ -3701,6 +3725,40 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         myDialogThatWillBePresentedToTheAboevementionedGreatUser.setVisible(true);
 
     }//GEN-LAST:event_analogueInfoActionPerformed
+
+    private void structuralAnaloguesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_structuralAnaloguesTableMouseClicked
+        displayImageStructAnalogue();
+    }//GEN-LAST:event_structuralAnaloguesTableMouseClicked
+
+    private void displayImageStructAnalogue() {
+        AbstractTask task = new AbstractTask() {
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                int selectedIndex = structuralAnaloguesTable.getSelectedRow();
+                analogueImageLabel.setIcon(new ImageIcon());
+                analogueImageLabel.setText("Loading Image...");
+                if (selectedIndex != -1) {
+                    ImageIcon icon = qprfreport.getCompound().getStructuralAnalogues().get(selectedIndex).getUserIcon();
+                    analogueImageLabel.setIcon(icon);
+                    analogueInfo.setEnabled(true);
+                }
+                return null;
+            }
+        };
+        task.runInBackground();
+    }
+
+    private void structuralAnaloguesTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_structuralAnaloguesTableKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_KP_UP
+                || evt.getKeyCode() == KeyEvent.VK_KP_DOWN
+                || evt.getKeyCode() == KeyEvent.VK_UP
+                || evt.getKeyCode() == KeyEvent.VK_DOWN
+                || evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN
+                || evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            displayImageStructAnalogue();
+        }
+    }//GEN-LAST:event_structuralAnaloguesTableKeyPressed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acquireListAnaloguesButton;
     private javax.swing.JButton addCompoundSynonym;
@@ -3925,9 +3983,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel stereoChemHintLamp;
     private javax.swing.JScrollPane stereoChemScollPane;
     private javax.swing.JToolBar.Separator structAnalToolbarSeparator;
-    private javax.swing.JList structuralAnaloguesList;
     private javax.swing.JPanel structuralAnaloguesPanel;
     private javax.swing.JSeparator structuralAnaloguesSeparator;
+    private javax.swing.JTable structuralAnaloguesTable;
     private javax.swing.JToolBar structuralAnaloguesToolbar;
     private javax.swing.JTextArea structuralFragmentDomainText;
     private javax.swing.JLabel structureImage;

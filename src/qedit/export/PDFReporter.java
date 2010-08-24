@@ -131,7 +131,24 @@ public class PDFReporter {
         pdf.addElement(new MyParagraph(new Chunk("2.1. QPRF Author and Contact Details:", BOLD_FONT)).applyIndent(10));
         // Authors:
         for (Author author : qprfReport.getAuthors()) {
-            pdf.addElement(new MyParagraph(new Chunk(author.getName(), NORMAL_FONT)).applyIndent(20));
+            if (author != null) {
+                String authorString = author.getName();
+                if (author.getAffiliation() != null && !author.getAffiliation().isEmpty()) {
+                    authorString += " (" + author.getAffiliation() + ")";
+                }
+
+                if (author.getEmail() != null && !author.getEmail().isEmpty()) {
+                    authorString += ", e-mail: " + author.getEmail();
+                }
+                if (author.getUrl() != null && !author.getUrl().isEmpty()) {
+                    authorString += ", URL: " + author.getUrl();
+                }
+                if (author.getContact() != null && !author.getContact().isEmpty()) {
+                    authorString += ", Contact info: " + author.getContact();
+                }
+
+                pdf.addElement(new MyParagraph(new Chunk(authorString, NORMAL_FONT)).applyIndent(20));
+            }
         }
         pdf.addElement(new Paragraph(Chunk.NEWLINE));
         pdf.addElement(new Paragraph(Chunk.NEWLINE));
