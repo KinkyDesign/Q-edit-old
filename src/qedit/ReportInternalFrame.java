@@ -475,8 +475,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     @Action
     public void deleteImage() {
-//        structureImage.setIcon(new ImageIcon());
-//        structureImage.setText("No Image");
         structureImage.setIcon(new Compound().getUserIcon());
     }
 

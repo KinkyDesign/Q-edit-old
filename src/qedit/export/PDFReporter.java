@@ -215,7 +215,7 @@ public class PDFReporter {
             pdf.addElement(new Paragraph(Chunk.NEWLINE));
             PdfPTable structuralAnalogues = new PdfPTable(4);
             structuralAnalogues.setHorizontalAlignment(Element.ALIGN_CENTER);
-            try { 
+            try {
                 structuralAnalogues.setWidths(new int[]{100, 250, 100, 100});
             } catch (DocumentException ex) {
                 Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
@@ -228,18 +228,23 @@ public class PDFReporter {
 
             for (Compound anal : analogues) {
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn(), NORMAL_FONT)));
-                try {
-                    final float scale = 1f;
-                    Image my = Image.getInstance(anal.getUserIcon().getImage(), java.awt.Color.BLACK);
-                    my.scaleAbsolute((int) (anal.getUserIcon().getIconWidth() * scale), (int) (anal.getUserIcon().getIconHeight() * scale));
-                    PdfPCell imageCell = new PdfPCell(my,true);
-                    imageCell.setPadding(1);
-                    structuralAnalogues.addCell(imageCell);
-                } catch (BadElementException ex) {
-                    Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+
+                if (anal.isImageAvailable()) {
+                    try {
+                        Image my = Image.getInstance(anal.getUserIcon().getImage(), java.awt.Color.BLACK);
+                        my.scaleAbsolute((int) (anal.getUserIcon().getIconWidth()), (int) (anal.getUserIcon().getIconHeight()));
+                        PdfPCell imageCell = new PdfPCell(my, true);
+                        imageCell.setPadding(1);
+                        structuralAnalogues.addCell(imageCell);
+                    } catch (BadElementException ex) {
+                        Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {// No Image available
+                    structuralAnalogues.addCell(new PdfPCell(new Phrase("No Image", BOLD_FONT)));
                 }
+
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getSmiles(), NORMAL_FONT)));
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getExperimentalValue() != null ? anal.getExperimentalValue().getValue() : "", NORMAL_FONT)));
             }
@@ -279,77 +284,7 @@ public class PDFReporter {
         return pdf;
     }
 
-    // This method returns true if the specified image has transparent pixels
-    public static boolean hasAlpha(java.awt.Image image) {
-        // If buffered image, the color model is readily available
-        if (image instanceof BufferedImage) {
-            BufferedImage bimage = (BufferedImage) image;
-            return bimage.getColorModel().hasAlpha();
-        }
-
-        // Use a pixel grabber to retrieve the image's color model;
-        // grabbing a single pixel is usually sufficient
-        PixelGrabber pg = new PixelGrabber(image, 0, 0, 1, 1, false);
-        try {
-            pg.grabPixels();
-        } catch (InterruptedException e) {
-        }
-
-        // Get the image's color model
-        ColorModel cm = pg.getColorModel();
-        return cm.hasAlpha();
-    }
-
-    // This method returns a buffered image with the contents of an image
-    public static BufferedImage toBufferedImage(java.awt.Image image) {
-        if (image instanceof BufferedImage) {
-            return (BufferedImage) image;
-        }
-
-        // This code ensures that all the pixels in the image are loaded
-        image = new ImageIcon(image).getImage();
-
-        // Determine if the image has transparent pixels; for this method's
-        // implementation, see Determining If an Image Has Transparent Pixels
-        boolean hasAlpha = hasAlpha(image);
-
-        // Create a buffered image with a format that's compatible with the screen
-        BufferedImage bimage = null;
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        try {
-            // Determine the type of transparency of the new buffered image
-            int transparency = Transparency.OPAQUE;
-            if (hasAlpha) {
-                transparency = Transparency.BITMASK;
-            }
-
-            // Create the buffered image
-            GraphicsDevice gs = ge.getDefaultScreenDevice();
-            GraphicsConfiguration gc = gs.getDefaultConfiguration();
-            bimage = gc.createCompatibleImage(
-                    image.getWidth(null), image.getHeight(null), transparency);
-        } catch (HeadlessException e) {
-            // The system does not have a screen
-        }
-
-        if (bimage == null) {
-            // Create a buffered image using the default color model
-            int type = BufferedImage.TYPE_INT_RGB;
-            if (hasAlpha) {
-                type = BufferedImage.TYPE_INT_ARGB;
-            }
-            bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
-        }
-
-        // Copy image to buffered image
-        Graphics g = bimage.createGraphics();
-
-        // Paint the image onto the buffered image
-        g.drawImage(image, 0, 0, null);
-        g.dispose();
-
-        return bimage;
-    }
+    
 
     private static class MyParagraph extends Paragraph {
 
