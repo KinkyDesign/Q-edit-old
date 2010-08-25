@@ -2,7 +2,6 @@ package qedit.clients.components;
 
 import com.hp.hpl.jena.ontology.Individual;
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -45,6 +44,7 @@ public class Compound extends AbstractComponent {
     private ImageIcon userIcon = null;
     private FeatureValue<String> experimentalValue;
     private FeatureValue<String> predictedValue;
+    private boolean imageAvailable;
     private java.util.List<String> synonyms = new java.util.ArrayList<String>();
     private Set<String> conformers = new HashSet<String>();
     private List<Compound> structuralAnalogues = new ArrayList<Compound>();
@@ -65,12 +65,12 @@ public class Compound extends AbstractComponent {
     }
 
     public ImageIcon getUserIcon() {
-        if(userIcon == null){
-            ImageIcon icon =  org.jdesktop.application.Application
-                    .getInstance(qedit.QEditApp.class).getContext()
-                    .getResourceMap(ReportInternalFrame.class)
-                    .getImageIcon("structureImage.icon");            
+        if (userIcon == null) {
+            setImageAvailable(false);
+            ImageIcon icon = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(ReportInternalFrame.class).getImageIcon("structureImage.icon");
             return icon;
+        } else {
+            setImageAvailable(true);
         }
         return userIcon;
     }
@@ -78,8 +78,6 @@ public class Compound extends AbstractComponent {
     public void setUserIcon(ImageIcon userIcon) {
         this.userIcon = userIcon;
     }
-
-    
 
     // DO NOT MODIFY!
     // <editor-fold defaultstate="collapsed" desc="Getters and Settters">
@@ -170,7 +168,7 @@ public class Compound extends AbstractComponent {
                 return new java.util.ArrayList<String>();
             }
             synonyms = java.util.Arrays.asList(chemicalName.split(CHEMICAL_NAMES_SEPARATOR));
-        }        
+        }
         return synonyms;
     }
 
@@ -185,21 +183,22 @@ public class Compound extends AbstractComponent {
     public void setSynonyms(List<String> synonyms) {
         this.synonyms = synonyms;
     }
-    
 
     public javax.swing.ImageIcon getDepiction() throws ClientException {
         try {
             if (smiles != null) {
                 String smilesUrlEncoded = java.net.URLEncoder.encode(getSmiles(), "UTF-8");
                 String url = String.format(ClientConstants.getImageService(), smilesUrlEncoded);
-                System.out.println(this);
                 try {
+                    setImageAvailable(true);
                     return new javax.swing.ImageIcon(new URL(url));
                 } catch (MalformedURLException ex) {
+                    setImageAvailable(false);
                     throw new ClientException("Depiction not possible", ex);
                 }
             }
         } catch (UnsupportedEncodingException ex) {
+            setImageAvailable(false);
             Logger.getLogger(Compound.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
@@ -210,9 +209,13 @@ public class Compound extends AbstractComponent {
         try {
             if (getUri() != null) {
                 java.net.URL url = new java.net.URL(String.format(ClientConstants.ACCEPT_IMAGE_URL_PARAMETER, getUri()));
+                setImageAvailable(true);
                 return new javax.swing.ImageIcon(url);
+            } else {
+                setImageAvailable(false);
             }
         } catch (java.net.MalformedURLException ex) {
+            setImageAvailable(false);
             throw new ClientException("No Image Available", ex);
         }
         return null;
@@ -274,7 +277,7 @@ public class Compound extends AbstractComponent {
         return new String(builder);
     }
 
-    public List<Compound> updateSimilar(double similarity) throws ClientException{
+    public List<Compound> updateSimilar(double similarity) throws ClientException {
         structuralAnalogues.clear();
         try {
             String similarityUri = String.format(ClientConstants.AMBIT_SIMILARITY, URLEncoder.encode(getSmiles(), "UTF-8"), Double.toString(similarity));
@@ -283,7 +286,7 @@ public class Compound extends AbstractComponent {
             client.setMediaType(Media.uriList);
             try {
                 List<String> similarCompounds = client.getUriList();
-                for (String compUri : similarCompounds){
+                for (String compUri : similarCompounds) {
                     CompoundSpider cSpider = new CompoundSpider(compUri);
                     structuralAnalogues.add(cSpider.parse());
                 }
@@ -319,8 +322,20 @@ public class Compound extends AbstractComponent {
         this.experimentalValue = experimentalValue;
     }
 
-    
+    public FeatureValue<String> getPredictedValue() {
+        return predictedValue;
+    }
 
+    public void setPredictedValue(FeatureValue<String> predictedValue) {
+        this.predictedValue = predictedValue;
+    }
 
+    public boolean isImageAvailable() {
+        return imageAvailable;
+    }
+
+    public void setImageAvailable(boolean imageAvailable) {
+        this.imageAvailable = imageAvailable;
+    }
 }
 
