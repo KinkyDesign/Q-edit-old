@@ -242,11 +242,14 @@ public class PDFReporter {
                         Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {// No Image available
-                    structuralAnalogues.addCell(new PdfPCell(new Phrase("No Image", BOLD_FONT)));
+                    PdfPCell noImage = new PdfPCell(new Phrase("No Image", NORMAL_FONT));
+                    noImage.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    structuralAnalogues.addCell(noImage);
                 }
 
                 structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getSmiles(), NORMAL_FONT)));
-                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getExperimentalValue() != null ? anal.getExperimentalValue().getValue() : "", NORMAL_FONT)));
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getExperimentalValue() != null
+                        ? anal.getExperimentalValue().getValue() : "", NORMAL_FONT)));
             }
 
             pdf.addElement(structuralAnalogues);
@@ -283,8 +286,6 @@ public class PDFReporter {
         }
         return pdf;
     }
-
-    
 
     private static class MyParagraph extends Paragraph {
 

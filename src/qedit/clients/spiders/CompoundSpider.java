@@ -285,10 +285,8 @@ public class CompoundSpider extends Tarantula<Compound> {
         if (icon!=null){
             if (icon.getIconHeight()>0 && icon.getIconWidth()>0){
                 compound.setUserIcon(icon);
-                compound.setImageAvailable(true);
             }
         }else{
-            compound.setImageAvailable(false);
         }
 
         return compound;

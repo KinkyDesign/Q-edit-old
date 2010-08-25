@@ -44,7 +44,6 @@ public class Compound extends AbstractComponent {
     private ImageIcon userIcon = null;
     private FeatureValue<String> experimentalValue;
     private FeatureValue<String> predictedValue;
-    private boolean imageAvailable;
     private java.util.List<String> synonyms = new java.util.ArrayList<String>();
     private Set<String> conformers = new HashSet<String>();
     private List<Compound> structuralAnalogues = new ArrayList<Compound>();
@@ -66,11 +65,9 @@ public class Compound extends AbstractComponent {
 
     public ImageIcon getUserIcon() {
         if (userIcon == null) {
-            setImageAvailable(false);
             ImageIcon icon = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(ReportInternalFrame.class).getImageIcon("structureImage.icon");
             return icon;
         } else {
-            setImageAvailable(true);
         }
         return userIcon;
     }
@@ -190,15 +187,12 @@ public class Compound extends AbstractComponent {
                 String smilesUrlEncoded = java.net.URLEncoder.encode(getSmiles(), "UTF-8");
                 String url = String.format(ClientConstants.getImageService(), smilesUrlEncoded);
                 try {
-                    setImageAvailable(true);
                     return new javax.swing.ImageIcon(new URL(url));
                 } catch (MalformedURLException ex) {
-                    setImageAvailable(false);
                     throw new ClientException("Depiction not possible", ex);
                 }
             }
         } catch (UnsupportedEncodingException ex) {
-            setImageAvailable(false);
             Logger.getLogger(Compound.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
@@ -209,13 +203,10 @@ public class Compound extends AbstractComponent {
         try {
             if (getUri() != null) {
                 java.net.URL url = new java.net.URL(String.format(ClientConstants.ACCEPT_IMAGE_URL_PARAMETER, getUri()));
-                setImageAvailable(true);
                 return new javax.swing.ImageIcon(url);
             } else {
-                setImageAvailable(false);
             }
         } catch (java.net.MalformedURLException ex) {
-            setImageAvailable(false);
             throw new ClientException("No Image Available", ex);
         }
         return null;
@@ -331,11 +322,8 @@ public class Compound extends AbstractComponent {
     }
 
     public boolean isImageAvailable() {
-        return imageAvailable;
+        return userIcon != null;
     }
 
-    public void setImageAvailable(boolean imageAvailable) {
-        this.imageAvailable = imageAvailable;
-    }
 }
 
