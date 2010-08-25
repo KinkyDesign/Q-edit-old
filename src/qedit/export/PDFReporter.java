@@ -210,7 +210,9 @@ public class PDFReporter {
             pdf.addElement(new MyParagraph(new Chunk("iv. metabolic domain, if relevant", ITALICS_FONT)).applyIndent(40));
             pdf.addElement(new MyParagraph(new Chunk(qprfReport.getMetabolicDomain(), NORMAL_FONT)).applyIndent(40));
 
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
             pdf.addElement(new MyParagraph(new Chunk("b. Structural Analogues", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new Paragraph(Chunk.NEWLINE));
             PdfPTable structuralAnalogues = new PdfPTable(4);
             structuralAnalogues.setHorizontalAlignment(Element.ALIGN_CENTER);
             try { 
@@ -219,19 +221,19 @@ public class PDFReporter {
                 Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
             }
             structuralAnalogues.addCell(new PdfPCell(new Phrase("CAS", BOLD_FONT)));
-            structuralAnalogues.addCell(new PdfPCell(new Phrase("Structure...........................", BOLD_FONT)));
+            structuralAnalogues.addCell(new PdfPCell(new Phrase("Structure", BOLD_FONT)));
             structuralAnalogues.addCell(new PdfPCell(new Phrase("SMILES", BOLD_FONT)));
             structuralAnalogues.addCell(new PdfPCell(new Phrase("Exp. Value", BOLD_FONT)));
             List<Compound> analogues = qprfReport.getCompound().getStructuralAnalogues();
 
             for (Compound anal : analogues) {
-                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn()+"\n\n\n\n\n\n\n\n", NORMAL_FONT)));
+                structuralAnalogues.addCell(new PdfPCell(new Phrase(anal.getCasRn(), NORMAL_FONT)));
                 try {
                     final float scale = 1f;
                     Image my = Image.getInstance(anal.getUserIcon().getImage(), java.awt.Color.BLACK);
                     my.scaleAbsolute((int) (anal.getUserIcon().getIconWidth() * scale), (int) (anal.getUserIcon().getIconHeight() * scale));
                     PdfPCell imageCell = new PdfPCell(my,true);
-                    imageCell.setPadding(15);
+                    imageCell.setPadding(1);
                     structuralAnalogues.addCell(imageCell);
                 } catch (BadElementException ex) {
                     Logger.getLogger(PDFReporter.class.getName()).log(Level.SEVERE, null, ex);
