@@ -157,7 +157,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         DefaultTableModel analoguesData = (DefaultTableModel) structuralAnaloguesTable.getModel();
         for (Compound c : analogues) {
             System.out.println(c.getChemicalName() + "*");
-            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], c.getExperimentalValue().getValue()});
+            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], c.getExperimentalValue()!=null?c.getExperimentalValue().getValue():""});
         }
         structuralAnaloguesTable.setModel(analoguesData);
     }
