@@ -461,6 +461,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                 if (cause instanceof ClientException) {
                     QEditApp.getView().getStatusLabel().setText("No Compound could be loaded...");
                 }
+                qprfreport.getCompound().setImageAvailable(false);
             }
         };
 
@@ -3748,7 +3749,6 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             protected Object doInBackground() throws Exception {
                 int selectedIndex = structuralAnaloguesTable.getSelectedRow();
                 analogueImageLabel.setIcon(new ImageIcon());
-                analogueImageLabel.setText("Loading Image...");
                 if (selectedIndex != -1) {
                     ImageIcon icon = qprfreport.getCompound().getStructuralAnalogues().get(selectedIndex).getUserIcon();
                     analogueImageLabel.setIcon(icon);
