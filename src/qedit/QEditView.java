@@ -645,6 +645,7 @@ public class QEditView extends FrameView {
         reportMenu.add(wordReportMenuItem);
 
         exportAsPdfMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
+        exportAsPdfMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         exportAsPdfMenuItem.setIcon(resourceMap.getIcon("exportAsPdfMenuItem.icon")); // NOI18N
         exportAsPdfMenuItem.setText(resourceMap.getString("exportAsPdfMenuItem.text")); // NOI18N
         exportAsPdfMenuItem.setName("exportAsPdfMenuItem"); // NOI18N

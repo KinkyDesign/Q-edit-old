@@ -81,7 +81,7 @@ public class PDFObject {
             }
             doc.close();
         } catch (DocumentException ex) {
-            String message = "Error while generating PDF representation.";
+            throw new DocumentException("Error while generating PDF representation.");
         }
 
     }

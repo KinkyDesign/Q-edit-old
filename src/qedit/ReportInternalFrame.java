@@ -260,6 +260,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         analoguesCommentsTextArea.setText(qprfreport.getConsiderationsOnAnalogues());
         chemBioMechanismsTextArea.setText(qprfreport.getChemBioMechanisms());
         qmrfReportTextField.setText(qprfreport.getModel().getQmrfReportUri());
+        predictionValueTextField.setText(qprfreport.getCompound().getPredictedValue().getValue());
+        exprerimentalValueTextField.setText(qprfreport.getCompound().getExperimentalValue().getValue());
         synchronizeDesccriptorsWRTReport();
         synchronizeAnaloguesWRTReport();
         synchronizeDomainsWRTReport();
@@ -343,6 +345,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     structuralAnaloguesData.getValueAt(sa, 1).toString(),
                     XSDDatatype.XSDstring));
         }
+        qprfreport.getCompound().setPredictedValue(new FeatureValue<String>(predictionValueTextField.getText(), XSDDatatype.XSDstring));
+        qprfreport.getCompound().setExperimentalValue(new FeatureValue<String>(exprerimentalValueTextField.getText(), XSDDatatype.XSDstring));
+        qprfreport.getCompound().getMeta().setComment(predictionCommentTextArea.getText());
 
     }
 
@@ -775,6 +780,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         chemBioMechanismsLabel = new javax.swing.JLabel();
         chemBioMechanismsScrollable = new javax.swing.JScrollPane();
         chemBioMechanismsTextArea = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
         applicabilityDomainPanel = new javax.swing.JPanel();
         appDomainInfoPanel = new javax.swing.JPanel();
         appDomAlgorithmNameLabel = new javax.swing.JLabel();
@@ -2493,6 +2499,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     chemBioMechanismsTextArea.setName("chemBioMechanismsTextArea"); // NOI18N
     chemBioMechanismsScrollable.setViewportView(chemBioMechanismsTextArea);
 
+    jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
+    jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+    jButton1.setName("jButton1"); // NOI18N
+
     javax.swing.GroupLayout predictionInfoPanelLayout = new javax.swing.GroupLayout(predictionInfoPanel);
     predictionInfoPanel.setLayout(predictionInfoPanelLayout);
     predictionInfoPanelLayout.setHorizontalGroup(
@@ -2511,7 +2521,9 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(experimentalValueUnitsTextField)
-                        .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)))
+                        .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton1))
                 .addGroup(predictionInfoPanelLayout.createSequentialGroup()
                     .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(predictionCommentLabel)
@@ -2532,7 +2544,8 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(predictionValueLabel)
                 .addComponent(predictionValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(predictionUnitsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(predictionInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(experimentalValueLabel)
@@ -2567,7 +2580,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(predictionPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(predictionInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(168, Short.MAX_VALUE))
+            .addContainerGap(166, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab(resourceMap.getString("predictionPanel.TabConstraints.tabTitle"), predictionPanel); // NOI18N
@@ -3864,6 +3877,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTextField experimentalValueUnitsTextField;
     private javax.swing.JTextField exprerimentalValueTextField;
     private javax.swing.JPanel generalInfoPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

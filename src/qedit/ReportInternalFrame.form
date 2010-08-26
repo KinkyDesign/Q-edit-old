@@ -274,7 +274,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jSeparator1" alignment="0" min="-2" max="-2" attributes="1"/>
                                   <Component id="compoundDataInputPanel" min="-2" max="32767" attributes="0"/>
-                                  <Component id="structureImagePanel" min="-2" pref="310" max="-2" attributes="1"/>
+                                  <Component id="structureImagePanel" min="-2" max="-2" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1401,7 +1401,7 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="metaInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="186" max="32767" attributes="0"/>
+                                  <EmptySpace pref="165" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2447,7 +2447,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="predictionInfoPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="168" max="32767" attributes="0"/>
+                                  <EmptySpace pref="166" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2486,6 +2486,8 @@
                                                   <Component id="experimentalValueUnitsTextField" max="32767" attributes="1"/>
                                                   <Component id="predictionUnitsTextField" alignment="0" pref="74" max="32767" attributes="1"/>
                                               </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2515,6 +2517,7 @@
                                           <Component id="predictionValueLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="predictionValueTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="predictionUnitsTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -2671,6 +2674,13 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JButton" name="jButton1">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
+                                <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
+                                <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+                              </Properties>
+                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
@@ -3364,7 +3374,7 @@
                               <Component id="adequacyInfoSubPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="adequacyHintLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="59" max="32767" attributes="0"/>
+                          <EmptySpace pref="127" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

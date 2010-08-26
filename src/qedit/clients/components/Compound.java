@@ -159,6 +159,7 @@ public class Compound extends AbstractComponent {
     }
 
     // </editor-fold>
+
     public java.util.List<String> getSynonyms() {
         if (synonyms == null || synonyms.isEmpty()) {
             if (chemicalName == null) {

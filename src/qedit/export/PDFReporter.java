@@ -186,14 +186,19 @@ public class PDFReporter {
             pdf.addElement(new MyParagraph(new Chunk("3.2. Algorithm (OECD Principle 2)", BOLD_FONT)).applyIndent(10));
             pdf.addElement(new MyParagraph(new Chunk("a. Model or Submodel Name", BOLD_FONT)).applyIndent(30));
 
-            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getMeta().getTitle() != null
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getMeta().getTitle() != null && !qprfReport.getModel().getMeta().getTitle().isEmpty()
                     ? qprfReport.getModel().getMeta().getTitle() : qprfReport.getModel().getUri(), NORMAL_FONT)).applyIndent(30));
 
             pdf.addElement(new MyParagraph(new Chunk("b. Model Version", BOLD_FONT)).applyIndent(30));
-            pdf.addElement(new MyParagraph(new Chunk("Date : " + qprfReport.getModel().getYear() + "," + qprfReport.getModel().getMonth() + " " + qprfReport.getModel().getDay(), NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("Date : " + qprfReport.getModel().getYear() + ", "
+                    + qprfReport.getModel().getMonth() + " " + qprfReport.getModel().getDay(), NORMAL_FONT)).applyIndent(30));
             pdf.addElement(new MyParagraph(new Chunk("Version Info : " + qprfReport.getModel().getMeta().getVersionInfo(), NORMAL_FONT)).applyIndent(30));
             pdf.addElement(new MyParagraph(new Chunk("c. Reference to QMRF", BOLD_FONT)).applyIndent(30));
             pdf.addElement(new MyParagraph(new Chunk(qprfReport.getModel().getQmrfReportMeta().getComment(), NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("d. Predicted Value (model result)", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getCompound().getPredictedValue().getValue(), NORMAL_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk("d. Predicted Value (comments)", BOLD_FONT)).applyIndent(30));
+            pdf.addElement(new MyParagraph(new Chunk(qprfReport.getCompound().getMeta().getComment(), NORMAL_FONT)).applyIndent(30));
             pdf.addElement(new Paragraph(Chunk.NEWLINE));
 
             pdf.addElement(new MyParagraph(new Chunk("3.3. Applicability Domain (OECD Principle 3)", BOLD_FONT)).applyIndent(10));
