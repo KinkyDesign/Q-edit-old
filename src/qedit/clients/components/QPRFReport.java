@@ -38,6 +38,7 @@ public class QPRFReport extends AbstractComponent {
     private String descriptorDomain;
     private String mechanismDomain;
     private Dataset descriptors;
+    private String passphrase;
 
     public QPRFReport() {
     }
@@ -168,6 +169,14 @@ public class QPRFReport extends AbstractComponent {
 
     public void setModel(Model model) {
         this.model = model;
+    }
+
+    public String getPassphrase() {
+        return passphrase;
+    }
+
+    public void setPassphrase(String passphrase) {
+        this.passphrase = passphrase;
     }
 
     @Override

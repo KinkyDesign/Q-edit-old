@@ -1,10 +1,13 @@
 package qedit.task;
 
+import java.awt.Point;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import qedit.QEditApp;
 import qedit.QEditView;
+import qedit.UnlockReportDialogBox;
 import qedit.clients.components.QPRFReport;
 
 /**
@@ -56,9 +59,22 @@ public class LoadSessionTask extends AbstractTask {
 
     @Override
     protected Object doInBackground() throws Exception {
+        java.io.File file = new java.io.File(fileName);
         is = new java.io.FileInputStream(new java.io.File(fileName));
         ois = new java.io.ObjectInputStream(is);
         final QPRFReport report = (QPRFReport) ois.readObject();
+
+
+        if (report.getPassphrase() != null) {
+            System.out.println("Locked!!!");
+            UnlockReportDialogBox protect = new UnlockReportDialogBox(QEditApp.getView().getFrame(), true);
+            protect.setLocation(new Point(QEditApp.getView().getDesktopPane().getWidth() / 2, QEditApp.getView().getDesktopPane().getHeight() / 2));
+            protect.setVisible(true);
+            if (!protect.passphrase().equals(report.getPassphrase())) {
+                qedit.QEditApp.getView().getStatusLabel().setText("Could not unlock the document...");
+                return null;
+            }
+        }
         setProgress(15);
         qedit.ReportInternalFrame nd = new qedit.ReportInternalFrame();
         setProgress(40);
@@ -71,6 +87,7 @@ public class LoadSessionTask extends AbstractTask {
         nd.setLocation(new java.awt.Point(40 + 10 * QEditView.getNumOpenDocuments(), 40 + 10 * QEditView.getNumOpenDocuments()));
         setProgress(60);
         nd.setTitle(fileName.replaceAll(".report", ""));
+        nd.setRelatedFile(file);
         setProgress(70);
         QEditView.increaseNumOpenDocuments();
         setProgress(80);

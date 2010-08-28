@@ -29,6 +29,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import org.jdesktop.application.ApplicationContext;
+import qedit.clients.aa.AuthenticationToken;
 import qedit.hints.ExitQuestion;
 import qedit.hints.TooManyOpenDocsWarning;
 import qedit.task.AbstractTask;
@@ -47,6 +48,13 @@ public class QEditView extends FrameView {
     private static SessionHistory sessionHistory = null;
     public static final String QEDIT_SESSION_HISTORY = "qedit_session_hitory";
 
+    public static AuthenticationToken getToken() {
+        return token;
+    }
+
+    public static void setToken(AuthenticationToken token) {
+        QEditView.token = token;
+    }
 
     public QEditView(SingleFrameApplication app) {
         super(app);
@@ -362,6 +370,7 @@ public class QEditView extends FrameView {
         reportMenu = new javax.swing.JMenu();
         wordReportMenuItem = new javax.swing.JMenuItem();
         exportAsPdfMenuItem = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         toolsMenu = new javax.swing.JMenu();
         toolsOptionsMenuItem = new javax.swing.JMenuItem();
         statisticsMenuItem = new javax.swing.JMenuItem();
@@ -646,10 +655,21 @@ public class QEditView extends FrameView {
         reportMenu.add(wordReportMenuItem);
 
         exportAsPdfMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
+        exportAsPdfMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         exportAsPdfMenuItem.setIcon(resourceMap.getIcon("exportAsPdfMenuItem.icon")); // NOI18N
         exportAsPdfMenuItem.setText(resourceMap.getString("exportAsPdfMenuItem.text")); // NOI18N
         exportAsPdfMenuItem.setName("exportAsPdfMenuItem"); // NOI18N
         reportMenu.add(exportAsPdfMenuItem);
+
+        jMenuItem3.setIcon(resourceMap.getIcon("jMenuItem3.icon")); // NOI18N
+        jMenuItem3.setText(resourceMap.getString("jMenuItem3.text")); // NOI18N
+        jMenuItem3.setName("jMenuItem3"); // NOI18N
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        reportMenu.add(jMenuItem3);
 
         menuBar.add(reportMenu);
 
@@ -810,9 +830,15 @@ public class QEditView extends FrameView {
 
         toolsMenu.add(reportSubmenu);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem2.setIcon(resourceMap.getIcon("jMenuItem2.icon")); // NOI18N
         jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
         jMenuItem2.setName("jMenuItem2"); // NOI18N
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         toolsMenu.add(jMenuItem2);
 
         menuBar.add(toolsMenu);
@@ -1222,10 +1248,27 @@ public class QEditView extends FrameView {
 
     private void clearSessionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSessionItemActionPerformed
         int nodeToRemove = ((DefaultMutableTreeNode) recentSessionsTree.getModel().getRoot()).getIndex(sessionPopupChoice);
-        sessionHistory.remove(sessionHistory.size()-nodeToRemove-1);
+        sessionHistory.remove(sessionHistory.size() - nodeToRemove - 1);
         Preferences.userRoot().put(QEDIT_SESSION_HISTORY, new XStream().toXML(sessionHistory));
         refreshSessionsFromPreferences();
     }//GEN-LAST:event_clearSessionItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        AuthenticationBox box = new AuthenticationBox(QEditApp.getView().getFrame(), true);
+        box.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
+        box.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (desktopPane.getSelectedFrame() == null) {
+            statusMessageLabel.setText("No report is selected!");
+        } else {
+            ProtectReportDialogBox protector = new ProtectReportDialogBox(getFrame(), true);
+            protector.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
+            protector.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutToolButton;
     private javax.swing.JMenuItem addFeatureMenuItem;
@@ -1248,6 +1291,7 @@ public class QEditView extends FrameView {
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1314,4 +1358,5 @@ public class QEditView extends FrameView {
     private static int numOpenInternalFrames = 0;
     private static TooManyOpenDocsWarning warningDialog;
     private static DefaultMutableTreeNode sessionPopupChoice;
+    private static AuthenticationToken token = null;
 }

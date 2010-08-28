@@ -20,6 +20,7 @@ import qedit.clients.ClientException;
 import qedit.clients.GetClient;
 import qedit.clients.Media;
 import qedit.clients.ontol.DCMetaInfo;
+import qedit.clients.ontol.impl.DCMetaInfoImpl;
 import qedit.clients.spiders.CompoundSpider;
 
 /**
@@ -40,7 +41,7 @@ public class Compound extends AbstractComponent {
     private String casRn;
     private String einecs;
     private String uri;
-    private DCMetaInfo meta;
+    private DCMetaInfo meta = new DCMetaInfoImpl();
     private ImageIcon userIcon = null;
     private FeatureValue<String> experimentalValue;
     private FeatureValue<String> predictedValue;

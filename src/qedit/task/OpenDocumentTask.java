@@ -1,6 +1,7 @@
 package qedit.task;
 
 import com.thoughtworks.xstream.XStream;
+import java.awt.Point;
 import java.beans.PropertyVetoException;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -13,6 +14,7 @@ import qedit.QEditApp;
 import qedit.QEditView;
 import qedit.Session;
 import qedit.SessionHistory;
+import qedit.UnlockReportDialogBox;
 import qedit.clients.components.QPRFReport;
 
 /**
@@ -51,10 +53,24 @@ public class OpenDocumentTask extends AbstractTask {
         ObjectInputStream ois = null;
         try {
             setProgress(5);
-            qedit.QEditApp.getView().getStatusLabel().setText("Reading Report from XML file...");
+            qedit.QEditApp.getView().getStatusLabel().setText("Reading Report from file...");
             is = new FileInputStream(localFileChooserWindow.getSelectedFile());
             ois = new ObjectInputStream(is);
             final QPRFReport report = (QPRFReport) ois.readObject();
+
+
+            if (report.getPassphrase() != null) {
+                System.out.println("Locked!!!");
+                UnlockReportDialogBox protect = new UnlockReportDialogBox(QEditApp.getView().getFrame(), true);
+                protect.setLocation(new Point(desktopPane.getWidth() / 2, desktopPane.getHeight() / 2));
+                protect.setVisible(true);
+                if (!protect.passphrase().equals(report.getPassphrase())){
+                    qedit.QEditApp.getView().getStatusLabel().setText("Could not unlock the document...");
+                    return null;
+                }
+            }
+
+
             setProgress(15);
             desktopPane.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
             setProgress(20);

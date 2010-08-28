@@ -7,6 +7,7 @@ import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import qedit.QEditView;
 import qedit.clients.ClientException;
 import qedit.clients.GetClient;
 import qedit.clients.Media;
@@ -35,6 +36,9 @@ public class ModelSpider extends Tarantula<Model> {
         GetClient client = new GetClient();
         client.setMediaType(Media.rdf_xml);
         try {
+            if (QEditView.getToken()!=null){
+                uri += "?tokenid="+QEditView.getToken().getTokenUrlEncoded();
+            }
             client.setUri(uri);
         } catch (URISyntaxException ex) {
             throw new ClientException(ex);
@@ -97,7 +101,7 @@ public class ModelSpider extends Tarantula<Model> {
                 (RDFNode) null));
         if (itAlgorithm.hasNext()) {
             AlgorithmSpider aspider = new AlgorithmSpider(
-                    itAlgorithm.nextStatement().getObject().as(Resource.class).getURI());
+                    itAlgorithm.nextStatement().getObject().as(Resource.class).getURI(), QEditView.getToken());
             m.setAlgorithm(aspider.parse());
         }
 

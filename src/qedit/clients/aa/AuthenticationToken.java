@@ -24,7 +24,6 @@ public class AuthenticationToken {
     private static final String aaService = "https://opensso.in-silico.ch/opensso/identity/%s";
     private static final String tokenValidationUrl = String.format(aaService, "isTokenValid");
     private static final String logoutUrl = String.format(aaService, "logout");
-    private static final String userInfoUrl = String.format(aaService, "attributes");
     private static final String subjectIdHeader = "subjectid";
     private static final String tokenIdHeader = "tokenid";
     private static final String encoding = "UTF-8";

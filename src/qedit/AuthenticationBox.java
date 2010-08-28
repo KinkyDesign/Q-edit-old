@@ -8,14 +8,21 @@
  *
  * Created on Aug 26, 2010, 3:54:03 PM
  */
-
 package qedit;
+
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import qedit.clients.aa.AuthenticationToken;
+import qedit.clients.aa.TokenManager;
+import qedit.task.AbstractTask;
 
 /**
  *
  * @author chung
  */
 public class AuthenticationBox extends javax.swing.JDialog {
+
     /** A return status code - returned if Cancel button has been pressed */
     public static final int RET_CANCEL = 0;
     /** A return status code - returned if OK button has been pressed */
@@ -55,6 +62,7 @@ public class AuthenticationBox extends javax.swing.JDialog {
         javax.swing.SpinnerModel sm = new javax.swing.SpinnerNumberModel(0, 0, 240, 1);
         tokenLifetime = new javax.swing.JSpinner(sm);
         jLabel6 = new javax.swing.JLabel();
+        statusLabel = new javax.swing.JLabel();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(AuthenticationBox.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
@@ -103,6 +111,11 @@ public class AuthenticationBox extends javax.swing.JDialog {
 
         clearSessionButton.setText(resourceMap.getString("clearSessionButton.text")); // NOI18N
         clearSessionButton.setName("clearSessionButton"); // NOI18N
+        clearSessionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearSessionButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
@@ -159,12 +172,17 @@ public class AuthenticationBox extends javax.swing.JDialog {
                     .addComponent(jLabel6)))
         );
 
+        statusLabel.setText(resourceMap.getString("statusLabel.text")); // NOI18N
+        statusLabel.setName("statusLabel"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(257, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(okButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
@@ -178,7 +196,8 @@ public class AuthenticationBox extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
-                    .addComponent(okButton))
+                    .addComponent(okButton)
+                    .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -186,6 +205,50 @@ public class AuthenticationBox extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        password.setBackground(Color.white);
+        username.setBackground(Color.white);
+
+        if (username.getText().isEmpty()) {
+            username.setBackground(Color.yellow);
+            statusLabel.setText("Provide your username!");
+            return;
+        }
+        if (password.getPassword().length == 0) {
+            password.setBackground(Color.yellow);
+            statusLabel.setText("Provide your password!");
+            return;
+        }
+
+        String myPass = new String(password.getPassword());
+        String myUserName = username.getText();
+        final TokenManager tm = new TokenManager(myUserName, myPass);
+
+        AbstractTask tokenTask = new AbstractTask() {
+
+            @Override
+            protected Object doInBackground() throws Exception {
+                QEditApp.getView().getStatusLabel().setText("Connecting to openSSO server...");
+                AuthenticationToken token = tm.acquireToken();
+                QEditView.setToken(token);
+                return null;
+            }
+
+            @Override
+            protected void failed(Throwable cause) {
+                QEditApp.getView().getStatusLabel().setText("Authentication Failure!");
+                super.failed(cause);
+            }
+
+            @Override
+            protected void succeeded(Object result) {
+                QEditApp.getView().getStatusLabel().setText("Authentication Successful!");
+                super.succeeded(result);
+            }
+        };
+        tokenTask.runInBackground();
+        myUserName = null;
+        myPass = null;
+
         doClose(RET_OK);
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -198,6 +261,10 @@ public class AuthenticationBox extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
+    private void clearSessionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSessionButtonActionPerformed
+        QEditView.setToken((AuthenticationToken) null);
+    }//GEN-LAST:event_clearSessionButtonActionPerformed
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -205,13 +272,15 @@ public class AuthenticationBox extends javax.swing.JDialog {
     }
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 AuthenticationBox dialog = new AuthenticationBox(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -220,7 +289,6 @@ public class AuthenticationBox extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton clearSessionButton;
@@ -233,9 +301,9 @@ public class AuthenticationBox extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton okButton;
     private javax.swing.JPasswordField password;
+    private javax.swing.JLabel statusLabel;
     private javax.swing.JSpinner tokenLifetime;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
-
     private int returnStatus = RET_CANCEL;
 }

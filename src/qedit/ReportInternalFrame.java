@@ -46,6 +46,7 @@ import org.jdesktop.application.Task;
 import org.jdesktop.application.TaskMonitor;
 import org.jdesktop.application.TaskService;
 import qedit.clients.ClientException;
+import qedit.clients.aa.AuthenticationToken;
 import qedit.clients.components.Author;
 import qedit.clients.components.Compound;
 import qedit.clients.components.Dataset;
@@ -68,7 +69,8 @@ import qedit.task.AbstractTask;
  */
 public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
-    private java.io.File relatedFile;
+    private java.io.File relatedFile;    
+    
 
     public File getRelatedFile() {
         return relatedFile;
@@ -157,7 +159,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         DefaultTableModel analoguesData = (DefaultTableModel) structuralAnaloguesTable.getModel();
         for (Compound c : analogues) {
             System.out.println(c.getChemicalName() + "*");
-            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], c.getExperimentalValue()!=null?c.getExperimentalValue().getValue():""});
+            analoguesData.addRow(new Object[]{c.getChemicalName().split(";")[0], c.getExperimentalValue() != null ? c.getExperimentalValue().getValue() : ""});
         }
         structuralAnaloguesTable.setModel(analoguesData);
     }
@@ -345,6 +347,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
                     structuralAnaloguesData.getValueAt(sa, 1).toString(),
                     XSDDatatype.XSDstring));
         }
+        
         qprfreport.getCompound().setPredictedValue(new FeatureValue<String>(predictionValueTextField.getText(), XSDDatatype.XSDstring));
         qprfreport.getCompound().setExperimentalValue(new FeatureValue<String>(exprerimentalValueTextField.getText(), XSDDatatype.XSDstring));
         qprfreport.getCompound().getMeta().setComment(predictionCommentTextArea.getText());
@@ -568,12 +571,22 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
-                ModelSpider mSpider = new ModelSpider(modelUriValue.getText());
+                QEditApp.getView().getStatusLabel().setText("Downloading Model info....");
+                String modelUri = modelUriValue.getText();
+                AuthenticationToken token = QEditView.getToken();
+                if (token == null) {
+                    AuthenticationBox authBox = new AuthenticationBox(QEditApp.getView().getFrame(), true);
+                    authBox.setLocation(new Point(QEditApp.getView().getDesktopPane().getWidth() / 2, QEditApp.getView().getDesktopPane().getHeight() / 2));
+                    authBox.setVisible(true);
+                }
+                QEditApp.getView().getStatusLabel().setText("Downloading Model info....");
+                ModelSpider mSpider = new ModelSpider(modelUri);
                 Model modelFromRemote = mSpider.parse();
                 qprfreport.setModel(modelFromRemote);
                 if (modelFromRemote != null) {
                     synchronizeModelFieldsWRTReport();
                 }
+                QEditApp.getView().getStatusLabel().setText("Model Info Downloaded successfully!");
                 return null;
             }
         };
@@ -586,8 +599,10 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
 
     private void toggleDOAValue() {
         ImageIcon icon = !doaValue
-                ? org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(ReportInternalFrame.class).getImageIcon("applicabilityDomainValue.icon")
-                : org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().getResourceMap(StructuralAnalogueWizard_Step1.class).getImageIcon("cancelButton.icon");
+                ? org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().
+                getResourceMap(ReportInternalFrame.class).getImageIcon("applicabilityDomainValue.icon")
+                : org.jdesktop.application.Application.getInstance(qedit.QEditApp.class).getContext().
+                getResourceMap(StructuralAnalogueWizard_Step1.class).getImageIcon("cancelButton.icon");
         applicabilityDomainValue.setIcon(icon);
         doaValue = !doaValue;
     }
@@ -4039,6 +4054,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private ModelInfoDialog modelInfoDialog;
     private CompoundDetailsDialog compoundDetailsDialog;
     private boolean doaValue = true;
+    
 }
 
 

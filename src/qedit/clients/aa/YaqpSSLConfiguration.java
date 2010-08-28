@@ -24,7 +24,7 @@ public class YaqpSSLConfiguration {
      */
 
     private static boolean isSslInitialized = false;
-    private static final String openSsoHost = Configuration.getProperties().getProperty("aa.ssoHost");
+    private static final String openSsoHost = "opensso.in-silico.ch";
 
     public static void initializeSSLConnection(){
         if (!isSslInitialized){
