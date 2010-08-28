@@ -329,9 +329,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="qedit.QEditView" id="exportDocumentAsPDF" methodName="exportDocumentAsPDF"/>
                 </Property>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+1"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" resourceKey="exportAsPdfMenuItem.icon"/>
                 <Property name="text" type="java.lang.String" resourceKey="exportAsPdfMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="exportAsPdfMenuItem" noResource="true"/>
@@ -579,6 +576,13 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem2.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem2.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">

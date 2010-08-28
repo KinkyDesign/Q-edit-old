@@ -744,6 +744,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         dependentFeatureToolButton = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JToolBar.Separator();
         downloadModelInfoButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         qmrfReportHeader = new javax.swing.JLabel();
         qmrfReportLabel = new javax.swing.JLabel();
         qmrfReportTextField = new javax.swing.JTextField();
@@ -1244,7 +1245,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         .addGroup(compoundDataInputPanelLayout.createSequentialGroup()
             .addGroup(compoundDataInputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(compoundSynonymsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(compoundIdentifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
             .addContainerGap())
     );
     compoundDataInputPanelLayout.setVerticalGroup(
@@ -2104,6 +2105,14 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
         }
     });
     modelToolbar.add(downloadModelInfoButton);
+
+    jButton3.setIcon(resourceMap.getIcon("jButton3.icon")); // NOI18N
+    jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+    jButton3.setFocusable(false);
+    jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    jButton3.setName("jButton3"); // NOI18N
+    jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    modelToolbar.add(jButton3);
 
     qmrfReportHeader.setFont(resourceMap.getFont("qmrfReportHeader.font")); // NOI18N
     qmrfReportHeader.setText(resourceMap.getString("qmrfReportHeader.text")); // NOI18N
@@ -3879,6 +3888,7 @@ public class ReportInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel generalInfoPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -387,6 +387,7 @@ public class QEditView extends FrameView {
         jMenuItem8 = new javax.swing.JMenuItem();
         reportSubmenu = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -645,7 +646,6 @@ public class QEditView extends FrameView {
         reportMenu.add(wordReportMenuItem);
 
         exportAsPdfMenuItem.setAction(actionMap.get("exportDocumentAsPDF")); // NOI18N
-        exportAsPdfMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         exportAsPdfMenuItem.setIcon(resourceMap.getIcon("exportAsPdfMenuItem.icon")); // NOI18N
         exportAsPdfMenuItem.setText(resourceMap.getString("exportAsPdfMenuItem.text")); // NOI18N
         exportAsPdfMenuItem.setName("exportAsPdfMenuItem"); // NOI18N
@@ -809,6 +809,11 @@ public class QEditView extends FrameView {
         reportSubmenu.add(jMenuItem9);
 
         toolsMenu.add(reportSubmenu);
+
+        jMenuItem2.setIcon(resourceMap.getIcon("jMenuItem2.icon")); // NOI18N
+        jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
+        jMenuItem2.setName("jMenuItem2"); // NOI18N
+        toolsMenu.add(jMenuItem2);
 
         menuBar.add(toolsMenu);
 
@@ -1242,6 +1247,7 @@ public class QEditView extends FrameView {
     private javax.swing.JPopupMenu.Separator firstFileMenuSeparatorItem;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
