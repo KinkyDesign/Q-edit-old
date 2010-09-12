@@ -104,7 +104,7 @@ public class TokenManager {
     }
 
     public static void main(String... args) throws Exception{
-        TokenManager tm = new TokenManager("Sopasakis", "abfhs8y");
+        TokenManager tm = new TokenManager("Sopasakis", "xxx");
         System.out.println(tm.acquireToken().getTokenUrlEncoded());
     }
 }

@@ -62,8 +62,6 @@ public class FeatureSpider extends Tarantula<Feature> {
             feature.setUnits(unitsStatement.getString());
         }
 
-
-
         return feature;
     }
 

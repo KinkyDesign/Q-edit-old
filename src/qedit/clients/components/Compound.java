@@ -24,7 +24,8 @@ import qedit.clients.ontol.impl.DCMetaInfoImpl;
 import qedit.clients.spiders.CompoundSpider;
 
 /**
- * A Chemical Compound.
+ * A Chemical Compound. Provides different representations for chemical
+ * compounds with a unique and defined chemical structure.
  * @author Pantelis Sopasakis
  * @author Charalampos Chomenides
  */

@@ -129,7 +129,6 @@ public class DatasetSpider extends Tarantula<Dataset>{
     public static void main(String... args) throws ClientException{
         DatasetSpider dSpider = new DatasetSpider("http://ambit.uni-plovdiv.bg:8080/ambit2/dataset/6",
                 "http://ambit.uni-plovdiv.bg:8080/ambit2/compound/8829/conformer/8829");
-
         Dataset d = dSpider.parse();
 
         for(Feature feature : d.getFeatures().keySet()){
